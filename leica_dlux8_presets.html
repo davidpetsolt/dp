@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>D-Lux 8 · David's Presets</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --leica-red: #E3000B;
+    --leica-black: #0A0A0A;
+    --leica-white: #F5F2EE;
+    --leica-warm: #F0EBE3;
+    --leica-silver: #C8C4BE;
+    --leica-dark: #1A1714;
+    --leica-mid: #2E2A27;
+    --text-primary: #1A1714;
+    --text-secondary: #5A5550;
+    --text-muted: #8A8480;
+    --border: #D8D3CD;
+    --c1-accent: #E3000B;
+    --c2-accent: #C47A35;
+    --c3-accent: #7A6E64;
+    --c3b-accent: #4A5560;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    background: var(--leica-warm);
+    color: var(--text-primary);
+    font-family: 'Space Mono', monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--leica-black);
+    color: var(--leica-white);
+    padding: 20px 16px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--leica-red);
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  .leica-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--leica-white);
+  }
+
+  .red-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--leica-red);
+    border-radius: 50%;
+  }
+
+  .header-sub {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--leica-silver);
+    text-transform: uppercase;
+  }
+
+  /* TAB NAV */
+  .tab-nav {
+    display: flex;
+    background: var(--leica-black);
+    border-bottom: 1px solid var(--leica-mid);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+
+  .tab {
+    flex: 0 0 auto;
+    padding: 10px 14px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--leica-silver);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .tab.active { color: var(--leica-white); }
+  .tab[data-preset="c1"].active { border-color: var(--c1-accent); }
+  .tab[data-preset="c2"].active { border-color: var(--c2-accent); }
+  .tab[data-preset="c3"].active { border-color: var(--c3-accent); }
+  .tab[data-preset="c3bw"].active { border-color: var(--c3b-accent); }
+  .tab[data-preset="ref"].active { border-color: var(--leica-silver); }
+
+  /* PANELS */
+  .panel { display: none; padding: 0 0 80px; }
+  .panel.active { display: block; }
+
+  /* PRESET HEADER */
+  .preset-header {
+    padding: 18px 16px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .preset-id {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .preset-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .preset-vibe {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .trip-badge {
+    display: inline-block;
+    background: var(--c3-accent);
+    color: white;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-top: 6px;
+  }
+
+  .restore-badge {
+    display: inline-block;
+    background: var(--c3b-accent);
+    color: white;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-top: 6px;
+  }
+
+  /* ACCENT STRIPE */
+  .preset-stripe-c1 { height: 3px; background: var(--c1-accent); }
+  .preset-stripe-c2 { height: 3px; background: var(--c2-accent); }
+  .preset-stripe-c3 { height: 3px; background: var(--c3-accent); }
+  .preset-stripe-c3bw { height: 3px; background: var(--c3b-accent); }
+
+  /* SETTINGS GROUPS */
+  .group {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .group-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 3px 0;
+  }
+
+  .setting-key {
+    color: var(--text-secondary);
+    font-size: 13px;
+    flex: 0 0 auto;
+  }
+
+  .setting-val {
+    font-weight: 700;
+    font-size: 14px;
+    text-align: right;
+    max-width: 60%;
+  }
+
+  .val-red { color: var(--c1-accent); }
+  .val-amber { color: var(--c2-accent); }
+  .val-stone { color: var(--c3-accent); }
+  .val-slate { color: var(--c3b-accent); }
+  .val-default { color: var(--text-primary); }
+
+  /* EXPOSURE VARIANTS (C2 style) */
+  .multi-val {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1px;
+  }
+
+  .multi-val-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .multi-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+
+  /* TECHNIQUE TIPS */
+  .tips-box {
+    background: var(--leica-black);
+    color: var(--leica-white);
+    padding: 12px 16px;
+    margin: 0;
+  }
+
+  .tips-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--leica-silver);
+    margin-bottom: 8px;
+  }
+
+  .tip-item {
+    font-size: 13px;
+    color: #C8C4BE;
+    padding: 2px 0 2px 10px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .tip-item::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--leica-red);
+    font-size: 13px;
+  }
+
+  /* SCENE LIST */
+  .scene-item {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 2px 0 2px 10px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .scene-item::before {
+    content: '·';
+    position: absolute;
+    left: 2px;
+    color: var(--c3-accent);
+  }
+
+  /* REFERENCE PANEL */
+  .ref-section {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ref-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+  }
+
+  .ref-rule {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 4px 0;
+    border-bottom: 1px dotted var(--border);
+    font-size: 13px;
+  }
+
+  .ref-rule:last-child { border-bottom: none; }
+
+  .ref-key { color: var(--text-secondary); }
+  .ref-val { font-weight: 700; text-align: right; max-width: 55%; }
+
+  /* MODE TABLE */
+  .mode-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+  }
+
+  .mode-table th {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 4px 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    background: transparent;
+  }
+
+  .mode-table td {
+    font-size: 13px;
+    padding: 5px 8px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .mode-table tr:last-child td { border-bottom: none; }
+  .mode-table .mode-id { font-weight: 700; color: var(--text-primary); }
+  .mode-table .mode-dial { color: var(--text-secondary); font-size: 13px; }
+
+  /* QUICK COMPARE */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    padding: 12px 16px;
+  }
+
+  .compare-card {
+    background: white;
+    border-radius: 4px;
+    padding: 10px 8px;
+    border-top: 3px solid var(--border);
+  }
+
+  .compare-card.c1 { border-top-color: var(--c1-accent); }
+  .compare-card.c2 { border-top-color: var(--c2-accent); }
+  .compare-card.c3 { border-top-color: var(--c3-accent); }
+
+  .cc-id {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 3px;
+  }
+
+  .cc-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .cc-row {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 1px;
+    line-height: 1.4;
+  }
+
+  .cc-val { color: var(--text-primary); font-weight: 700; }
+
+  /* QUIRKS */
+  .quirk-item {
+    padding: 6px 0;
+    border-bottom: 1px dotted var(--border);
+    font-size: 10px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  .quirk-item:last-child { border-bottom: none; }
+
+  /* AF BOX */
+  .af-box {
+    background: var(--leica-black);
+    color: var(--leica-white);
+    padding: 12px 16px;
+    margin: 0;
+  }
+
+  .af-path {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: var(--leica-red);
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .af-rule {
+    font-size: 10px;
+    color: #C8C4BE;
+    padding: 2px 0;
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--leica-black);
+    padding: 8px 16px;
+    text-align: center;
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: var(--leica-silver);
+    border-top: 1px solid var(--leica-red);
+  }
+
+  .footer span { color: var(--leica-red); }
+
+  /* SCROLL HINT */
+  .scroll-hint {
+    text-align: center;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    padding: 10px;
+    text-transform: uppercase;
+  }
+
+  /* GOLDEN HOUR TIP */
+  .golden-tip {
+    background: #2A1F0A;
+    color: #F0C060;
+    padding: 10px 14px;
+    margin: 0;
+    border-left: 3px solid #C47A35;
+  }
+
+  .golden-tip-label {
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #C47A35;
+    margin-bottom: 4px;
+  }
+
+  .golden-tip-text {
+    font-size: 10px;
+    line-height: 1.5;
+    color: #D4A855;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div class="leica-logo">LEICA</div>
+    <div class="red-dot"></div>
+  </div>
+  <div class="header-sub">D-Lux 8 · David · April 2026</div>
+</div>
+
+<div class="tab-nav">
+  <div class="tab active" data-preset="c1" onclick="switchTab('c1')">C1 Vivid</div>
+  <div class="tab" data-preset="c2" onclick="switchTab('c2')">C2 Retro</div>
+  <div class="tab" data-preset="c3" onclick="switchTab('c3')">C3 Belgrade</div>
+  <div class="tab" data-preset="c3bw" onclick="switchTab('c3bw')">C3 B&W ↩</div>
+  <div class="tab" data-preset="ref" onclick="switchTab('ref')">Reference</div>
+</div>
+
+<!-- ===== C1 VIVID POP ===== -->
+<div class="panel active" id="panel-c1">
+  <div class="preset-stripe-c1"></div>
+  <div class="preset-header">
+    <div class="preset-id">C1 — Vivid Pop</div>
+    <div class="preset-name" style="color:var(--c1-accent)">Vivid Pop</div>
+    <div class="preset-vibe">1950s/60s color. Travel, street, food, architecture. Bright and saturated.</div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Exposure</div>
+    <div class="setting-row"><span class="setting-key">Mode</span><span class="setting-val val-default">Aperture Priority</span></div>
+    <div class="setting-row"><span class="setting-key">Shutter dial</span><span class="setting-val val-default">A</span></div>
+    <div class="setting-row"><span class="setting-key">Aperture</span><span class="setting-val val-red">F4</span></div>
+    <div class="setting-row"><span class="setting-key">ISO</span><span class="setting-val val-default">Auto, max 1600</span></div>
+    <div class="setting-row"><span class="setting-key">EV</span><span class="setting-val val-red">+0.3</span></div>
+    <div class="setting-row"><span class="setting-key">Metering</span><span class="setting-val val-default">Multi</span></div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">White Balance</div>
+    <div class="setting-row"><span class="setting-key">WB</span><span class="setting-val val-default">Daylight</span></div>
+    <div class="setting-row"><span class="setting-key">Fine-tune</span><span class="setting-val val-amber">+1 Amber (optional)</span></div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Photo Style</div>
+    <div class="setting-row"><span class="setting-key">Style</span><span class="setting-val val-red">Vivid</span></div>
+    <div class="setting-row"><span class="setting-key">Contrast</span><span class="setting-val val-default">+1</span></div>
+    <div class="setting-row"><span class="setting-key">Sharpness</span><span class="setting-val val-default">+2</span></div>
+    <div class="setting-row"><span class="setting-key">Saturation</span><span class="setting-val val-default">+1</span></div>
+    <div class="setting-row"><span class="setting-key">Noise Reduction</span><span class="setting-val val-default">Standard</span></div>
+    <div class="setting-row"><span class="setting-key">Grain</span><span class="setting-val val-default">None</span></div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Frame & Focus</div>
+    <div class="setting-row"><span class="setting-key">Aspect ratio</span><span class="setting-val val-red">3:2</span></div>
+    <div class="setting-row"><span class="setting-key">Food/detail</span><span class="setting-val val-default">4:3</span></div>
+    <div class="setting-row"><span class="setting-key">AF default</span><span class="setting-val val-default">Multi-Field</span></div>
+    <div class="setting-row"><span class="setting-key">People</span><span class="setting-val val-red">Eye/Face AF</span></div>
+    <div class="setting-row"><span class="setting-key">Stabilization</span><span class="setting-val val-default">ON</span></div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Filter</div>
+    <div class="setting-row"><span class="setting-key">Default</span><span class="setting-val val-default">None</span></div>
+    <div class="setting-row"><span class="setting-key">Optional</span><span class="setting-val val-default">CPL</span></div>
+  </div>
+
+  <div class="tips-box">
+    <div class="tips-label">CPL — use when shooting</div>
+    <div class="tip-item">Glass, cars, windows, water</div>
+    <div class="tip-item">Bright sky with clouds</div>
+    <div class="tip-item">Want extra saturation in daylight</div>
+  </div>
+
+  <div class="golden-tip">
+    <div class="golden-tip-label">Golden Hour tip — Belgrade/Novi Sad</div>
+    <div class="golden-tip-text">Bump WB to +2A instead of +1A for late afternoon. Warm stone architecture in that light renders beautifully with the extra amber push.</div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Best for</div>
+    <div class="scene-item" style="--dot:var(--c1-accent)">Travel wide shots and street scenes</div>
+    <div class="scene-item">Architecture, facades, markets</div>
+    <div class="scene-item">Food (switch to 4:3)</div>
+    <div class="scene-item">Bright midday and afternoon light</div>
+  </div>
+</div>
+
+<!-- ===== C2 RETRO BLUR ===== -->
+<div class="panel" id="panel-c2">
+  <div class="preset-stripe-c2"></div>
+  <div class="preset-header">
+    <div class="preset-id">C2 — Retro Blur · Cortado Crawl</div>
+    <div class="preset-name" style="color:var(--c2-accent)">Retro Blur</div>
+    <div class="preset-vibe">1970s motion blur. Cafes, family, warm street. Slow shutter is the whole point.</div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Exposure</div>
+    <div class="setting-row"><span class="setting-key">Mode</span><span class="setting-val val-default">Manual (shutter-led)</span></div>
+    <div class="setting-row"><span class="setting-key">Shutter dial</span><span class="setting-val val-amber">1/15</span></div>
+    <div class="setting-row"><span class="setting-key">ISO</span><span class="setting-val val-default">Auto, max 800</span></div>
+    <div class="setting-row"><span class="setting-key">Metering</span><span class="setting-val val-default">Multi</span></div>
+    <div class="setting-row"><span class="setting-key">Filter</span><span class="setting-val val-amber">ND8</span></div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Aperture + EV by light</div>
+    <div class="setting-row"><span class="setting-key">Indoors</span>
+      <div class="multi-val"><div class="multi-val-row"><span class="multi-label">F</span><span class="setting-val val-amber">5.6</span></div><div class="multi-val-row"><span class="multi-label">EV</span><span class="setting-val val-default">-0.3</span></div></div>
+    </div>
+    <div class="setting-row"><span class="setting-key">Outdoors</span>
+      <div class="multi-val"><div class="multi-val-row"><span class="multi-label">F</span><span class="setting-val val-amber">8</span></div><div class="multi-val-row"><span class="multi-label">EV</span><span class="setting-val val-default">-0.7</span></div></div>
+    </div>
+    <div class="setting-row"><span class="setting-key">Bright sun</span>
+      <div class="multi-val"><div class="multi-val-row"><span class="multi-label">F</span><span class="setting-val val-amber">11</span></div><div class="multi-val-row"><span class="multi-label">EV</span><span class="setting-val val-default">-1.0</span></div></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">White Balance</div>
+    <div class="setting-row"><span class="setting-key">WB</span><span class="setting-val val-default">Cloudy</span></div>
+    <div class="setting-row"><span class="setting-key">Fine-tune</span><span class="setting-val val-amber">+1 Amber</span></div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Photo Style</div>
+    <div class="setting-row"><span class="setting-key">Style</span><span class="setting-val val-default">STD</span></div>
+    <div class="setting-row"><span class="setting-key">Contrast</span><span class="setting-val val-amber">-3</span></div>
+    <div class="setting-row"><span class="setting-key">Sharpness</span><span class="setting-val val-default">-2</span></div>
+    <div class="setting-row"><span class="setting-key">Saturation</span><span class="setting-val val-default">-1</span></div>
+    <div class="setting-row"><span class="setting-key">Noise Reduction</span><span class="setting-val val-default">-1</span></div>
+    <div class="setting-row"><span class="setting-key">Grain</span><span class="setting-val val-default">None</span></div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Frame & Focus</div>
+    <div class="setting-row"><span class="setting-key">Aspect ratio</span><span class="setting-val val-amber">4:3 always</span></div>
+    <div class="setting-row"><span class="setting-key">AF default</span><span class="setting-val val-default">Multi-Field</span></div>
+    <div class="setting-row"><span class="setting-key">People</span><span class="setting-val val-amber">Eye/Face AF</span></div>
+    <div class="setting-row"><span class="setting-key">Stabilization</span><span class="setting-val val-default">ON</span></div>
+  </div>
+
+  <div class="tips-box">
+    <div class="tips-label">Technique — fighting camera shake</div>
+    <div class="tip-item">Brace elbows against your body</div>
+    <div class="tip-item">Lean against a wall or surface if possible</div>
+    <div class="tip-item">Use short burst sequences</div>
+    <div class="tip-item">Prioritize subject motion blur over sharpness</div>
+    <div class="tip-item">Eye/Face AF anchors the face while body blurs naturally</div>
+  </div>
+</div>
+
+<!-- ===== C3 BELGRADE FADE ===== -->
+<div class="panel" id="panel-c3">
+  <div class="preset-stripe-c3"></div>
+  <div class="preset-header">
+    <div class="preset-id">C3 — Trip Temporary</div>
+    <div class="preset-name" style="color:var(--c3-accent)">Belgrade Fade</div>
+    <div class="preset-vibe">Faded Eastern European film stock. Warm, muted, underexposed. Found-in-a-drawer feel.</div>
+    <div class="trip-badge">Serbia · Apr 29 – May 4, 2026</div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Exposure</div>
+    <div class="setting-row"><span class="setting-key">Mode</span><span class="setting-val val-default">Aperture Priority</span></div>
+    <div class="setting-row"><span class="setting-key">Shutter dial</span><span class="setting-val val-default">A</span></div>
+    <div class="setting-row"><span class="setting-key">Aperture</span><span class="setting-val val-stone">F4–F5.6</span></div>
+    <div class="setting-row"><span class="setting-key">ISO</span><span class="setting-val val-default">Auto, max 1600</span></div>
+    <div class="setting-row"><span class="setting-key">EV</span><span class="setting-val val-stone">-0.7 (always)</span></div>
+    <div class="setting-row"><span class="setting-key">Metering</span><span class="setting-val val-default">Multi</span></div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">White Balance</div>
+    <div class="setting-row"><span class="setting-key">WB</span><span class="setting-val val-default">Cloudy</span></div>
+    <div class="setting-row"><span class="setting-key">Fine-tune</span><span class="setting-val val-amber">+2 Amber</span></div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Photo Style</div>
+    <div class="setting-row"><span class="setting-key">Style</span><span class="setting-val val-default">STD</span></div>
+    <div class="setting-row"><span class="setting-key">Contrast</span><span class="setting-val val-stone">-2</span></div>
+    <div class="setting-row"><span class="setting-key">Sharpness</span><span class="setting-val val-stone">-3</span></div>
+    <div class="setting-row"><span class="setting-key">Saturation</span><span class="setting-val val-stone">-2</span></div>
+    <div class="setting-row"><span class="setting-key">Noise Reduction</span><span class="setting-val val-stone">-2</span></div>
+    <div class="setting-row"><span class="setting-key">Grain</span><span class="setting-val val-stone">Medium</span></div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Frame & Focus</div>
+    <div class="setting-row"><span class="setting-key">Aspect ratio</span><span class="setting-val val-stone">4:3 always</span></div>
+    <div class="setting-row"><span class="setting-key">AF default</span><span class="setting-val val-default">Multi-Field</span></div>
+    <div class="setting-row"><span class="setting-key">Portraits</span><span class="setting-val val-stone">Eye/Face AF</span></div>
+    <div class="setting-row"><span class="setting-key">Filter</span><span class="setting-val val-default">None</span></div>
+    <div class="setting-row"><span class="setting-key">Stabilization</span><span class="setting-val val-default">ON</span></div>
+  </div>
+
+  <div class="tips-box">
+    <div class="tips-label">Best scenes — Serbia trip</div>
+    <div class="tip-item">Kalemegdan fortress walls, any hour</div>
+    <div class="tip-item">Skadarlija cobblestones — morning or dusk</div>
+    <div class="tip-item">Cara Dušana market — faces and stalls</div>
+    <div class="tip-item">Monastery exteriors (Fruška Gora) — courtyards and doorways</div>
+    <div class="tip-item">Sremski Karlovci baroque square</div>
+    <div class="tip-item">Any peeling wall, worn door, or textured surface</div>
+  </div>
+
+  <div class="golden-tip">
+    <div class="golden-tip-label">Restore C3 after May 4</div>
+    <div class="golden-tip-text">After the Serbia trip, restore C3 to B&W Soft Calm. Settings are in the C3 B&W tab.</div>
+  </div>
+</div>
+
+<!-- ===== C3 B&W SOFT CALM ===== -->
+<div class="panel" id="panel-c3bw">
+  <div class="preset-stripe-c3bw"></div>
+  <div class="preset-header">
+    <div class="preset-id">C3 — Default (restore after trip)</div>
+    <div class="preset-name" style="color:var(--c3b-accent)">B&W Soft Calm</div>
+    <div class="preset-vibe">Soft monochrome. Portraits, quiet street, textures and light. Eyes carry everything.</div>
+    <div class="restore-badge">Restore after May 4, 2026</div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Exposure</div>
+    <div class="setting-row"><span class="setting-key">Mode</span><span class="setting-val val-default">Aperture Priority</span></div>
+    <div class="setting-row"><span class="setting-key">Shutter dial</span><span class="setting-val val-default">A</span></div>
+    <div class="setting-row"><span class="setting-key">Aperture indoors</span><span class="setting-val val-slate">F2.8–F4</span></div>
+    <div class="setting-row"><span class="setting-key">Aperture outdoors</span><span class="setting-val val-slate">F5.6</span></div>
+    <div class="setting-row"><span class="setting-key">ISO</span><span class="setting-val val-default">Auto, max 1600</span></div>
+    <div class="setting-row"><span class="setting-key">EV</span><span class="setting-val val-slate">-0.3</span></div>
+    <div class="setting-row"><span class="setting-key">Metering</span><span class="setting-val val-default">Multi</span></div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">White Balance</div>
+    <div class="setting-row"><span class="setting-key">WB</span><span class="setting-val val-default">Auto or Cloudy</span></div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Photo Style</div>
+    <div class="setting-row"><span class="setting-key">Style</span><span class="setting-val val-slate">Monochrome</span></div>
+    <div class="setting-row"><span class="setting-key">Contrast</span><span class="setting-val val-default">-2</span></div>
+    <div class="setting-row"><span class="setting-key">Sharpness</span><span class="setting-val val-slate">-3</span></div>
+    <div class="setting-row"><span class="setting-key">Noise Reduction</span><span class="setting-val val-default">Low</span></div>
+    <div class="setting-row"><span class="setting-key">Grain</span><span class="setting-val val-slate">Medium</span></div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Frame & Focus</div>
+    <div class="setting-row"><span class="setting-key">Aspect ratio</span><span class="setting-val val-slate">4:3 default</span></div>
+    <div class="setting-row"><span class="setting-key">Graphic compositions</span><span class="setting-val val-default">1:1</span></div>
+    <div class="setting-row"><span class="setting-key">AF default</span><span class="setting-val val-default">Multi-Field</span></div>
+    <div class="setting-row"><span class="setting-key">People</span><span class="setting-val val-slate">Eye/Face AF</span></div>
+    <div class="setting-row"><span class="setting-key">Filter</span><span class="setting-val val-default">None</span></div>
+    <div class="setting-row"><span class="setting-key">Stabilization</span><span class="setting-val val-default">ON</span></div>
+  </div>
+
+  <div class="tips-box">
+    <div class="tips-label">B&W reminder</div>
+    <div class="tip-item">Eye/Face AF is critical here — tack-sharp eyes carry the whole image when color is gone</div>
+    <div class="tip-item">1:1 ratio works well for strong geometric or graphic compositions</div>
+    <div class="tip-item">Light quality and direction matter more in B&W — look for strong shadows</div>
+  </div>
+</div>
+
+<!-- ===== REFERENCE ===== -->
+<div class="panel" id="panel-ref">
+
+  <div class="compare-grid">
+    <div class="compare-card c1">
+      <div class="cc-id">C1</div>
+      <div class="cc-name">Vivid Pop</div>
+      <div class="cc-row">Dial: <span class="cc-val">A</span></div>
+      <div class="cc-row">F: <span class="cc-val">4</span></div>
+      <div class="cc-row">ISO: <span class="cc-val">1600</span></div>
+      <div class="cc-row">EV: <span class="cc-val">+0.3</span></div>
+      <div class="cc-row">WB: <span class="cc-val">Daylight +1A</span></div>
+      <div class="cc-row">Style: <span class="cc-val">Vivid</span></div>
+      <div class="cc-row">Ratio: <span class="cc-val">3:2</span></div>
+    </div>
+    <div class="compare-card c2">
+      <div class="cc-id">C2</div>
+      <div class="cc-name">Retro Blur</div>
+      <div class="cc-row">Dial: <span class="cc-val">1/15</span></div>
+      <div class="cc-row">F: <span class="cc-val">5.6/8/11</span></div>
+      <div class="cc-row">ISO: <span class="cc-val">800</span></div>
+      <div class="cc-row">EV: <span class="cc-val">-.3/-.7/-1</span></div>
+      <div class="cc-row">WB: <span class="cc-val">Cloudy +1A</span></div>
+      <div class="cc-row">Style: <span class="cc-val">STD</span></div>
+      <div class="cc-row">Ratio: <span class="cc-val">4:3</span></div>
+    </div>
+    <div class="compare-card c3">
+      <div class="cc-id">C3 ★</div>
+      <div class="cc-name">Belgrade Fade</div>
+      <div class="cc-row">Dial: <span class="cc-val">A</span></div>
+      <div class="cc-row">F: <span class="cc-val">4–5.6</span></div>
+      <div class="cc-row">ISO: <span class="cc-val">1600</span></div>
+      <div class="cc-row">EV: <span class="cc-val">-0.7</span></div>
+      <div class="cc-row">WB: <span class="cc-val">Cloudy +2A</span></div>
+      <div class="cc-row">Style: <span class="cc-val">STD</span></div>
+      <div class="cc-row">Ratio: <span class="cc-val">4:3</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint">★ C3 = Belgrade Fade until May 4</div>
+
+  <div class="ref-section">
+    <div class="ref-title">Mode Logic</div>
+    <table class="mode-table">
+      <thead><tr><th>Mode</th><th>Shutter Dial</th><th>Aperture Tile</th></tr></thead>
+      <tbody>
+        <tr><td class="mode-id">P</td><td class="mode-dial">A</td><td class="mode-dial">A</td></tr>
+        <tr><td class="mode-id">A</td><td class="mode-dial">A</td><td class="mode-dial">F-number</td></tr>
+        <tr><td class="mode-id">S</td><td class="mode-dial">Speed</td><td class="mode-dial">A</td></tr>
+        <tr><td class="mode-id">M</td><td class="mode-dial">Speed</td><td class="mode-dial">F-number</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="af-box">
+    <div class="af-path">Menu › Focusing › AF Mode › Eye/Face</div>
+    <div class="af-rule">Active: locks to nearest eye automatically</div>
+    <div class="af-rule">Multiple faces: toggle with directional pad</div>
+    <div class="af-rule">No face detected: falls back to Multi-Field</div>
+    <div class="af-rule">All presets: Multi-Field default, Eye/Face for people</div>
+  </div>
+
+  <div class="ref-section">
+    <div class="ref-title">EV Quick Reference</div>
+    <div class="ref-rule"><span class="ref-key">C1 Vivid Pop</span><span class="ref-val">+0.3</span></div>
+    <div class="ref-rule"><span class="ref-key">C2 indoors</span><span class="ref-val">-0.3</span></div>
+    <div class="ref-rule"><span class="ref-key">C2 outdoors</span><span class="ref-val">-0.7</span></div>
+    <div class="ref-rule"><span class="ref-key">C2 bright sun</span><span class="ref-val">-1.0</span></div>
+    <div class="ref-rule"><span class="ref-key">C3 Belgrade Fade</span><span class="ref-val">-0.7 always</span></div>
+    <div class="ref-rule"><span class="ref-key">C3 B&W Soft Calm</span><span class="ref-val">-0.3</span></div>
+  </div>
+
+  <div class="ref-section">
+    <div class="ref-title">Aperture Quirk</div>
+    <div class="quirk-item">If aperture can't be changed: zoom slightly to ~28–35mm equivalent and try again. The variable lens restricts aperture at the widest position.</div>
+  </div>
+
+  <div class="ref-section">
+    <div class="ref-title">Leica Photos App</div>
+    <div class="ref-rule"><span class="ref-key">Transfer</span><span class="ref-val">WiFi (not BT)</span></div>
+    <div class="ref-rule"><span class="ref-key">Prefer</span><span class="ref-val">5GHz WiFi</span></div>
+    <div class="ref-rule"><span class="ref-key">Speed tip</span><span class="ref-val">Select import, not all</span></div>
+    <div class="ref-rule"><span class="ref-key">Format</span><span class="ref-val">JPG only — faster</span></div>
+  </div>
+
+  <div class="ref-section">
+    <div class="ref-title">Charging</div>
+    <div class="ref-rule"><span class="ref-key">Prefer</span><span class="ref-val">USB-C PD</span></div>
+    <div class="ref-rule"><span class="ref-key">Slow flash green</span><span class="ref-val">Charging</span></div>
+    <div class="ref-rule"><span class="ref-key">Solid green</span><span class="ref-val">Full</span></div>
+  </div>
+
+  <div class="ref-section">
+    <div class="ref-title">File Format</div>
+    <div class="quirk-item">JPG only. Photo Style (contrast, sharpness, saturation, grain) bakes directly into the image. No RAW fallback.</div>
+  </div>
+
+</div>
+
+<div class="footer">LEICA D-LUX 8 · <span>DAVID</span> · APR 2026</div>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelector('.tab[data-preset="' + id + '"]').classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>

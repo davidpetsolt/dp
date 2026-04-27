@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>LaLiga Guide 2025–26</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0c12;--sur:#14172a;--sur2:#1e2235;--bdr:#2a2d3d;--txt:#f0f0f5;--mut:#7a7e99;--acc:#e63324;--fd:'Oswald',Arial,sans-serif;--fb:'Source Sans 3','Helvetica Neue',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:var(--fb);font-size:15px;line-height:1.5;-webkit-text-size-adjust:100%}
+header{background:linear-gradient(160deg,#200b07 0%,#0a0c12 55%);border-bottom:2px solid var(--acc);padding:20px 16px 14px;text-align:center}
+.hl{font-family:var(--fd);font-size:11px;letter-spacing:4px;color:var(--acc);text-transform:uppercase}
+.ht{font-family:var(--fd);font-size:36px;font-weight:700;letter-spacing:2px;line-height:1;margin-top:2px}
+.ht span{color:var(--acc)}
+.hs{font-size:12px;color:var(--mut);margin-top:4px}
+.tabs{display:flex;background:var(--sur);border-bottom:1px solid var(--bdr);position:sticky;top:0;z-index:200;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:1 1 0;min-width:80px;padding:13px 8px;font-family:var(--fd);font-size:13px;letter-spacing:.8px;color:var(--mut);cursor:pointer;border-bottom:2px solid transparent;text-align:center;transition:all .15s;user-select:none}
+.tab small{display:block;font-family:sans-serif;font-size:10px;margin-top:1px}
+.tab.active{color:var(--txt);border-bottom-color:var(--acc)}
+.sec{display:none}.sec.active{display:block}
+.leg{display:flex;flex-wrap:wrap;gap:5px 12px;padding:10px 14px;border-bottom:1px solid var(--bdr);background:rgba(255,255,255,.02)}
+.li{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--mut)}
+.ld{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.ln{font-size:10px;color:#444;padding-top:1px;width:100%}
+.tlist{padding:10px 12px}
+.card{background:var(--sur);border:1px solid var(--bdr);border-left:3px solid var(--bdr);border-radius:10px;margin-bottom:8px;overflow:hidden}
+.card.open{border-color:#3a3d55}
+.card[data-s=cl]{border-left-color:#4a90d9}.card[data-s=el]{border-left-color:#f5a623}.card[data-s=conf]{border-left-color:#27ae60}
+.card[data-s=rel]{border-left-color:#e63324}.card[data-s=aup]{border-left-color:#27ae60}.card[data-s=plo]{border-left-color:#f5a623}
+.chdr{display:flex;align-items:center;gap:11px;padding:12px 12px 12px 14px;cursor:pointer;user-select:none}
+.rk{font-family:var(--fd);font-size:20px;font-weight:700;width:28px;text-align:right;flex-shrink:0}
+.rk.cl{color:#4a90d9}.rk.el{color:#f5a623}.rk.conf{color:#27ae60}.rk.rel{color:#e63324}.rk.aup{color:#27ae60}.rk.plo{color:#f5a623}.rk.mid{color:var(--mut)}
+.ci{flex:1;min-width:0}
+.cn{font-family:var(--fd);font-size:17px;font-weight:500;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.1}
+.cm{font-size:11px;color:var(--mut);margin-top:2px}
+.cb{font-size:9px;font-family:var(--fd);letter-spacing:.5px;padding:3px 8px;border-radius:20px;flex-shrink:0}
+.cb.cl{background:rgba(74,144,217,.15);color:#4a90d9;border:1px solid rgba(74,144,217,.3)}.cb.el{background:rgba(245,166,35,.15);color:#f5a623;border:1px solid rgba(245,166,35,.3)}
+.cb.conf{background:rgba(39,174,96,.15);color:#27ae60;border:1px solid rgba(39,174,96,.3)}.cb.rel{background:rgba(230,51,36,.15);color:#e63324;border:1px solid rgba(230,51,36,.3)}
+.cb.aup{background:rgba(39,174,96,.15);color:#27ae60;border:1px solid rgba(39,174,96,.3)}.cb.plo{background:rgba(245,166,35,.15);color:#f5a623;border:1px solid rgba(245,166,35,.3)}
+.cv{font-size:11px;color:var(--mut);flex-shrink:0;transition:transform .2s}
+.card.open .cv{transform:rotate(180deg)}
+.npanel{display:none;padding:0 14px 12px;border-top:1px solid var(--bdr)}
+.card.open .npanel{display:block}
+.ni{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)}.ni:last-child{border-bottom:none}
+.nn{font-family:var(--fd);font-size:14px;color:var(--acc)}.nm{font-size:13px;color:var(--mut);margin-top:2px;line-height:1.45}
+.mwrap{padding:12px}
+.mtitle{font-family:var(--fd);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
+.mleg{display:flex;flex-wrap:wrap;gap:5px 12px;padding:4px 0 10px}
+.msvgwrap{border-radius:10px;overflow:hidden;border:1px solid var(--bdr);background:#0d1020;margin-bottom:10px}
+.msvgwrap svg{display:block;width:100%;height:auto}
+.minfo{background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:12px 14px;margin-bottom:22px;min-height:68px}
+.mi-empty{font-size:13px;color:var(--mut);font-style:italic}
+.mi-name{font-family:var(--fd);font-size:17px;font-weight:600;color:var(--txt)}
+.mi-meta{font-size:12px;color:var(--mut);margin-top:2px}
+.mi-nicks{font-size:12px;margin-top:6px;line-height:1.6}
+footer{padding:18px 16px 32px;text-align:center;font-size:11px;color:var(--mut);border-top:1px solid var(--bdr);line-height:1.7}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hl">España · Professional Football</div>
+  <div class="ht">La<span>Liga</span> Guide</div>
+  <div class="hs">2025–26 · Both Divisions · 42 Teams · All Nicknames &amp; Origins</div>
+</header>
+
+<nav class="tabs">
+  <div class="tab active" data-tab="d1">División 1<small>20 teams</small></div>
+  <div class="tab" data-tab="d2">División 2<small>22 teams</small></div>
+  <div class="tab" data-tab="maps">Maps<small>both divs</small></div>
+</nav>
+
+<!-- ── DIVISION 1 ── -->
+<section id="d1" class="sec active">
+  <div class="leg">
+    <div class="li"><div class="ld" style="background:#4a90d9"></div>Champions League (1–4)</div>
+    <div class="li"><div class="ld" style="background:#f5a623"></div>Europa League (5)</div>
+    <div class="li"><div class="ld" style="background:#27ae60"></div>Conference League (6)</div>
+    <div class="li"><div class="ld" style="background:#e63324"></div>Relegation (18–20)</div>
+    <div class="ln">Tap any card to expand nicknames</div>
+  </div>
+  <div class="tlist" id="d1c"></div>
+</section>
+
+<!-- ── DIVISION 2 ── -->
+<section id="d2" class="sec">
+  <div class="leg">
+    <div class="li"><div class="ld" style="background:#27ae60"></div>Auto-Promotion (1–2)</div>
+    <div class="li"><div class="ld" style="background:#f5a623"></div>Playoff (3–6)</div>
+    <div class="li"><div class="ld" style="background:#e63324"></div>Relegation (19–22)</div>
+    <div class="ln">Tap any card to expand nicknames</div>
+  </div>
+  <div class="tlist" id="d2c"></div>
+</section>
+
+<!-- ── MAPS ── -->
+<section id="maps" class="sec">
+<div class="mwrap">
+  <div class="mtitle">División 1 — LaLiga EA Sports</div>
+  <div class="mleg">
+    <div class="li"><div class="ld" style="background:#4a90d9"></div>Champions League</div>
+    <div class="li"><div class="ld" style="background:#f5a623"></div>Europa / Conference</div>
+    <div class="li"><div class="ld" style="background:#8b8fa8"></div>Mid-table</div>
+    <div class="li"><div class="ld" style="background:#e63324"></div>Relegation</div>
+  </div>
+  <div class="msvgwrap">
+    <svg id="svg1" viewBox="0 0 680 460" xmlns="http://www.w3.org/2000/svg">
+      <rect width="680" height="460" fill="#0d1020"/>
+      <path fill="#1a1d2e" stroke="#3a3d55" stroke-width="1.5" stroke-linejoin="round"
+        d="M 54,83 L 65,72 L 93,58 L 106,52 L 155,48 L 211,50 L 292,53 L 332,63 L 374,60 L 383,58
+           L 390,83 L 445,96 L 542,98 L 606,103 L 624,108
+           L 608,133 L 573,157 L 532,170 L 515,190 L 468,228 L 453,252 L 447,311 L 421,349
+           L 353,393 L 262,399 L 214,429 L 205,435
+           L 173,411 L 143,379 L 122,368
+           L 141,285 L 165,174 L 122,130 L 67,122 Z"/>
+      <ellipse fill="#1a1d2e" stroke="#3a3d55" stroke-width="1.5" cx="591" cy="247" rx="22" ry="13"/>
+      <ellipse fill="#1a1d2e" stroke="#3a3d55" stroke-width="1" cx="531" cy="272" rx="9" ry="5"/>
+      <rect x="6" y="380" width="92" height="72" rx="5" fill="#0f1220" stroke="#2a2d3d" stroke-width="1"/>
+      <text x="52" y="393" font-size="7" fill="#4a4e68" text-anchor="middle" font-family="sans-serif" font-style="italic">Gran Canaria</text>
+      <text x="52" y="401" font-size="7" fill="#4a4e68" text-anchor="middle" font-family="sans-serif" font-style="italic">(Canary Islands)</text>
+      <g id="dots1"></g>
+    </svg>
+  </div>
+  <div class="minfo" id="info1"><span class="mi-empty">Tap a coloured dot to see team details</span></div>
+
+  <div class="mtitle" style="margin-top:4px">División 2 — LaLiga Hypermotion</div>
+  <div class="mleg">
+    <div class="li"><div class="ld" style="background:#27ae60"></div>Auto-Promotion</div>
+    <div class="li"><div class="ld" style="background:#f5a623"></div>Playoff</div>
+    <div class="li"><div class="ld" style="background:#8b8fa8"></div>Mid-table</div>
+    <div class="li"><div class="ld" style="background:#e63324"></div>Relegation</div>
+  </div>
+  <div class="msvgwrap">
+    <svg id="svg2" viewBox="0 0 680 460" xmlns="http://www.w3.org/2000/svg">
+      <rect width="680" height="460" fill="#0d1020"/>
+      <path fill="#1a1d2e" stroke="#3a3d55" stroke-width="1.5" stroke-linejoin="round"
+        d="M 54,83 L 65,72 L 93,58 L 106,52 L 155,48 L 211,50 L 292,53 L 332,63 L 374,60 L 383,58
+           L 390,83 L 445,96 L 542,98 L 606,103 L 624,108
+           L 608,133 L 573,157 L 532,170 L 515,190 L 468,228 L 453,252 L 447,311 L 421,349
+           L 353,393 L 262,399 L 214,429 L 205,435
+           L 173,411 L 143,379 L 122,368
+           L 141,285 L 165,174 L 122,130 L 67,122 Z"/>
+      <ellipse fill="#1a1d2e" stroke="#3a3d55" stroke-width="1.5" cx="591" cy="247" rx="22" ry="13"/>
+      <ellipse fill="#1a1d2e" stroke="#3a3d55" stroke-width="1" cx="531" cy="272" rx="9" ry="5"/>
+      <rect x="6" y="380" width="92" height="72" rx="5" fill="#0f1220" stroke="#2a2d3d" stroke-width="1"/>
+      <text x="52" y="393" font-size="7" fill="#4a4e68" text-anchor="middle" font-family="sans-serif" font-style="italic">Gran Canaria</text>
+      <text x="52" y="401" font-size="7" fill="#4a4e68" text-anchor="middle" font-family="sans-serif" font-style="italic">(Canary Islands)</text>
+      <g id="dots2"></g>
+    </svg>
+  </div>
+  <div class="minfo" id="info2"><span class="mi-empty">Tap a coloured dot to see team details</span></div>
+  <p style="font-size:11px;color:#444;text-align:center;padding-bottom:8px">Mallorca shown in Mediterranean · Ceuta at southern tip · Las Palmas in inset box (bottom-left)</p>
+</div>
+</section>
+
+<footer>
+  Standings as of 13–18 April 2026 (approx. Matchday 31–33)<br>
+  Div 2 positions 7–18 are mid-table and fluid<br>
+  SVG map is a schematic projection of the Iberian Peninsula
+</footer>
+
+<script>
+const SC = {
+  cl:  {label:'Champions League', badge:'cl',   rank:'cl',   dot:'#4a90d9'},
+  el:  {label:'Europa League',    badge:'el',   rank:'el',   dot:'#f5a623'},
+  conf:{label:'Conference',       badge:'conf', rank:'conf', dot:'#27ae60'},
+  mid: {label:'',                 badge:'',     rank:'mid',  dot:'#8b8fa8'},
+  rel: {label:'Relegation',       badge:'rel',  rank:'rel',  dot:'#e63324'},
+  aup: {label:'Auto-Promotion',   badge:'aup',  rank:'aup',  dot:'#27ae60'},
+  plo: {label:'Playoff',          badge:'plo',  rank:'plo',  dot:'#f5a623'},
+};
+
+// Coordinates: x=(lng+10.5)/15.5*680, y=(44.5-lat)/9.0*460
+// Clustered teams manually offset. Las Palmas placed in Canary Islands inset.
+const D1=[
+  {rank:1, name:'FC Barcelona',       city:'Barcelona',        founded:1899,pts:79,  s:'cl',  x:550,y:157,
+   nicks:[{n:'Barça',m:"Catalan abbreviation of 'Barcelona'"},{n:'Blaugrana',m:"Catalan for 'blue and dark red' — their kit colors"},{n:'Culés',m:"From 'culo' (backside) — early fans sat atop an open wall at the old ground, visible from the street below with their backs to passers-by"}]},
+  {rank:2, name:'Real Madrid',         city:'Madrid',           founded:1902,pts:70,  s:'cl',  x:292,y:200,
+   nicks:[{n:'Los Blancos',m:"'The Whites' — their iconic all-white kit"},{n:'Los Merengues',m:"'The Meringues' — a white dessert; same white-kit reference but more affectionate"}]},
+  {rank:3, name:'Villarreal CF',       city:'Villarreal',       founded:1923,pts:61,  s:'cl',  x:468,y:231,
+   nicks:[{n:'El Submarino Amarillo',m:"'The Yellow Submarine' — taken from the Beatles song, a nod to their yellow kit"}]},
+  {rank:4, name:'Atlético de Madrid',  city:'Madrid',           founded:1903,pts:57,  s:'cl',  x:309,y:212,
+   nicks:[{n:'Los Colchoneros',m:"'The Mattress Makers' — their red and white striped kit resembles the ticking fabric used in traditional Madrid mattress manufacturing"},{n:'Los Rojiblancos',m:"'The Red and Whites' — their kit colors"}]},
+  {rank:5, name:'Real Betis',          city:'Seville',          founded:1907,pts:46,  s:'el',  x:193,y:362,
+   nicks:[{n:'Los Verdiblancos',m:"'The Green and Whites' — their kit colors"},{n:'Heliopolitanos',m:"From Heliopolis, the ancient Greek/Roman name for the district of Seville where the club was founded"}]},
+  {rank:6, name:'RC Celta de Vigo',    city:'Vigo',             founded:1923,pts:44,  s:'conf',x:63, y:115,
+   nicks:[{n:'Los Celestes',m:"'The Sky Blues' — their distinctive light blue kit"},{n:'O Celta',m:"Galician (not Spanish) for 'The Celta' — asserts their Galician regional identity"}]},
+  {rank:7, name:'Real Sociedad',       city:'San Sebastián',    founded:1909,pts:42,  s:'mid', x:375,y:59,
+   nicks:[{n:'La Real',m:"Short for 'Real' (Royal) in their full name"},{n:'Txuri-urdin',m:"Basque for 'white-blue' — describes their kit in the local language, asserting Basque identity"}]},
+  {rank:8, name:'Getafe CF',           city:'Getafe (Madrid)',  founded:1983,pts:41,  s:'mid', x:301,y:219,
+   nicks:[{n:'Los Azulones',m:"'The Dark Blues' — their deep navy blue kit"},{n:'Los Gatos',m:"'The Cats' — a long-standing Madrid regional slang term for locals, especially south of the city"}]},
+  {rank:9, name:'CA Osasuna',          city:'Pamplona',         founded:1920,pts:39,  s:'mid', x:391,y:82,
+   nicks:[{n:'Los Rojillos',m:"'The Little Reds' — their predominantly red kit"}]},
+  {rank:10,name:'RCD Espanyol',        city:'Barcelona',        founded:1900,pts:38,  s:'mid', x:543,y:168,
+   nicks:[{n:'Los Periquitos / Pericos',m:"'The Parakeets' — their blue and white striped kit was said to resemble parakeet plumage"},{n:'Els Perics',m:"The Catalan form of the same nickname"},{n:'Los Blanquiazules',m:"'The Blue and Whites' — their kit colors"}]},
+  {rank:11,name:'Athletic Club',       city:'Bilbao',           founded:1898,pts:38,  s:'mid', x:332,y:63,
+   nicks:[{n:'Los Leones',m:"'The Lions' — the lion is the symbol of Vizcaya province; their stadium San Mamés is named for a saint thrown to the lions in Rome"}]},
+  {rank:12,name:'Girona FC',           city:'Girona',           founded:1930,pts:38,  s:'mid', x:587,y:128,
+   nicks:[{n:'Els Blanc-i-vermells',m:"Catalan for 'The White and Reds' — their kit colors"}]},
+  {rank:13,name:'Rayo Vallecano',      city:'Madrid',           founded:1924,pts:35,  s:'mid', x:282,y:208,
+   nicks:[{n:'El Rayo',m:"'The Lightning Bolt' — rayo means lightning, referencing the bold diagonal stripe on their white kit"},{n:'Los Franjirrojos',m:"'The Red Stripe' — describes that same diagonal red band across the kit"}]},
+  {rank:14,name:'Valencia CF',         city:'Valencia',         founded:1919,pts:35,  s:'mid', x:444,y:256,
+   nicks:[{n:'Los Che',m:"A Valencian term of address meaning 'mate' or 'pal' — widely used by locals and adopted as a community identity marker"},{n:'Los Murciélagos',m:"'The Bats' — a bat appears on Valencia's coat of arms, from a legend that one landed on King James I's helmet before his 1238 conquest of the city"}]},
+  {rank:15,name:'RCD Mallorca',        city:'Palma de Mallorca',founded:1916,pts:34,  s:'mid', x:591,y:247,
+   nicks:[{n:'Los Bermellones',m:"'The Vermilions' — their red/vermilion kit color"},{n:'Los Mallorquines',m:"Simply 'The Mallorcans' — the island club's geographic identity"}]},
+  {rank:16,name:'Sevilla FC',          city:'Seville',          founded:1890,pts:34,  s:'mid', x:207,y:356,
+   nicks:[{n:'Los Nervionenses',m:"After the Nervión district of Seville where their Ramón Sánchez-Pizjuán stadium is located"},{n:'Los Sevillistas',m:"'The Sevilla People' — distinguishes the club's identity and fanbase from city rivals Betis"}]},
+  {rank:17,name:'Deportivo Alavés',    city:'Vitoria-Gasteiz',  founded:1921,pts:33,  s:'mid', x:343,y:83,
+   nicks:[{n:'Los Babazorros',m:"An old, originally mocking term for Álava locals — associated with simple rural folk; fans reclaimed it with pride"},{n:'Gloriosos',m:"'The Glorious Ones' — references historic peaks, especially their 2001 UEFA Cup final run"}]},
+  {rank:18,name:'Elche CF',            city:'Elche',            founded:1923,pts:32,  s:'rel', x:431,y:316,
+   nicks:[{n:'Los Franjiverdes',m:"'The Green Striped' — their green and white striped kit"},{n:'Els Ilicitans',m:"Valencian for 'People of Elche' — from Ilici, the Roman name for the city"}]},
+  {rank:19,name:'Levante UD',          city:'Valencia',         founded:1909,pts:null,s:'rel', x:456,y:244,
+   nicks:[{n:'Els Granotes',m:"Valencian for 'The Frogs' — 'granota' also means 'overalls' in Valencian, linking to the club's working-class roots in Valencia's industrial neighborhoods"}]},
+  {rank:20,name:'Real Oviedo',         city:'Oviedo',           founded:1926,pts:null,s:'rel', x:205,y:57,
+   nicks:[{n:'Los Carbayones',m:"From 'carbayo,' the Asturian word for the native oak tree — the oak is the civic symbol of Oviedo city"}]},
+];
+
+const D2=[
+  {rank:1, name:'Racing de Santander',      city:'Santander',             founded:1913,s:'aup',x:293,y:50,
+   nicks:[{n:'Los Verdiblancos',m:"'The Green and Whites' — their green and white kit"},{n:'El Racing',m:"An affectionate shortening of the club name — 'Racing' became both name and identity"}]},
+  {rank:2, name:'CD Castellón',             city:'Castellón de la Plana', founded:1922,s:'aup',x:469,y:228,
+   nicks:[{n:'El Submarino Naranja',m:"'The Orange Submarine' — a deliberate riff on Villarreal's Yellow Submarine, swapping to orange for their kit color, also evoking the Netherlands' Oranje"},{n:'Els Orelluts',m:"Valencian slang for 'The Big-Eared Ones' — a traditional affectionate nickname for people from Castellón"}]},
+  {rank:3, name:'RC Deportivo La Coruña',   city:'A Coruña',              founded:1906,s:'plo',x:93, y:57,
+   nicks:[{n:'Super Depor',m:"Coined during their 1990s–2000s golden era — La Liga winners in 2000, Champions League semi-finals. A badge of that generation's ambition"},{n:'Los Coruñeses',m:"'The Coruña People' — straightforward geographic identity"},{n:'Blanquiazules',m:"'The Blue and Whites' — their kit colors"}]},
+  {rank:4, name:'UD Almería',               city:'Almería',               founded:1989,s:'plo',x:353,y:390,
+   nicks:[{n:'Los Indálicos',m:"After the Indalo, a prehistoric stick-figure found in cave paintings in Almería's mountains — it became the symbol of the entire province and its people"}]},
+  {rank:5, name:'UD Las Palmas',            city:'Las Palmas, Gran Canaria',founded:1949,s:'plo',x:52,y:432,
+   nicks:[{n:'Los Amarillos',m:"'The Yellows' — their yellow kit"},{n:'La Unión',m:"Refers to the club's founding as a merger of several Gran Canaria clubs, uniting the island's football"}]},
+  {rank:6, name:'Málaga CF',                city:'Málaga',                founded:1904,s:'plo',x:263,y:396,
+   nicks:[{n:'Los Boquerones',m:"'The Anchovies' — Málaga is famous across Spain for its fried anchovies; it became a badge of local working-class pride"},{n:'Los Costasoleños',m:"'The Costa del Sol People' — referencing Málaga's famous sunny Mediterranean coastline"}]},
+  {rank:7, name:'Córdoba CF',               city:'Córdoba',               founded:1954,s:'mid',x:247,y:337,
+   nicks:[{n:'Los Blanquiverdes',m:"'The White and Greens' — their white and green kit colors"}]},
+  {rank:8, name:'Burgos CF',                city:'Burgos',                founded:1936,s:'mid',x:297,y:109,
+   nicks:[{n:'El Blanquinegro',m:"'The Black and White' — their black and white striped kit"},{n:'Los Castellanos',m:"'The Castilians' — reflecting their location in Castile (Castilla y León)"}]},
+  {rank:9, name:'Sporting Gijón',           city:'Gijón',                 founded:1905,s:'mid',x:211,y:47,
+   nicks:[{n:'Los Rojiblancos',m:"'The Red and Whites' — their red and white kit, same color combination as Atlético Madrid"},{n:'Sporting',m:"The club name itself became the identity — fans simply call them 'Sporting' as both name and nickname"}]},
+  {rank:10,name:'AD Ceuta FC',              city:'Ceuta (North Africa)',  founded:1948,s:'mid',x:228,y:440,
+   nicks:[{n:'Los Caballas',m:"'The Horse Mackerel' (a local fish) — Ceuta is a port city and this fish is a staple of local diet and culture, in the same tradition as Málaga's boquerones"}]},
+  {rank:11,name:'Cádiz CF',                 city:'Cádiz',                 founded:1910,s:'mid',x:182,y:408,
+   nicks:[{n:'Los Amarillos',m:"'The Yellows' — their yellow kit"},{n:'Gaditanos',m:"From Gades, the Phoenician/Roman name for Cádiz — one of Europe's oldest cities; locals use this to assert deep historical roots"}]},
+  {rank:12,name:'Albacete Balompié',        city:'Albacete',              founded:1940,s:'mid',x:379,y:280,
+   nicks:[{n:'Los Manchegos',m:"'The La Mancha People' — Albacete sits in Castilla-La Mancha, the region of Don Quixote"},{n:'El Alba',m:"A simple shortening of 'Albacete'"}]},
+  {rank:13,name:'SD Eibar',                 city:'Eibar',                 founded:1940,s:'mid',x:354,y:68,
+   nicks:[{n:'Los Armeros',m:"'The Gunsmiths' — Eibar has been Spain's main arms and weapons manufacturing town for centuries; the gun-making trade defined the town's identity"}]},
+  {rank:14,name:'CD Leganés',               city:'Leganés (Madrid)',      founded:1928,s:'mid',x:294,y:220,
+   nicks:[{n:'Los Pepineros',m:"'The Cucumber Growers' — Leganés was historically an agricultural town on the outskirts of Madrid known for its cucumber fields"}]},
+  {rank:15,name:'Granada CF',               city:'Granada',               founded:1931,s:'mid',x:302,y:370,
+   nicks:[{n:'Los Nazaríes',m:"After the Nasrid (Nazarí) dynasty that ruled the Sultanate of Granada and built the Alhambra"},{n:'Los Granaínos',m:"Local Andalusian dialect pronunciation of 'Granadinos' (people of Granada)"}]},
+  {rank:16,name:'Real Valladolid',          city:'Valladolid',            founded:1928,s:'mid',x:253,y:144,
+   nicks:[{n:'Los Pucelanos / El Pucela',m:"'Pucela' is a centuries-old nickname for Valladolid itself — possibly derived from the French 'pucelle' (maiden) via medieval ties; fans use it as a badge of local identity"}]},
+  {rank:17,name:'FC Andorra',               city:'Encamp, Andorra',       founded:1942,s:'mid',x:543,y:97,
+   nicks:[{n:'Els Tricolors',m:"'The Three Colors' — Andorra's national flag is a blue, yellow, and red tricolor, which the club represents as the country's professional team in the Spanish pyramid"}]},
+  {rank:18,name:'Real Sociedad B',          city:'San Sebastián',         founded:1985,s:'mid',x:376,y:59,
+   nicks:[{n:'Sanse',m:"Short for 'San Sebastián' / CD Sanse, the club's previous identity as an independent club — the name stuck affectionately when it became the official reserve team"}]},
+  {rank:19,name:'Real Zaragoza',            city:'Zaragoza',              founded:1932,s:'rel',x:422,y:144,
+   nicks:[{n:'Los Maños',m:"'Maño' is Aragonese dialect for 'brother' (from 'hermano') — a term of address among Aragonese people, adopted as a proud regional identity marker"},{n:'Los Blanquillos',m:"'The Little Whites' — their predominantly white home kit"}]},
+  {rank:20,name:'SD Huesca',                city:'Huesca',                founded:1922,s:'rel',x:443,y:117,
+   nicks:[{n:'Los Azulgranas',m:"'The Blue and Dark Reds' — their blue and maroon kit uses the same color combination as FC Barcelona"},{n:'Los Oscenses',m:"From Osca, the Roman name for Huesca"}]},
+  {rank:21,name:'CD Mirandés',              city:'Miranda de Ebro',       founded:1927,s:'rel',x:332,y:92,
+   nicks:[{n:'El Jabato',m:"'The Young Wild Boar' — the Ebro valley's countryside is associated with wild boar; in Spanish slang 'jabato' also means someone brave and bold"}]},
+  {rank:22,name:'Cultural y Dep. Leonesa',  city:'León',                  founded:1923,s:'rel',x:216,y:96,
+   nicks:[{n:'La Cultural',m:"Shortening of their full name, Cultural y Deportiva Leonesa — the 'cultural' element reflects the club's founding mission to unite sport and cultural life in León"}]},
+];
+
+// ── CARDS ──
+function buildCards(teams,id){
+  const w=document.getElementById(id);
+  teams.forEach(t=>{
+    const sc=SC[t.s];
+    const pts=t.pts!=null?t.pts+' pts · ':'';
+    const el=document.createElement('div');
+    el.className='card';el.dataset.s=t.s;
+    const badge=sc.label?`<span class="cb ${sc.badge}">${sc.label}</span>`:'';
+    const nh=t.nicks.map(n=>`<div class="ni"><div class="nn">${n.n}</div><div class="nm">${n.m}</div></div>`).join('');
+    el.innerHTML=`<div class="chdr"><div class="rk ${sc.rank}">${t.rank}</div><div class="ci"><div class="cn">${t.name}</div><div class="cm">${pts}${t.city} · Est. ${t.founded}</div></div>${badge}<div class="cv">▼</div></div><div class="npanel">${nh}</div>`;
+    el.querySelector('.chdr').addEventListener('click',()=>el.classList.toggle('open'));
+    w.appendChild(el);
+  });
+}
+buildCards(D1,'d1c');
+buildCards(D2,'d2c');
+
+// ── TABS ──
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.sec').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.tab).classList.add('active');
+  });
+});
+
+// ── SVG MAPS (pure SVG, no external libraries) ──
+const NS='http://www.w3.org/2000/svg';
+
+function buildMap(svgId,dotsId,teams,infoId){
+  const svg=document.getElementById(svgId);
+  const dotsG=document.getElementById(dotsId);
+  const infoEl=document.getElementById(infoId);
+  let activeRing=null;
+
+  teams.forEach(t=>{
+    const color=SC[t.s].dot;
+    const isInset=t.name.includes('Las Palmas');
+    const cx=t.x, cy=t.y;
+
+    // Tap ring
+    const ring=document.createElementNS(NS,'circle');
+    ring.setAttribute('cx',cx);ring.setAttribute('cy',cy);ring.setAttribute('r','14');
+    ring.setAttribute('fill','none');ring.setAttribute('stroke',color);ring.setAttribute('stroke-width','2');ring.setAttribute('opacity','0');
+
+    // Main dot
+    const dot=document.createElementNS(NS,'circle');
+    dot.setAttribute('cx',cx);dot.setAttribute('cy',cy);dot.setAttribute('r', isInset?'7':'9');
+    dot.setAttribute('fill',color);dot.setAttribute('stroke','#0a0c12');dot.setAttribute('stroke-width','1.5');
+
+    // Rank label (skip for inset box)
+    const lbl=document.createElementNS(NS,'text');
+    lbl.setAttribute('x',cx);lbl.setAttribute('y',String(cy+3.5));
+    lbl.setAttribute('text-anchor','middle');lbl.setAttribute('font-size', isInset?'6':'8');
+    lbl.setAttribute('font-family','sans-serif');lbl.setAttribute('font-weight','bold');
+    lbl.setAttribute('fill','#fff');lbl.setAttribute('pointer-events','none');
+    lbl.textContent=t.rank;
+
+    const g=document.createElementNS(NS,'g');
+    g.style.cursor='pointer';
+    if(!isInset){g.appendChild(ring);}
+    g.appendChild(dot);g.appendChild(lbl);
+
+    g.addEventListener('click',e=>{
+      e.stopPropagation();
+      if(activeRing){activeRing.setAttribute('opacity','0');}
+      if(!isInset){ring.setAttribute('opacity','0.65');activeRing=ring;}
+      const sc=SC[t.s];
+      const pts=t.pts!=null?` · <strong style="color:var(--txt)">${t.pts} pts</strong>`:'';
+      const badge=sc.label?`<span class="cb ${sc.badge}" style="font-size:10px;padding:2px 7px">${sc.label}</span>`:'';
+      const nicks=t.nicks.map(n=>`<span style="color:#e63324;font-weight:600">${n.n}</span>`).join('&nbsp;·&nbsp;');
+      infoEl.innerHTML=`<div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap"><span class="mi-name">${t.rank}. ${t.name}</span>${badge}</div><div class="mi-meta">${t.city} · Est. ${t.founded}${pts}</div><div class="mi-nicks">${nicks}</div>`;
+    });
+
+    dotsG.appendChild(g);
+  });
+
+  svg.addEventListener('click',()=>{
+    if(activeRing){activeRing.setAttribute('opacity','0');activeRing=null;}
+    infoEl.innerHTML='<span class="mi-empty">Tap a coloured dot to see team details</span>';
+  });
+}
+
+buildMap('svg1','dots1',D1,'info1');
+buildMap('svg2','dots2',D2,'info2');
+</script>
+</body>
+</html>

@@ -156,7 +156,7 @@ footer{padding:18px 16px 32px;text-align:center;font-size:11px;color:var(--mut);
 </section>
 
 <footer>
-  Standings as of 13–18 April 2026 (approx. Matchday 31–33)<br>
+  Standings as of 27 April 2026 (auto-updated weekly)<br>
   Div 2 positions 7–18 are mid-table and fluid<br>
   SVG map is a schematic projection of the Iberian Peninsula
 </footer>
@@ -175,45 +175,45 @@ const SC = {
 // Coordinates: x=(lng+10.5)/15.5*680, y=(44.5-lat)/9.0*460
 // Clustered teams manually offset. Las Palmas placed in Canary Islands inset.
 const D1=[
-  {rank:1, name:'FC Barcelona',       city:'Barcelona',        founded:1899,pts:79,  s:'cl',  x:550,y:157,
+  {rank:1, name:'FC Barcelona',       city:'Barcelona',        founded:1899,pts:85,  s:'cl',  x:550,y:157,
    nicks:[{n:'Barça',m:"Catalan abbreviation of 'Barcelona'"},{n:'Blaugrana',m:"Catalan for 'blue and dark red' — their kit colors"},{n:'Culés',m:"From 'culo' (backside) — early fans sat atop an open wall at the old ground, visible from the street below with their backs to passers-by"}]},
-  {rank:2, name:'Real Madrid',         city:'Madrid',           founded:1902,pts:70,  s:'cl',  x:292,y:200,
+  {rank:2, name:'Real Madrid',         city:'Madrid',           founded:1902,pts:74,  s:'cl',  x:292,y:200,
    nicks:[{n:'Los Blancos',m:"'The Whites' — their iconic all-white kit"},{n:'Los Merengues',m:"'The Meringues' — a white dessert; same white-kit reference but more affectionate"}]},
-  {rank:3, name:'Villarreal CF',       city:'Villarreal',       founded:1923,pts:61,  s:'cl',  x:468,y:231,
+  {rank:3, name:'Villarreal CF',       city:'Villarreal',       founded:1923,pts:65,  s:'cl',  x:468,y:231,
    nicks:[{n:'El Submarino Amarillo',m:"'The Yellow Submarine' — taken from the Beatles song, a nod to their yellow kit"}]},
-  {rank:4, name:'Atlético de Madrid',  city:'Madrid',           founded:1903,pts:57,  s:'cl',  x:309,y:212,
+  {rank:4, name:'Atlético de Madrid',  city:'Madrid',           founded:1903,pts:60,  s:'cl',  x:309,y:212,
    nicks:[{n:'Los Colchoneros',m:"'The Mattress Makers' — their red and white striped kit resembles the ticking fabric used in traditional Madrid mattress manufacturing"},{n:'Los Rojiblancos',m:"'The Red and Whites' — their kit colors"}]},
-  {rank:5, name:'Real Betis',          city:'Seville',          founded:1907,pts:46,  s:'el',  x:193,y:362,
+  {rank:5, name:'Real Betis',          city:'Seville',          founded:1907,pts:50,  s:'el',  x:193,y:362,
    nicks:[{n:'Los Verdiblancos',m:"'The Green and Whites' — their kit colors"},{n:'Heliopolitanos',m:"From Heliopolis, the ancient Greek/Roman name for the district of Seville where the club was founded"}]},
-  {rank:6, name:'RC Celta de Vigo',    city:'Vigo',             founded:1923,pts:44,  s:'conf',x:63, y:115,
+  {rank:7, name:'RC Celta de Vigo',    city:'Vigo',             founded:1923,pts:44,  s:'mid',x:63, y:115,
    nicks:[{n:'Los Celestes',m:"'The Sky Blues' — their distinctive light blue kit"},{n:'O Celta',m:"Galician (not Spanish) for 'The Celta' — asserts their Galician regional identity"}]},
-  {rank:7, name:'Real Sociedad',       city:'San Sebastián',    founded:1909,pts:42,  s:'mid', x:375,y:59,
+  {rank:8, name:'Real Sociedad',       city:'San Sebastián',    founded:1909,pts:43,  s:'mid', x:375,y:59,
    nicks:[{n:'La Real',m:"Short for 'Real' (Royal) in their full name"},{n:'Txuri-urdin',m:"Basque for 'white-blue' — describes their kit in the local language, asserting Basque identity"}]},
-  {rank:8, name:'Getafe CF',           city:'Getafe (Madrid)',  founded:1983,pts:41,  s:'mid', x:301,y:219,
+  {rank:6, name:'Getafe CF',           city:'Getafe (Madrid)',  founded:1983,pts:44,  s:'conf', x:301,y:219,
    nicks:[{n:'Los Azulones',m:"'The Dark Blues' — their deep navy blue kit"},{n:'Los Gatos',m:"'The Cats' — a long-standing Madrid regional slang term for locals, especially south of the city"}]},
-  {rank:9, name:'CA Osasuna',          city:'Pamplona',         founded:1920,pts:39,  s:'mid', x:391,y:82,
+  {rank:9, name:'CA Osasuna',          city:'Pamplona',         founded:1920,pts:42,  s:'mid', x:391,y:82,
    nicks:[{n:'Los Rojillos',m:"'The Little Reds' — their predominantly red kit"}]},
-  {rank:10,name:'RCD Espanyol',        city:'Barcelona',        founded:1900,pts:38,  s:'mid', x:543,y:168,
+  {rank:14,name:'RCD Espanyol',        city:'Barcelona',        founded:1900,pts:38,  s:'mid', x:543,y:168,
    nicks:[{n:'Los Periquitos / Pericos',m:"'The Parakeets' — their blue and white striped kit was said to resemble parakeet plumage"},{n:'Els Perics',m:"The Catalan form of the same nickname"},{n:'Los Blanquiazules',m:"'The Blue and Whites' — their kit colors"}]},
-  {rank:11,name:'Athletic Club',       city:'Bilbao',           founded:1898,pts:38,  s:'mid', x:332,y:63,
+  {rank:10,name:'Athletic Club',       city:'Bilbao',           founded:1898,pts:41,  s:'mid', x:332,y:63,
    nicks:[{n:'Los Leones',m:"'The Lions' — the lion is the symbol of Vizcaya province; their stadium San Mamés is named for a saint thrown to the lions in Rome"}]},
-  {rank:12,name:'Girona FC',           city:'Girona',           founded:1930,pts:38,  s:'mid', x:587,y:128,
+  {rank:15,name:'Girona FC',           city:'Girona',           founded:1930,pts:38,  s:'mid', x:587,y:128,
    nicks:[{n:'Els Blanc-i-vermells',m:"Catalan for 'The White and Reds' — their kit colors"}]},
-  {rank:13,name:'Rayo Vallecano',      city:'Madrid',           founded:1924,pts:35,  s:'mid', x:282,y:208,
+  {rank:11,name:'Rayo Vallecano',      city:'Madrid',           founded:1924,pts:39,  s:'mid', x:282,y:208,
    nicks:[{n:'El Rayo',m:"'The Lightning Bolt' — rayo means lightning, referencing the bold diagonal stripe on their white kit"},{n:'Los Franjirrojos',m:"'The Red Stripe' — describes that same diagonal red band across the kit"}]},
-  {rank:14,name:'Valencia CF',         city:'Valencia',         founded:1919,pts:35,  s:'mid', x:444,y:256,
+  {rank:12,name:'Valencia CF',         city:'Valencia',         founded:1919,pts:39,  s:'mid', x:444,y:256,
    nicks:[{n:'Los Che',m:"A Valencian term of address meaning 'mate' or 'pal' — widely used by locals and adopted as a community identity marker"},{n:'Los Murciélagos',m:"'The Bats' — a bat appears on Valencia's coat of arms, from a legend that one landed on King James I's helmet before his 1238 conquest of the city"}]},
-  {rank:15,name:'RCD Mallorca',        city:'Palma de Mallorca',founded:1916,pts:34,  s:'mid', x:591,y:247,
+  {rank:17,name:'RCD Mallorca',        city:'Palma de Mallorca',founded:1916,pts:35,  s:'mid', x:591,y:247,
    nicks:[{n:'Los Bermellones',m:"'The Vermilions' — their red/vermilion kit color"},{n:'Los Mallorquines',m:"Simply 'The Mallorcans' — the island club's geographic identity"}]},
-  {rank:16,name:'Sevilla FC',          city:'Seville',          founded:1890,pts:34,  s:'mid', x:207,y:356,
+  {rank:18,name:'Sevilla FC',          city:'Seville',          founded:1890,pts:34,  s:'rel', x:207,y:356,
    nicks:[{n:'Los Nervionenses',m:"After the Nervión district of Seville where their Ramón Sánchez-Pizjuán stadium is located"},{n:'Los Sevillistas',m:"'The Sevilla People' — distinguishes the club's identity and fanbase from city rivals Betis"}]},
-  {rank:17,name:'Deportivo Alavés',    city:'Vitoria-Gasteiz',  founded:1921,pts:33,  s:'mid', x:343,y:83,
+  {rank:16,name:'Deportivo Alavés',    city:'Vitoria-Gasteiz',  founded:1921,pts:36,  s:'mid', x:343,y:83,
    nicks:[{n:'Los Babazorros',m:"An old, originally mocking term for Álava locals — associated with simple rural folk; fans reclaimed it with pride"},{n:'Gloriosos',m:"'The Glorious Ones' — references historic peaks, especially their 2001 UEFA Cup final run"}]},
-  {rank:18,name:'Elche CF',            city:'Elche',            founded:1923,pts:32,  s:'rel', x:431,y:316,
+  {rank:13,name:'Elche CF',            city:'Elche',            founded:1923,pts:38,  s:'mid', x:431,y:316,
    nicks:[{n:'Los Franjiverdes',m:"'The Green Striped' — their green and white striped kit"},{n:'Els Ilicitans',m:"Valencian for 'People of Elche' — from Ilici, the Roman name for the city"}]},
-  {rank:19,name:'Levante UD',          city:'Valencia',         founded:1909,pts:null,s:'rel', x:456,y:244,
+  {rank:19,name:'Levante UD',          city:'Valencia',         founded:1909,pts:32,s:'rel', x:456,y:244,
    nicks:[{n:'Els Granotes',m:"Valencian for 'The Frogs' — 'granota' also means 'overalls' in Valencian, linking to the club's working-class roots in Valencia's industrial neighborhoods"}]},
-  {rank:20,name:'Real Oviedo',         city:'Oviedo',           founded:1926,pts:null,s:'rel', x:205,y:57,
+  {rank:20,name:'Real Oviedo',         city:'Oviedo',           founded:1926,pts:28,s:'rel', x:205,y:57,
    nicks:[{n:'Los Carbayones',m:"From 'carbayo,' the Asturian word for the native oak tree — the oak is the civic symbol of Oviedo city"}]},
 ];
 

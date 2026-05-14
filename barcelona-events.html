@@ -47,6 +47,36 @@
   .nav a.active{opacity:1;border-bottom-color:var(--orange);font-weight:600}
   .nav .sep{opacity:.4}
 
+  /* Hamburger (mobile only) */
+  .nav-toggle{display:none;background:transparent;border:0;cursor:pointer;
+    padding:10px;width:44px;height:44px;align-items:center;justify-content:center}
+  .nav-toggle .bars,
+  .nav-toggle .bars::before,
+  .nav-toggle .bars::after{
+    display:block;width:24px;height:2px;background:#fff;border-radius:2px;
+    transition:transform .25s ease,background .2s ease,opacity .2s ease}
+  .nav-toggle .bars{position:relative}
+  .nav-toggle .bars::before,.nav-toggle .bars::after{content:"";position:absolute;left:0}
+  .nav-toggle .bars::before{top:-8px}
+  .nav-toggle .bars::after{top:8px}
+  .nav-toggle[aria-expanded="true"] .bars{background:transparent}
+  .nav-toggle[aria-expanded="true"] .bars::before{top:0;transform:rotate(45deg)}
+  .nav-toggle[aria-expanded="true"] .bars::after{top:0;transform:rotate(-45deg)}
+
+  @media (max-width: 720px){
+    .site-header .wrap{position:relative;flex-wrap:nowrap}
+    .brand-logo{width:72px;height:72px}
+    .nav-toggle{display:flex}
+    .nav{display:none;flex-direction:column;align-items:flex-start;gap:0;
+      position:absolute;top:100%;left:0;right:0;background:var(--navy-deep);
+      padding:6px 24px 14px;border-top:1px solid rgba(255,255,255,.1);z-index:60}
+    .nav.open{display:flex}
+    .nav .sep{display:none}
+    .nav a{padding:14px 0;width:100%;font-size:18px;border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav a:last-child{border-bottom:0}
+  }
+
+
   /* Hero */
   .hero{max-width:var(--max);margin:0 auto;padding:56px 24px 24px}
   .eyebrow{font-family:'Lato',sans-serif;font-weight:700;font-size:13px;
@@ -168,7 +198,8 @@
     <a href="https://petsolt.com/" class="brand" aria-label="Petsolt">
       <img class="brand-logo" src="https://petsolt.com/wp-content/uploads/2024/07/petsolt_logo_2023_catalan-300x300.png" alt="Petsolt" />
     </a>
-    <nav class="nav" aria-label="Primary">
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="bars" aria-hidden="true"></span></button>
+    <nav class="nav" id="primary-nav" aria-label="Primary">
       <a href="https://petsolt.com/">Blogs</a>
       <span class="sep">|</span>
       <a href="https://petsolt.com/barcelona-visitors-guide/">BCN Visitors Guide</a>
@@ -190,7 +221,7 @@
   <div class="callout-inner">
     <div>
       <h3>Updated weekly · 19 events live</h3>
-      <p>Last refreshed 14-May-2026 (auto-updated every Thursday)</p>
+      <p>Last refreshed 15-May-2026 (auto-updated every Thursday)</p>
     </div>
     <a href="#this-weekend" class="btn">See This Weekend →</a>
   </div>
@@ -209,9 +240,74 @@
 <section class="section" data-section="This Weekend" id="this-weekend">
       <div class="section-header">
         <h2>This Weekend</h2>
-        <span class="ct">7 events</span>
+        <span class="ct">12 events</span>
       </div>
-      <div class="events"><article class="ev-card" data-category="Other">
+      <div class="events"><article class="ev-card" data-category="Festival">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">DocsBarcelona</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">07-May-2026 to 17-May-2026</div>
+      <p class="ev-venue">Various cinemas, Barcelona</p>
+      <p class="ev-desc">Barcelona&#x27;s premiere documentary film festival has 57 productions exploring the human condition from an empathetic perspective. The festival opened at the Aribau cinemas with &#x27;A Fox Under A Pink Moon,</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Music">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/festival-sarria-jazz-blues-village_99400781069.html" target="_blank" rel="noopener">Sarrià Jazz &amp; Blues Village</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">13-May-2026 to 17-May-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/festival-sarria-jazz-blues-village_99400781069.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Theater">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/centre-parroquial-sant-vicenc-de-sarria-teatre-de-sarria_99400239026.html" target="_blank" rel="noopener">Teatre de Sarrià - Centre Parroquial Sant Vicenç de Sarrià</a></h3>
+        <span class="ev-cat Theater">Theater</span>
+      </div>
+      <div class="ev-date">13-May-2026 to 17-May-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/centre-parroquial-sant-vicenc-de-sarria-teatre-de-sarria_99400239026.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Market">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Handmade Festival</a></h3>
+        <span class="ev-cat Market">Market</span>
+      </div>
+      <div class="ev-date">14-May-2026 to 17-May-2026</div>
+      <p class="ev-venue">Fira Montjuïc <span class="nbh">Montjuïc</span></p>
+      <p class="ev-desc">Spanning an area of 14,000m2 with exhibitors of DIY, paper, yarn and other disciplines. At the Handmade Festival, you&#x27;ll find exhibitions, workshops, concerts, food trucks and family activities. In ad</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Festival">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/dates-de-festa-major_2114102556.html" target="_blank" rel="noopener">Local festival in Nou Barris</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">14-May-2026 to 17-May-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/dates-de-festa-major_2114102556.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Other">
       <div class="ev-top">
         <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/44e-salo-comic-barcelona_99400016621.html" target="_blank" rel="noopener">44th Comic Barcelona</a></h3>
         <span class="ev-cat Other">Other</span>
@@ -306,7 +402,7 @@
 <section class="section" data-section="Ongoing Now" id="ongoing-now">
       <div class="section-header">
         <h2>Ongoing Now</h2>
-        <span class="ct">12 events</span>
+        <span class="ct">7 events</span>
       </div>
       <div class="events"><article class="ev-card" data-category="Festival">
       <div class="ev-top">
@@ -319,45 +415,6 @@
       <div class="ev-bot">
         <span></span>
         <a class="ev-src" href="https://guia.barcelona.cat/en/detall/filmoteca-de-catalunya_92086011802.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
-      </div>
-    </article>
-<article class="ev-card" data-category="Festival">
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">DocsBarcelona</a></h3>
-        <span class="ev-cat Festival">Festival</span>
-      </div>
-      <div class="ev-date">07-May-2026 to 17-May-2026</div>
-      <p class="ev-venue">Various cinemas, Barcelona</p>
-      <p class="ev-desc">Barcelona&#x27;s premiere documentary film festival has 57 productions exploring the human condition from an empathetic perspective. The festival opened at the Aribau cinemas with &#x27;A Fox Under A Pink Moon,</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
-      </div>
-    </article>
-<article class="ev-card" data-category="Music">
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/festival-sarria-jazz-blues-village_99400781069.html" target="_blank" rel="noopener">Sarrià Jazz &amp; Blues Village</a></h3>
-        <span class="ev-cat Music">Music</span>
-      </div>
-      <div class="ev-date">13-May-2026 to 17-May-2026</div>
-      <p class="ev-venue">Barcelona</p>
-      
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/festival-sarria-jazz-blues-village_99400781069.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
-      </div>
-    </article>
-<article class="ev-card" data-category="Theater">
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/centre-parroquial-sant-vicenc-de-sarria-teatre-de-sarria_99400239026.html" target="_blank" rel="noopener">Teatre de Sarrià - Centre Parroquial Sant Vicenç de Sarrià</a></h3>
-        <span class="ev-cat Theater">Theater</span>
-      </div>
-      <div class="ev-date">13-May-2026 to 17-May-2026</div>
-      <p class="ev-venue">Barcelona</p>
-      
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/centre-parroquial-sant-vicenc-de-sarria-teatre-de-sarria_99400239026.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
       </div>
     </article>
 <article class="ev-card" data-category="Festival">
@@ -386,38 +443,12 @@
         <a class="ev-src" href="https://guia.barcelona.cat/en/detall/barcelona-poesia-2026_99400341440.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
       </div>
     </article>
-<article class="ev-card" data-category="Market">
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Handmade Festival</a></h3>
-        <span class="ev-cat Market">Market</span>
-      </div>
-      <div class="ev-date">14-May-2026 to 17-May-2026</div>
-      <p class="ev-venue">Fira Montjuïc <span class="nbh">Montjuïc</span></p>
-      <p class="ev-desc">Spanning an area of 14,000m2 with exhibitors of DIY, paper, yarn and other disciplines. At the Handmade Festival, you&#x27;ll find exhibitions, workshops, concerts, food trucks and family activities. In ad</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
-      </div>
-    </article>
-<article class="ev-card" data-category="Festival">
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/dates-de-festa-major_2114102556.html" target="_blank" rel="noopener">Local festival in Nou Barris</a></h3>
-        <span class="ev-cat Festival">Festival</span>
-      </div>
-      <div class="ev-date">14-May-2026 to 17-May-2026</div>
-      <p class="ev-venue">Barcelona</p>
-      
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/dates-de-festa-major_2114102556.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
-      </div>
-    </article>
 <article class="ev-card" data-category="Art">
       <div class="ev-top">
         <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Visit 50,000-year-old Siberian mammoth</a></h3>
         <span class="ev-cat Art">Art</span>
       </div>
-      <div class="ev-date">14-May-2026 to 13-Jun-2026</div>
+      <div class="ev-date">15-May-2026 to 14-Jun-2026</div>
       <p class="ev-venue">CosmoCaixa, Barcelona</p>
       <p class="ev-desc">Barcelona&#x27;s CosmoCaixa Science Museum unveiled the latest addition to its exhibition: a large six-meter-long and 3.5-meter-tall Siberian mammoth. The mammoth is between 40,000 and 50,000 years old and</p>
       <div class="ev-bot">
@@ -430,7 +461,7 @@
         <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Wine Festivals</a></h3>
         <span class="ev-cat Music">Music</span>
       </div>
-      <div class="ev-date">14-May-2026 to 13-Jun-2026</div>
+      <div class="ev-date">15-May-2026 to 14-Jun-2026</div>
       <p class="ev-venue">Neighbourhoods around Barcelona</p>
       <p class="ev-desc">Wine Festivals is a platform to celebrate wine, food, music and good living. A project for all those people in love with life. Their aim is to spread the culture of wine in a festive and accessible wa</p>
       <div class="ev-bot">
@@ -484,6 +515,23 @@
 </footer>
 
 <script>
+  // Mobile nav toggle
+  (function(){
+    var t = document.querySelector(".nav-toggle"),
+        n = document.getElementById("primary-nav");
+    if (!t || !n) return;
+    t.addEventListener("click", function(){
+      var open = n.classList.toggle("open");
+      t.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    n.addEventListener("click", function(e){
+      if (e.target.tagName === "A") {
+        n.classList.remove("open");
+        t.setAttribute("aria-expanded", "false");
+      }
+    });
+  })();
+
   // Category filter
   const filters = document.querySelectorAll(".filter");
   const cards = document.querySelectorAll(".ev-card");

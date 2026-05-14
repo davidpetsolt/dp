@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barcelona Events — Petsolt</title>
+<meta name="description" content="A weekly auto-updated guide to things to do in Barcelona this weekend, next week, and beyond.">
+<meta property="og:title" content="Barcelona Events — Petsolt">
+<meta property="og:description" content="What is on in Barcelona this weekend, ongoing now, and coming up.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pages.davidpetsolt.com/barcelona-events.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700;900&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1B2352; --navy-deep:#131838;
+    --orange:#E8782A; --orange-hover:#cf661f;
+    --sky:#C9E2F5; --sky-deep:#B6D6EE;
+    --ink:#1a1a1a; --body:#383838; --muted:#6b6f7a;
+    --rule:#e5e5e5; --bg:#fff; --bg-soft:#f6f6f4;
+    --shadow-card:0 6px 22px rgba(15,20,50,.10);
+    --radius-lg:22px; --radius-md:14px; --radius-pill:999px;
+    --max:1180px;
+    /* Category accents */
+    --c-music:#1f6feb; --c-art:#8b5cf6; --c-food:#f59e0b;
+    --c-sports:#16a34a; --c-family:#ec4899; --c-festival:#E8782A;
+    --c-theater:#dc2626; --c-market:#14b8a6; --c-other:#6b7280;
+    /* Section accents */
+    --s-now:#16a34a; --s-weekend:#E8782A; --s-next:#1f6feb; --s-soon:#8b5cf6;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--body);
+    font-family:'Lora',Georgia,serif;font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+
+  /* Header */
+  .site-header{background:var(--navy);color:#fff;padding:6px 0;position:sticky;top:0;z-index:50}
+  .site-header .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff}
+  .brand-logo{width:96px;height:96px;display:block;margin:-6px 0}
+  .nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+    font-family:'Lato',sans-serif;font-weight:400;font-size:17px}
+  .nav a{color:#fff;text-decoration:none;opacity:.85;padding:6px 2px;border-bottom:2px solid transparent}
+  .nav a:hover{opacity:1}
+  .nav a.active{opacity:1;border-bottom-color:var(--orange);font-weight:600}
+  .nav .sep{opacity:.4}
+
+  /* Hero */
+  .hero{max-width:var(--max);margin:0 auto;padding:56px 24px 24px}
+  .eyebrow{font-family:'Lato',sans-serif;font-weight:700;font-size:13px;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+  h1.title{font-family:'Lato',sans-serif;font-weight:300;
+    font-size:clamp(40px,6vw,64px);line-height:1.05;letter-spacing:.01em;
+    text-transform:uppercase;color:var(--ink);margin:0 0 16px}
+  h1.title b{font-weight:700;color:var(--navy)}
+  .lede{font-family:'Lora',serif;font-size:20px;line-height:1.6;color:var(--body);max-width:780px;margin:0}
+
+  /* Callout */
+  .callout{max-width:var(--max);margin:32px auto 0;padding:0 24px}
+  .callout-inner{background:var(--sky);border-radius:var(--radius-lg);padding:22px 28px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .callout-inner h3{font-family:'Lato',sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:.05em;font-size:18px;margin:0 0 6px;color:var(--ink)}
+  .callout-inner p{margin:0;font-size:17px;color:#2c3550}
+  .btn{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;
+    font-family:'Lato',sans-serif;font-weight:700;font-size:18px;padding:14px 26px;
+    border-radius:var(--radius-pill);border:none;cursor:pointer;transition:background .15s ease;white-space:nowrap}
+  .btn:hover{background:var(--orange-hover)}
+
+  /* Category filter chips */
+  .filters{max-width:var(--max);margin:32px auto 0;padding:0 24px;
+    display:flex;gap:8px;flex-wrap:wrap}
+  .filter{background:#fff;border:1px solid var(--rule);border-radius:var(--radius-pill);
+    padding:8px 14px;cursor:pointer;color:#2a2a2a;font-family:'Lato',sans-serif;
+    font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:8px;
+    transition:background .15s,border-color .15s}
+  .filter:hover{background:var(--bg-soft)}
+  .filter.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .filter .dot{width:10px;height:10px;border-radius:50%;background:var(--c-other)}
+  .filter[data-cat="Music"]   .dot{background:var(--c-music)}
+  .filter[data-cat="Art"]     .dot{background:var(--c-art)}
+  .filter[data-cat="Food"]    .dot{background:var(--c-food)}
+  .filter[data-cat="Sports"]  .dot{background:var(--c-sports)}
+  .filter[data-cat="Family"]  .dot{background:var(--c-family)}
+  .filter[data-cat="Festival"].dot{background:var(--c-festival)}
+  .filter[data-cat="Theater"] .dot{background:var(--c-theater)}
+  .filter[data-cat="Market"]  .dot{background:var(--c-market)}
+  .filter[data-cat="All"]     .dot{background:linear-gradient(135deg,var(--c-music),var(--c-art),var(--c-food));
+    background:conic-gradient(var(--c-music),var(--c-art),var(--c-food),var(--c-sports),var(--c-family),var(--c-festival),var(--c-theater),var(--c-market));}
+  .filter .count{background:#f0f0ec;color:var(--muted);font-size:12px;
+    padding:1px 7px;border-radius:999px;font-weight:600}
+  .filter.active .count{background:rgba(255,255,255,.18);color:#fff}
+
+  /* Sections */
+  .section{max-width:var(--max);margin:40px auto 0;padding:0 24px}
+  .section-header{display:flex;align-items:baseline;gap:16px;
+    border-bottom:1px solid var(--rule);padding-bottom:10px;margin-bottom:18px}
+  .section-header h2{font-family:'Lato',sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:.06em;color:var(--ink);font-size:22px;margin:0;display:flex;align-items:center;gap:10px}
+  .section-header h2::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%}
+  .section[data-section="This Weekend"] .section-header h2::before{background:var(--s-weekend)}
+  .section[data-section="Ongoing Now"]  .section-header h2::before{background:var(--s-now)}
+  .section[data-section="Next Week"]    .section-header h2::before{background:var(--s-next)}
+  .section[data-section="Coming Up"]    .section-header h2::before{background:var(--s-soon)}
+  .section-header .ct{color:var(--muted);font-family:'Lora',serif;font-size:16px}
+
+  /* Event grid */
+  .events{display:grid;gap:14px;grid-template-columns:1fr}
+  @media (min-width:780px){.events{grid-template-columns:1fr 1fr}}
+  @media (min-width:1080px){.events{grid-template-columns:1fr 1fr 1fr}}
+
+  .ev-card{background:#fff;border:1px solid var(--rule);border-radius:var(--radius-md);
+    box-shadow:var(--shadow-card);padding:18px 20px;display:flex;flex-direction:column;gap:10px;
+    transition:transform .12s,box-shadow .12s}
+  .ev-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(15,20,50,.13)}
+  .ev-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .ev-title{font-family:'Lato',sans-serif;font-weight:700;font-size:18px;color:var(--ink);
+    line-height:1.3;margin:0;flex:1}
+  .ev-title a{color:inherit;text-decoration:none}
+  .ev-title a:hover{color:var(--navy)}
+  .ev-cat{font-family:'Lato',sans-serif;font-weight:700;text-transform:uppercase;
+    font-size:10px;letter-spacing:.1em;padding:4px 10px;border-radius:999px;color:#fff;
+    white-space:nowrap;background:var(--c-other)}
+  .ev-cat.Music   {background:var(--c-music)}
+  .ev-cat.Art     {background:var(--c-art)}
+  .ev-cat.Food    {background:var(--c-food)}
+  .ev-cat.Sports  {background:var(--c-sports)}
+  .ev-cat.Family  {background:var(--c-family)}
+  .ev-cat.Festival{background:var(--c-festival)}
+  .ev-cat.Theater {background:var(--c-theater)}
+  .ev-cat.Market  {background:var(--c-market)}
+
+  .ev-date{font-family:'Lato',sans-serif;font-weight:600;font-size:14px;color:var(--navy);
+    display:flex;align-items:center;gap:6px}
+  .ev-date::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--navy)}
+  .ev-venue{font-family:'Lora',serif;font-size:15px;color:#2a2a2a;margin:0}
+  .ev-venue .nbh{display:inline-block;font-family:'Lato',sans-serif;font-weight:600;font-size:11px;
+    text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+    background:var(--bg-soft);padding:3px 9px;border-radius:999px;margin-left:6px}
+  .ev-desc{font-family:'Lora',serif;font-size:14px;color:var(--muted);margin:0;line-height:1.5}
+  .ev-bot{display:flex;justify-content:space-between;align-items:center;gap:8px;
+    border-top:1px solid var(--rule);padding-top:10px;margin-top:auto}
+  .ev-price{font-family:'Lato',sans-serif;font-weight:700;font-size:13px;color:var(--ink)}
+  .ev-src{font-family:'Lato',sans-serif;font-size:12px;color:var(--muted);text-decoration:none}
+  .ev-src:hover{color:var(--navy)}
+
+  .empty{font-family:'Lora',serif;font-style:italic;color:var(--muted);
+    padding:24px 0;text-align:center}
+
+  /* Footer */
+  footer{max-width:var(--max);margin:60px auto 0;padding:24px;border-top:1px solid var(--rule);
+    color:var(--muted);font-family:'Lato',sans-serif;font-size:14px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer a{color:var(--navy);text-decoration:none;font-weight:600}
+  footer a:hover{color:var(--orange)}
+
+  /* Hidden when filtered out */
+  .ev-card.hidden{display:none}
+  .section.empty-section .events{display:none}
+</style>
+</head>
+<body>
+
+<header class="site-header" role="banner">
+  <div class="wrap">
+    <a href="https://petsolt.com/" class="brand" aria-label="Petsolt">
+      <img class="brand-logo" src="https://petsolt.com/wp-content/uploads/2024/07/petsolt_logo_2023_catalan-300x300.png" alt="Petsolt" />
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="https://petsolt.com/">Blogs</a>
+      <span class="sep">|</span>
+      <a href="https://petsolt.com/barcelona-visitors-guide/">BCN Visitors Guide</a>
+      <span class="sep">|</span>
+      <a href="https://pages.davidpetsolt.com/laliga-guide-2526.html">LaLiga Guide</a>
+      <span class="sep">|</span>
+      <a href="#" class="active">Barcelona Events</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <p class="eyebrow">Catalonia · This Weekend</p>
+  <h1 class="title">Barcelona <b>Events</b></h1>
+  <p class="lede">A weekly auto-updated guide to things to do in Barcelona. Curated from three local sources, refreshed every Thursday, and built for weekend planning.</p>
+</section>
+
+<section class="callout" aria-label="Update banner">
+  <div class="callout-inner">
+    <div>
+      <h3>Updated weekly · 19 events live</h3>
+      <p>Last refreshed 14-May-2026 (auto-updated every Thursday)</p>
+    </div>
+    <a href="#this-weekend" class="btn">See This Weekend →</a>
+  </div>
+</section>
+
+<div class="filters" id="filters" role="tablist" aria-label="Filter by category">
+  <button class="filter active" data-cat="All">All <span class="count">19</span></button>
+  <button class="filter" data-cat="Music"><span class="dot"></span>Music <span class="count">2</span></button>
+<button class="filter" data-cat="Art"><span class="dot"></span>Art <span class="count">4</span></button>
+<button class="filter" data-cat="Festival"><span class="dot"></span>Festival <span class="count">5</span></button>
+<button class="filter" data-cat="Theater"><span class="dot"></span>Theater <span class="count">1</span></button>
+<button class="filter" data-cat="Market"><span class="dot"></span>Market <span class="count">3</span></button>
+<button class="filter" data-cat="Other"><span class="dot"></span>Other <span class="count">4</span></button>
+</div>
+
+<section class="section" data-section="This Weekend" id="this-weekend">
+      <div class="section-header">
+        <h2>This Weekend</h2>
+        <span class="ct">7 events</span>
+      </div>
+      <div class="events"><article class="ev-card" data-category="Other">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/44e-salo-comic-barcelona_99400016621.html" target="_blank" rel="noopener">44th Comic Barcelona</a></h3>
+        <span class="ev-cat Other">Other</span>
+      </div>
+      <div class="ev-date">15-May-2026 to 17-May-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/44e-salo-comic-barcelona_99400016621.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Festival">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Brit Under Festival</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">15-May-2026 to 16-May-2026</div>
+      <p class="ev-venue">Poble Espanyol</p>
+      <p class="ev-desc">Irvine Welsh and Neville Brody will headline the first edition of Brit Under Fest, a new festival celebrating new trends in British music and art in Barcelona, which will be held on May 15-16 in Poble</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Other">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/fira-barcelona-palau-metal-lurgia-pavello-8_96319194816.html" target="_blank" rel="noopener">Palau Metal·lúrgia *Pavelló 8 - Fira Barcelona</a></h3>
+        <span class="ev-cat Other">Other</span>
+      </div>
+      <div class="ev-date">15-May-2026 to 17-May-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/fira-barcelona-palau-metal-lurgia-pavello-8_96319194816.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Other">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/la-nit-dels-museus-de-barcelona-2026_99400341419.html" target="_blank" rel="noopener">Museum Night 2026</a></h3>
+        <span class="ev-cat Other">Other</span>
+      </div>
+      <div class="ev-date">16-May-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/la-nit-dels-museus-de-barcelona-2026_99400341419.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Art">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Night of the Museums</a></h3>
+        <span class="ev-cat Art">Art</span>
+      </div>
+      <div class="ev-date">16-May-2026</div>
+      <p class="ev-venue">Across Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Market">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Palo Alto Market</a></h3>
+        <span class="ev-cat Market">Market</span>
+      </div>
+      <div class="ev-date">16-May-2026 to 17-May-2026</div>
+      <p class="ev-venue">Poblenou, Barcelona <span class="nbh">Poblenou</span></p>
+      <p class="ev-desc">Palo Alto Market is perhaps Barcelona&#x27;s most artistic and creative market experience. From boutique crafts to vintage clothing, with great music playing all the time in the background, Poblenou&#x27;s Palo</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Market">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">RetroBarcelona</a></h3>
+        <span class="ev-cat Market">Market</span>
+      </div>
+      <div class="ev-date">16-May-2026 to 17-May-2026</div>
+      <p class="ev-venue">La Farga de L&#x27;Hospitalet</p>
+      <p class="ev-desc">RetroBarcelona is a non-profit event dedicated to technology and classic video games, born from the enthusiasm, nostalgia, and love for those classic systems found throughout Catalonia. It&#x27;s a journey</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+      </div>
+    </article></div>
+    </section>
+<section class="section" data-section="Ongoing Now" id="ongoing-now">
+      <div class="section-header">
+        <h2>Ongoing Now</h2>
+        <span class="ct">12 events</span>
+      </div>
+      <div class="events"><article class="ev-card" data-category="Festival">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/filmoteca-de-catalunya_92086011802.html" target="_blank" rel="noopener">Filmoteca de Catalunya</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">04-Nov-2025 to 30-Jun-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/filmoteca-de-catalunya_92086011802.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Festival">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">DocsBarcelona</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">07-May-2026 to 17-May-2026</div>
+      <p class="ev-venue">Various cinemas, Barcelona</p>
+      <p class="ev-desc">Barcelona&#x27;s premiere documentary film festival has 57 productions exploring the human condition from an empathetic perspective. The festival opened at the Aribau cinemas with &#x27;A Fox Under A Pink Moon,</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Music">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/festival-sarria-jazz-blues-village_99400781069.html" target="_blank" rel="noopener">Sarrià Jazz &amp; Blues Village</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">13-May-2026 to 17-May-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/festival-sarria-jazz-blues-village_99400781069.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Theater">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/centre-parroquial-sant-vicenc-de-sarria-teatre-de-sarria_99400239026.html" target="_blank" rel="noopener">Teatre de Sarrià - Centre Parroquial Sant Vicenç de Sarrià</a></h3>
+        <span class="ev-cat Theater">Theater</span>
+      </div>
+      <div class="ev-date">13-May-2026 to 17-May-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/centre-parroquial-sant-vicenc-de-sarria-teatre-de-sarria_99400239026.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Festival">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/cicle-wallay-ix-festival-de-cinema-africa-de-barcelona-2026_99400712249.html" target="_blank" rel="noopener">Wallay! 9th Barcelona African Film Festival</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">13-May-2026 to 24-May-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/cicle-wallay-ix-festival-de-cinema-africa-de-barcelona-2026_99400712249.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Other">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/barcelona-poesia-2026_99400341440.html" target="_blank" rel="noopener">Barcelona Poesia 2026</a></h3>
+        <span class="ev-cat Other">Other</span>
+      </div>
+      <div class="ev-date">14-May-2026 to 21-May-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/barcelona-poesia-2026_99400341440.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Market">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Handmade Festival</a></h3>
+        <span class="ev-cat Market">Market</span>
+      </div>
+      <div class="ev-date">14-May-2026 to 17-May-2026</div>
+      <p class="ev-venue">Fira Montjuïc <span class="nbh">Montjuïc</span></p>
+      <p class="ev-desc">Spanning an area of 14,000m2 with exhibitors of DIY, paper, yarn and other disciplines. At the Handmade Festival, you&#x27;ll find exhibitions, workshops, concerts, food trucks and family activities. In ad</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Festival">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/dates-de-festa-major_2114102556.html" target="_blank" rel="noopener">Local festival in Nou Barris</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">14-May-2026 to 17-May-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/dates-de-festa-major_2114102556.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Art">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Visit 50,000-year-old Siberian mammoth</a></h3>
+        <span class="ev-cat Art">Art</span>
+      </div>
+      <div class="ev-date">14-May-2026 to 13-Jun-2026</div>
+      <p class="ev-venue">CosmoCaixa, Barcelona</p>
+      <p class="ev-desc">Barcelona&#x27;s CosmoCaixa Science Museum unveiled the latest addition to its exhibition: a large six-meter-long and 3.5-meter-tall Siberian mammoth. The mammoth is between 40,000 and 50,000 years old and</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Music">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Wine Festivals</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">14-May-2026 to 13-Jun-2026</div>
+      <p class="ev-venue">Neighbourhoods around Barcelona</p>
+      <p class="ev-desc">Wine Festivals is a platform to celebrate wine, food, music and good living. A project for all those people in love with life. Their aim is to spread the culture of wine in a festive and accessible wa</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Art">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Experience &#x27;The Last Days of Pompeii&#x27;</a></h3>
+        <span class="ev-cat Art">Art</span>
+      </div>
+      <div class="ev-date">20-Mar-2026 to 18-Jun-2026</div>
+      <p class="ev-venue">IDEAL Montjuïc <span class="nbh">Montjuïc</span></p>
+      <p class="ev-desc">Towering flames of lava taking over the skies, ash and soot flooding homes and buildings; utter devastation and total destruction inevitable. ‘The Last Days of Pompeii’ is the newest exhibition from I</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Art">
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Chez Matisse</a></h3>
+        <span class="ev-cat Art">Art</span>
+      </div>
+      <div class="ev-date">27-Mar-2026 to 16-Aug-2026</div>
+      <p class="ev-venue">CaixaForum, Barcelona</p>
+      <p class="ev-desc">An exploration of Henri Matisse&#x27;s trajectory, evolution, scope, and influence on international artists and avant-garde movements. The exhibition highlights part of the immense dialogue surrounding his</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+      </div>
+    </article></div>
+    </section>
+<section class="section" data-section="Next Week" id="next-week">
+          <div class="section-header"><h2>Next Week</h2><span class="ct">No events</span></div>
+          <div class="empty">No events in this window right now. Check back next Thursday.</div>
+        </section>
+<section class="section" data-section="Coming Up" id="coming-up">
+          <div class="section-header"><h2>Coming Up</h2><span class="ct">No events</span></div>
+          <div class="empty">No events in this window right now. Check back next Thursday.</div>
+        </section>
+
+<footer>
+  <span>© Petsolt · Updated Thursdays · Sources:
+    <a href="https://www.catalannews.com/things-to-do">catalannews</a>,
+    <a href="https://guia.barcelona.cat/en/">guia.barcelona.cat</a>,
+    <a href="https://www.barcelonaturisme.com/wv3/en/page/39/agenda.html">barcelonaturisme.com</a>
+  </span>
+  <span><a href="https://petsolt.com/">petsolt.com</a></span>
+</footer>
+
+<script>
+  // Category filter
+  const filters = document.querySelectorAll(".filter");
+  const cards = document.querySelectorAll(".ev-card");
+  filters.forEach(f => f.addEventListener("click", () => {
+    filters.forEach(x => x.classList.remove("active"));
+    f.classList.add("active");
+    const cat = f.dataset.cat;
+    cards.forEach(c => {
+      const cardCat = c.dataset.category;
+      c.classList.toggle("hidden", cat !== "All" && cardCat !== cat);
+    });
+    // Hide empty sections
+    document.querySelectorAll(".section").forEach(sec => {
+      const visible = sec.querySelectorAll(".ev-card:not(.hidden)").length;
+      sec.style.display = visible === 0 ? "none" : "";
+    });
+  }));
+</script>
+</body>
+</html>

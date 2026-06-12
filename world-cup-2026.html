@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Petsolt Four · 2026 FIFA World Cup Brackets</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&display=swap');
+
+  :root{
+    --paper:#E9ECEE;
+    --card:#FFFFFF;
+    --ink:#181B1F;
+    --muted:#697079;
+    --faint:#9AA1A8;
+    --line:#D8DCE0;
+    --David:#0F7B7A;
+    --Kate:#CE4A37;
+    --Lilly:#6B4A9E;
+    --Cameron:#9C6B12;
+    --display:'Anton','Arial Narrow',sans-serif;
+    --sans:'Archivo',system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);line-height:1.4;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 18px;}
+
+  /* masthead */
+  .masthead{padding:26px 0 6px;}
+  .topbar{display:flex;height:6px;border-radius:99px;overflow:hidden;margin-bottom:22px;}
+  .topbar span{flex:1;}
+  .eyebrow{
+    font-family:var(--display);letter-spacing:.16em;font-size:13px;
+    color:var(--muted);text-transform:uppercase;margin:0 0 6px;
+  }
+  h1.title{
+    font-family:var(--display);font-weight:400;line-height:.92;
+    font-size:clamp(44px,9vw,104px);letter-spacing:.01em;margin:0;
+    text-transform:uppercase;
+  }
+  .lede{font-size:clamp(15px,2.4vw,19px);color:var(--muted);margin:8px 0 0;font-weight:500;}
+
+  /* view tabs */
+  .viewtabs{display:flex;gap:8px;margin:26px 0 8px;border-bottom:1px solid var(--line);}
+  .viewtabs button{
+    appearance:none;background:none;border:0;cursor:pointer;
+    font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;
+    font-size:16px;color:var(--faint);padding:12px 4px 14px;margin-right:18px;
+    border-bottom:3px solid transparent;transition:color .15s,border-color .15s;
+  }
+  .viewtabs button:hover{color:var(--muted);}
+  .viewtabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink);}
+  .viewtabs button:focus-visible{outline:2px solid var(--David);outline-offset:3px;}
+
+  .view{padding:22px 0 60px;}
+  .view[hidden]{display:none;}
+
+  .blocklabel{
+    font-family:var(--display);text-transform:uppercase;letter-spacing:.07em;
+    font-size:clamp(20px,3.4vw,30px);margin:0;line-height:1;
+  }
+  .blockdate{font-size:12.5px;color:var(--muted);font-weight:600;letter-spacing:.04em;margin:5px 0 0;text-transform:uppercase;}
+  .blockhead{margin:34px 0 14px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+  .blockhead .tag{font-size:12px;color:var(--faint);font-weight:600;letter-spacing:.03em;}
+
+  /* verdict signature */
+  .verdict{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:22px 22px 14px;margin-top:6px;
+  }
+  .verdict svg{width:100%;height:auto;display:block;}
+  .verdict .vstat{
+    display:flex;gap:22px;flex-wrap:wrap;align-items:center;
+    margin-top:6px;padding-top:14px;border-top:1px solid var(--line);
+  }
+  .vstat b{font-family:var(--display);font-size:26px;font-weight:400;line-height:1;}
+  .vstat .lbl{font-size:13px;color:var(--muted);max-width:520px;}
+
+  /* comparison knockout columns */
+  .cmprow{
+    display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;
+    scroll-snap-type:x proximity;
+  }
+  .cmpcol{
+    flex:1 0 198px;min-width:198px;scroll-snap-align:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  }
+  .cmpcol .phead{
+    font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;
+    font-size:14px;color:#fff;padding:9px 12px;
+  }
+  .cmpcol ul{list-style:none;margin:0;padding:6px 0;}
+  .cmpcol li{
+    display:flex;align-items:center;gap:9px;padding:5px 12px;font-size:14px;font-weight:500;
+  }
+  .cmpcol li .seed{color:var(--faint);font-weight:700;font-size:12px;width:14px;text-align:right;flex:0 0 auto;}
+  .flag{font-size:16px;flex:0 0 auto;line-height:1;}
+
+  /* final podium block */
+  .podrow{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;}
+  .podcol{
+    flex:1 0 220px;min-width:220px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  }
+  .podcol .phead{font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-size:14px;color:#fff;padding:9px 12px;}
+  .podcol .champ{
+    display:flex;align-items:center;gap:12px;padding:16px 14px 8px;
+  }
+  .podcol .champ .flag{font-size:30px;}
+  .podcol .champ .nm{font-family:var(--display);font-size:30px;line-height:.9;text-transform:uppercase;}
+  .podcol .champ .crown{display:block;font-size:10px;letter-spacing:.14em;color:var(--muted);font-weight:700;margin-bottom:3px;text-transform:uppercase;}
+  .podcol .runner{padding:6px 14px 16px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:6px;}
+  .podcol .runner b{color:var(--ink);font-weight:700;}
+
+  /* groups matrix */
+  .matrixscroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card);}
+  table.matrix{border-collapse:collapse;width:100%;min-width:760px;}
+  table.matrix th,table.matrix td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line);}
+  table.matrix thead th{position:sticky;top:0;background:var(--card);}
+  table.matrix th.grp{
+    font-family:var(--display);font-size:20px;font-weight:400;color:var(--ink);
+    width:64px;border-right:1px solid var(--line);text-align:center;
+  }
+  table.matrix thead th.pname{
+    font-family:var(--display);text-transform:uppercase;letter-spacing:.07em;font-size:14px;color:#fff;border-radius:0;
+  }
+  table.matrix thead th.corner{background:var(--card);border-right:1px solid var(--line);}
+  .gcell{display:flex;flex-direction:column;gap:3px;}
+  .gcell .row{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;}
+  .gcell .row .seed{color:var(--faint);font-weight:700;font-size:11px;width:12px;}
+  table.matrix tbody tr:last-child td{border-bottom:0;}
+
+  /* people tabs */
+  .ppltabs{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 20px;}
+  .ppltabs button{
+    appearance:none;cursor:pointer;border:1px solid var(--line);background:var(--card);
+    font-family:var(--display);text-transform:uppercase;letter-spacing:.07em;font-size:15px;
+    color:var(--muted);padding:9px 18px;border-radius:99px;transition:.15s;
+  }
+  .ppltabs button:hover{color:var(--ink);}
+  .ppltabs button[aria-selected="true"]{color:#fff;border-color:transparent;}
+  .ppltabs button:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+
+  /* champion banner */
+  .champbanner{
+    display:flex;align-items:center;gap:18px;background:var(--card);
+    border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:6px;
+    border-left-width:8px;
+  }
+  .champbanner .flag{font-size:46px;}
+  .champbanner .meta .k{font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--muted);text-transform:uppercase;}
+  .champbanner .meta .nm{font-family:var(--display);font-size:clamp(34px,7vw,52px);line-height:.9;text-transform:uppercase;}
+  .champbanner .meta .sub{font-size:13px;color:var(--muted);margin-top:4px;}
+
+  /* bracket */
+  .brkwrap{margin-top:24px;}
+  .brkscroll{overflow-x:auto;padding-bottom:10px;}
+  .brkhead{display:flex;gap:8px;min-width:max-content;margin-bottom:8px;}
+  .brkhead .hcell{flex:0 0 168px;width:168px;}
+  .brkhead .hcell h4{font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:14px;margin:0;}
+  .brkhead .hcell .hd{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.03em;margin-top:2px;text-transform:uppercase;}
+  .brkbody{display:flex;gap:8px;align-items:stretch;min-width:max-content;min-height:780px;}
+  .rcol{flex:0 0 168px;width:168px;display:flex;flex-direction:column;justify-content:space-around;gap:6px;}
+  .match{background:var(--card);border:1px solid var(--line);border-radius:9px;overflow:hidden;}
+  .team{display:flex;align-items:center;gap:8px;padding:7px 9px;font-size:13px;color:var(--muted);}
+  .team .flag{font-size:15px;}
+  .team + .team{border-top:1px solid var(--line);}
+  .team.win{color:var(--ink);font-weight:700;border-left:4px solid var(--ink);}
+  .team.lose .nm{color:var(--faint);}
+  .rcol.champcol{justify-content:center;}
+  .champnode{
+    background:var(--ink);color:#fff;border-radius:12px;padding:16px 14px;text-align:center;
+  }
+  .champnode .k{font-size:10px;letter-spacing:.16em;font-weight:700;opacity:.7;text-transform:uppercase;}
+  .champnode .flag{font-size:34px;display:block;margin:8px 0 4px;}
+  .champnode .nm{font-family:var(--display);font-size:24px;line-height:1;text-transform:uppercase;}
+
+  .note{font-size:13px;color:var(--muted);margin:14px 0 0;}
+
+  footer{border-top:1px solid var(--line);padding:22px 0 50px;color:var(--faint);font-size:12.5px;}
+  footer b{color:var(--muted);}
+
+  @media (max-width:560px){
+    .champbanner .flag{font-size:38px;}
+    .vstat b{font-size:22px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="topbar">
+      <span style="background:var(--David)"></span>
+      <span style="background:var(--Kate)"></span>
+      <span style="background:var(--Lilly)"></span>
+      <span style="background:var(--Cameron)"></span>
+    </div>
+    <p class="eyebrow">FIFA World Cup 2026 &nbsp;·&nbsp; Family bracket</p>
+    <h1 class="title">The Petsolt Four</h1>
+    <p class="lede">Four brackets. One verdict.</p>
+  </header>
+
+  <nav class="viewtabs" role="tablist" aria-label="View">
+    <button role="tab" id="tab-compare" aria-controls="compare" aria-selected="true">Compare</button>
+    <button role="tab" id="tab-brackets" aria-controls="brackets" aria-selected="false">Brackets</button>
+  </nav>
+
+  <section class="view" id="compare" role="tabpanel" aria-labelledby="tab-compare"></section>
+  <section class="view" id="brackets" role="tabpanel" aria-labelledby="tab-brackets" hidden></section>
+
+  <footer>
+    <p>Picks transcribed from each person's NBC News 2026 FIFA World Cup bracket. Built <b>12-Jun-2026</b>. First match <b>11-Jun-2026</b>; final <b>19-Jul-2026</b>.</p>
+  </footer>
+</div>
+
+<script>
+const FLAG = {
+  "Mexico":"🇲🇽","South Korea":"🇰🇷","Czech Republic":"🇨🇿","Switzerland":"🇨🇭","Canada":"🇨🇦",
+  "Brazil":"🇧🇷","Morocco":"🇲🇦","Scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","United States":"🇺🇸","Paraguay":"🇵🇾","Turkey":"🇹🇷",
+  "Germany":"🇩🇪","Ecuador":"🇪🇨","Netherlands":"🇳🇱","Japan":"🇯🇵","Belgium":"🇧🇪","Egypt":"🇪🇬",
+  "Iran":"🇮🇷","Spain":"🇪🇸","Uruguay":"🇺🇾","Cape Verde":"🇨🇻","France":"🇫🇷","Senegal":"🇸🇳",
+  "Norway":"🇳🇴","Argentina":"🇦🇷","Austria":"🇦🇹","Algeria":"🇩🇿","Portugal":"🇵🇹","Colombia":"🇨🇴",
+  "England":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Croatia":"🇭🇷","Panama":"🇵🇦","South Africa":"🇿🇦","Qatar":"🇶🇦",
+  "Bosnia and Herzegovina":"🇧🇦","Australia":"🇦🇺","Tunisia":"🇹🇳","Saudi Arabia":"🇸🇦","Ghana":"🇬🇭",
+  "Ivory Coast":"🇨🇮","Sweden":"🇸🇪","New Zealand":"🇳🇿"
+};
+const fl = t => FLAG[t] || "⚽";
+const PEOPLE = ["David","Kate","Lilly","Cameron"];
+
+const DATA = {
+  David:{
+    groups:{A:["Mexico","South Korea","Czech Republic"],B:["Switzerland","Canada"],C:["Brazil","Morocco","Scotland"],
+      D:["United States","Paraguay","Turkey"],E:["Germany","Ecuador"],F:["Netherlands","Japan"],
+      G:["Belgium","Egypt","Iran"],H:["Spain","Uruguay","Cape Verde"],I:["France","Senegal","Norway"],
+      J:["Argentina","Austria","Algeria"],K:["Portugal","Colombia"],L:["England","Croatia","Panama"]},
+    r32:[["Germany","Czech Republic"],["France","Turkey"],["South Korea","Canada"],["Morocco","Netherlands"],
+      ["Croatia","Colombia"],["Spain","Austria"],["United States","Norway"],["Belgium","Algeria"],
+      ["Brazil","Japan"],["Senegal","Ecuador"],["Mexico","Scotland"],["England","Cape Verde"],
+      ["Argentina","Uruguay"],["Paraguay","Egypt"],["Iran","Switzerland"],["Portugal","Panama"]],
+    r16:[["France","Germany"],["Morocco","South Korea"],["Spain","Croatia"],["Belgium","United States"],
+      ["Brazil","Senegal"],["England","Mexico"],["Argentina","Paraguay"],["Portugal","Iran"]],
+    qf:[["France","Morocco"],["Spain","Belgium"],["Brazil","England"],["Argentina","Portugal"]],
+    sf:[["Spain","France"],["Argentina","Brazil"]],
+    final:["Spain","Argentina"]
+  },
+  Kate:{
+    groups:{A:["Mexico","South Africa","Czech Republic"],B:["Switzerland","Qatar","Bosnia and Herzegovina"],
+      C:["Brazil","Morocco","Scotland"],D:["United States","Turkey","Australia"],E:["Ecuador","Germany"],
+      F:["Netherlands","Japan","Tunisia"],G:["Belgium","Egypt"],H:["Spain","Uruguay","Saudi Arabia"],
+      I:["France","Norway","Senegal"],J:["Argentina","Austria"],K:["Portugal","Colombia"],L:["England","Croatia","Ghana"]},
+    r32:[["Ecuador","Australia"],["France","Scotland"],["South Africa","Qatar"],["Netherlands","Morocco"],
+      ["Colombia","Croatia"],["Spain","Austria"],["United States","Bosnia and Herzegovina"],["Belgium","Czech Republic"],
+      ["Brazil","Japan"],["Norway","Germany"],["Mexico","Senegal"],["England","Saudi Arabia"],
+      ["Argentina","Uruguay"],["Turkey","Egypt"],["Switzerland","Tunisia"],["Portugal","Ghana"]],
+    r16:[["France","Ecuador"],["Netherlands","South Africa"],["Spain","Colombia"],["United States","Belgium"],
+      ["Brazil","Norway"],["England","Mexico"],["Argentina","Turkey"],["Portugal","Switzerland"]],
+    qf:[["France","Netherlands"],["Spain","United States"],["England","Brazil"],["Argentina","Portugal"]],
+    sf:[["Spain","France"],["England","Argentina"]],
+    final:["Spain","England"]
+  },
+  Lilly:{
+    groups:{A:["Mexico","South Korea","South Africa"],B:["Canada","Switzerland","Bosnia and Herzegovina"],
+      C:["Brazil","Morocco","Scotland"],D:["United States","Australia","Paraguay"],E:["Germany","Ecuador","Ivory Coast"],
+      F:["Netherlands","Japan","Sweden"],G:["Belgium","Egypt","New Zealand"],H:["Spain","Uruguay"],
+      I:["France","Norway"],J:["Argentina","Austria"],K:["Portugal","Colombia"],L:["England","Panama","Croatia"]},
+    r32:[["Germany","Paraguay"],["France","New Zealand"],["South Korea","Switzerland"],["Netherlands","Morocco"],
+      ["Colombia","Panama"],["Spain","Austria"],["United States","Bosnia and Herzegovina"],["Belgium","South Africa"],
+      ["Brazil","Japan"],["Ecuador","Norway"],["Mexico","Scotland"],["England","Ivory Coast"],
+      ["Argentina","Uruguay"],["Australia","Egypt"],["Canada","Sweden"],["Portugal","Croatia"]],
+    r16:[["France","Germany"],["Netherlands","South Korea"],["Spain","Colombia"],["Belgium","United States"],
+      ["Brazil","Ecuador"],["Mexico","England"],["Argentina","Australia"],["Portugal","Canada"]],
+    qf:[["France","Netherlands"],["Spain","Belgium"],["Brazil","Mexico"],["Argentina","Portugal"]],
+    sf:[["Spain","France"],["Argentina","Brazil"]],
+    final:["Spain","Argentina"]
+  },
+  Cameron:{
+    groups:{A:["Mexico","South Africa","South Korea"],B:["Switzerland","Canada"],C:["Brazil","Morocco","Scotland"],
+      D:["United States","Australia","Turkey"],E:["Germany","Ecuador"],F:["Netherlands","Japan","Sweden"],
+      G:["Egypt","Belgium"],H:["Spain","Uruguay","Saudi Arabia"],I:["France","Norway","Senegal"],
+      J:["Argentina","Austria","Algeria"],K:["Portugal","Colombia"],L:["England","Croatia","Ghana"]},
+    r32:[["Germany","South Korea"],["France","Turkey"],["Canada","South Africa"],["Morocco","Netherlands"],
+      ["Colombia","Croatia"],["Spain","Austria"],["United States","Sweden"],["Egypt","Algeria"],
+      ["Brazil","Japan"],["Norway","Ecuador"],["Mexico","Scotland"],["England","Saudi Arabia"],
+      ["Argentina","Uruguay"],["Belgium","Australia"],["Switzerland","Senegal"],["Portugal","Ghana"]],
+    r16:[["France","Germany"],["Morocco","Canada"],["Spain","Colombia"],["United States","Egypt"],
+      ["Brazil","Norway"],["England","Mexico"],["Argentina","Belgium"],["Portugal","Switzerland"]],
+    qf:[["France","Morocco"],["Spain","United States"],["Brazil","England"],["Argentina","Portugal"]],
+    sf:[["Spain","France"],["Argentina","Brazil"]],
+    final:["Spain","Argentina"]
+  }
+};
+const GROUPS = ["A","B","C","D","E","F","G","H","I","J","K","L"];
+const winners = (p,round) => DATA[p][round].map(m=>m[0]);
+
+/* ---------- COMPARE VIEW ---------- */
+function teamLi(t,seed){
+  return `<li>${seed?`<span class="seed">${seed}</span>`:""}<span class="flag">${fl(t)}</span><span class="nm">${t}</span></li>`;
+}
+function survBlock(label,sub,date,round){
+  let cols = PEOPLE.map(p=>{
+    const list = winners(p,round).map(t=>teamLi(t)).join("");
+    return `<div class="cmpcol"><div class="phead" style="background:var(--${p})">${p}</div><ul>${list}</ul></div>`;
+  }).join("");
+  return `<div class="blockhead"><h2 class="blocklabel">${label}</h2><span class="tag">${sub}</span><p class="blockdate" style="flex-basis:100%;margin-top:2px">${date}</p></div><div class="cmprow">${cols}</div>`;
+}
+function finalBlock(){
+  let cols = PEOPLE.map(p=>{
+    const c=DATA[p].final[0], r=DATA[p].final[1];
+    return `<div class="podcol"><div class="phead" style="background:var(--${p})">${p}</div>
+      <div class="champ"><span class="flag">${fl(c)}</span><div><span class="crown">Champion</span><span class="nm">${c}</span></div></div>
+      <div class="runner">def. <b>${r}</b> in the final</div></div>`;
+  }).join("");
+  return `<div class="blockhead"><h2 class="blocklabel">The Final</h2><span class="tag">Who lifts the trophy</span><p class="blockdate" style="flex-basis:100%;margin-top:2px">19-Jul-2026</p></div><div class="podrow">${cols}</div>`;
+}
+function groupsMatrix(){
+  let head = `<tr><th class="corner"></th>${PEOPLE.map(p=>`<th class="pname" style="background:var(--${p})">${p}</th>`).join("")}</tr>`;
+  let rows = GROUPS.map(g=>{
+    let cells = PEOPLE.map(p=>{
+      let rowsInner = DATA[p].groups[g].map((t,i)=>`<div class="row"><span class="seed">${i+1}</span><span class="flag">${fl(t)}</span><span>${t}</span></div>`).join("");
+      return `<td><div class="gcell">${rowsInner}</div></td>`;
+    }).join("");
+    return `<tr><th class="grp">${g}</th>${cells}</tr>`;
+  }).join("");
+  return `<div class="blockhead"><h2 class="blocklabel">Group Stage</h2><span class="tag">Who advances, and in what order</span></div>
+    <div class="matrixscroll"><table class="matrix"><thead>${head}</thead><tbody>${rows}</tbody></table></div>`;
+}
+function verdict(){
+  // four colored paths converging into a Spain flag node
+  const ys=[34,78,122,166];
+  const paths = PEOPLE.map((p,i)=>`<path d="M0 ${ys[i]} C 250 ${ys[i]} 360 100 560 100" fill="none" stroke="var(--${p})" stroke-width="3.5" stroke-linecap="round"/>`).join("");
+  const labels = PEOPLE.map((p,i)=>`<text x="6" y="${ys[i]-8}" font-family="Archivo" font-size="13" font-weight="700" fill="var(--${p})">${p}</text>`).join("");
+  return `<div class="verdict">
+    <svg viewBox="0 0 760 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="All four brackets converge on Spain as champion">
+      ${paths}${labels}
+      <circle cx="560" cy="100" r="6" fill="var(--ink)"/>
+      <g transform="translate(584,76)">
+        <rect x="0" y="0" width="60" height="40" rx="5" fill="#AA151B"/>
+        <rect x="0" y="10" width="60" height="20" fill="#F1BF00"/>
+        <text x="68" y="18" font-family="Anton" font-size="22" fill="var(--ink)">SPAIN</text>
+        <text x="68" y="35" font-family="Archivo" font-size="12" font-weight="600" fill="var(--muted)">2026 World Champions</text>
+      </g>
+    </svg>
+    <div class="vstat">
+      <b>4 / 4</b>
+      <span class="lbl">Everyone in the family crowned <strong>Spain</strong>. The brackets only diverge on the road there, and on who Spain beats at the end.</span>
+    </div>
+  </div>`;
+}
+function renderCompare(){
+  const el=document.getElementById("compare");
+  el.innerHTML =
+    verdict() +
+    finalBlock() +
+    survBlock("Semifinals","The last 2 standing","14-Jul to 15-Jul-2026","sf") +
+    survBlock("Quarterfinals","The final four","09-Jul to 11-Jul-2026","qf") +
+    survBlock("Round of 16","The last 8 advance","04-Jul to 07-Jul-2026","r16") +
+    survBlock("Round of 32","The last 16 advance","28-Jun to 03-Jul-2026","r32") +
+    groupsMatrix();
+}
+
+/* ---------- BRACKETS (PER-PERSON) ---------- */
+const ROUND_META=[
+  ["r32","Round of 32","28 Jun–3 Jul"],
+  ["r16","Round of 16","4–7 Jul"],
+  ["qf","Quarterfinals","9–11 Jul"],
+  ["sf","Semifinals","14–15 Jul"],
+  ["final","Final","19 Jul"]
+];
+function matchEl(m){
+  return `<div class="match">
+    <div class="team win"><span class="flag">${fl(m[0])}</span><span class="nm">${m[0]}</span></div>
+    <div class="team lose"><span class="flag">${fl(m[1])}</span><span class="nm">${m[1]}</span></div>
+  </div>`;
+}
+function renderPerson(p){
+  const d=DATA[p];
+  // champion banner
+  let banner=`<div class="champbanner" style="border-left-color:var(--${p})">
+    <span class="flag">${fl(d.final[0])}</span>
+    <div class="meta"><span class="k">${p}'s champion</span><span class="nm">${d.final[0]}</span>
+    <span class="sub">def. ${d.final[1]} in the final · 19-Jul-2026</span></div></div>`;
+  // bracket head
+  let head=ROUND_META.map(r=>`<div class="hcell"><h4>${r[1]}</h4><div class="hd">${r[2]}</div></div>`).join("")
+    + `<div class="hcell"><h4>Champion</h4><div class="hd">&nbsp;</div></div>`;
+  // bracket body
+  let cols=ROUND_META.map(r=>{
+    const matches = d[r[0]].map(m=>matchEl(m)).join("");
+    return `<div class="rcol" style="--ink-win:var(--${p})">${matches}</div>`;
+  }).join("");
+  let champcol=`<div class="rcol champcol"><div class="champnode"><span class="k">Winner</span><span class="flag">${fl(d.final[0])}</span><span class="nm">${d.final[0]}</span></div></div>`;
+  let bracket=`<div class="brkwrap"><div class="brkscroll">
+    <div class="brkhead">${head}</div>
+    <div class="brkbody">${cols}${champcol}</div>
+  </div><p class="note">Bold = advanced. Scroll right for later rounds.</p></div>`;
+  // groups for this person
+  let gcards = `<div class="blockhead"><h2 class="blocklabel">${p}'s Group Stage</h2></div>
+    <div class="matrixscroll"><table class="matrix"><tbody>` +
+    GROUPS.map(g=>{
+      let inner=d.groups[g].map((t,i)=>`<div class="row"><span class="seed">${i+1}</span><span class="flag">${fl(t)}</span><span>${t}</span></div>`).join("");
+      return `<tr><th class="grp">${g}</th><td><div class="gcell">${inner}</div></td></tr>`;
+    }).join("") + `</tbody></table></div>`;
+  return banner + bracket + gcards;
+}
+// recolor winner border per person via inline style override
+function applyWinColor(p){
+  document.querySelectorAll("#brackets .team.win").forEach(t=>{t.style.borderLeftColor="var(--"+p+")";});
+  document.querySelectorAll("#brackets .champnode").forEach(n=>{n.style.background="var(--"+p+")";});
+}
+let currentPerson="David";
+function renderBrackets(){
+  const el=document.getElementById("brackets");
+  let tabs=`<div class="ppltabs" role="tablist" aria-label="Family member">` +
+    PEOPLE.map(p=>`<button role="tab" data-person="${p}" aria-selected="${p===currentPerson}" style="${p===currentPerson?`background:var(--${p})`:''}">${p}</button>`).join("") +
+    `</div>`;
+  el.innerHTML = tabs + `<div id="personmount">${renderPerson(currentPerson)}</div>`;
+  applyWinColor(currentPerson);
+  el.querySelectorAll(".ppltabs button").forEach(b=>{
+    b.addEventListener("click",()=>{
+      currentPerson=b.dataset.person;
+      renderBrackets();
+    });
+  });
+}
+
+/* ---------- VIEW TOGGLE ---------- */
+function selectView(which){
+  const isC = which==="compare";
+  document.getElementById("tab-compare").setAttribute("aria-selected",isC);
+  document.getElementById("tab-brackets").setAttribute("aria-selected",!isC);
+  document.getElementById("compare").hidden=!isC;
+  document.getElementById("brackets").hidden=isC;
+}
+document.getElementById("tab-compare").addEventListener("click",()=>selectView("compare"));
+document.getElementById("tab-brackets").addEventListener("click",()=>selectView("brackets"));
+
+renderCompare();
+renderBrackets();
+selectView("compare");
+</script>
+</body>
+</html>

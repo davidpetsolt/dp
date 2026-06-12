@@ -14,10 +14,12 @@
     --muted:#697079;
     --faint:#9AA1A8;
     --line:#D8DCE0;
-    --David:#0F7B7A;
-    --Kate:#CE4A37;
-    --Lilly:#6B4A9E;
-    --Cameron:#9C6B12;
+    --David:#008eff;
+    --Kate:#059347;
+    --Lilly:#57cecb;
+    --Cameron:#dd3a14;
+    --petsolt:#1b2352;
+    --petsolt2:#ff6000;
     --display:'Anton','Arial Narrow',sans-serif;
     --sans:'Archivo',system-ui,-apple-system,sans-serif;
   }
@@ -41,7 +43,7 @@
   h1.title{
     font-family:var(--display);font-weight:400;line-height:.92;
     font-size:clamp(44px,11vw,104px);letter-spacing:.01em;margin:0;
-    text-transform:uppercase;
+    text-transform:uppercase;color:var(--petsolt);
   }
   .lede{font-size:clamp(15px,2.4vw,19px);color:var(--muted);margin:8px 0 0;font-weight:500;}
 
@@ -55,7 +57,7 @@
   }
   .viewtabs button:hover{color:var(--muted);}
   .viewtabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink);}
-  .viewtabs button:focus-visible{outline:2px solid var(--David);outline-offset:3px;}
+  .viewtabs button:focus-visible{outline:2px solid var(--petsolt2);outline-offset:3px;}
 
   .view{padding:22px 0 60px;}
   .view[hidden]{display:none;}
@@ -154,7 +156,7 @@
   }
   .ppltabs button:hover{color:var(--ink);}
   .ppltabs button[aria-selected="true"]{color:#fff;border-color:transparent;}
-  .ppltabs button:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+  .ppltabs button:focus-visible{outline:2px solid var(--petsolt2);outline-offset:2px;}
 
   /* champion banner */
   .champbanner{
@@ -264,6 +266,8 @@ const FLAG = {
 };
 const fl = t => FLAG[t] || "⚽";
 const PEOPLE = ["David","Kate","Lilly","Cameron"];
+// text color to use ON each accent background (Lilly's cyan is light -> dark text)
+const FG = {David:"#ffffff",Kate:"#ffffff",Lilly:"#10233F",Cameron:"#ffffff"};
 
 const DATA = {
   David:{
@@ -337,21 +341,21 @@ function teamLi(t,seed){
 function survBlock(label,sub,date,round){
   let cols = PEOPLE.map(p=>{
     const list = winners(p,round).map(t=>teamLi(t)).join("");
-    return `<div class="cmpcol"><div class="phead" style="background:var(--${p})">${p}</div><ul>${list}</ul></div>`;
+    return `<div class="cmpcol"><div class="phead" style="background:var(--${p});color:${FG[p]}">${p}</div><ul>${list}</ul></div>`;
   }).join("");
   return `<div class="blockhead"><h2 class="blocklabel">${label}</h2><span class="tag">${sub}</span><p class="blockdate" style="flex-basis:100%;margin-top:2px">${date}</p></div><div class="cmprow">${cols}</div>`;
 }
 function finalBlock(){
   let cols = PEOPLE.map(p=>{
     const c=DATA[p].final[0], r=DATA[p].final[1];
-    return `<div class="podcol"><div class="phead" style="background:var(--${p})">${p}</div>
+    return `<div class="podcol"><div class="phead" style="background:var(--${p});color:${FG[p]}">${p}</div>
       <div class="champ"><span class="flag">${fl(c)}</span><div><span class="crown">Champion</span><span class="nm">${c}</span></div></div>
       <div class="runner">def. <b>${r}</b> in the final</div></div>`;
   }).join("");
   return `<div class="blockhead"><h2 class="blocklabel">The Final</h2><span class="tag">Who lifts the trophy</span><p class="blockdate" style="flex-basis:100%;margin-top:2px">19-Jul-2026</p></div><div class="podrow">${cols}</div>`;
 }
 function groupsMatrix(){
-  let head = `<tr><th class="corner"></th>${PEOPLE.map(p=>`<th class="pname" style="background:var(--${p})">${p}</th>`).join("")}</tr>`;
+  let head = `<tr><th class="corner"></th>${PEOPLE.map(p=>`<th class="pname" style="background:var(--${p});color:${FG[p]}">${p}</th>`).join("")}</tr>`;
   let rows = GROUPS.map(g=>{
     let cells = PEOPLE.map(p=>{
       let rowsInner = DATA[p].groups[g].map((t,i)=>`<div class="row"><span class="seed">${i+1}</span><span class="flag">${fl(t)}</span><span>${t}</span></div>`).join("");
@@ -363,7 +367,7 @@ function groupsMatrix(){
   let cards = `<div class="groupcards">` + GROUPS.map(g=>{
     let ppl = PEOPLE.map(p=>{
       let picks = DATA[p].groups[g].map((t,i)=>`<span class="pk"><span class="seed">${i+1}</span><span class="flag">${fl(t)}</span>${t}</span>`).join("");
-      return `<div class="gp"><span class="gp-name" style="background:var(--${p})">${p}</span><div class="gp-picks">${picks}</div></div>`;
+      return `<div class="gp"><span class="gp-name" style="background:var(--${p});color:${FG[p]}">${p}</span><div class="gp-picks">${picks}</div></div>`;
     }).join("");
     return `<div class="gcard"><div class="gcard-h">Group ${g}</div>${ppl}</div>`;
   }).join("") + `</div>`;
@@ -372,15 +376,15 @@ function groupsMatrix(){
 function verdict(){
   const ys=[34,78,122,166];
   const paths = PEOPLE.map((p,i)=>`<path d="M0 ${ys[i]} C 250 ${ys[i]} 360 100 560 100" fill="none" stroke="var(--${p})" stroke-width="3.5" stroke-linecap="round"/>`).join("");
-  const labels = PEOPLE.map((p,i)=>`<text x="6" y="${ys[i]-8}" font-family="Archivo" font-size="13" font-weight="700" fill="var(--${p})">${p}</text>`).join("");
+  const labels = PEOPLE.map((p,i)=>`<text x="6" y="${ys[i]-8}" font-family="Archivo" font-size="13" font-weight="700" fill="var(--ink)">${p}</text>`).join("");
   return `<div class="verdict">
     <svg viewBox="0 0 760 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="All four brackets converge on Spain as champion">
       ${paths}${labels}
-      <circle cx="560" cy="100" r="6" fill="var(--ink)"/>
+      <circle cx="560" cy="100" r="6" fill="var(--petsolt)"/>
       <g transform="translate(584,76)">
         <rect x="0" y="0" width="60" height="40" rx="5" fill="#AA151B"/>
         <rect x="0" y="10" width="60" height="20" fill="#F1BF00"/>
-        <text x="68" y="18" font-family="Anton" font-size="22" fill="var(--ink)">SPAIN</text>
+        <text x="68" y="18" font-family="Anton" font-size="22" fill="var(--petsolt)">SPAIN</text>
         <text x="68" y="35" font-family="Archivo" font-size="12" font-weight="600" fill="var(--muted)">2026 World Champions</text>
       </g>
     </svg>
@@ -449,13 +453,13 @@ function renderPerson(p){
 }
 function applyWinColor(p){
   document.querySelectorAll("#brackets .team.win").forEach(t=>{t.style.borderLeftColor="var(--"+p+")";});
-  document.querySelectorAll("#brackets .champnode").forEach(n=>{n.style.background="var(--"+p+")";});
+  document.querySelectorAll("#brackets .champnode").forEach(n=>{n.style.background="var(--"+p+")";n.style.color=FG[p];});
 }
 let currentPerson="David";
 function renderBrackets(){
   const el=document.getElementById("brackets");
   let tabs=`<div class="ppltabs" role="tablist" aria-label="Family member">` +
-    PEOPLE.map(p=>`<button role="tab" data-person="${p}" aria-selected="${p===currentPerson}" style="${p===currentPerson?`background:var(--${p})`:''}">${p}</button>`).join("") +
+    PEOPLE.map(p=>`<button role="tab" data-person="${p}" aria-selected="${p===currentPerson}" style="${p===currentPerson?`background:var(--${p});color:${FG[p]}`:''}">${p}</button>`).join("") +
     `</div>`;
   el.innerHTML = tabs + `<div id="personmount">${renderPerson(currentPerson)}</div>`;
   applyWinColor(currentPerson);

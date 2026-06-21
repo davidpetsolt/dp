@@ -45,10 +45,19 @@ function stageKey(stage){
   return "OTHER";
 }
 
-async function get(path){
-  const r = await fetch(BASE + path, { headers: { "X-Auth-Token": TOKEN } });
-  if (!r.ok) throw new Error(`${path} -> HTTP ${r.status}`);
-  return r.json();
+async function get(path, tries = 4){
+  for (let i = 0; i < tries; i++){
+    const r = await fetch(BASE + path, { headers: { "X-Auth-Token": TOKEN } });
+    if (r.ok) return r.json();
+    if (r.status === 429 || r.status >= 500){
+      const ra = Number(r.headers.get("retry-after"));
+      const wait = (ra > 0 ? ra : Math.min(60, 6 * (i + 1))) * 1000;
+      console.warn(`${path} -> HTTP ${r.status}; retry ${i + 1}/${tries - 1} in ${wait / 1000}s`);
+      if (i < tries - 1){ await new Promise(res => setTimeout(res, wait)); continue; }
+    }
+    throw new Error(`${path} -> HTTP ${r.status}`);
+  }
+  throw new Error(`${path} -> retries exhausted`);
 }
 
 (async () => {

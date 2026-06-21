@@ -1,0 +1,100 @@
+{
+  "updated": "2026-06-21T06:50:49.066Z",
+  "status": "in_progress",
+  "groupFinal": {
+    "A": false,
+    "B": false,
+    "C": false,
+    "D": false,
+    "E": false,
+    "F": false,
+    "G": false,
+    "H": false,
+    "I": false,
+    "J": false,
+    "K": false,
+    "L": false
+  },
+  "groupOrder": {
+    "A": [
+      "Mexico",
+      "Korea Republic",
+      "Czechia",
+      "South Africa"
+    ],
+    "B": [
+      "Canada",
+      "Switzerland",
+      "Bosnia and Herzegovina",
+      "Qatar"
+    ],
+    "C": [
+      "Brazil",
+      "Morocco",
+      "Scotland",
+      "Haiti"
+    ],
+    "D": [
+      "United States",
+      "Australia",
+      "Paraguay",
+      "Türkiye"
+    ],
+    "E": [
+      "Germany",
+      "Côte d'Ivoire",
+      "Ecuador",
+      "Curaçao"
+    ],
+    "F": [
+      "Netherlands",
+      "Japan",
+      "Sweden",
+      "Tunisia"
+    ],
+    "G": [
+      "New Zealand",
+      "IR Iran",
+      "Belgium",
+      "Egypt"
+    ],
+    "H": [
+      "Uruguay",
+      "Saudi Arabia",
+      "Spain",
+      "Cape Verde Islands"
+    ],
+    "I": [
+      "Norway",
+      "France",
+      "Senegal",
+      "Iraq"
+    ],
+    "J": [
+      "Argentina",
+      "Austria",
+      "Jordan",
+      "Algeria"
+    ],
+    "K": [
+      "Colombia",
+      "Congo DR",
+      "Portugal",
+      "Uzbekistan"
+    ],
+    "L": [
+      "England",
+      "Ghana",
+      "Panama",
+      "Croatia"
+    ]
+  },
+  "reached": {
+    "R16": [],
+    "QF": [],
+    "SF": [],
+    "Final": []
+  },
+  "champion": null,
+  "eliminated": []
+}

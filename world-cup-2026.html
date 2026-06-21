@@ -208,6 +208,8 @@
   /* result status */
   .is-hit .nm{color:#0a7a36;font-weight:800;}
   .is-hit::after{content:"✓";color:#0a7a36;font-weight:800;font-size:.82em;margin-left:6px;}
+  .is-live .nm{color:#0a7a36;font-weight:700;}
+  .is-live::after{content:"✓";color:#0a7a36;opacity:.4;font-weight:700;font-size:.82em;margin-left:6px;}
   .is-miss{opacity:.4;}
   .is-miss .nm{text-decoration:line-through;text-decoration-thickness:1px;}
   .champnode.is-hit .nm{color:inherit;}
@@ -376,9 +378,12 @@ function reachStatus(team,key){
   return 'pending';
 }
 function groupStatus(g,slot,team){
-  if(!TRUTH||!TRUTH.groupFinal||!TRUTH.groupFinal[g]) return 'pending';
+  if(!TRUTH) return 'pending';
   const order=(TRUTH.groupOrder&&TRUTH.groupOrder[g])||[];
-  return order[slot]===team?'hit':'miss';
+  if(!order.length) return 'pending';
+  const ok=order[slot]===team;
+  if(TRUTH.groupFinal&&TRUTH.groupFinal[g]) return ok?'hit':'miss';
+  return ok?'live':'pending';
 }
 function annotate(){
   document.querySelectorAll('[data-reach]').forEach(el=>{
@@ -388,19 +393,20 @@ function annotate(){
   });
   document.querySelectorAll('[data-group][data-slot]').forEach(el=>{
     const st=groupStatus(el.dataset.group,+el.dataset.slot,el.dataset.team);
-    el.classList.remove('is-hit','is-miss');
-    if(st==='hit') el.classList.add('is-hit'); else if(st==='miss') el.classList.add('is-miss');
+    el.classList.remove('is-hit','is-miss','is-live');
+    if(st==='hit') el.classList.add('is-hit'); else if(st==='miss') el.classList.add('is-miss'); else if(st==='live') el.classList.add('is-live');
   });
 }
 function scoreOne(p){
   const d=DATA[p]; let pts=0, correct=0;
   GROUPS.forEach(g=>{
-    const slots=d.groups[g]||[]; let all=slots.length>0;
+    const slots=d.groups[g]||[]; let lockedAll=slots.length>0;
     slots.forEach((t,i)=>{
       const s=groupStatus(g,i,t);
-      if(s==='hit'){ pts+=GROUP_PTS[i]||0; correct++; } else all=false;
+      if(s==='hit'||s==='live'){ pts+=GROUP_PTS[i]||0; correct++; }
+      if(s!=='hit') lockedAll=false;
     });
-    if(all && TRUTH && TRUTH.groupFinal && TRUTH.groupFinal[g]) pts+=PERFECT_GROUP_BONUS;
+    if(lockedAll && TRUTH && TRUTH.groupFinal && TRUTH.groupFinal[g]) pts+=PERFECT_GROUP_BONUS;
   });
   [['r32','R16'],['r16','QF'],['qf','SF'],['sf','Final']].forEach(([rk,key])=>{
     d[rk].forEach(m=>{ if(reachStatus(m[0],key)==='hit'){ pts+=KO_PTS[key]; correct++; } });
@@ -421,7 +427,10 @@ function leaderboardHTML(){
   }
   const rows=PEOPLE.map(scoreOne).sort((a,b)=> b.pts-a.pts || b.correct-a.correct || a.p.localeCompare(b.p));
   const upd=TRUTH.updated?fmtDate(TRUTH.updated):'';
-  const statusLabel=TRUTH.status==='complete'?'Final standings':'Live standings';
+  const statusLabel=TRUTH.status==='complete'?'Final standings':'Projected standings';
+  const noteText=TRUTH.status==='complete'
+    ? 'Tiebreaker: most correct picks. Correct picks are checked; missed picks are dimmed.'
+    : 'Projected from current group tables; locks as each group finishes. Solid check = locked, faint check = on track now, dimmed = out. Tiebreaker: most correct picks.';
   const items=rows.map((r,idx)=>`<div class="lb-row">
       <span class="lb-rank">${idx+1}</span>
       <span class="lb-name" style="background:var(--${r.p});color:${FG[r.p]}">${r.p}</span>
@@ -430,7 +439,7 @@ function leaderboardHTML(){
     </div>`).join("");
   return `<div class="lb"><div class="lb-head"><h2 class="blocklabel">Standings</h2><span class="tag">${statusLabel}${upd?` · updated ${upd}`:''}</span></div>
     <div class="lb-list">${items}</div>
-    <p class="note" style="margin-top:8px">Tiebreaker: most correct picks. Correct picks are checked; eliminated picks are dimmed.</p></div>`;
+    <p class="note" style="margin-top:8px">${noteText}</p></div>`;
 }
 
 /* ---------- COMPARE VIEW ---------- */

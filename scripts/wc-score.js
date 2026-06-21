@@ -26,7 +26,7 @@ const CANON2DISP = {}; DISPLAY.forEach(n => CANON2DISP[canon(n)] = n);
 const SYN = {
   turkey:"Türkiye", czechrepublic:"Czechia",
   southkorea:"Korea Republic", korea:"Korea Republic", republicofkorea:"Korea Republic", korearep:"Korea Republic",
-  ivorycoast:"Côte d'Ivoire", capeverde:"Cabo Verde",
+  ivorycoast:"Côte d'Ivoire", capeverde:"Cabo Verde", capeverdeislands:"Cabo Verde",
   iran:"IR Iran", usa:"United States", unitedstatesofamerica:"United States",
   bosnia:"Bosnia and Herzegovina", bosniaherzegovina:"Bosnia and Herzegovina"
 };
@@ -113,7 +113,8 @@ async function get(path){
       R16: [...reached.R16], QF: [...reached.QF], SF: [...reached.SF], Final: [...reached.Final]
     },
     champion,
-    eliminated: [...eliminated]
+    eliminated: [...eliminated],
+    aliveR32: [...aliveR32]
   };
 
   fs.writeFileSync("results.json", JSON.stringify(out, null, 2) + "\n");

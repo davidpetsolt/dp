@@ -1,0 +1,125 @@
+{
+  "updated": "2026-06-21T13:10:15.165Z",
+  "d1": [
+    {
+      "rank": 1,
+      "name": "FC Barcelona",
+      "pts": 94,
+      "s": "cl"
+    },
+    {
+      "rank": 2,
+      "name": "Real Madrid",
+      "pts": 86,
+      "s": "cl"
+    },
+    {
+      "rank": 3,
+      "name": "Villarreal CF",
+      "pts": 72,
+      "s": "cl"
+    },
+    {
+      "rank": 4,
+      "name": "Atlético de Madrid",
+      "pts": 69,
+      "s": "cl"
+    },
+    {
+      "rank": 5,
+      "name": "Real Betis",
+      "pts": 60,
+      "s": "cl"
+    },
+    {
+      "rank": 6,
+      "name": "RC Celta de Vigo",
+      "pts": 54,
+      "s": "el"
+    },
+    {
+      "rank": 7,
+      "name": "Getafe CF",
+      "pts": 51,
+      "s": "conf"
+    },
+    {
+      "rank": 8,
+      "name": "Rayo Vallecano",
+      "pts": 50,
+      "s": "mid"
+    },
+    {
+      "rank": 9,
+      "name": "Valencia CF",
+      "pts": 49,
+      "s": "mid"
+    },
+    {
+      "rank": 10,
+      "name": "Real Sociedad",
+      "pts": 46,
+      "s": "mid"
+    },
+    {
+      "rank": 11,
+      "name": "RCD Espanyol",
+      "pts": 46,
+      "s": "mid"
+    },
+    {
+      "rank": 12,
+      "name": "Athletic Club",
+      "pts": 45,
+      "s": "mid"
+    },
+    {
+      "rank": 13,
+      "name": "Sevilla FC",
+      "pts": 43,
+      "s": "mid"
+    },
+    {
+      "rank": 14,
+      "name": "Deportivo Alavés",
+      "pts": 43,
+      "s": "mid"
+    },
+    {
+      "rank": 15,
+      "name": "Elche CF",
+      "pts": 43,
+      "s": "mid"
+    },
+    {
+      "rank": 16,
+      "name": "Levante UD",
+      "pts": 42,
+      "s": "mid"
+    },
+    {
+      "rank": 17,
+      "name": "CA Osasuna",
+      "pts": 42,
+      "s": "mid"
+    },
+    {
+      "rank": 18,
+      "name": "RCD Mallorca",
+      "pts": 42,
+      "s": "rel"
+    },
+    {
+      "rank": 19,
+      "name": "Girona FC",
+      "pts": 41,
+      "s": "rel"
+    },
+    {
+      "rank": 20,
+      "name": "Real Oviedo",
+      "pts": 29,
+      "s": "rel"
+    }
+  ]
+}

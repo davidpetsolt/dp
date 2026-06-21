@@ -552,8 +552,7 @@ function buildCards(teams,id){
     w.appendChild(el);
   });
 }
-buildCards(D1,'d1c');
-buildCards(D2,'d2c');
+// cards + maps render once after live hydrate (bottom of script)
 
 // ── TABS ──
 (function(){
@@ -636,8 +635,41 @@ function buildMap(svgId,dotsId,teams,infoId){
     infoEl.innerHTML = '<span class="mi-empty">Tap a coloured dot to see team details</span>';
   });
 }
-buildMap('svg1','dots1',D1,'info1');
-buildMap('svg2','dots2',D2,'info2');
+// ── LIVE HYDRATE ──
+// Fetch laliga-standings.json (written daily by GitHub Actions) and override
+// only rank/pts/s on the inline arrays, matching on team name. Static fields
+// (city, founded, x/y, crest, nicks, bv) are never touched. If the fetch fails,
+// we render the inline values as a fallback so the page is never blank.
+// data.d2 is only present on the paid tier; until then D2 keeps its manual values.
+(async function(){
+  try{
+    const res = await fetch('laliga-standings.json', {cache:'no-store'});
+    if(res.ok){
+      const data = await res.json();
+      const applyLive = (arr, live) => {
+        if(!Array.isArray(arr) || !Array.isArray(live)) return;
+        const byName = {};
+        live.forEach(t => { byName[t.name] = t; });
+        arr.forEach(o => { const t = byName[o.name]; if(t){ o.rank = t.rank; o.pts = t.pts; o.s = t.s; } });
+      };
+      applyLive(D1, data.d1);
+      applyLive(D2, data.d2);
+      if(data.updated){
+        const ts = document.getElementById('ts');
+        if(ts){
+          const d = new Date(data.updated);
+          const mon = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getUTCMonth()];
+          const fmt = `${String(d.getUTCDate()).padStart(2,'0')}-${mon}-${d.getUTCFullYear()}`;
+          ts.textContent = ts.textContent.replace(/Standings as of\s+[^(]*/, `Standings as of ${fmt} `);
+        }
+      }
+    }
+  }catch(e){ /* keep inline fallback values */ }
+  buildCards(D1,'d1c');
+  buildCards(D2,'d2c');
+  buildMap('svg1','dots1',D1,'info1');
+  buildMap('svg2','dots2',D2,'info2');
+})();
 </script>
 </body>
 </html>

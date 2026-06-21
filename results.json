@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-21T06:50:49.066Z",
+  "updated": "2026-06-21T07:19:04.181Z",
   "status": "in_progress",
   "groupFinal": {
     "A": false,
@@ -62,7 +62,7 @@
       "Uruguay",
       "Saudi Arabia",
       "Spain",
-      "Cape Verde Islands"
+      "Cabo Verde"
     ],
     "I": [
       "Norway",
@@ -96,5 +96,6 @@
     "Final": []
   },
   "champion": null,
-  "eliminated": []
+  "eliminated": [],
+  "aliveR32": []
 }

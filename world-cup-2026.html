@@ -204,6 +204,14 @@
 
   footer{border-top:1px solid var(--line);padding:22px 0 50px;color:var(--faint);font-size:12.5px;}
   footer b{color:var(--muted);}
+  .scorekey{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;color:var(--ink);margin:0 0 18px;}
+  .scorekey-h{font-family:var(--display);text-transform:uppercase;letter-spacing:.07em;font-size:15px;color:var(--ink);padding:12px 14px;border-bottom:1px solid var(--line);margin:0;}
+  .scorekey table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  .scorekey td{padding:8px 14px;border-bottom:1px solid var(--line);color:var(--muted);}
+  .scorekey tr:last-child td{border-bottom:0;}
+  .scorekey td.pts{text-align:right;font-family:var(--display);font-size:18px;color:var(--ink);width:62px;white-space:nowrap;}
+  .scorekey td.bonus{color:var(--petsolt2);}
+  .scorekey tr.stage td{background:var(--petsolt);color:#fff;font-family:var(--display);text-transform:uppercase;letter-spacing:.07em;font-size:12.5px;padding:7px 14px;}
 
   /* result status */
   .is-hit .nm{color:#0a7a36;font-weight:800;}
@@ -271,6 +279,24 @@
   <section class="view" id="brackets" role="tabpanel" aria-labelledby="tab-brackets" hidden></section>
 
   <footer>
+    <div class="scorekey">
+      <p class="scorekey-h">How scoring works</p>
+      <table>
+        <tr class="stage"><td colspan="2">Group stage</td></tr>
+        <tr><td>Correct group winner (1st)</td><td class="pts">5</td></tr>
+        <tr><td>Correct runner-up (2nd)</td><td class="pts">3</td></tr>
+        <tr><td>Correct 3rd-place finisher</td><td class="pts">2</td></tr>
+        <tr><td>Perfect group (all picked slots right)</td><td class="pts bonus">+5</td></tr>
+        <tr class="stage"><td colspan="2">Knockout &middot; your pick reaches the round</td></tr>
+        <tr><td>Round of 16</td><td class="pts">5</td></tr>
+        <tr><td>Quarterfinal</td><td class="pts">10</td></tr>
+        <tr><td>Semifinal</td><td class="pts">20</td></tr>
+        <tr><td>Final</td><td class="pts">30</td></tr>
+        <tr><td>Champion correct</td><td class="pts">40</td></tr>
+        <tr class="stage"><td colspan="2">Bonus</td></tr>
+        <tr><td>All four Final Four teams correct</td><td class="pts bonus">+20</td></tr>
+      </table>
+    </div>
     <p>Picks transcribed from each person's NBC News 2026 FIFA World Cup bracket. Built <b>12-Jun-2026</b>. First match <b>11-Jun-2026</b>; final <b>19-Jul-2026</b>.</p>
   </footer>
 </div>

@@ -205,6 +205,26 @@
   footer{border-top:1px solid var(--line);padding:22px 0 50px;color:var(--faint);font-size:12.5px;}
   footer b{color:var(--muted);}
 
+  /* result status */
+  .is-hit .nm{color:#0a7a36;font-weight:800;}
+  .is-hit::after{content:"✓";color:#0a7a36;font-weight:800;font-size:.82em;margin-left:6px;}
+  .is-miss{opacity:.4;}
+  .is-miss .nm{text-decoration:line-through;text-decoration-thickness:1px;}
+  .champnode.is-hit .nm{color:inherit;}
+  .champnode.is-hit::after{color:#fff;}
+
+  /* leaderboard */
+  .lb{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-top:6px;}
+  .lb-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+  .lb-list{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
+  .lb-row{display:flex;align-items:center;gap:12px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;}
+  .lb-rank{font-family:var(--display);font-size:20px;color:var(--faint);width:22px;text-align:center;flex:0 0 auto;}
+  .lb-name{font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:14px;padding:3px 12px;border-radius:99px;flex:0 0 auto;}
+  .lb-pts{font-family:var(--display);font-size:24px;margin-left:auto;line-height:1;flex:0 0 auto;}
+  .lb-pts small{font-family:var(--sans);font-size:11px;color:var(--muted);font-weight:700;margin-left:4px;letter-spacing:.04em;}
+  .lb-correct{font-size:12.5px;color:var(--muted);font-weight:600;min-width:74px;text-align:right;flex:0 0 auto;}
+  @media (max-width:480px){.lb-correct{display:none;}}
+
   /* ---------- MOBILE REFLOW ---------- */
   @media (max-width:720px){
     .wrap{padding:0 14px;}
@@ -255,14 +275,14 @@
 
 <script>
 const FLAG = {
-  "Mexico":"🇲🇽","South Korea":"🇰🇷","Czech Republic":"🇨🇿","Switzerland":"🇨🇭","Canada":"🇨🇦",
-  "Brazil":"🇧🇷","Morocco":"🇲🇦","Scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","United States":"🇺🇸","Paraguay":"🇵🇾","Turkey":"🇹🇷",
+  "Mexico":"🇲🇽","Korea Republic":"🇰🇷","Czechia":"🇨🇿","Switzerland":"🇨🇭","Canada":"🇨🇦",
+  "Brazil":"🇧🇷","Morocco":"🇲🇦","Scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","United States":"🇺🇸","Paraguay":"🇵🇾","Türkiye":"🇹🇷",
   "Germany":"🇩🇪","Ecuador":"🇪🇨","Netherlands":"🇳🇱","Japan":"🇯🇵","Belgium":"🇧🇪","Egypt":"🇪🇬",
-  "Iran":"🇮🇷","Spain":"🇪🇸","Uruguay":"🇺🇾","Cape Verde":"🇨🇻","France":"🇫🇷","Senegal":"🇸🇳",
+  "IR Iran":"🇮🇷","Spain":"🇪🇸","Uruguay":"🇺🇾","Cabo Verde":"🇨🇻","France":"🇫🇷","Senegal":"🇸🇳",
   "Norway":"🇳🇴","Argentina":"🇦🇷","Austria":"🇦🇹","Algeria":"🇩🇿","Portugal":"🇵🇹","Colombia":"🇨🇴",
   "England":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Croatia":"🇭🇷","Panama":"🇵🇦","South Africa":"🇿🇦","Qatar":"🇶🇦",
   "Bosnia and Herzegovina":"🇧🇦","Australia":"🇦🇺","Tunisia":"🇹🇳","Saudi Arabia":"🇸🇦","Ghana":"🇬🇭",
-  "Ivory Coast":"🇨🇮","Sweden":"🇸🇪","New Zealand":"🇳🇿"
+  "Côte d'Ivoire":"🇨🇮","Sweden":"🇸🇪","New Zealand":"🇳🇿"
 };
 const fl = t => FLAG[t] || "⚽";
 const PEOPLE = ["David","Kate","Lilly","Cameron"];
@@ -271,56 +291,56 @@ const FG = {David:"#ffffff",Kate:"#ffffff",Lilly:"#10233F",Cameron:"#ffffff"};
 
 const DATA = {
   David:{
-    groups:{A:["Mexico","South Korea","Czech Republic"],B:["Switzerland","Canada"],C:["Brazil","Morocco","Scotland"],
-      D:["United States","Paraguay","Turkey"],E:["Germany","Ecuador"],F:["Netherlands","Japan"],
-      G:["Belgium","Egypt","Iran"],H:["Spain","Uruguay","Cape Verde"],I:["France","Senegal","Norway"],
+    groups:{A:["Mexico","Korea Republic","Czechia"],B:["Switzerland","Canada"],C:["Brazil","Morocco","Scotland"],
+      D:["United States","Paraguay","Türkiye"],E:["Germany","Ecuador"],F:["Netherlands","Japan"],
+      G:["Belgium","Egypt","IR Iran"],H:["Spain","Uruguay","Cabo Verde"],I:["France","Senegal","Norway"],
       J:["Argentina","Austria","Algeria"],K:["Portugal","Colombia"],L:["England","Croatia","Panama"]},
-    r32:[["Germany","Czech Republic"],["France","Turkey"],["South Korea","Canada"],["Morocco","Netherlands"],
+    r32:[["Germany","Czechia"],["France","Türkiye"],["Korea Republic","Canada"],["Morocco","Netherlands"],
       ["Croatia","Colombia"],["Spain","Austria"],["United States","Norway"],["Belgium","Algeria"],
-      ["Brazil","Japan"],["Senegal","Ecuador"],["Mexico","Scotland"],["England","Cape Verde"],
-      ["Argentina","Uruguay"],["Paraguay","Egypt"],["Iran","Switzerland"],["Portugal","Panama"]],
-    r16:[["France","Germany"],["Morocco","South Korea"],["Spain","Croatia"],["Belgium","United States"],
-      ["Brazil","Senegal"],["England","Mexico"],["Argentina","Paraguay"],["Portugal","Iran"]],
+      ["Brazil","Japan"],["Senegal","Ecuador"],["Mexico","Scotland"],["England","Cabo Verde"],
+      ["Argentina","Uruguay"],["Paraguay","Egypt"],["IR Iran","Switzerland"],["Portugal","Panama"]],
+    r16:[["France","Germany"],["Morocco","Korea Republic"],["Spain","Croatia"],["Belgium","United States"],
+      ["Brazil","Senegal"],["England","Mexico"],["Argentina","Paraguay"],["Portugal","IR Iran"]],
     qf:[["France","Morocco"],["Spain","Belgium"],["Brazil","England"],["Argentina","Portugal"]],
     sf:[["Spain","France"],["Argentina","Brazil"]],
     final:["Spain","Argentina"]
   },
   Kate:{
-    groups:{A:["Mexico","South Africa","Czech Republic"],B:["Switzerland","Qatar","Bosnia and Herzegovina"],
-      C:["Brazil","Morocco","Scotland"],D:["United States","Turkey","Australia"],E:["Ecuador","Germany"],
+    groups:{A:["Mexico","South Africa","Czechia"],B:["Switzerland","Qatar","Bosnia and Herzegovina"],
+      C:["Brazil","Morocco","Scotland"],D:["United States","Türkiye","Australia"],E:["Ecuador","Germany"],
       F:["Netherlands","Japan","Tunisia"],G:["Belgium","Egypt"],H:["Spain","Uruguay","Saudi Arabia"],
       I:["France","Norway","Senegal"],J:["Argentina","Austria"],K:["Portugal","Colombia"],L:["England","Croatia","Ghana"]},
     r32:[["Ecuador","Australia"],["France","Scotland"],["South Africa","Qatar"],["Netherlands","Morocco"],
-      ["Colombia","Croatia"],["Spain","Austria"],["United States","Bosnia and Herzegovina"],["Belgium","Czech Republic"],
+      ["Colombia","Croatia"],["Spain","Austria"],["United States","Bosnia and Herzegovina"],["Belgium","Czechia"],
       ["Brazil","Japan"],["Norway","Germany"],["Mexico","Senegal"],["England","Saudi Arabia"],
-      ["Argentina","Uruguay"],["Turkey","Egypt"],["Switzerland","Tunisia"],["Portugal","Ghana"]],
+      ["Argentina","Uruguay"],["Türkiye","Egypt"],["Switzerland","Tunisia"],["Portugal","Ghana"]],
     r16:[["France","Ecuador"],["Netherlands","South Africa"],["Spain","Colombia"],["United States","Belgium"],
-      ["Brazil","Norway"],["England","Mexico"],["Argentina","Turkey"],["Portugal","Switzerland"]],
+      ["Brazil","Norway"],["England","Mexico"],["Argentina","Türkiye"],["Portugal","Switzerland"]],
     qf:[["France","Netherlands"],["Spain","United States"],["England","Brazil"],["Argentina","Portugal"]],
     sf:[["Spain","France"],["England","Argentina"]],
     final:["Spain","England"]
   },
   Lilly:{
-    groups:{A:["Mexico","South Korea","South Africa"],B:["Canada","Switzerland","Bosnia and Herzegovina"],
-      C:["Brazil","Morocco","Scotland"],D:["United States","Australia","Paraguay"],E:["Germany","Ecuador","Ivory Coast"],
+    groups:{A:["Mexico","Korea Republic","South Africa"],B:["Canada","Switzerland","Bosnia and Herzegovina"],
+      C:["Brazil","Morocco","Scotland"],D:["United States","Australia","Paraguay"],E:["Germany","Ecuador","Côte d'Ivoire"],
       F:["Netherlands","Japan","Sweden"],G:["Belgium","Egypt","New Zealand"],H:["Spain","Uruguay"],
       I:["France","Norway"],J:["Argentina","Austria"],K:["Portugal","Colombia"],L:["England","Panama","Croatia"]},
-    r32:[["Germany","Paraguay"],["France","New Zealand"],["South Korea","Switzerland"],["Netherlands","Morocco"],
+    r32:[["Germany","Paraguay"],["France","New Zealand"],["Korea Republic","Switzerland"],["Netherlands","Morocco"],
       ["Colombia","Panama"],["Spain","Austria"],["United States","Bosnia and Herzegovina"],["Belgium","South Africa"],
-      ["Brazil","Japan"],["Ecuador","Norway"],["Mexico","Scotland"],["England","Ivory Coast"],
+      ["Brazil","Japan"],["Ecuador","Norway"],["Mexico","Scotland"],["England","Côte d'Ivoire"],
       ["Argentina","Uruguay"],["Australia","Egypt"],["Canada","Sweden"],["Portugal","Croatia"]],
-    r16:[["France","Germany"],["Netherlands","South Korea"],["Spain","Colombia"],["Belgium","United States"],
+    r16:[["France","Germany"],["Netherlands","Korea Republic"],["Spain","Colombia"],["Belgium","United States"],
       ["Brazil","Ecuador"],["Mexico","England"],["Argentina","Australia"],["Portugal","Canada"]],
     qf:[["France","Netherlands"],["Spain","Belgium"],["Brazil","Mexico"],["Argentina","Portugal"]],
     sf:[["Spain","France"],["Argentina","Brazil"]],
     final:["Spain","Argentina"]
   },
   Cameron:{
-    groups:{A:["Mexico","South Africa","South Korea"],B:["Switzerland","Canada"],C:["Brazil","Morocco","Scotland"],
-      D:["United States","Australia","Turkey"],E:["Germany","Ecuador"],F:["Netherlands","Japan","Sweden"],
+    groups:{A:["Mexico","South Africa","Korea Republic"],B:["Switzerland","Canada"],C:["Brazil","Morocco","Scotland"],
+      D:["United States","Australia","Türkiye"],E:["Germany","Ecuador"],F:["Netherlands","Japan","Sweden"],
       G:["Egypt","Belgium"],H:["Spain","Uruguay","Saudi Arabia"],I:["France","Norway","Senegal"],
       J:["Argentina","Austria","Algeria"],K:["Portugal","Colombia"],L:["England","Croatia","Ghana"]},
-    r32:[["Germany","South Korea"],["France","Turkey"],["Canada","South Africa"],["Morocco","Netherlands"],
+    r32:[["Germany","Korea Republic"],["France","Türkiye"],["Canada","South Africa"],["Morocco","Netherlands"],
       ["Colombia","Croatia"],["Spain","Austria"],["United States","Sweden"],["Egypt","Algeria"],
       ["Brazil","Japan"],["Norway","Ecuador"],["Mexico","Scotland"],["England","Saudi Arabia"],
       ["Argentina","Uruguay"],["Belgium","Australia"],["Switzerland","Senegal"],["Portugal","Ghana"]],
@@ -334,13 +354,93 @@ const DATA = {
 const GROUPS = ["A","B","C","D","E","F","G","H","I","J","K","L"];
 const winners = (p,round) => DATA[p][round].map(m=>m[0]);
 
+/* ---------- LIVE RESULTS / SCORING ---------- */
+let TRUTH=null;
+const REACH={r32:"R16",r16:"QF",qf:"SF",sf:"Final",final:"champion"};
+const KO_PTS={R16:5,QF:10,SF:20,Final:30};
+const REACH_SIZE={R16:16,QF:8,SF:4,Final:2};
+const GROUP_PTS=[5,3,2];
+const PERFECT_GROUP_BONUS=5, FINAL_FOUR_BONUS=20, CHAMPION_PTS=40;
+
+function reachStatus(team,key){
+  if(!TRUTH) return 'pending';
+  if(key==='champion'){
+    if(TRUTH.champion) return TRUTH.champion===team?'hit':'miss';
+    if((TRUTH.eliminated||[]).includes(team)) return 'miss';
+    return 'pending';
+  }
+  const set=(TRUTH.reached&&TRUTH.reached[key])||[];
+  if(set.includes(team)) return 'hit';
+  if((TRUTH.eliminated||[]).includes(team)) return 'miss';
+  if(set.length>=REACH_SIZE[key]) return 'miss';
+  return 'pending';
+}
+function groupStatus(g,slot,team){
+  if(!TRUTH||!TRUTH.groupFinal||!TRUTH.groupFinal[g]) return 'pending';
+  const order=(TRUTH.groupOrder&&TRUTH.groupOrder[g])||[];
+  return order[slot]===team?'hit':'miss';
+}
+function annotate(){
+  document.querySelectorAll('[data-reach]').forEach(el=>{
+    const st=reachStatus(el.dataset.team,el.dataset.reach);
+    el.classList.remove('is-hit','is-miss');
+    if(st==='hit') el.classList.add('is-hit'); else if(st==='miss') el.classList.add('is-miss');
+  });
+  document.querySelectorAll('[data-group][data-slot]').forEach(el=>{
+    const st=groupStatus(el.dataset.group,+el.dataset.slot,el.dataset.team);
+    el.classList.remove('is-hit','is-miss');
+    if(st==='hit') el.classList.add('is-hit'); else if(st==='miss') el.classList.add('is-miss');
+  });
+}
+function scoreOne(p){
+  const d=DATA[p]; let pts=0, correct=0;
+  GROUPS.forEach(g=>{
+    const slots=d.groups[g]||[]; let all=slots.length>0;
+    slots.forEach((t,i)=>{
+      const s=groupStatus(g,i,t);
+      if(s==='hit'){ pts+=GROUP_PTS[i]||0; correct++; } else all=false;
+    });
+    if(all && TRUTH && TRUTH.groupFinal && TRUTH.groupFinal[g]) pts+=PERFECT_GROUP_BONUS;
+  });
+  [['r32','R16'],['r16','QF'],['qf','SF'],['sf','Final']].forEach(([rk,key])=>{
+    d[rk].forEach(m=>{ if(reachStatus(m[0],key)==='hit'){ pts+=KO_PTS[key]; correct++; } });
+  });
+  if(reachStatus(d.final[0],'champion')==='hit'){ pts+=CHAMPION_PTS; correct++; }
+  const ff=d.qf.map(m=>m[0]);
+  if(TRUTH && ff.every(t=>((TRUTH.reached&&TRUTH.reached.SF)||[]).includes(t))) pts+=FINAL_FOUR_BONUS;
+  return {p,pts,correct};
+}
+function fmtDate(iso){
+  const M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const d=new Date(iso); if(isNaN(d)) return '';
+  return `${String(d.getUTCDate()).padStart(2,'0')}-${M[d.getUTCMonth()]}-${d.getUTCFullYear()}`;
+}
+function leaderboardHTML(){
+  if(!TRUTH || TRUTH.status==='not_started'){
+    return `<div class="lb"><div class="lb-head"><h2 class="blocklabel">Standings</h2><span class="tag">Updates each morning once matches begin</span></div><p class="note" style="margin-top:8px">No results in yet. Every pick below shows as pending until the tournament starts.</p></div>`;
+  }
+  const rows=PEOPLE.map(scoreOne).sort((a,b)=> b.pts-a.pts || b.correct-a.correct || a.p.localeCompare(b.p));
+  const upd=TRUTH.updated?fmtDate(TRUTH.updated):'';
+  const statusLabel=TRUTH.status==='complete'?'Final standings':'Live standings';
+  const items=rows.map((r,idx)=>`<div class="lb-row">
+      <span class="lb-rank">${idx+1}</span>
+      <span class="lb-name" style="background:var(--${r.p});color:${FG[r.p]}">${r.p}</span>
+      <span class="lb-pts">${r.pts}<small>PTS</small></span>
+      <span class="lb-correct">${r.correct} correct</span>
+    </div>`).join("");
+  return `<div class="lb"><div class="lb-head"><h2 class="blocklabel">Standings</h2><span class="tag">${statusLabel}${upd?` · updated ${upd}`:''}</span></div>
+    <div class="lb-list">${items}</div>
+    <p class="note" style="margin-top:8px">Tiebreaker: most correct picks. Correct picks are checked; eliminated picks are dimmed.</p></div>`;
+}
+
 /* ---------- COMPARE VIEW ---------- */
-function teamLi(t,seed){
-  return `<li>${seed?`<span class="seed">${seed}</span>`:""}<span class="flag">${fl(t)}</span><span class="nm">${t}</span></li>`;
+function teamLi(t,reachKey){
+  return `<li data-team="${t}" data-reach="${reachKey}"><span class="flag">${fl(t)}</span><span class="nm">${t}</span></li>`;
 }
 function survBlock(label,sub,date,round){
+  const rk={r32:"R16",r16:"QF",qf:"SF",sf:"Final"}[round];
   let cols = PEOPLE.map(p=>{
-    const list = winners(p,round).map(t=>teamLi(t)).join("");
+    const list = winners(p,round).map(t=>teamLi(t,rk)).join("");
     return `<div class="cmpcol"><div class="phead" style="background:var(--${p});color:${FG[p]}">${p}</div><ul>${list}</ul></div>`;
   }).join("");
   return `<div class="blockhead"><h2 class="blocklabel">${label}</h2><span class="tag">${sub}</span><p class="blockdate" style="flex-basis:100%;margin-top:2px">${date}</p></div><div class="cmprow">${cols}</div>`;
@@ -349,7 +449,7 @@ function finalBlock(){
   let cols = PEOPLE.map(p=>{
     const c=DATA[p].final[0], r=DATA[p].final[1];
     return `<div class="podcol"><div class="phead" style="background:var(--${p});color:${FG[p]}">${p}</div>
-      <div class="champ"><span class="flag">${fl(c)}</span><div><span class="crown">Champion</span><span class="nm">${c}</span></div></div>
+      <div class="champ" data-team="${c}" data-reach="champion"><span class="flag">${fl(c)}</span><div><span class="crown">Champion</span><span class="nm">${c}</span></div></div>
       <div class="runner">def. <b>${r}</b> in the final</div></div>`;
   }).join("");
   return `<div class="blockhead"><h2 class="blocklabel">The Final</h2><span class="tag">Who lifts the trophy</span><p class="blockdate" style="flex-basis:100%;margin-top:2px">19-Jul-2026</p></div><div class="podrow">${cols}</div>`;
@@ -358,7 +458,7 @@ function groupsMatrix(){
   let head = `<tr><th class="corner"></th>${PEOPLE.map(p=>`<th class="pname" style="background:var(--${p});color:${FG[p]}">${p}</th>`).join("")}</tr>`;
   let rows = GROUPS.map(g=>{
     let cells = PEOPLE.map(p=>{
-      let rowsInner = DATA[p].groups[g].map((t,i)=>`<div class="row"><span class="seed">${i+1}</span><span class="flag">${fl(t)}</span><span>${t}</span></div>`).join("");
+      let rowsInner = DATA[p].groups[g].map((t,i)=>`<div class="row" data-group="${g}" data-slot="${i}" data-team="${t}"><span class="seed">${i+1}</span><span class="flag">${fl(t)}</span><span class="nm">${t}</span></div>`).join("");
       return `<td><div class="gcell">${rowsInner}</div></td>`;
     }).join("");
     return `<tr><th class="grp">${g}</th>${cells}</tr>`;
@@ -366,7 +466,7 @@ function groupsMatrix(){
   let table = `<div class="matrixscroll cmp"><table class="matrix"><thead>${head}</thead><tbody>${rows}</tbody></table></div>`;
   let cards = `<div class="groupcards">` + GROUPS.map(g=>{
     let ppl = PEOPLE.map(p=>{
-      let picks = DATA[p].groups[g].map((t,i)=>`<span class="pk"><span class="seed">${i+1}</span><span class="flag">${fl(t)}</span>${t}</span>`).join("");
+      let picks = DATA[p].groups[g].map((t,i)=>`<span class="pk" data-group="${g}" data-slot="${i}" data-team="${t}"><span class="seed">${i+1}</span><span class="flag">${fl(t)}</span><span class="nm">${t}</span></span>`).join("");
       return `<div class="gp"><span class="gp-name" style="background:var(--${p});color:${FG[p]}">${p}</span><div class="gp-picks">${picks}</div></div>`;
     }).join("");
     return `<div class="gcard"><div class="gcard-h">Group ${g}</div>${ppl}</div>`;
@@ -396,6 +496,7 @@ function verdict(){
 }
 function renderCompare(){
   document.getElementById("compare").innerHTML =
+    leaderboardHTML() +
     verdict() +
     finalBlock() +
     survBlock("Semifinals","The last 2 standing","14-Jul to 15-Jul-2026","sf") +
@@ -403,6 +504,7 @@ function renderCompare(){
     survBlock("Round of 16","The last 8 advance","04-Jul to 07-Jul-2026","r16") +
     survBlock("Round of 32","The last 16 advance","28-Jun to 03-Jul-2026","r32") +
     groupsMatrix();
+  annotate();
 }
 
 /* ---------- BRACKETS (PER-PERSON) ---------- */
@@ -413,14 +515,14 @@ const ROUND_META=[
   ["sf","Semifinals","14–15 Jul"],
   ["final","Final","19 Jul"]
 ];
-function matchEl(m){
+function matchEl(m,reachKey){
   return `<div class="match">
-    <div class="team win"><span class="flag">${fl(m[0])}</span><span class="nm">${m[0]}</span></div>
+    <div class="team win" data-team="${m[0]}" data-reach="${reachKey}"><span class="flag">${fl(m[0])}</span><span class="nm">${m[0]}</span></div>
     <div class="team lose"><span class="flag">${fl(m[1])}</span><span class="nm">${m[1]}</span></div>
   </div>`;
 }
 function champNode(t){
-  return `<div class="champnode"><span class="k">Winner</span><span class="flag">${fl(t)}</span><span class="nm">${t}</span></div>`;
+  return `<div class="champnode" data-team="${t}" data-reach="champion"><span class="k">Winner</span><span class="flag">${fl(t)}</span><span class="nm">${t}</span></div>`;
 }
 function renderPerson(p){
   const d=DATA[p];
@@ -431,13 +533,13 @@ function renderPerson(p){
 
   let head=ROUND_META.map(r=>`<div class="hcell"><h4>${r[1]}</h4><div class="hd">${r[2]}</div></div>`).join("")
     + `<div class="hcell"><h4>Champion</h4><div class="hd">&nbsp;</div></div>`;
-  let cols=ROUND_META.map(r=>`<div class="rcol">${d[r[0]].map(m=>matchEl(m)).join("")}</div>`).join("");
+  let cols=ROUND_META.map(r=>`<div class="rcol">${d[r[0]].map(m=>matchEl(m,REACH[r[0]])).join("")}</div>`).join("");
   let champcol=`<div class="rcol champcol">${champNode(d.final[0])}</div>`;
   let horizontal=`<div class="brkscroll"><div class="brkhead">${head}</div><div class="brkbody">${cols}${champcol}</div></div>`;
 
   let vertical=`<div class="brkvertical">` + ROUND_META.map(r=>{
     return `<div class="vround"><div class="vround-h"><h4>${r[1]}</h4><span>${r[2]}</span></div>
-      <div class="vmatches">${d[r[0]].map(m=>matchEl(m)).join("")}</div></div>`;
+      <div class="vmatches">${d[r[0]].map(m=>matchEl(m,REACH[r[0]])).join("")}</div></div>`;
   }).join("") + `<div class="vchamp">${champNode(d.final[0])}</div></div>`;
 
   let bracket=`<div class="brkwrap">${horizontal}${vertical}<p class="note">Bold = the team that advanced.</p></div>`;
@@ -445,7 +547,7 @@ function renderPerson(p){
   let gcards = `<div class="blockhead"><h2 class="blocklabel">${p}'s Group Stage</h2></div>
     <div class="matrixscroll"><table class="matrix narrow"><tbody>` +
     GROUPS.map(g=>{
-      let inner=d.groups[g].map((t,i)=>`<div class="row"><span class="seed">${i+1}</span><span class="flag">${fl(t)}</span><span>${t}</span></div>`).join("");
+      let inner=d.groups[g].map((t,i)=>`<div class="row" data-group="${g}" data-slot="${i}" data-team="${t}"><span class="seed">${i+1}</span><span class="flag">${fl(t)}</span><span class="nm">${t}</span></div>`).join("");
       return `<tr><th class="grp">${g}</th><td><div class="gcell">${inner}</div></td></tr>`;
     }).join("") + `</tbody></table></div>`;
 
@@ -463,6 +565,7 @@ function renderBrackets(){
     `</div>`;
   el.innerHTML = tabs + `<div id="personmount">${renderPerson(currentPerson)}</div>`;
   applyWinColor(currentPerson);
+  annotate();
   el.querySelectorAll(".ppltabs button").forEach(b=>{
     b.addEventListener("click",()=>{currentPerson=b.dataset.person;renderBrackets();});
   });
@@ -479,9 +582,16 @@ function selectView(which){
 document.getElementById("tab-compare").addEventListener("click",()=>selectView("compare"));
 document.getElementById("tab-brackets").addEventListener("click",()=>selectView("brackets"));
 
-renderCompare();
-renderBrackets();
-selectView("compare");
+async function init(){
+  try{
+    const res=await fetch('results.json',{cache:'no-store'});
+    if(res.ok) TRUTH=await res.json();
+  }catch(e){ TRUTH=null; }
+  renderCompare();
+  renderBrackets();
+  selectView("compare");
+}
+init();
 </script>
 </body>
 </html>

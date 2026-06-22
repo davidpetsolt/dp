@@ -218,6 +218,10 @@
   .is-hit::after{content:"✓";color:#0a7a36;font-weight:800;font-size:.82em;margin-left:6px;}
   .is-live .nm{color:#0a7a36;font-weight:700;}
   .is-live::after{content:"✓";color:#0a7a36;opacity:.4;font-weight:700;font-size:.82em;margin-left:6px;}
+  .is-adv .nm{color:#2f8f57;font-weight:600;}
+  .is-adv::after{content:"✓";color:#2f8f57;font-weight:600;font-size:.82em;margin-left:6px;}
+  .is-live-adv .nm{color:#2f8f57;font-weight:600;}
+  .is-live-adv::after{content:"✓";color:#2f8f57;opacity:.4;font-weight:600;font-size:.82em;margin-left:6px;}
   .is-miss{opacity:.4;}
   .is-miss .nm{text-decoration:line-through;text-decoration-thickness:1px;}
   .champnode.is-hit .nm{color:inherit;}
@@ -283,10 +287,9 @@
       <p class="scorekey-h">How scoring works</p>
       <table>
         <tr class="stage"><td colspan="2">Group stage</td></tr>
-        <tr><td>Correct group winner (1st)</td><td class="pts">5</td></tr>
-        <tr><td>Correct runner-up (2nd)</td><td class="pts">3</td></tr>
-        <tr><td>Correct 3rd-place finisher</td><td class="pts">2</td></tr>
-        <tr><td>Perfect group (all picked slots right)</td><td class="pts bonus">+5</td></tr>
+        <tr><td>Team advances (any order)</td><td class="pts">3</td></tr>
+        <tr><td>Exact finishing position</td><td class="pts bonus">+2</td></tr>
+        <tr><td>Perfect group (all picks exact)</td><td class="pts bonus">+5</td></tr>
         <tr class="stage"><td colspan="2">Knockout &middot; your pick reaches the round</td></tr>
         <tr><td>Round of 16</td><td class="pts">5</td></tr>
         <tr><td>Quarterfinal</td><td class="pts">10</td></tr>
@@ -387,7 +390,7 @@ let TRUTH=null;
 const REACH={r32:"R16",r16:"QF",qf:"SF",sf:"Final",final:"champion"};
 const KO_PTS={R16:5,QF:10,SF:20,Final:30};
 const REACH_SIZE={R16:16,QF:8,SF:4,Final:2};
-const GROUP_PTS=[5,3,2];
+const ADV_PTS=3, EXACT_BONUS=2;
 const PERFECT_GROUP_BONUS=5, FINAL_FOUR_BONUS=20, CHAMPION_PTS=40;
 
 function reachStatus(team,key){
@@ -403,13 +406,24 @@ function reachStatus(team,key){
   if(set.length>=REACH_SIZE[key]) return 'miss';
   return 'pending';
 }
-function groupStatus(g,slot,team){
+function groupAdvance(g,team){
+  // Did this team get OUT of its group? Order-independent.
+  // 'in'=advanced, 'out'=eliminated, 'live'=currently top-2 (group not final), 'pending'=undetermined
   if(!TRUTH) return 'pending';
   const order=(TRUTH.groupOrder&&TRUTH.groupOrder[g])||[];
   if(!order.length) return 'pending';
-  const ok=order[slot]===team;
-  if(TRUTH.groupFinal&&TRUTH.groupFinal[g]) return ok?'hit':'miss';
-  return ok?'live':'pending';
+  const pos=order.indexOf(team);
+  const final=!!(TRUTH.groupFinal&&TRUTH.groupFinal[g]);
+  const alive=TRUTH.aliveR32||[];
+  if(alive.length) return alive.includes(team)?'in':'out';  // definitive once R32 drawn (incl best-thirds)
+  if(pos===0||pos===1) return final?'in':'live';            // top two
+  if(pos===2) return 'pending';                             // 3rd: best-third undecided until R32 draw
+  if(pos>=3) return final?'out':'pending';
+  return 'pending';
+}
+function groupExact(g,slot,team){
+  const order=(TRUTH&&TRUTH.groupOrder&&TRUTH.groupOrder[g])||[];
+  return order[slot]===team;
 }
 function annotate(){
   document.querySelectorAll('[data-reach]').forEach(el=>{
@@ -418,21 +432,26 @@ function annotate(){
     if(st==='hit') el.classList.add('is-hit'); else if(st==='miss') el.classList.add('is-miss');
   });
   document.querySelectorAll('[data-group][data-slot]').forEach(el=>{
-    const st=groupStatus(el.dataset.group,+el.dataset.slot,el.dataset.team);
-    el.classList.remove('is-hit','is-miss','is-live');
-    if(st==='hit') el.classList.add('is-hit'); else if(st==='miss') el.classList.add('is-miss'); else if(st==='live') el.classList.add('is-live');
+    const g=el.dataset.group, team=el.dataset.team, slot=+el.dataset.slot;
+    const adv=groupAdvance(g,team), exact=groupExact(g,slot,team);
+    el.classList.remove('is-hit','is-miss','is-live','is-adv','is-live-adv');
+    if(adv==='in') el.classList.add(exact?'is-hit':'is-adv');
+    else if(adv==='out') el.classList.add('is-miss');
+    else if(adv==='live') el.classList.add(exact?'is-live':'is-live-adv');
   });
 }
 function scoreOne(p){
   const d=DATA[p]; let pts=0, correct=0;
   GROUPS.forEach(g=>{
-    const slots=d.groups[g]||[]; let lockedAll=slots.length>0;
+    const slots=d.groups[g]||[]; let allExact=slots.length>0;
     slots.forEach((t,i)=>{
-      const s=groupStatus(g,i,t);
-      if(s==='hit'||s==='live'){ pts+=GROUP_PTS[i]||0; correct++; }
-      if(s!=='hit') lockedAll=false;
+      const adv=groupAdvance(g,t);
+      if(adv==='in'||adv==='live'){
+        pts+=ADV_PTS; correct++;
+        if(groupExact(g,i,t)) pts+=EXACT_BONUS; else allExact=false;
+      } else { allExact=false; }
     });
-    if(lockedAll && TRUTH && TRUTH.groupFinal && TRUTH.groupFinal[g]) pts+=PERFECT_GROUP_BONUS;
+    if(allExact && TRUTH && TRUTH.groupFinal && TRUTH.groupFinal[g]) pts+=PERFECT_GROUP_BONUS;
   });
   [['r32','R16'],['r16','QF'],['qf','SF'],['sf','Final']].forEach(([rk,key])=>{
     d[rk].forEach(m=>{ if(reachStatus(m[0],key)==='hit'){ pts+=KO_PTS[key]; correct++; } });
@@ -455,8 +474,8 @@ function leaderboardHTML(){
   const upd=TRUTH.updated?fmtDate(TRUTH.updated):'';
   const statusLabel=TRUTH.status==='complete'?'Final standings':'Projected standings';
   const noteText=TRUTH.status==='complete'
-    ? 'Tiebreaker: most correct picks. Correct picks are checked; missed picks are dimmed.'
-    : 'Projected from current group tables; locks as each group finishes. Solid check = locked, faint check = on track now, dimmed = out. Tiebreaker: most correct picks.';
+    ? 'Group picks: 3 for a team that advanced, +2 for the exact finishing spot. Knockouts score by how far your pick goes. Tiebreaker: most correct picks.'
+    : 'Group picks score 3 for advancing, +2 for the exact finish; knockouts by how far your pick goes. Bold green check = exact, lighter green = advanced (order off), dimmed = out. 3rd-place picks resolve at the Round of 32 draw. Tiebreaker: most correct picks.';
   const items=rows.map((r,idx)=>`<div class="lb-row">
       <span class="lb-rank">${idx+1}</span>
       <span class="lb-name" style="background:var(--${r.p});color:${FG[r.p]}">${r.p}</span>

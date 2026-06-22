@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-21T07:19:04.181Z",
+  "updated": "2026-06-22T10:31:02.707Z",
   "status": "in_progress",
   "groupFinal": {
     "A": false,
@@ -53,16 +53,16 @@
       "Tunisia"
     ],
     "G": [
-      "New Zealand",
+      "Egypt",
       "IR Iran",
       "Belgium",
-      "Egypt"
+      "New Zealand"
     ],
     "H": [
-      "Uruguay",
-      "Saudi Arabia",
       "Spain",
-      "Cabo Verde"
+      "Uruguay",
+      "Cabo Verde",
+      "Saudi Arabia"
     ],
     "I": [
       "Norway",

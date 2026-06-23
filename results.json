@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-22T10:31:02.707Z",
+  "updated": "2026-06-23T06:19:53.016Z",
   "status": "in_progress",
   "groupFinal": {
     "A": false,
@@ -65,16 +65,16 @@
       "Saudi Arabia"
     ],
     "I": [
-      "Norway",
       "France",
+      "Norway",
       "Senegal",
       "Iraq"
     ],
     "J": [
       "Argentina",
       "Austria",
-      "Jordan",
-      "Algeria"
+      "Algeria",
+      "Jordan"
     ],
     "K": [
       "Colombia",

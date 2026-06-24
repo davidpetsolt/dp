@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-23T08:22:25.529Z",
+  "updated": "2026-06-24T08:16:35.720Z",
   "status": "in_progress",
   "groupFinal": {
     "A": false,
@@ -78,15 +78,15 @@
     ],
     "K": [
       "Colombia",
-      "Congo DR",
       "Portugal",
+      "Congo DR",
       "Uzbekistan"
     ],
     "L": [
       "England",
       "Ghana",
-      "Panama",
-      "Croatia"
+      "Croatia",
+      "Panama"
     ]
   },
   "reached": {

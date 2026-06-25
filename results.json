@@ -1,10 +1,10 @@
 {
-  "updated": "2026-06-24T08:16:35.720Z",
+  "updated": "2026-06-25T08:15:57.601Z",
   "status": "in_progress",
   "groupFinal": {
-    "A": false,
-    "B": false,
-    "C": false,
+    "A": true,
+    "B": true,
+    "C": true,
     "D": false,
     "E": false,
     "F": false,
@@ -18,13 +18,13 @@
   "groupOrder": {
     "A": [
       "Mexico",
+      "South Africa",
       "Korea Republic",
-      "Czechia",
-      "South Africa"
+      "Czechia"
     ],
     "B": [
-      "Canada",
       "Switzerland",
+      "Canada",
       "Bosnia and Herzegovina",
       "Qatar"
     ],
@@ -97,5 +97,10 @@
   },
   "champion": null,
   "eliminated": [],
-  "aliveR32": []
+  "aliveR32": [
+    "Germany",
+    "Mexico",
+    "United States",
+    "Argentina"
+  ]
 }

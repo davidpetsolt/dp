@@ -407,19 +407,24 @@ function reachStatus(team,key){
   return 'pending';
 }
 function groupAdvance(g,team){
-  // Did this team get OUT of its group? Order-independent.
-  // 'in'=advanced, 'out'=eliminated, 'live'=currently top-2 (group not final), 'pending'=undetermined
+  // 'in'=advanced, 'out'=eliminated, 'live'=top-2 on track (group not final), 'pending'=undetermined
   if(!TRUTH) return 'pending';
   const order=(TRUTH.groupOrder&&TRUTH.groupOrder[g])||[];
   if(!order.length) return 'pending';
   const pos=order.indexOf(team);
+  if(pos===-1) return 'pending';
   const final=!!(TRUTH.groupFinal&&TRUTH.groupFinal[g]);
-  const alive=TRUTH.aliveR32||[];
-  if(alive.length) return alive.includes(team)?'in':'out';  // definitive once R32 drawn (incl best-thirds)
-  if(pos===0||pos===1) return final?'in':'live';            // top two
-  if(pos===2) return 'pending';                             // 3rd: best-third undecided until R32 draw
-  if(pos>=3) return final?'out':'pending';
-  return 'pending';
+  // Top two in a finished group are always through -- do NOT gate on aliveR32
+  if(pos===0||pos===1) return final?'in':'live';
+  // 3rd place: only resolved via aliveR32 (best-thirds draw)
+  if(pos===2){
+    const alive=TRUTH.aliveR32||[];
+    if(alive.includes(team)) return 'in';
+    if(alive.length>=32) return 'out'; // full 32-team field confirmed, team not in it
+    return 'pending';
+  }
+  // 4th place: out once group is final
+  return final?'out':'pending';
 }
 function groupExact(g,slot,team){
   const order=(TRUTH&&TRUTH.groupOrder&&TRUTH.groupOrder[g])||[];

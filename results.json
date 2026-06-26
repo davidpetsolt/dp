@@ -1,13 +1,13 @@
 {
-  "updated": "2026-06-25T08:15:57.601Z",
+  "updated": "2026-06-26T08:24:09.913Z",
   "status": "in_progress",
   "groupFinal": {
     "A": true,
     "B": true,
     "C": true,
-    "D": false,
-    "E": false,
-    "F": false,
+    "D": true,
+    "E": true,
+    "F": true,
     "G": false,
     "H": false,
     "I": false,
@@ -97,10 +97,5 @@
   },
   "champion": null,
   "eliminated": [],
-  "aliveR32": [
-    "Germany",
-    "Mexico",
-    "United States",
-    "Argentina"
-  ]
+  "aliveR32": []
 }

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-26T08:24:09.913Z",
+  "updated": "2026-06-27T07:41:42.104Z",
   "status": "in_progress",
   "groupFinal": {
     "A": true,
@@ -8,9 +8,9 @@
     "D": true,
     "E": true,
     "F": true,
-    "G": false,
-    "H": false,
-    "I": false,
+    "G": true,
+    "H": true,
+    "I": true,
     "J": false,
     "K": false,
     "L": false
@@ -53,15 +53,15 @@
       "Tunisia"
     ],
     "G": [
+      "Belgium",
       "Egypt",
       "IR Iran",
-      "Belgium",
       "New Zealand"
     ],
     "H": [
       "Spain",
-      "Uruguay",
       "Cabo Verde",
+      "Uruguay",
       "Saudi Arabia"
     ],
     "I": [

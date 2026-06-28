@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-27T07:41:42.104Z",
+  "updated": "2026-06-28T08:14:30.053Z",
   "status": "in_progress",
   "groupFinal": {
     "A": true,
@@ -11,9 +11,9 @@
     "G": true,
     "H": true,
     "I": true,
-    "J": false,
-    "K": false,
-    "L": false
+    "J": true,
+    "K": true,
+    "L": true
   },
   "groupOrder": {
     "A": [
@@ -84,8 +84,8 @@
     ],
     "L": [
       "England",
-      "Ghana",
       "Croatia",
+      "Ghana",
       "Panama"
     ]
   },
@@ -96,6 +96,56 @@
     "Final": []
   },
   "champion": null,
-  "eliminated": [],
-  "aliveR32": []
+  "eliminated": [
+    "Korea Republic",
+    "Czechia",
+    "Qatar",
+    "Scotland",
+    "Haiti",
+    "Türkiye",
+    "Curaçao",
+    "Tunisia",
+    "IR Iran",
+    "New Zealand",
+    "Uruguay",
+    "Saudi Arabia",
+    "Iraq",
+    "Jordan",
+    "Uzbekistan",
+    "Panama"
+  ],
+  "aliveR32": [
+    "South Africa",
+    "Canada",
+    "Brazil",
+    "Japan",
+    "Germany",
+    "Paraguay",
+    "Netherlands",
+    "Morocco",
+    "Côte d'Ivoire",
+    "Norway",
+    "France",
+    "Sweden",
+    "Mexico",
+    "Ecuador",
+    "England",
+    "Congo DR",
+    "Belgium",
+    "Senegal",
+    "United States",
+    "Bosnia and Herzegovina",
+    "Spain",
+    "Austria",
+    "Portugal",
+    "Croatia",
+    "Switzerland",
+    "Algeria",
+    "Australia",
+    "Egypt",
+    "Argentina",
+    "Cabo Verde",
+    "Colombia",
+    "Ghana"
+  ]
 }

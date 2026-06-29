@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-28T08:14:30.053Z",
+  "updated": "2026-06-29T09:20:07.061Z",
   "status": "in_progress",
   "groupFinal": {
     "A": true,
@@ -90,13 +90,16 @@
     ]
   },
   "reached": {
-    "R16": [],
+    "R16": [
+      "Canada"
+    ],
     "QF": [],
     "SF": [],
     "Final": []
   },
   "champion": null,
   "eliminated": [
+    "South Africa",
     "Korea Republic",
     "Czechia",
     "Qatar",

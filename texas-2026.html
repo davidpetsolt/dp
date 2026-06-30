@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEXAS · Aug 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rye&family=Oswald:wght@400;500;600;700&family=Bitter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+:root{
+--paper:#F2E7CE;
+--paper2:#ECdfbf;
+--card:#FBF4E2;
+--ink:#241803;
+--muted:#6E5836;
+--faint:#9A855f;
+--line:#D8C39A;
+--navy:#0A2342;
+--red:#9E2B25;
+--orange:#C2541B;
+--star:#E3A21A;
+--display:'Rye',serif;
+--head:'Oswald',sans-serif;
+--body:'Bitter',Georgia,serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+margin:0;background:var(--paper);color:var(--ink);
+font-family:var(--body);line-height:1.5;
+-webkit-font-smoothing:antialiased;
+background-image:radial-gradient(var(--paper2) 1px,transparent 1px);
+background-size:22px 22px;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px;}
+/* flag rule */
+.flagrule{display:flex;height:10px;margin-top:0;}
+.flagrule .b{flex:0 0 64px;background:var(--navy);position:relative;}
+.flagrule .b::after{content:"\2605";position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);color:#fff;font-size:9px;}
+.flagrule .w{flex:1;background:#fbf4e2;}
+.flagrule .r{flex:1;background:var(--red);}
+/* masthead */
+.masthead{padding:30px 0 10px;text-align:center;}
+.kicker{font-family:var(--head);text-transform:uppercase;letter-spacing:.32em;font-size:12px;color:var(--red);font-weight:600;margin:0 0 14px;}
+.lone{display:block;color:var(--navy);font-size:30px;line-height:1;margin:0 auto 6px;}
+h1.title{
+font-family:var(--display);font-weight:400;line-height:.9;
+font-size:clamp(72px,22vw,180px);margin:0;
+color:var(--navy);letter-spacing:.02em;
+text-shadow:3px 3px 0 var(--orange);
+}
+.daterange{font-family:var(--head);text-transform:uppercase;letter-spacing:.18em;font-size:clamp(13px,3vw,16px);color:var(--ink);font-weight:500;margin:14px 0 0;}
+/* status chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:20px 0 6px;}
+.chip{font-family:var(--head);font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;padding:6px 12px;border-radius:4px;border:1.5px solid var(--line);background:var(--card);color:var(--muted);}
+.chip b{color:var(--ink);font-weight:600;}
+.chip.ok{border-color:#9ab98f;background:#eef3e6;color:#3f6b2e;}
+.chip.todo{border-color:#d8a98f;background:#f7e9e0;color:#a8451c;}
+/* dividers */
+.rope{height:0;border:0;border-top:3px dotted var(--faint);margin:30px 0 0;opacity:.7;}
+/* section heads */
+.sechead{display:flex;align-items:center;gap:12px;margin:26px 0 6px;}
+.sechead .st{color:var(--orange);font-size:20px;line-height:1;}
+.sechead h2{font-family:var(--head);text-transform:uppercase;letter-spacing:.08em;font-size:clamp(22px,5vw,32px);margin:0;color:var(--navy);font-weight:700;}
+.subnote{font-size:13.5px;color:var(--muted);margin:0 0 14px;font-style:italic;}
+/* cards */
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:8px;padding:16px 18px;margin:12px 0;box-shadow:2px 3px 0 rgba(120,90,40,.10);}
+.card h3{font-family:var(--head);font-size:18px;font-weight:600;margin:0 0 6px;letter-spacing:.02em;color:var(--ink);text-transform:uppercase;}
+.card p{margin:5px 0;font-size:15px;color:var(--muted);}
+.card p b{color:var(--ink);font-weight:600;}
+.glance p{font-size:15.5px;}
+.glance b{display:inline-block;min-width:74px;color:var(--red);font-family:var(--head);text-transform:uppercase;letter-spacing:.04em;font-size:13px;}
+/* tags */
+.tag{display:inline-block;font-family:var(--head);font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-left:6px;vertical-align:middle;}
+.tag.ok{background:#eef3e6;color:#3f6b2e;}
+.tag.todo{background:#f7e9e0;color:#a8451c;}
+.tag.note{background:#eaf0f7;color:var(--navy);}
+/* day rows */
+.day{display:flex;gap:14px;padding:15px 0;border-bottom:1.5px dotted var(--line);}
+.day:last-child{border-bottom:0;}
+.day .when{flex:0 0 86px;text-align:center;border-right:2px solid var(--line);padding-right:10px;}
+.day .when .dow{font-family:var(--display);font-size:20px;color:var(--red);line-height:1;}
+.day .when .date{font-family:var(--head);font-size:12px;color:var(--muted);font-weight:600;margin-top:5px;text-transform:uppercase;}
+.day .what h3{margin:0 0 4px;font-family:var(--head);font-size:16px;font-weight:600;text-transform:uppercase;letter-spacing:.02em;}
+.day .what p{margin:3px 0;font-size:14.5px;color:var(--muted);}
+/* callout */
+.callout{border:2px solid var(--red);background:#fbeee9;border-radius:8px;padding:14px 16px;margin:14px 0;position:relative;}
+.callout h3{margin:0 0 5px;font-family:var(--head);font-size:16px;font-weight:700;text-transform:uppercase;color:var(--red);letter-spacing:.03em;}
+.callout p{margin:4px 0;font-size:14.5px;color:#7a3a2a;}
+/* place list */
+ul.places{list-style:none;margin:6px 0 0;padding:0;}
+ul.places li{padding:11px 0;border-bottom:1.5px dotted var(--line);}
+ul.places li:last-child{border-bottom:0;}
+ul.places .nm{font-family:var(--head);font-size:16px;font-weight:600;color:var(--ink);text-transform:uppercase;letter-spacing:.02em;}
+ul.places .desc{font-size:14px;color:var(--muted);margin:2px 0 6px;}
+.lk{display:inline-block;font-family:var(--head);font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:3px 10px;border-radius:99px;margin:0 6px 0 0;border:1.5px solid var(--line);color:var(--navy);background:#fff;}
+.lk:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+.lk.map{color:var(--orange);}
+.lk.map:hover{background:var(--orange);color:#fff;border-color:var(--orange);}
+a.inline{color:var(--orange);font-weight:600;text-decoration:none;border-bottom:1px solid var(--orange);}
+footer{border-top:3px dotted var(--faint);margin-top:34px;padding:22px 0 50px;color:var(--faint);font-size:13px;font-style:italic;text-align:center;}
+footer b{color:var(--muted);font-style:normal;}
+@media (max-width:520px){
+.wrap{padding:0 14px;}
+.day .when{flex:0 0 70px;}
+h1.title{text-shadow:2px 2px 0 var(--orange);}
+}
+</style>
+</head>
+<body>
+<div class="flagrule"><span class="b"></span><span class="w"></span><span class="r"></span></div>
+<div class="wrap">
+
+<header class="masthead">
+<p class="kicker">Cameron turns 18</p>
+<span class="lone">&#9733;</span>
+<h1 class="title">TEXAS</h1>
+<p class="daterange">25 &ndash; 30 Aug 2026 &nbsp;&middot;&nbsp; Dallas &middot; Austin &middot; Dallas</p>
+<div class="chips">
+<span class="chip ok">Flights <b>booked</b></span>
+<span class="chip ok">Austin hotel <b>booked</b></span>
+<span class="chip todo">DPS test <b>to book</b></span>
+<span class="chip todo">Return <b>30 or 31</b></span>
+</div>
+</header>
+
+<hr class="rope">
+
+<section>
+<div class="sechead"><span class="st">&#9733;</span><h2>At a glance</h2></div>
+<div class="card glance">
+<p><b>Depart</b> 25-Aug-2026 &middot; AA84 &middot; BCN to DFW</p>
+<p><b>Return</b> evening of 30-Aug-2026 (may push to 31-Aug for a Monday DPS slot)</p>
+<p><b>Route</b> Dallas (2 nights) &rarr; Austin (2 nights) &rarr; Dallas</p>
+<p><b>Trip</b> boys' run for Cameron's 18th</p>
+</div>
+</section>
+
+<section>
+<div class="sechead"><span class="st">&#9733;</span><h2>Day by day</h2></div>
+<p class="subnote">Draft order. The DPS day and the drive to Austin shift with the appointment slot.</p>
+<div class="card">
+
+<div class="day">
+<div class="when"><div class="dow">Tue</div><div class="date">25 Aug</div></div>
+<div class="what"><h3>Fly in, land in Dallas</h3><p>AA84 BCN to DFW. Staying with friends in Dallas.</p></div>
+</div>
+
+<div class="day">
+<div class="when"><div class="dow">Wed</div><div class="date">26 Aug</div></div>
+<div class="what"><h3>Dallas &middot; driver's license <span class="tag todo">book slot</span></h3><p>DPS road test, appointment only. Knock out the license while we're in town.</p></div>
+</div>
+
+<div class="day">
+<div class="when"><div class="dow">Thu</div><div class="date">27 Aug</div></div>
+<div class="what"><h3>Drive to Austin &middot; check in <span class="tag ok">hotel booked</span></h3><p>South to Austin (~3 hrs). Check in at the Heywood (afternoon). East 6th at night.</p></div>
+</div>
+
+<div class="day">
+<div class="when"><div class="dow">Fri</div><div class="date">28 Aug</div></div>
+<div class="what"><h3>Austin, full day</h3><p>Brisket, a custom cowboy hat, mechanical bull, and the bats at sunset.</p></div>
+</div>
+
+<div class="day">
+<div class="when"><div class="dow">Sat</div><div class="date">29 Aug</div></div>
+<div class="what"><h3>Check out &middot; back toward Dallas</h3><p>Optional stop in San Antonio or New Braunfels on the drive.</p></div>
+</div>
+
+<div class="day">
+<div class="when"><div class="dow">Sun</div><div class="date">30 Aug</div></div>
+<div class="what"><h3>Fly home <span class="tag note">or push to 31</span></h3><p>DFW to BCN. Hold the 31st open if a Monday road-test slot is the only one.</p></div>
+</div>
+
+</div>
+</section>
+
+<section>
+<div class="sechead"><span class="st">&#9733;</span><h2>The license</h2></div>
+<p class="subnote">At 18 Cameron goes straight for a full license, no permit step. Two courses must be done first.</p>
+<div class="callout">
+<h3>Book the DPS appointment early</h3>
+<p>Appointment only at <a class="inline" href="https://www.txdpsscheduler.com" target="_blank" rel="noopener">txdpsscheduler.com</a> &mdash; slots go fast. Garland Mega Center often has the best availability; a closer North Dallas option may exist (verify).</p>
+<p style="margin-top:8px"><a class="lk map" href="https://www.google.com/maps/place/?q=place_id:ChIJVbMPGCSnToYRIeCQeQUUgl4" target="_blank" rel="noopener">Garland Mega Center map</a><a class="lk" href="https://www.txdpsscheduler.com" target="_blank" rel="noopener">Book a slot</a></p>
+</div>
+<div class="card">
+<h3>Before the test</h3>
+<ul class="places">
+<li><span class="nm">6-hour Adult Driver Ed</span><p class="desc">Online, required for ages 18&ndash;24.</p></li>
+<li><span class="nm">ITAD video</span><p class="desc">1-hour online, required for first-time applicants. Certificate is valid only 90 days, so do it early-to-mid August.</p></li>
+<li><span class="nm">Print both certificates</span><p class="desc">Digital copies are not accepted at the test.</p></li>
+<li><span class="nm">Bring</span><p class="desc">Passport, Social Security card, and two proofs of Texas residency.</p></li>
+</ul>
+</div>
+</section>
+
+<section>
+<div class="sechead"><span class="st">&#9733;</span><h2>Austin</h2></div>
+
+<div class="card">
+<h3>Stay</h3>
+<ul class="places">
+<li>
+<span class="nm">Heywood Hotel</span> <span class="tag ok">booked 27&ndash;29</span>
+<p class="desc">1609 E Cesar Chavez. MICHELIN Key, 7 rooms, free parking, best walkability to East 6th. No pool.</p>
+<a class="lk" href="https://www.heywoodhotel.com" target="_blank" rel="noopener">Site</a><a class="lk map" href="https://www.google.com/maps/place/?q=place_id:ChIJIxgGtbO1RIYReE632UjNRpI" target="_blank" rel="noopener">Map</a>
+</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Brisket mission</h3>
+<p style="margin:0 0 4px;font-size:13.5px;color:var(--muted);font-style:italic">No reservations anywhere. It's line and walk-in culture.</p>
+<ul class="places">
+<li>
+<span class="nm">Franklin Barbecue</span>
+<p class="desc">Pre-order online (5lb min) or line up ~6:45am. Closed for annual vacation until 21-Aug (verify 2026).</p>
+<a class="lk" href="https://franklinbbq.com" target="_blank" rel="noopener">Site</a><a class="lk" href="https://preorder.franklinbbq.com" target="_blank" rel="noopener">Pre-order</a><a class="lk map" href="https://www.google.com/maps/place/?q=place_id:ChIJM8w7rqS1RIYRhEz2-KuoqzE" target="_blank" rel="noopener">Map</a>
+</li>
+<li>
+<span class="nm">LeRoy &amp; Lewis</span>
+<p class="desc">Michelin-recognized, modern cuts (the tri-tip and barbacoa are the move). Walk-in.</p>
+<a class="lk map" href="https://www.google.com/maps/place/?q=place_id:ChIJ9XodaJW0RIYRFlcMvIfeqJE" target="_blank" rel="noopener">Map &amp; site</a>
+</li>
+<li>
+<span class="nm">la Barbecue</span>
+<p class="desc">Michelin-recognized, East Cesar Chavez, blocks from the hotel. Walk-in.</p>
+<a class="lk map" href="https://www.google.com/maps/place/?q=place_id:ChIJIR1tw661RIYRUgfHust5Vv0" target="_blank" rel="noopener">Map &amp; site</a>
+</li>
+<li>
+<span class="nm">Terry Black's</span>
+<p class="desc">Open into the evening, the reliable backup when others sell out mid-afternoon.</p>
+<a class="lk map" href="https://www.google.com/maps/place/?q=place_id:ChIJZSqCDhu1RIYRx1iRoCvCOsA" target="_blank" rel="noopener">Map &amp; site</a>
+</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Do</h3>
+<ul class="places">
+<li>
+<span class="nm">Custom Hat Bar &middot; Longhorn Fashions</span>
+<p class="desc">Walk-in, ~$48+. Build it yourself or with a designer. Style: wide-brim felt or straw, natural tan or chocolate, minimal trim. Skip the tall crease and rhinestones.</p>
+<a class="lk" href="https://www.longhornfashions.com/custom-hat-bar/" target="_blank" rel="noopener">Site</a><a class="lk map" href="https://www.google.com/maps/place/?q=place_id:ChIJyRRFxdy1RIYRO5pNGmnhKmg" target="_blank" rel="noopener">Map</a>
+</li>
+<li>
+<span class="nm">Bull &amp; Bowl</span>
+<p class="desc">Mechanical bull, duckpin bowling, cocktails. Call ahead on busy weekend nights.</p>
+<a class="lk map" href="https://www.google.com/maps/place/?q=place_id:ChIJSaI-_7m1RIYRh6LIM6Sg8zs" target="_blank" rel="noopener">Map &amp; site</a>
+</li>
+<li>
+<span class="nm">East 6th honky tonks</span>
+<p class="desc">Get there early evening; 21+ enforcement kicks in around 7&ndash;8pm. Walk from the hotel.</p>
+</li>
+<li>
+<span class="nm">Congress Ave Bat Bridge</span>
+<p class="desc">Free, at sunset. Up to 1.5M bats stream out. Very Austin.</p>
+<a class="lk map" href="https://www.google.com/maps/place/?q=place_id:ChIJH4KXLiO1RIYRKGe7mhund5g" target="_blank" rel="noopener">Map</a>
+</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Pool / spa <span class="tag note">Heywood has none</span></h3>
+<ul class="places">
+<li>
+<span class="nm">W Austin &middot; WET Deck</span>
+<p class="desc">~10 min. Day passes, cabanas, full bar, DJ Sundays. Best for a fun afternoon.</p>
+<a class="lk map" href="https://www.google.com/maps/place/?q=place_id:ChIJF9-xywi1RIYRLTdVOm_2ebk" target="_blank" rel="noopener">Map &amp; site</a>
+</li>
+<li>
+<span class="nm">Omni Barton Creek &middot; Mokara Spa</span>
+<p class="desc">~20 min. Book a service for rooftop pool, sauna, steam, cold plunge. Best spa half-day.</p>
+<a class="lk map" href="https://www.google.com/maps/place/?q=place_id:ChIJTxUL5_c1W4YRwUFv11WTBzA" target="_blank" rel="noopener">Map &amp; site</a>
+</li>
+<li>
+<span class="nm">Barton Springs Pool</span>
+<p class="desc">$5, spring-fed, ~70&deg; year-round, skyline view. Worth doing once.</p>
+<a class="lk map" href="https://www.google.com/maps/place/?q=place_id:ChIJd5ltTj3KRIYRpipD_pz6ntA" target="_blank" rel="noopener">Map</a>
+</li>
+</ul>
+</div>
+</section>
+
+<section>
+<div class="sechead"><span class="st">&#9733;</span><h2>Day trips back toward Dallas</h2></div>
+<div class="card">
+<ul class="places">
+<li>
+<span class="nm">Gruene Hall &middot; New Braunfels</span>
+<p class="desc">45 min. Texas's oldest dance hall, plus river tubing nearby. Good half-day.</p>
+<a class="lk map" href="https://www.google.com/maps/place/?q=place_id:ChIJ_xNwmcWiXIYRFo5WwM_gkkU" target="_blank" rel="noopener">Map &amp; site</a>
+</li>
+<li>
+<span class="nm">The Alamo &middot; San Antonio</span>
+<p class="desc">1.5 hrs. Pair with the River Walk. Good stopover on the drive back.</p>
+<a class="lk map" href="https://www.google.com/maps/place/?q=place_id:ChIJX4k2TVVfXIYRIsTnhA-P-Rc" target="_blank" rel="noopener">Alamo map</a><a class="lk map" href="https://www.google.com/maps/place/?q=place_id:ChIJibxLNatYXIYRyCOuemjZxqI" target="_blank" rel="noopener">River Walk map</a>
+</li>
+<li>
+<span class="nm">Magnolia Market &middot; Waco</span>
+<p class="desc">1.5 hrs. The Silos. Optional; skip if it's not Cameron's thing.</p>
+<a class="lk map" href="https://www.google.com/maps/place/?q=place_id:ChIJWaJfGTeCT4YRhaIOP-SGaeg" target="_blank" rel="noopener">Map &amp; site</a>
+</li>
+</ul>
+</div>
+</section>
+
+<footer>
+<p>Private family plan for the Petsolt boys' Texas run. Built <b>30-Jun-2026</b>. Details firm up as bookings land.</p>
+</footer>
+
+</div>
+</body>
+</html>

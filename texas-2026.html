@@ -9,157 +9,210 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-texas.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rye&family=Zilla+Slab:wght@500;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Zilla+Slab:wght@500;600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
   :root{
-    --paper:#efe2c4;
-    --paper-2:#e7d6b0;
-    --paper-3:#dcc79a;
+    --paper:#efe2c4; --paper-2:#e7d6b0; --paper-3:#dcc79a;
     --ink:#241a10;
-    --navy:#15233f;
-    --barn:#9c2417;
-    --orange:#c2611a;
-    --gold:#bd9436;
-    --rule:rgba(36,26,16,.55);
-    --rule-soft:rgba(36,26,16,.25);
+    --navy:#15233f; --barn:#9c2417; --orange:#c2611a;
+    --gold:#bd9436; --gold-deep:#9a7420; --teal:#2f6f6a; --brown:#5b3a1e;
+    --rule:rgba(36,26,16,.55); --rule-soft:rgba(36,26,16,.22);
+    --accent:var(--navy);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    margin:0;
-    background:var(--paper);
+    margin:0; background:var(--paper);
     background-image:
       radial-gradient(ellipse at 50% -10%, rgba(194,97,26,.10), transparent 55%),
       radial-gradient(ellipse at 100% 100%, rgba(21,35,63,.10), transparent 45%),
       radial-gradient(circle at 18% 30%, rgba(36,26,16,.05) 0 1px, transparent 1px),
       radial-gradient(circle at 73% 64%, rgba(36,26,16,.05) 0 1px, transparent 1px);
     background-size:auto,auto,7px 7px,11px 11px;
-    color:var(--ink);
-    font-family:"Spectral",Georgia,serif;
-    font-size:18px;
-    line-height:1.55;
+    color:var(--ink); font-family:"Spectral",Georgia,serif; font-size:18px; line-height:1.55;
     -webkit-font-smoothing:antialiased;
   }
   a{color:var(--barn);text-decoration:none}
   a:hover{text-decoration:underline}
   .wrap{max-width:920px;margin:0 auto;padding:0 22px}
+  .star{color:var(--gold)}
+
+  /* ---------- Trail nav ---------- */
+  nav.trail{position:sticky;top:0;z-index:30;background:rgba(239,226,196,.93);
+    backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);border-bottom:1px solid var(--rule)}
+  nav.trail .wrap{display:flex;align-items:center;gap:.1em;justify-content:center;
+    flex-wrap:nowrap;overflow-x:auto;padding:9px 16px;scrollbar-width:none}
+  nav.trail .wrap::-webkit-scrollbar{display:none}
+  nav.trail a{font-family:"Zilla Slab",serif;font-weight:600;text-transform:uppercase;
+    letter-spacing:.14em;font-size:.66rem;color:var(--ink);white-space:nowrap;padding:.15em .55em}
+  nav.trail a:hover{color:var(--barn);text-decoration:none}
+  nav.trail .sep{color:var(--gold);font-size:.5rem;opacity:.8}
 
   /* ---------- Hero ---------- */
-  header.hero{
-    border-bottom:3px double var(--rule);
-    padding:46px 0 30px;
-    text-align:center;
-    position:relative;
-  }
-  .eyebrow{
-    font-family:"Zilla Slab",serif;
-    font-weight:700;
-    letter-spacing:.42em;
-    text-transform:uppercase;
-    font-size:.72rem;
-    color:var(--barn);
-  }
-  .star{color:var(--gold);}
-  .hero h1{
-    font-family:"Rye",serif;
-    font-weight:400;
-    color:var(--navy);
-    margin:.10em 0 .04em;
-    font-size:clamp(4.6rem,22vw,12rem);
-    line-height:.86;
-    letter-spacing:.02em;
-    text-shadow:3px 3px 0 var(--paper-3), 5px 5px 0 rgba(36,26,16,.18);
-  }
-  .hero .sub{
-    font-family:"Zilla Slab",serif;
-    font-weight:500;
-    text-transform:uppercase;
-    letter-spacing:.18em;
-    font-size:clamp(.72rem,2.4vw,.95rem);
-    color:var(--ink);
-    margin-top:.4em;
-  }
+  header.hero{border-bottom:3px double var(--rule);padding:40px 0 26px;text-align:center}
+  .eyebrow{font-family:"Zilla Slab",serif;font-weight:700;letter-spacing:.42em;
+    text-transform:uppercase;font-size:.72rem;color:var(--barn)}
+  .hero h1{font-family:"Rye",serif;font-weight:400;color:var(--navy);margin:.10em 0 .04em;
+    font-size:clamp(4.6rem,22vw,12rem);line-height:.86;letter-spacing:.02em;
+    text-shadow:3px 3px 0 var(--paper-3),5px 5px 0 rgba(36,26,16,.18)}
+  .hero .sub{font-family:"Zilla Slab",serif;font-weight:500;text-transform:uppercase;
+    letter-spacing:.18em;font-size:clamp(.72rem,2.4vw,.95rem);margin-top:.4em}
   .hero .sub b{color:var(--orange);font-weight:700}
 
+  /* ---------- Route map ---------- */
+  .mapcard{margin:26px 0 6px;padding:14px 14px 10px;background:
+      linear-gradient(rgba(220,199,154,.30),rgba(220,199,154,.30));
+    border:2px solid var(--ink);box-shadow:0 0 0 1px var(--paper),0 0 0 4px var(--ink),
+      6px 7px 0 rgba(36,26,16,.18);position:relative}
+  .routemap{display:block;width:100%;height:auto}
+  .routemap .route{fill:none;stroke:var(--barn);stroke-width:3;stroke-linecap:round;stroke-dasharray:1.5 8}
+  .routemap .revealStroke{fill:none;stroke:#fff;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:0}
+  .routemap .airline{fill:none;stroke:var(--ink);stroke-width:1.4;stroke-dasharray:1.5 6;stroke-linecap:round;opacity:.5}
+  .routemap .pin-a{color:var(--barn)} .routemap .pin-b{color:var(--gold-deep)}
+  .routemap .ftw{fill:var(--ink);opacity:.7} .routemap .sat{fill:var(--ink);opacity:.42}
+  .routemap .city{font-family:"Zilla Slab",serif;font-weight:700;fill:var(--ink);
+    font-size:15px;letter-spacing:.06em}
+  .routemap .small{font-family:"Zilla Slab",serif;font-weight:500;fill:var(--ink);font-size:10.5px;opacity:.72}
+  .routemap .glyph{font-size:18px;fill:var(--ink);opacity:.6}
+  .routemap .tagbox{fill:var(--paper);stroke:var(--ink);stroke-width:1}
+  .routemap .tagtxt{font-family:"Zilla Slab",serif;font-weight:600;fill:var(--ink);
+    font-size:10.5px;letter-spacing:.04em}
+  .routemap .emb{color:var(--ink);opacity:.55}
+  .routemap .compass{color:var(--navy);opacity:.85}
+  .routemap .cartouche{font-family:"Zilla Slab",serif;font-weight:700;fill:var(--navy);
+    font-size:13px;letter-spacing:.22em}
+  .strip{display:flex;flex-wrap:wrap;justify-content:center;gap:.2em .9em;
+    margin:14px 0 4px;font-family:"Zilla Slab",serif;font-weight:600;text-transform:uppercase;
+    letter-spacing:.1em;font-size:.66rem;color:var(--navy)}
+  .strip span{white-space:nowrap}
+  .strip .s{color:var(--gold)}
+
   /* ---------- Section ---------- */
-  section{padding:40px 0 6px;border-bottom:1px solid var(--rule-soft)}
-  section:last-of-type{border-bottom:none}
-  .head{display:flex;align-items:baseline;gap:.7em;flex-wrap:wrap;margin-bottom:.2em}
-  .head h2{
-    font-family:"Zilla Slab",serif;
-    font-weight:700;
-    font-size:clamp(1.7rem,5vw,2.5rem);
-    color:var(--navy);
-    margin:0;
-    letter-spacing:.01em;
-  }
-  .head .kick{
-    font-family:"Zilla Slab",serif;font-weight:500;
-    letter-spacing:.22em;text-transform:uppercase;font-size:.7rem;color:var(--barn);
-  }
-  .lede{margin:.1em 0 1.3em;max-width:62ch;color:#3a2c1c}
-  .lede em{color:var(--barn);font-style:italic}
+  section{padding:38px 0 8px;scroll-margin-top:52px}
+  .head{display:flex;align-items:center;gap:.55em;border-bottom:2px solid var(--accent);
+    padding-bottom:.34em;margin-bottom:.55em;flex-wrap:wrap}
+  .emblem{width:30px;height:30px;color:var(--accent);flex:0 0 auto}
+  .head .kick{font-family:"Zilla Slab",serif;font-weight:600;letter-spacing:.24em;
+    text-transform:uppercase;font-size:.7rem;color:var(--accent)}
+  .head h2{font-family:"Zilla Slab",serif;font-weight:700;font-size:clamp(1.6rem,5vw,2.4rem);
+    color:var(--accent);margin:0;letter-spacing:.01em;line-height:1}
+  .lede{margin:.1em 0 1.2em;max-width:64ch;color:#3a2c1c}
+  .lede em{color:var(--accent);font-style:italic}
+
+  /* ---------- Timeline ---------- */
+  .run2{position:relative;margin-top:.4em}
+  .run2::before{content:"";position:absolute;left:16px;top:18px;bottom:20px;
+    border-left:2px dashed var(--accent);opacity:.5}
+  .day{position:relative;display:grid;grid-template-columns:62px 1fr;gap:14px;
+    padding:12px 0 12px 38px}
+  .day::before{content:"";position:absolute;left:10px;top:18px;width:13px;height:13px;
+    border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--paper)}
+  .day .d{font-family:"Zilla Slab",serif;font-weight:700;color:var(--accent);font-size:.92rem;line-height:1.25}
+  .day .d small{display:block;font-weight:500;color:#6a5535;letter-spacing:.12em;
+    text-transform:uppercase;font-size:.6rem}
+  .day .p{font-size:1rem}
+  .day .p .where{font-family:"Zilla Slab",serif;font-weight:600;text-transform:uppercase;
+    letter-spacing:.1em;font-size:.6rem;color:var(--accent);display:block;margin-top:.18em;opacity:.9}
 
   /* ---------- Place rows ---------- */
   .rows{display:grid;gap:0}
-  .row{
-    display:grid;
-    grid-template-columns:1fr auto;
-    gap:.4em 1.2em;
-    padding:14px 0;
-    border-top:1px solid var(--rule-soft);
-    align-items:baseline;
-  }
-  .row:first-child{border-top:1px solid var(--rule)}
-  .row .name{font-family:"Zilla Slab",serif;font-weight:700;font-size:1.16rem;color:var(--ink)}
-  .row .tag{
-    font-family:"Zilla Slab",serif;font-weight:500;text-transform:uppercase;
-    letter-spacing:.12em;font-size:.62rem;color:var(--orange);margin-left:.6em;
-    vertical-align:.12em;
-  }
-  .row .note{grid-column:1 / -1;font-size:.96rem;color:#42321f;margin-top:-.15em;max-width:70ch}
+  .row{display:grid;grid-template-columns:1fr auto;gap:.35em 1.2em;padding:14px 10px;
+    border-top:1px solid var(--rule-soft);align-items:baseline;border-radius:3px;
+    transition:background .15s ease,transform .15s ease}
+  .row:first-child{border-top:2px solid var(--accent)}
+  .row:hover{background:rgba(36,26,16,.045);transform:translateX(3px)}
+  .row .name{font-family:"Zilla Slab",serif;font-weight:700;font-size:1.15rem;color:var(--ink);
+    position:relative;display:inline-block}
+  .row .name::after{content:"";position:absolute;left:0;bottom:-2px;height:1.5px;width:100%;
+    background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .22s ease}
+  .row:hover .name{color:var(--accent)}
+  .row:hover .name::after{transform:scaleX(1)}
+  .row .tag{font-family:"Zilla Slab",serif;font-weight:600;text-transform:uppercase;
+    letter-spacing:.12em;font-size:.6rem;color:var(--accent);margin-left:.6em;vertical-align:.12em}
+  .row .note{grid-column:1 / -1;font-size:.95rem;color:#42321f;margin-top:-.1em;max-width:72ch}
   .links{display:flex;gap:.5em;align-items:center;white-space:nowrap}
-  .lk{
-    font-family:"Zilla Slab",serif;font-weight:500;
-    font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
-    border:1px solid var(--barn);border-radius:2px;
-    padding:.28em .6em;color:var(--barn);
-  }
-  .lk:hover{background:var(--barn);color:var(--paper);text-decoration:none}
-  .lk.site{border-color:var(--navy);color:var(--navy)}
-  .lk.site:hover{background:var(--navy);color:var(--paper)}
+  .lk{font-family:"Zilla Slab",serif;font-weight:600;font-size:.7rem;letter-spacing:.08em;
+    text-transform:uppercase;border:1px solid var(--accent);border-radius:2px;padding:.28em .6em;color:var(--accent)}
+  .lk:hover{background:var(--accent);color:var(--paper);text-decoration:none}
+  .lk.site{border-color:var(--ink);color:var(--ink)}
+  .lk.site:hover{background:var(--ink);color:var(--paper)}
 
-  /* ---------- Itinerary ---------- */
-  .run{border-top:1px solid var(--rule)}
-  .day{
-    display:grid;grid-template-columns:5.4em 1fr;gap:1em;
-    padding:13px 0;border-bottom:1px solid var(--rule-soft);
-  }
-  .day .d{font-family:"Zilla Slab",serif;font-weight:700;color:var(--barn);font-size:.92rem;letter-spacing:.04em;line-height:1.3}
-  .day .d small{display:block;font-weight:500;color:#6a5535;letter-spacing:.14em;text-transform:uppercase;font-size:.62rem}
-  .day .p{font-size:1rem}
-  .day .p .where{font-family:"Zilla Slab",serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:.6rem;color:var(--orange);display:block;margin-top:.15em}
+  /* ---------- Embed ---------- */
+  .basecamp .frame{margin:.3em 0 .2em;border:2px solid var(--ink);
+    box-shadow:0 0 0 1px var(--paper),0 0 0 4px var(--ink),5px 6px 0 rgba(36,26,16,.16);line-height:0}
+  #tripmap{width:100%;height:460px}
+  .leaflet-tile-pane{filter:sepia(.32) saturate(.75) contrast(1.04) brightness(1.02)}
+  .leaflet-container{background:var(--paper-2);font-family:"Spectral",serif}
+  .leaflet-popup-content{font-family:"Spectral",serif;font-size:.9rem;line-height:1.4;margin:.7em .9em}
+  .leaflet-popup-content strong{font-family:"Zilla Slab",serif}
+  .leaflet-popup-content a{color:var(--barn);font-family:"Zilla Slab",serif;font-weight:600;text-transform:uppercase;font-size:.72rem;letter-spacing:.05em}
+  .maplegend{display:flex;flex-wrap:wrap;gap:.3em 1.1em;margin:.7em 0 .2em;
+    font-family:"Zilla Slab",serif;font-weight:600;font-size:.68rem;text-transform:uppercase;
+    letter-spacing:.08em;color:#42321f}
+  .maplegend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:.4em;vertical-align:-1px}
+  .basecamp .cap{font-family:"Zilla Slab",serif;font-weight:500;font-size:.7rem;
+    text-transform:uppercase;letter-spacing:.1em;color:#6a5535;margin-top:.5em}
 
-  /* ---------- Divider ---------- */
-  .div{text-align:center;color:var(--gold);font-size:1.1rem;letter-spacing:1.2em;padding:8px 0 0}
-
-  footer{padding:34px 0 50px;text-align:center;color:#6a5535;font-size:.82rem;font-family:"Zilla Slab",serif;letter-spacing:.04em}
-  footer .star{font-size:1rem}
+  /* ---------- Divider / footer ---------- */
+  .div{text-align:center;color:var(--gold);font-size:1.05rem;letter-spacing:1.1em;padding:10px 0 0}
+  footer{padding:34px 0 50px;text-align:center;color:#6a5535;font-size:.82rem;
+    font-family:"Zilla Slab",serif;letter-spacing:.04em;border-top:1px solid var(--rule-soft);margin-top:30px}
 
   @media (max-width:560px){
     body{font-size:17px}
     .row{grid-template-columns:1fr}
     .links{margin-top:.3em}
-    .day{grid-template-columns:4.4em 1fr;gap:.7em}
+    .day{grid-template-columns:54px 1fr;gap:10px;padding-left:36px}
   }
   @media (prefers-reduced-motion:no-preference){
     .hero h1{animation:rise .7s ease-out both}
     .hero .sub{animation:rise .7s .12s ease-out both}
     @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+    .routemap .revealStroke{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 2.4s .25s ease forwards}
+    @keyframes draw{to{stroke-dashoffset:0}}
+    .routemap .fade{opacity:0;animation:fadein .7s 1.7s ease forwards}
+    @keyframes fadein{to{opacity:1}}
   }
 </style>
 </head>
 <body>
+
+<!-- icon library -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ic-star" viewBox="0 0 24 24"><path d="M12 2 14.35 8.76 21.5 8.91 15.8 13.24 17.88 20.09 12 16 6.12 20.09 8.2 13.24 2.49 8.91 9.65 8.76Z" fill="currentColor"/></symbol>
+  <symbol id="ic-smoke" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <path d="M4 14h16v3a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z"/>
+    <path d="M8 11c0-1.6 1.5-1.6 1.5-3.2S8 5.6 8 4"/><path d="M12 11c0-1.6 1.5-1.6 1.5-3.2S12 5.6 12 4"/><path d="M16 11c0-1.6 1.5-1.6 1.5-3.2S16 5.6 16 4"/></symbol>
+  <symbol id="ic-note" viewBox="0 0 24 24"><circle cx="7" cy="18" r="2.5" fill="currentColor"/><circle cx="17" cy="16" r="2.5" fill="currentColor"/><path d="M9.5 18V6.2l9-2v11.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 8.6l9-2" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="ic-hat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <path d="M3 17c4 2.6 14 2.6 18 0"/><path d="M6.4 16.6C6 11 7 6 12 6s6 5 5.6 10.6"/><path d="M6.7 14.2c3.3 1.3 7.3 1.3 10.6 0"/></symbol>
+  <symbol id="ic-water" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <circle cx="12" cy="9" r="5"/><circle cx="12" cy="9" r="1.9"/>
+    <path d="M3 18.5q2-1.7 4 0t4 0 4 0 4 0" stroke-linecap="round"/></symbol>
+  <symbol id="ic-road" viewBox="0 0 24 24"><path d="M6.5 21C6.5 15 18 15 18 9c0-3.2-2.2-4-2.2-6.2" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/><path d="M6.5 21C6.5 15 18 15 18 9c0-3.2-2.2-4-2.2-6.2" fill="none" stroke="var(--gold)" stroke-width=".9" stroke-dasharray="2 3"/></symbol>
+  <symbol id="ic-cup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <path d="M5 9h12v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M17 10h2.2a2.2 2.2 0 0 1 0 4.4H17"/>
+    <path d="M8.5 6c0-1.2 1-1.4 1-2.6M12 6c0-1.2 1-1.4 1-2.6"/></symbol>
+  <symbol id="ic-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6l2.6 6H9.4z" fill="currentColor"/><path d="M12 18l2.6-6H9.4z" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
+  <symbol id="ic-trail" viewBox="0 0 24 24"><path d="M5 20c0-6 7-4 7-9S6 7 6 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-dasharray="2 3" stroke-linecap="round"/><circle cx="5" cy="20" r="1.6" fill="currentColor"/><path d="M6 4l1.6 3.2L11 7.6 8.6 9.7 9.2 13 6 11.4 2.8 13l.6-3.3L1 7.6l3.4-.4z" fill="currentColor"/></symbol>
+  <symbol id="ic-bed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4"/><path d="M3 14h18"/><path d="M7 12v-1.6a1.4 1.4 0 0 1 1.4-1.4h7.2A1.4 1.4 0 0 1 17 10.4V12"/><path d="M3 18v2.4M21 18v2.4"/></symbol>
+</svg>
+
+<nav class="trail">
+  <div class="wrap">
+    <a href="#route">Route</a><span class="sep">&#9733;</span>
+    <a href="#run">Run</a><span class="sep">&#9733;</span>
+    <a href="#bunks">Bunks</a><span class="sep">&#9733;</span>
+    <a href="#smoke">Smoke</a><span class="sep">&#9733;</span>
+    <a href="#sound">Sound</a><span class="sep">&#9733;</span>
+    <a href="#hat">Hat</a><span class="sep">&#9733;</span>
+    <a href="#water">Water</a><span class="sep">&#9733;</span>
+    <a href="#roads">Roads</a><span class="sep">&#9733;</span>
+    <a href="#coffee">Coffee</a><span class="sep">&#9733;</span>
+    <a href="#sides">Trips</a>
+  </div>
+</nav>
 
 <header class="hero">
   <div class="wrap">
@@ -171,218 +224,179 @@
 
 <main class="wrap">
 
-  <section id="run">
-    <div class="head"><span class="kick">The Run</span><h2>Seven days</h2></div>
-    <p class="lede">Land in Dallas, work west to Austin for the heart of it, swing south for the river, then back north. The through-line: Cam earns his Texas license behind the wheel of the Bronco.</p>
-    <div class="run">
-      <div class="day"><div class="d">Tue<small>25 Aug</small></div><div class="p">Land at DFW, pick up the Bronco, dinner with friends.<span class="where">Dallas</span></div></div>
-      <div class="day"><div class="d">Wed<small>26 Aug</small></div><div class="p">License day one, then Cam takes the wheel. City time.<span class="where">Dallas</span></div></div>
-      <div class="day"><div class="d">Thu<small>27 Aug</small></div><div class="p">Drive south to Austin on the back roads. Check in, dinner.<span class="where">Dallas &rarr; Austin</span></div></div>
-      <div class="day"><div class="d">Fri<small>28 Aug</small></div><div class="p">Brisket, the hat, cool water, live music after dark.<span class="where">Austin</span></div></div>
-      <div class="day"><div class="d">Sat<small>29 Aug</small></div><div class="p">River day: tube the Guadalupe, Gruene Hall after.<span class="where">New Braunfels loop</span></div></div>
-      <div class="day"><div class="d">Sun<small>30 Aug</small></div><div class="p">Run north back to Dallas. Rest up.<span class="where">Austin &rarr; Dallas</span></div></div>
-      <div class="day"><div class="d">Mon<small>31 Aug</small></div><div class="p">The road test. Then Cam flies home a licensed driver.<span class="where">Dallas</span></div></div>
+  <section id="route" style="--accent:var(--navy)">
+    <div class="mapcard">
+      <svg class="routemap" viewBox="0 0 720 440" role="img" aria-label="Route map: fly into Dallas, drive down to Austin on Thursday, day trips from Austin out to the Guadalupe on Friday and San Antonio on Saturday, then back to Dallas on Sunday.">
+        <defs>
+          <mask id="revealMask">
+            <path class="revealStroke" d="M475,100 C420,150 350,185 330,250 M330,250 C296,292 254,322 250,360 C284,322 322,294 330,250 M330,250 C360,294 402,346 415,385 C404,342 360,296 330,250 M330,250 C384,188 442,148 475,100" pathLength="1"/>
+          </mask>
+        </defs>
+        <!-- entry from Barcelona -->
+        <path class="airline" d="M70,70 C200,76 330,84 459,92"/>
+        <text class="glyph fade" x="48" y="74">&#9992;</text>
+        <text class="small fade" x="64" y="58">from Barcelona</text>
+        <!-- Austin is the hub -->
+        <circle class="fade" cx="330" cy="250" r="23" fill="none" stroke="var(--navy)" stroke-width="1" stroke-dasharray="2 3" opacity=".45"/>
+        <!-- day-by-day trail: down to Austin, two day trips out and back, then home -->
+        <path class="route" mask="url(#revealMask)" d="M475,100 C420,150 350,185 330,250 M330,250 C296,292 254,322 250,360 C284,322 322,294 330,250 M330,250 C360,294 402,346 415,385 C404,342 360,296 330,250 M330,250 C384,188 442,148 475,100"/>
+        <!-- leg tags -->
+        <g class="fade"><rect class="tagbox" x="300" y="192" width="140" height="20" rx="3"/><text class="tagtxt" x="370" y="206" text-anchor="middle">Thu &middot; US-281 ~4.5h</text></g>
+        <g class="fade"><rect class="tagbox" x="438" y="152" width="126" height="20" rx="3"/><text class="tagtxt" x="501" y="166" text-anchor="middle">Sun &middot; I-35 ~3.5h</text></g>
+        <g class="fade"><rect class="tagbox" x="116" y="326" width="128" height="20" rx="3"/><text class="tagtxt" x="180" y="340" text-anchor="middle">Fri &middot; river day</text></g>
+        <g class="fade"><rect class="tagbox" x="440" y="336" width="150" height="20" rx="3"/><text class="tagtxt" x="515" y="350" text-anchor="middle">Sat &middot; San Antonio</text></g>
+        <!-- pins -->
+        <use class="pin-a fade" href="#ic-star" x="459" y="84" width="32" height="32"/>
+        <use class="pin-a fade" href="#ic-star" x="314" y="234" width="32" height="32"/>
+        <use class="pin-b fade" href="#ic-star" x="238" y="348" width="24" height="24"/>
+        <use class="pin-b fade" href="#ic-star" x="403" y="373" width="24" height="24"/>
+        <circle class="ftw fade" cx="432" cy="118" r="3.2"/>
+        <!-- labels -->
+        <text class="city fade" x="495" y="104">DALLAS</text>
+        <text class="city fade" x="300" y="246" text-anchor="end">AUSTIN</text>
+        <text class="small fade" x="300" y="262" text-anchor="end">base camp</text>
+        <text class="city fade" x="232" y="366" text-anchor="end">GRUENE</text>
+        <text class="city fade" x="434" y="390">SAN ANTONIO</text>
+        <text class="small fade" x="404" y="140" text-anchor="end">Ft Worth</text>
+        <!-- emblems -->
+        <use class="emb fade" href="#ic-hat" x="408" y="122" width="16" height="16"/>
+        <use class="emb fade" href="#ic-note" x="346" y="250" width="16" height="16"/>
+        <use class="emb fade" href="#ic-water" x="258" y="352" width="16" height="16"/>
+        <!-- compass -->
+        <g class="compass fade"><use href="#ic-compass" x="620" y="40" width="44" height="44"/><text x="642" y="38" font-family="Zilla Slab,serif" font-weight="700" font-size="12" fill="#15233f" text-anchor="middle">N</text></g>
+        <!-- cartouche -->
+        <text class="cartouche fade" x="360" y="424" text-anchor="middle">CAM &amp; DAD &#9733; TEXAS 2026</text>
+      </svg>
     </div>
+    <div class="strip">
+      <span>BCN &#9992; DFW &middot; ~10h</span><span class="s">&#9733;</span>
+      <span>DFW &rarr; Austin &middot; ~3.5h back roads</span><span class="s">&#9733;</span>
+      <span>River loop &middot; ~45 min</span><span class="s">&#9733;</span>
+      <span>Austin &rarr; Dallas &middot; ~3h I-35</span>
+    </div>
+  </section>
+
+  <section id="run" style="--accent:var(--navy)">
+    <div class="head"><svg class="emblem"><use href="#ic-trail"/></svg><span class="kick">The Run</span><h2>Seven days</h2></div>
+    <p class="lede">Land in Dallas, work west to Austin for the heart of it, swing south for the river, then back north. The through-line: Cam earns his Texas license behind the wheel of the Bronco.</p>
+    <div class="run2">
+      <div class="day"><div class="d">Tue<small>25 Aug</small></div><div class="p">Land at DFW, pick up the Bronco, dinner with friends.<span class="where">Dallas</span></div></div>
+      <div class="day"><div class="d">Wed<small>26 Aug</small></div><div class="p">License day one, then Cam takes the wheel. Out to the Fort Worth Stockyards for the custom hat.<span class="where">Dallas / Fort Worth</span></div></div>
+      <div class="day"><div class="d">Thu<small>27 Aug</small></div><div class="p">Early checkout and the scenic US-281 run to Austin. Check in, spa in the late afternoon, dinner at Suerte.<span class="where">Dallas &rarr; Austin</span></div></div>
+      <div class="day"><div class="d">Fri<small>28 Aug</small></div><div class="p">Tube the Guadalupe, lunch in Gruene, back to Austin for brisket at Lamberts and live music after dark.<span class="where">New Braunfels / Austin</span></div></div>
+      <div class="day"><div class="d">Sat<small>29 Aug</small></div><div class="p">Down to San Antonio for the Alamo and the missions, a midday heat break, then the River Walk and dinner after dark.<span class="where">Austin &rarr; San Antonio</span></div></div>
+      <div class="day"><div class="d">Sun<small>30 Aug</small></div><div class="p">Run north back to Dallas. Rest up.<span class="where">Austin &rarr; Dallas</span></div></div>
+      <div class="day"><div class="d">Mon<small>31 Aug</small></div><div class="p">The road test (tbd). Then Cam flies home a licensed driver.<span class="where">Dallas</span></div></div>
+    </div>
+  </section>
+
+  <section id="bunks" style="--accent:var(--ink)">
+    <div class="head"><svg class="emblem"><use href="#ic-bed"/></svg><span class="kick">Bunks</span><h2>Where we crash</h2></div>
+    <p class="lede">Two bases: Deep Ellum to bookend the trip, the East Side for the heart of it.</p>
+    <div class="rows">
+      <div class="row"><div><span class="name">Kimpton Pittman</span><span class="tag">Dallas &middot; nights 1-2</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Kimpton+Pittman+Hotel+Dallas">Map</a><a class="lk site" href="https://www.pittmanhoteldallas.com">Site</a></div><div class="note">Boutique Kimpton in the heart of Deep Ellum, built next to the restored 1916 Knights of Pythias Temple and named for its architect William Sidney Pittman, the first Black architect registered in Texas. Heated outdoor pool to wash off the flight, and the BBQ and live-music blocks are right outside the door. Our Dallas base on the way in.</div></div>
+      <div class="row"><div><span class="name">Heywood Hotel</span><span class="tag">Austin &middot; nights 3-5</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJIxgGtbO1RIYReE632UjNRpI">Map</a><a class="lk site" href="https://www.heywoodhotel.com">Site</a></div><div class="note">A tiny seven-room inn on East Cesar Chavez with a MICHELIN Key and free parking, steps from Flat Track coffee and a short walk to the Cesar Chavez BBQ row. No pool, so the swimming happens at Barton Springs. The most walkable, characterful base in town, and where the trip really lives.</div></div>
+    </div>
+  </section>
+
+  <section id="basecamp" class="basecamp" style="--accent:var(--navy)">
+    <div class="head"><svg class="emblem"><use href="#ic-compass"/></svg><span class="kick">Basecamp</span><h2>The East Side</h2></div>
+    <p class="lede">Most of Austin happens within a mile of the hotel. Franklin, la Barbecue, Suerte, Dai Due, Flat Track and Cenote are all an easy walk or short hop from the East Cesar Chavez block; the other pins fan out across town.</p>
+    <div class="frame"><div id="tripmap"></div></div>
+    <div class="maplegend">
+      <span><i style="background:#241a10"></i>Stay</span>
+      <span><i style="background:#9c2417"></i>BBQ</span>
+      <span><i style="background:#b0184e"></i>Eat</span>
+      <span><i style="background:#c2611a"></i>Music</span>
+      <span><i style="background:#5b3a1e"></i>Coffee</span>
+      <span><i style="background:#2f6f6a"></i>Water</span>
+      <span><i style="background:#9a7420"></i>Hat</span>
+      <span><i style="background:#15233f"></i>Sights</span>
+    </div>
+    <div class="cap">Tap a pin for details and a Maps link. Scroll out to reach Gruene, San Antonio, and Dallas; click the map to enable scroll-zoom.</div>
   </section>
 
   <div class="div">&#9733; &#9733; &#9733;</div>
 
-  <section id="smoke">
-    <div class="head"><span class="kick">Smoke</span><h2>The brisket run</h2></div>
-    <p class="lede">No reservations anywhere &mdash; this is line and walk-in country. Pre-order Franklin online or queue early; the rest reward showing up.</p>
+  <section id="smoke" style="--accent:var(--barn)">
+    <div class="head"><svg class="emblem"><use href="#ic-smoke"/></svg><span class="kick">Smoke</span><h2>The brisket run</h2></div>
+    <p class="lede">Mostly line and walk-in country &mdash; pre-order Franklin online or queue early. The one exception is Lamberts, a proper sit-down where the birthday dinner is booked.</p>
     <div class="rows">
-      <div class="row">
-        <div><span class="name">Franklin Barbecue</span><span class="tag">Austin</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJM8w7rqS1RIYRhEz2-KuoqzE">Map</a><a class="lk site" href="https://franklinbbq.com">Site</a></div>
-        <div class="note">The benchmark. Pre-order online (5&nbsp;lb minimum) to skip the line, or be in the queue by about 6:45&nbsp;am. Closed Mondays.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">LeRoy &amp; Lewis</span><span class="tag">Austin</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJ9XodaJW0RIYRFlcMvIfeqJE">Map</a></div>
-        <div class="note">New-school cuts &mdash; beef cheeks, barbacoa, tri-tip. Walk-in, the easy weekday call.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">la Barbecue</span><span class="tag">Austin</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJIR1tw661RIYRUgfHust5Vv0">Map</a></div>
-        <div class="note">East Cesar Chavez, walk-in. Some of the best smoke in town.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Terry Black&#39;s</span><span class="tag">Austin</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJZSqCDhu1RIYRx1iRoCvCOsA">Map</a></div>
-        <div class="note">Open into the evening &mdash; the reliable backup when the others sell out.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Pecan Lodge</span><span class="tag">Dallas</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Pecan+Lodge+Dallas">Map</a><a class="lk site" href="https://pecanlodge.com">Site</a></div>
-        <div class="note">Deep Ellum&#39;s heavy hitter, walkable from the hotel.</div>
-      </div>
+      <div class="row"><div><span class="name">Franklin Barbecue</span><span class="tag">Austin</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJM8w7rqS1RIYRhEz2-KuoqzE">Map</a><a class="lk site" href="https://franklinbbq.com">Site</a></div><div class="note">The benchmark. Pre-order online (5&nbsp;lb minimum) to skip the line, or be in the queue by about 6:45&nbsp;am. Closed Mondays.</div></div>
+      <div class="row"><div><span class="name">LeRoy &amp; Lewis</span><span class="tag">Austin</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJ9XodaJW0RIYRFlcMvIfeqJE">Map</a></div><div class="note">New-school cuts &mdash; beef cheeks, barbacoa, tri-tip. Now in South Austin (Garrison Park), about 15 minutes from the hotel; walk-in.</div></div>
+      <div class="row"><div><span class="name">la Barbecue</span><span class="tag">Austin</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJIR1tw661RIYRUgfHust5Vv0">Map</a></div><div class="note">East Cesar Chavez, walk-in. Some of the best smoke in town.</div></div>
+      <div class="row"><div><span class="name">Terry Black&#39;s</span><span class="tag">Austin</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJZSqCDhu1RIYRx1iRoCvCOsA">Map</a></div><div class="note">Open into the evening &mdash; the reliable backup when the others sell out.</div></div>
+      <div class="row"><div><span class="name">Lamberts Downtown</span><span class="tag">Austin &middot; booked Fri</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Lamberts+Downtown+Barbecue+Austin">Map</a><a class="lk site" href="https://lambertsaustin.com">Site</a></div><div class="note">Upscale sit-down "fancy barbecue" on 2nd Street, live music upstairs. The Friday birthday dinner, 7:30&nbsp;pm, table booked.</div></div>
+      <div class="row"><div><span class="name">Pecan Lodge</span><span class="tag">Dallas</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Pecan+Lodge+Dallas">Map</a><a class="lk site" href="https://pecanlodge.com">Site</a></div><div class="note">Deep Ellum&#39;s heavy hitter, walkable from the hotel.</div></div>
     </div>
   </section>
 
-  <section id="sound">
-    <div class="head"><span class="kick">Sound</span><h2>Live after dark</h2></div>
+  <section id="sound" style="--accent:var(--orange)">
+    <div class="head"><svg class="emblem"><use href="#ic-note"/></svg><span class="kick">Sound</span><h2>Live after dark</h2></div>
     <p class="lede">More watching than dancing &mdash; lean indie and hip-hop. The Red&nbsp;River strip downtown lets you bar-hop stages on foot, and most rooms run all-ages or 18+. <em>Check each show&#39;s age policy.</em></p>
     <div class="rows">
-      <div class="row">
-        <div><span class="name">Stubb&#39;s Bar-B-Q</span><span class="tag">Red River</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Stubbs+BBQ+Austin">Map</a><a class="lk site" href="https://www.stubbsaustin.com">Site</a></div>
-        <div class="note">Outdoor amphitheater plus indoor stage, with BBQ on site. Indie, rock, hip-hop.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Mohawk</span><span class="tag">Red River</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Mohawk+Austin">Map</a><a class="lk site" href="https://mohawkaustin.com">Site</a></div>
-        <div class="note">Two-stage Austin institution. The one to anchor the night.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Empire Control Room &amp; Garage</span><span class="tag">Red River</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Empire+Control+Room+Austin">Map</a><a class="lk site" href="https://empireatx.com">Site</a></div>
-        <div class="note">Indie, hip-hop, and electronic across two rooms.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Hotel Vegas</span><span class="tag">East 6th</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Vegas+Austin">Map</a><a class="lk site" href="https://texashotelvegas.com">Site</a></div>
-        <div class="note">Psych, garage, indie on multiple stages &mdash; a mini festival most nights.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Scoot Inn</span><span class="tag">East</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Scoot+Inn+Austin">Map</a><a class="lk site" href="https://scootinnaustin.com">Site</a></div>
-        <div class="note">Open-air East-side yard, indie and hip-hop bookings.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Broken Spoke</span><span class="tag">Honky tonk &middot; to watch</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Broken+Spoke+Austin">Map</a><a class="lk site" href="https://www.brokenspokeaustintx.net">Site</a></div>
-        <div class="note">The last true Texas dance hall. Come early for a plate and watch the two-steppers. Closed Sun/Mon.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Gruene Hall</span><span class="tag">New Braunfels</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJ_xNwmcWiXIYRFo5WwM_gkkU">Map</a><a class="lk site" href="https://gruenehall.com">Site</a></div>
-        <div class="note">Oldest dance hall in Texas, right by the river. Pairs with the tubing day.</div>
-      </div>
+      <div class="row"><div><span class="name">Stubb&#39;s Bar-B-Q</span><span class="tag">Red River</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Stubbs+BBQ+Austin">Map</a><a class="lk site" href="https://www.stubbsaustin.com">Site</a></div><div class="note">Outdoor amphitheater plus indoor stage, with BBQ on site. Indie, rock, hip-hop.</div></div>
+      <div class="row"><div><span class="name">Mohawk</span><span class="tag">Red River</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Mohawk+Austin">Map</a><a class="lk site" href="https://mohawkaustin.com">Site</a></div><div class="note">Two-stage Austin institution. The one to anchor the night.</div></div>
+      <div class="row"><div><span class="name">Empire Control Room &amp; Garage</span><span class="tag">Red River</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Empire+Control+Room+Austin">Map</a><a class="lk site" href="https://empireatx.com">Site</a></div><div class="note">Indie, hip-hop, and electronic across two rooms.</div></div>
+      <div class="row"><div><span class="name">Hotel Vegas</span><span class="tag">East 6th</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Vegas+Austin">Map</a><a class="lk site" href="https://texashotelvegas.com">Site</a></div><div class="note">Psych, garage, indie on multiple stages &mdash; a mini festival most nights.</div></div>
+      <div class="row"><div><span class="name">Scoot Inn</span><span class="tag">East</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Scoot+Inn+Austin">Map</a><a class="lk site" href="https://scootinnaustin.com">Site</a></div><div class="note">Open-air East-side yard, indie and hip-hop bookings.</div></div>
+      <div class="row"><div><span class="name">Broken Spoke</span><span class="tag">Honky tonk &middot; to watch</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Broken+Spoke+Austin">Map</a><a class="lk site" href="https://www.brokenspokeaustintx.net">Site</a></div><div class="note">The last true Texas dance hall. Come early for a plate and watch the two-steppers. Closed Sun/Mon.</div></div>
+      <div class="row"><div><span class="name">Gruene Hall</span><span class="tag">New Braunfels</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJ_xNwmcWiXIYRFo5WwM_gkkU">Map</a><a class="lk site" href="https://gruenehall.com">Site</a></div><div class="note">Oldest dance hall in Texas, right by the river. Pairs with the tubing day.</div></div>
     </div>
   </section>
 
-  <section id="hat">
-    <div class="head"><span class="kick">The Hat</span><h2>Built to last</h2></div>
-    <p class="lede">A custom lid at the hat bar &mdash; wide-brim felt or straw, natural tan or chocolate, minimal trim. Classic enough to carry into the next trip.</p>
+  <section id="hat" style="--accent:var(--gold-deep)">
+    <div class="head"><svg class="emblem"><use href="#ic-hat"/></svg><span class="kick">The Hat</span><h2>Built to last</h2></div>
+    <p class="lede">A classic lid that doubles for Safari later: wide-brim felt or straw, natural tan or chocolate, minimal trim. The Fort Worth Stockyards is the better hat country, so this is now a Wednesday stop, with an Austin fallback if you'd rather do it there.</p>
     <div class="rows">
-      <div class="row">
-        <div><span class="name">Longhorn Fashions Hat Bar</span><span class="tag">Austin</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJyRRFxdy1RIYRO5pNGmnhKmg">Map</a><a class="lk site" href="https://www.longhornfashions.com/custom-hat-bar/">Site</a></div>
-        <div class="note">Walk-in. Pick the felt, shape the brim, choose the band. Best as a Friday-afternoon stop.</div>
-      </div>
+      <div class="row"><div><span class="name">The Best Hat Store</span><span class="tag">Fort Worth &middot; Stockyards</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=The+Best+Hat+Store+Fort+Worth+Stockyards">Map</a><a class="lk site" href="https://shop.besthatstore.com">Site</a></div><div class="note">Walk-in. Thousands of hats, all American Hat Company, shaped to your head on the spot. The quality pick.</div></div>
+      <div class="row"><div><span class="name">M.L. Leddy's</span><span class="tag">Fort Worth &middot; Stockyards</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=M.L.+Leddy%27s+Fort+Worth+Stockyards">Map</a><a class="lk site" href="https://www.leddys.com">Site</a></div><div class="note">Stockyards institution since 1941. Pick a felt or straw and they crease and fit it to you. Boots and leather too.</div></div>
+      <div class="row"><div><span class="name">Longhorn Fashions Hat Bar</span><span class="tag">Austin &middot; fallback</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJyRRFxdy1RIYRO5pNGmnhKmg">Map</a><a class="lk site" href="https://www.longhornfashions.com/custom-hat-bar/">Site</a></div><div class="note">The Austin option, more decorate-your-own: pick the felt, shape the brim, choose the band. Walk-in, near UT.</div></div>
     </div>
   </section>
 
-  <section id="water">
-    <div class="head"><span class="kick">Water</span><h2>Cool off</h2></div>
+  <section id="water" style="--accent:var(--teal)">
+    <div class="head"><svg class="emblem"><use href="#ic-water"/></svg><span class="kick">Water</span><h2>Cool off</h2></div>
     <p class="lede">Late August runs hot. A spring-fed swim, a rooftop deck, or a full float down the Guadalupe.</p>
     <div class="rows">
-      <div class="row">
-        <div><span class="name">Tube the Guadalupe</span><span class="tag">New Braunfels &middot; ~45 min</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Rockin+R+River+Rides+New+Braunfels">Map</a></div>
-        <div class="note">Rent through Rockin&#39; R, rope the tubes together, float a cooler between you. Cold dam-fed water. If the river&#39;s low, switch to the spring-fed Comal. Eat at the Gristmill in Gruene before or after.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Barton Springs Pool</span><span class="tag">Austin</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJd5ltTj3KRIYRpipD_pz6ntA">Map</a></div>
-        <div class="note">Three acres of 70&deg; spring water with a skyline view. A few dollars to get in.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">W Austin &middot; WET Deck</span><span class="tag">Austin</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJF9-xywi1RIYRLTdVOm_2ebk">Map</a></div>
-        <div class="note">Downtown rooftop pool, day passes available.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Omni Barton Creek &middot; Mokara Spa</span><span class="tag">Austin</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJTxUL5_c1W4YRwUFv11WTBzA">Map</a></div>
-        <div class="note">Book a treatment to unlock the rooftop pool and sauna.</div>
-      </div>
+      <div class="row"><div><span class="name">Tube the Guadalupe</span><span class="tag">New Braunfels &middot; ~45 min</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Rockin+R+River+Rides+New+Braunfels">Map</a></div><div class="note">Rent through Rockin&#39; R, rope the tubes together, float a cooler between you. Cold dam-fed water. If the river&#39;s low, switch to the spring-fed Comal. Eat at the Gristmill in Gruene before or after.</div></div>
+      <div class="row"><div><span class="name">Barton Springs Pool</span><span class="tag">Austin</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJd5ltTj3KRIYRpipD_pz6ntA">Map</a></div><div class="note">Three acres of 70&deg; spring water with a skyline view. A few dollars to get in.</div></div>
+      <div class="row"><div><span class="name">W Austin &middot; WET Deck</span><span class="tag">Austin</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJF9-xywi1RIYRLTdVOm_2ebk">Map</a></div><div class="note">Downtown rooftop pool, day passes available.</div></div>
+      <div class="row"><div><span class="name">Omni Barton Creek &middot; Mokara Spa</span><span class="tag">Austin</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJTxUL5_c1W4YRwUFv11WTBzA">Map</a></div><div class="note">Book a treatment to unlock the rooftop pool and sauna.</div></div>
     </div>
   </section>
 
-  <section id="roads">
-    <div class="head"><span class="kick">Roads</span><h2>Where to drive</h2></div>
+  <section id="roads" style="--accent:var(--navy)">
+    <div class="head"><svg class="emblem"><use href="#ic-road"/></svg><span class="kick">Roads</span><h2>Where to drive</h2></div>
     <p class="lede">The Bronco is the classroom. Big highway miles between cities, twisty Hill Country once you&#39;re settled.</p>
     <div class="rows">
-      <div class="row">
-        <div><span class="name">Dallas to Austin, the back way</span><span class="tag">US-281</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=US-281+Hico+Texas">Map</a></div>
-        <div class="note">Skip the interstate. Two-lane miles through Glen Rose (dinosaur tracks and the Fossil&nbsp;Rim drive-through safari), Hico, Lampasas, and Burnet. Calmer practice, better scenery.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Around Austin</span><span class="tag">Hill Country</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Hamilton+Pool+Road+Dripping+Springs">Map</a></div>
-        <div class="note">RR&nbsp;2222 and RR&nbsp;620 around Lake Travis, Hamilton Pool Road to Dripping Springs, and the climb up Mount Bonnell.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">The Twisted Sisters</span><span class="tag">Skip this trip</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Twisted+Sisters+Ranch+Road+337">Map</a></div>
-        <div class="note">RR&nbsp;335/336/337 west of the Hill Country &mdash; legendary, but tight switchbacks two-plus hours out. Save it for a future run.</div>
-      </div>
+      <div class="row"><div><span class="name">Dallas to Austin, the back way</span><span class="tag">US-281</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=US-281+Hico+Texas">Map</a></div><div class="note">The pretty way down: two-lane miles through Glen Rose (dinosaur tracks and the Fossil&nbsp;Rim drive-through safari), Hico, Lampasas, and Burnet. Calmer and better scenery, but about 4.5 to 5 hours, so it needs a day with no clock. With the Thursday spa, the run down is the faster I-35.</div></div>
+      <div class="row"><div><span class="name">Around Austin</span><span class="tag">Hill Country</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Hamilton+Pool+Road+Dripping+Springs">Map</a></div><div class="note">RR&nbsp;2222 and RR&nbsp;620 around Lake Travis, Hamilton Pool Road to Dripping Springs, and the climb up Mount Bonnell. The calmest, prettiest miles, and the best place for Cameron to actually log practice.</div></div>
+      <div class="row"><div><span class="name">The Twisted Sisters</span><span class="tag">Skip this trip</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Twisted+Sisters+Ranch+Road+337">Map</a></div><div class="note">RR&nbsp;335/336/337 west of the Hill Country &mdash; legendary, but tight switchbacks two-plus hours out. Save it for a future run.</div></div>
     </div>
   </section>
 
-  <section id="coffee">
-    <div class="head"><span class="kick">Coffee</span><h2>Morning fuel</h2></div>
+  <section id="coffee" style="--accent:var(--brown)">
+    <div class="head"><svg class="emblem"><use href="#ic-cup"/></svg><span class="kick">Coffee</span><h2>Morning fuel</h2></div>
     <p class="lede">Walkable from where we&#39;re staying, both ends of the trip.</p>
     <div class="rows">
-      <div class="row">
-        <div><span class="name">Flat Track Coffee</span><span class="tag">Austin &middot; East</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Flat+Track+Coffee+Austin">Map</a><a class="lk site" href="https://flattrackcoffee.com">Site</a></div>
-        <div class="note">Steps from the hotel. Sharp espresso and cold brew.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Cenote</span><span class="tag">Austin &middot; East</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Cenote+Austin+East+7th">Map</a></div>
-        <div class="note">Bungalow on the East side with a full breakfast menu and a big patio.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Figure 8 Coffee</span><span class="tag">Austin &middot; East</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Figure+8+Coffee+Austin">Map</a></div>
-        <div class="note">Local favorite, roasts its own. Tiny but excellent.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Jo&#39;s Coffee</span><span class="tag">Austin &middot; SoCo</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Jos+Coffee+South+Congress">Map</a><a class="lk site" href="https://joscoffee.com">Site</a></div>
-        <div class="note">An iced turbo and the &ldquo;I love you so much&rdquo; mural. Good on a South Congress day.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Murray Street Coffee</span><span class="tag">Dallas &middot; Deep Ellum</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Murray+Street+Coffee+Dallas">Map</a><a class="lk site" href="https://www.murraystreetcoffee.com">Site</a></div>
-        <div class="note">Deep Ellum corner classic, walkable from the hotel.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Merit Coffee</span><span class="tag">Dallas &middot; Deep Ellum</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Merit+Coffee+Deep+Ellum">Map</a><a class="lk site" href="https://meritcoffee.com/pages/deep-ellum">Site</a></div>
-        <div class="note">In-house roast, easy stop before the day gets going.</div>
-      </div>
+      <div class="row"><div><span class="name">Flat Track Coffee</span><span class="tag">Austin &middot; East</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Flat+Track+Coffee+Austin">Map</a><a class="lk site" href="https://flattrackcoffee.com">Site</a></div><div class="note">Steps from the hotel. Sharp espresso and cold brew.</div></div>
+      <div class="row"><div><span class="name">Cenote</span><span class="tag">Austin &middot; East</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Cenote+Austin+East+7th">Map</a></div><div class="note">Bungalow on the East side with a full breakfast menu and a big patio.</div></div>
+      <div class="row"><div><span class="name">Figure 8 Coffee</span><span class="tag">Austin &middot; East</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Figure+8+Coffee+Austin">Map</a></div><div class="note">Local favorite, roasts its own. Tiny but excellent.</div></div>
+      <div class="row"><div><span class="name">Jo&#39;s Coffee</span><span class="tag">Austin &middot; SoCo</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Jos+Coffee+South+Congress">Map</a><a class="lk site" href="https://joscoffee.com">Site</a></div><div class="note">An iced turbo and the &ldquo;I love you so much&rdquo; mural. Good on a South Congress day.</div></div>
+      <div class="row"><div><span class="name">Murray Street Coffee</span><span class="tag">Dallas &middot; Deep Ellum</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Murray+Street+Coffee+Dallas">Map</a><a class="lk site" href="https://www.murraystreetcoffee.com">Site</a></div><div class="note">Deep Ellum corner classic, walkable from the hotel.</div></div>
+      <div class="row"><div><span class="name">Merit Coffee</span><span class="tag">Dallas &middot; Deep Ellum</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Merit+Coffee+Deep+Ellum">Map</a><a class="lk site" href="https://meritcoffee.com/pages/deep-ellum">Site</a></div><div class="note">In-house roast, easy stop before the day gets going.</div></div>
     </div>
   </section>
 
-  <section id="sides">
-    <div class="head"><span class="kick">Side Trips</span><h2>If there&#39;s time</h2></div>
-    <p class="lede">All optional, worked in around the river day and the drives.</p>
+  <section id="sides" style="--accent:var(--gold-deep)">
+    <div class="head"><svg class="emblem"><use href="#ic-star"/></svg><span class="kick">Side Trips</span><h2>If there&#39;s time</h2></div>
+    <p class="lede">San Antonio is its own full day on Saturday now; the rest are optional, worked in around the drives.</p>
     <div class="rows">
-      <div class="row">
-        <div><span class="name">The Alamo &amp; River Walk</span><span class="tag">San Antonio</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJX4k2TVVfXIYRIsTnhA-P-Rc">Map</a></div>
-        <div class="note">South of Austin, easy to fold into the tubing day. A boat ride and a stroll.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Fort Worth Stockyards</span><span class="tag">Fort Worth</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Fort+Worth+Stockyards">Map</a><a class="lk site" href="https://www.fortworthstockyards.org">Site</a></div>
-        <div class="note">Twice-daily cattle drive (11:30 and 4:00) and full Western swagger. About 45 minutes from Dallas.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Sixth Floor Museum, Dealey Plaza</span><span class="tag">Dallas</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Sixth+Floor+Museum+Dallas">Map</a><a class="lk site" href="https://www.jfk.org">Site</a></div>
-        <div class="note">The JFK story, compact and walkable downtown.</div>
-      </div>
-      <div class="row">
-        <div><span class="name">Congress Avenue Bats</span><span class="tag">Austin</span></div>
-        <div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJH4KXLiO1RIYRKGe7mhund5g">Map</a></div>
-        <div class="note">Up to 1.5&nbsp;million bats stream out at dusk. Catch it if an evening lines up.</div>
-      </div>
+      <div class="row"><div><span class="name">The Alamo, missions &amp; River Walk</span><span class="tag">San Antonio</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJX4k2TVVfXIYRIsTnhA-P-Rc">Map</a></div><div class="note">A full Saturday from Austin: the Alamo, Mission San Jos&eacute;, then the River Walk once the heat breaks. Dinner booked riverside at Boudro&#39;s (7&nbsp;pm); skip the boat ride.</div></div>
+      <div class="row"><div><span class="name">Fort Worth Stockyards</span><span class="tag">Fort Worth</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Fort+Worth+Stockyards">Map</a><a class="lk site" href="https://www.fortworthstockyards.org">Site</a></div><div class="note">Twice-daily cattle drive (11:30 and 4:00) and full Western swagger. About 45 minutes from Dallas.</div></div>
+      <div class="row"><div><span class="name">Sixth Floor Museum, Dealey Plaza</span><span class="tag">Dallas</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Sixth+Floor+Museum+Dallas">Map</a><a class="lk site" href="https://www.jfk.org">Site</a></div><div class="note">The JFK story, compact and walkable downtown.</div></div>
+      <div class="row"><div><span class="name">Congress Avenue Bats</span><span class="tag">Austin</span></div><div class="links"><a class="lk" href="https://www.google.com/maps/place/?q=place_id:ChIJH4KXLiO1RIYRKGe7mhund5g">Map</a></div><div class="note">Up to 1.5&nbsp;million bats stream out at dusk. Catch it if an evening lines up.</div></div>
     </div>
   </section>
 
@@ -392,5 +406,28 @@
   <span class="star">&#9733;</span>&nbsp;&nbsp;Cam &amp; Dad &nbsp;&middot;&nbsp; Texas 2026 &nbsp;&middot;&nbsp; Don&#39;t mess with it &nbsp;&nbsp;<span class="star">&#9733;</span>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function(){
+  if(typeof L==='undefined'){return;}
+  var SPOTS=[{"n":"Heywood Hotel","c":"Stay","area":"Austin East","o":"Basecamp; 1609 E Cesar Chavez","la":30.25812,"lo":-97.72785,"u":"https://www.google.com/maps/search/?api=1&query=Heywood%20Hotel%2C%20Austin%20TX"},{"n":"Franklin Barbecue","c":"BBQ","area":"Austin East","o":"Pre-order online or line up early; closed Mon","la":30.27015,"lo":-97.73128,"u":"https://www.google.com/maps/search/?api=1&query=Franklin%20Barbecue%2C%20Austin%20TX"},{"n":"LeRoy & Lewis","c":"BBQ","area":"Austin South","o":"Walk-in; new-school cuts","la":30.20982,"lo":-97.78723,"u":"https://www.google.com/maps/search/?api=1&query=LeRoy%20and%20Lewis%20Barbecue%2C%20Austin%20TX"},{"n":"la Barbecue","c":"BBQ","area":"Austin East","o":"Walk-in; E Cesar Chavez","la":30.2545,"lo":-97.71762,"u":"https://www.google.com/maps/search/?api=1&query=la%20Barbecue%2C%20Austin%20TX"},{"n":"Terry Black's","c":"BBQ","area":"Austin","o":"Open into the evening; reliable backup","la":30.25966,"lo":-97.75481,"u":"https://www.google.com/maps/search/?api=1&query=Terry%20Black%27s%20Barbecue%2C%20Austin%20TX"},
+{"n":"Lamberts Downtown","c":"BBQ","area":"Austin Downtown","o":"Booked Fri dinner 7:30pm; upscale sit-down brisket","la":30.2652,"lo":-97.74785,"u":"https://www.google.com/maps/search/?api=1&query=Lamberts%20Downtown%20Barbecue%2C%20Austin%20TX"},{"n":"Suerte","c":"Dinner","area":"Austin East","o":"Modern Mexican; book closer in (no res far out)","la":30.26226,"lo":-97.72325,"u":"https://www.google.com/maps/search/?api=1&query=Suerte%2C%20Austin%20TX"},{"n":"Dai Due","c":"Dinner","area":"Austin East","o":"Texas farm-to-table","la":30.28487,"lo":-97.71678,"u":"https://www.google.com/maps/search/?api=1&query=Dai%20Due%2C%20Austin%20TX"},{"n":"Uchi","c":"Dinner","area":"Austin South Lamar","o":"Iconic sushi; special occasion","la":30.25752,"lo":-97.75981,"u":"https://www.google.com/maps/search/?api=1&query=Uchi%2C%20Austin%20TX"},{"n":"Flat Track Coffee","c":"Coffee","area":"Austin East","o":"Steps from the hotel","la":30.25778,"lo":-97.72711,"u":"https://www.google.com/maps/search/?api=1&query=Flat%20Track%20Coffee%2C%20Austin%20TX"},{"n":"Cenote","c":"Coffee","area":"Austin East","o":"Full breakfast + patio","la":30.26428,"lo":-97.72776,"u":"https://www.google.com/maps/search/?api=1&query=Cenote%2C%20E%207th%20St%2C%20Austin%20TX"},{"n":"Figure 8 Coffee","c":"Coffee","area":"Austin East","o":"Roasts its own; tiny","la":30.26688,"lo":-97.71995,"u":"https://www.google.com/maps/search/?api=1&query=Figure%208%20Coffee%2C%20Austin%20TX"},{"n":"Jo's Coffee","c":"Coffee","area":"Austin SoCo","o":"Iced turbo + the mural","la":30.2326,"lo":-97.75623,"u":"https://www.google.com/maps/search/?api=1&query=Jo%27s%20Coffee%2C%20South%20Congress%2C%20Austin%20TX"},{"n":"Longhorn Fashions Hat Bar","c":"Activity","area":"Austin","o":"Walk-in custom hat bar; Fri afternoon","la":30.28496,"lo":-97.74637,"u":"https://www.google.com/maps/search/?api=1&query=Longhorn%20Fashions%2C%20Austin%20TX"},{"n":"Stubb's Bar-B-Q","c":"Music","area":"Austin Red River","o":"Amphitheater + BBQ","la":30.27326,"lo":-97.75934,"u":"https://www.google.com/maps/search/?api=1&query=Stubb%27s%20Bar-B-Q%2C%20Austin%20TX"},{"n":"Mohawk","c":"Music","area":"Austin Red River","o":"Two-stage institution","la":30.27006,"lo":-97.73609,"u":"https://www.google.com/maps/search/?api=1&query=Mohawk%2C%20Red%20River%20St%2C%20Austin%20TX"},{"n":"Empire Control Room & Garage","c":"Music","area":"Austin Red River","o":"Indie/hip-hop/electronic","la":30.2674,"lo":-97.73606,"u":"https://www.google.com/maps/search/?api=1&query=Empire%20Control%20Room%2C%20Austin%20TX"},{"n":"Hotel Vegas","c":"Music","area":"Austin East 6th","o":"Psych/garage/indie; multi-stage","la":30.26343,"lo":-97.72725,"u":"https://www.google.com/maps/search/?api=1&query=Hotel%20Vegas%2C%20East%206th%2C%20Austin%20TX"},{"n":"Scoot Inn","c":"Music","area":"Austin East","o":"Open-air yard","la":30.26212,"lo":-97.72939,"u":"https://www.google.com/maps/search/?api=1&query=Historic%20Scoot%20Inn%2C%20Austin%20TX"},{"n":"Antone's","c":"Music","area":"Austin Downtown","o":"Blues/roots; bigger names","la":30.26606,"lo":-97.7404,"u":"https://www.google.com/maps/search/?api=1&query=Antone%27s%20Nightclub%2C%20Austin%20TX"},{"n":"Broken Spoke","c":"Music","area":"Austin South Lamar","o":"Honky tonk; come early to watch; closed Sun/Mon","la":30.24088,"lo":-97.78523,"u":"https://www.google.com/maps/search/?api=1&query=Broken%20Spoke%2C%20Austin%20TX"},{"n":"Barton Springs Pool","c":"Water","area":"Austin","o":"Spring-fed ~70F; skyline","la":30.26384,"lo":-97.77014,"u":"https://www.google.com/maps/search/?api=1&query=Barton%20Springs%20Pool%2C%20Austin%20TX"},{"n":"W Austin WET Deck","c":"Water","area":"Austin Downtown","o":"Rooftop pool day passes","la":30.26555,"lo":-97.74701,"u":"https://www.google.com/maps/search/?api=1&query=W%20Austin%20Hotel%2C%20Austin%20TX"},{"n":"Congress Avenue Bats","c":"Sight","area":"Austin Downtown","o":"Bats at dusk","la":30.26139,"lo":-97.74529,"u":"https://www.google.com/maps/search/?api=1&query=Congress%20Avenue%20Bridge%2C%20Austin%20TX"},{"n":"Tube the Guadalupe (Rockin' R)","c":"Water","area":"New Braunfels","o":"Tube rental; rope tubes + cooler","la":29.73687,"lo":-98.10696,"u":"https://www.google.com/maps/search/?api=1&query=Rockin%27%20R%20River%20Rides%2C%20New%20Braunfels%20TX"},{"n":"Gristmill River Restaurant","c":"Food","area":"Gruene","o":"Riverside; next to Gruene Hall","la":29.7383,"lo":-98.10531,"u":"https://www.google.com/maps/search/?api=1&query=Gristmill%20River%20Restaurant%2C%20Gruene%20TX"},{"n":"Gruene Hall","c":"Music","area":"Gruene","o":"Oldest dance hall in Texas","la":29.73831,"lo":-98.1045,"u":"https://www.google.com/maps/search/?api=1&query=Gruene%20Hall%2C%20New%20Braunfels%20TX"},{"n":"The Alamo","c":"Sight","area":"San Antonio","o":"Pair with River Walk","la":29.42533,"lo":-98.48623,"u":"https://www.google.com/maps/search/?api=1&query=The%20Alamo%2C%20San%20Antonio%20TX"},{"n":"San Antonio River Walk","c":"Sight","area":"San Antonio","o":"Boat ride; riverside dining","la":29.42464,"lo":-98.48809,"u":"https://www.google.com/maps/search/?api=1&query=San%20Antonio%20River%20Walk%2C%20TX"},{"n":"Kimpton Pittman","c":"Stay","area":"Dallas Deep Ellum","o":"Dallas base; heated pool","la":32.78453,"lo":-96.7873,"u":"https://www.google.com/maps/search/?api=1&query=Kimpton%20Pittman%20Hotel%2C%20Dallas%20TX"},{"n":"Pecan Lodge","c":"BBQ","area":"Dallas Deep Ellum","o":"Walk-in brisket","la":32.78367,"lo":-96.78384,"u":"https://www.google.com/maps/search/?api=1&query=Pecan%20Lodge%2C%20Dallas%20TX"},{"n":"Murray Street Coffee","c":"Coffee","area":"Dallas Deep Ellum","o":"Corner classic","la":32.78494,"lo":-96.77792,"u":"https://www.google.com/maps/search/?api=1&query=Murray%20Street%20Coffee%2C%20Dallas%20TX"},{"n":"Merit Coffee","c":"Coffee","area":"Dallas Deep Ellum","o":"In-house roast","la":32.78397,"lo":-96.78479,"u":"https://www.google.com/maps/search/?api=1&query=Merit%20Coffee%2C%20Deep%20Ellum%2C%20Dallas%20TX"},{"n":"Fort Worth Stockyards","c":"Sight","area":"Fort Worth","o":"Cattle drives 11:30 & 16:00; custom hats at Best Hat Store & Leddy's","la":32.789,"lo":-97.34465,"u":"https://www.google.com/maps/search/?api=1&query=Fort%20Worth%20Stockyards%2C%20TX"},{"n":"Sixth Floor Museum","c":"Sight","area":"Dallas","o":"JFK / Dealey Plaza","la":32.77971,"lo":-96.80844,"u":"https://www.google.com/maps/search/?api=1&query=The%20Sixth%20Floor%20Museum%2C%20Dallas%20TX"}];
+  var colors={Stay:'#241a10',BBQ:'#9c2417',Dinner:'#b0184e',Food:'#b0184e',Coffee:'#5b3a1e',Music:'#c2611a',Water:'#2f6f6a',Activity:'#9a7420',Sight:'#15233f'};
+  var map=L.map('tripmap',{scrollWheelZoom:false});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+  var austin=[];
+  SPOTS.forEach(function(s){
+    var col=colors[s.c]||'#241a10';
+    var m=L.circleMarker([s.la,s.lo],{radius:7,color:'#efe2c4',weight:1.5,fillColor:col,fillOpacity:1});
+    var html='<strong>'+s.n+'</strong><br><span style="color:#6a5535;font-size:.8em;text-transform:uppercase;letter-spacing:.06em">'+s.c+' &middot; '+s.area+'</span><br>'+s.o+'<br><a href="'+s.u+'" target="_blank" rel="noopener">Open in Maps &rarr;</a>';
+    m.bindPopup(html);
+    m.bindTooltip(s.n,{direction:'top',offset:[0,-6]});
+    m.addTo(map);
+    if(s.la>30 && s.la<31){austin.push([s.la,s.lo]);}
+  });
+  if(austin.length){map.fitBounds(austin,{padding:[30,30]});}else{map.setView([30.26,-97.74],12);}
+  map.on('click',function(){map.scrollWheelZoom.enable();});
+})();
+</script>
 </body>
 </html>

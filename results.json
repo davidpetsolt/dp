@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-01T08:42:39.956Z",
+  "updated": "2026-07-02T06:38:46.951Z",
   "status": "in_progress",
   "groupFinal": {
     "A": true,
@@ -96,7 +96,11 @@
       "Paraguay",
       "France",
       "Brazil",
-      "Norway"
+      "Norway",
+      "Mexico",
+      "England",
+      "United States",
+      "Belgium"
     ],
     "QF": [],
     "SF": [],
@@ -111,6 +115,9 @@
     "Côte d'Ivoire",
     "Sweden",
     "Ecuador",
+    "Congo DR",
+    "Senegal",
+    "Bosnia and Herzegovina",
     "Korea Republic",
     "Czechia",
     "Qatar",

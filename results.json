@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03T07:52:42.560Z",
+  "updated": "2026-07-04T07:33:59.555Z",
   "status": "in_progress",
   "groupFinal": {
     "A": true,
@@ -99,8 +99,14 @@
       "Norway",
       "Mexico",
       "England",
+      "Portugal",
+      "Spain",
       "United States",
-      "Belgium"
+      "Belgium",
+      "Argentina",
+      "Egypt",
+      "Switzerland",
+      "Colombia"
     ],
     "QF": [],
     "SF": [],
@@ -121,6 +127,9 @@
     "Austria",
     "Croatia",
     "Algeria",
+    "Australia",
+    "Cabo Verde",
+    "Ghana",
     "Korea Republic",
     "Czechia",
     "Qatar",

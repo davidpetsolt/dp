@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-04T07:33:59.555Z",
+  "updated": "2026-07-05T07:50:42.254Z",
   "status": "in_progress",
   "groupFinal": {
     "A": true,
@@ -108,7 +108,10 @@
       "Switzerland",
       "Colombia"
     ],
-    "QF": [],
+    "QF": [
+      "France",
+      "Morocco"
+    ],
     "SF": [],
     "Final": []
   },
@@ -130,6 +133,8 @@
     "Australia",
     "Cabo Verde",
     "Ghana",
+    "Canada",
+    "Paraguay",
     "Korea Republic",
     "Czechia",
     "Qatar",

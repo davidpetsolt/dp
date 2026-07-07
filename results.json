@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-06T08:53:22.649Z",
+  "updated": "2026-07-07T08:12:51.465Z",
   "status": "in_progress",
   "groupFinal": {
     "A": true,
@@ -111,6 +111,8 @@
     "QF": [
       "France",
       "Morocco",
+      "Spain",
+      "Belgium",
       "Norway",
       "England"
     ],
@@ -139,6 +141,8 @@
     "Paraguay",
     "Brazil",
     "Mexico",
+    "Portugal",
+    "United States",
     "Korea Republic",
     "Czechia",
     "Qatar",

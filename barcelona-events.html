@@ -143,8 +143,17 @@
 
   .ev-card{background:#fff;border:1px solid var(--rule);border-radius:var(--radius-md);
     box-shadow:var(--shadow-card);padding:18px 20px;display:flex;flex-direction:column;gap:10px;
-    transition:transform .12s,box-shadow .12s}
+    transition:transform .12s,box-shadow .12s;overflow:hidden}
   .ev-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(15,20,50,.13)}
+
+  /* Optional event image. Sits flush above .ev-top so the card top edge is
+     the image itself; cards without an image render exactly as before. */
+  .ev-card.with-img{padding-top:0}
+  .ev-img{display:block;margin:0 -20px 4px;aspect-ratio:16/9;overflow:hidden;
+    background:var(--bg-soft);border-bottom:1px solid var(--rule)}
+  .ev-img img{width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .25s ease}
+  .ev-card.with-img:hover .ev-img img{transform:scale(1.02)}
   .ev-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
   .ev-title{font-family:'Lato',sans-serif;font-weight:700;font-size:18px;color:var(--ink);
     line-height:1.3;margin:0;flex:1}
@@ -220,124 +229,155 @@
 <section class="callout" aria-label="Update banner">
   <div class="callout-inner">
     <div>
-      <h3>Updated weekly · 15 events live</h3>
-      <p>Last refreshed 25-Jun-2026 (auto-updated every Thursday)</p>
+      <h3>Updated weekly · 14 events live</h3>
+      <p>Last refreshed 08-Jul-2026 (auto-updated every Thursday)</p>
     </div>
     <a href="#this-weekend" class="btn">See This Weekend →</a>
   </div>
 </section>
 
 <div class="filters" id="filters" role="tablist" aria-label="Filter by category">
-  <button class="filter active" data-cat="All">All <span class="count">15</span></button>
-  <button class="filter" data-cat="Music"><span class="dot"></span>Music <span class="count">1</span></button>
-<button class="filter" data-cat="Art"><span class="dot"></span>Art <span class="count">4</span></button>
-<button class="filter" data-cat="Sports"><span class="dot"></span>Sports <span class="count">2</span></button>
-<button class="filter" data-cat="Other"><span class="dot"></span>Other <span class="count">8</span></button>
+  <button class="filter active" data-cat="All">All <span class="count">14</span></button>
+  <button class="filter" data-cat="Music"><span class="dot"></span>Music <span class="count">3</span></button>
+<button class="filter" data-cat="Art"><span class="dot"></span>Art <span class="count">3</span></button>
+<button class="filter" data-cat="Festival"><span class="dot"></span>Festival <span class="count">2</span></button>
+<button class="filter" data-cat="Other"><span class="dot"></span>Other <span class="count">6</span></button>
 </div>
 
-<section class="section" data-section="This Weekend" id="this-weekend">
-      <div class="section-header">
-        <h2>This Weekend</h2>
-        <span class="ct">7 events</span>
-      </div>
-      <div class="events"><article class="ev-card" data-category="Other">
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/centre-civic-la-sagrera-la-barraca_92086005115.html" target="_blank" rel="noopener">Centre Cívic La Sagrera La Barraca</a></h3>
-        <span class="ev-cat Other">Other</span>
-      </div>
-      <div class="ev-date">27-Jun-2026 to 07-Jul-2026</div>
-      <p class="ev-venue">Barcelona</p>
-      
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/centre-civic-la-sagrera-la-barraca_92086005115.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
-      </div>
-    </article>
-<article class="ev-card" data-category="Other">
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Fet Al Born</a></h3>
-        <span class="ev-cat Other">Other</span>
-      </div>
-      <div class="ev-date">27-Jun-2026 to 28-Jun-2026</div>
-      <p class="ev-venue">Passeig del Born, Barcelona <span class="nbh">Born</span></p>
-      <p class="ev-desc">Unique, creative and high-quality products with El Born&#x27;s DNA. The Fet al Born fair showcases the talent and uniqueness of local commerce in the Born neighbourhood. At the fair, the different shops an</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
-      </div>
-    </article>
-<article class="ev-card" data-category="Other">
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/fet-al-born_99400782877.html" target="_blank" rel="noopener">La Festa del Tour: Made in El Born</a></h3>
-        <span class="ev-cat Other">Other</span>
-      </div>
-      <div class="ev-date">27-Jun-2026 to 28-Jun-2026</div>
-      <p class="ev-venue">Barcelona</p>
-      
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/fet-al-born_99400782877.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
-      </div>
-    </article>
-<article class="ev-card" data-category="Other">
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Pride Barcelona</a></h3>
-        <span class="ev-cat Other">Other</span>
-      </div>
-      <div class="ev-date">27-Jun-2026 to 19-Jul-2026</div>
-      <p class="ev-venue">Various locations, Barcelona</p>
-      <p class="ev-desc">Pride Barcelona is one of the most important LGBTQIA+ events in southern Europe and this year is focusing on intersectionality. From June 27 until July 19, running for almost a month, Pride brings tog</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
-      </div>
-    </article>
-<article class="ev-card" data-category="Other">
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/village-pride_99400782406.html" target="_blank" rel="noopener">Village Pride</a></h3>
-        <span class="ev-cat Other">Other</span>
-      </div>
-      <div class="ev-date">27-Jun-2026 to 28-Jun-2026</div>
-      <p class="ev-venue">Barcelona</p>
-      
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/village-pride_99400782406.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
-      </div>
-    </article>
-<article class="ev-card" data-category="Other">
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/traveling-show-le-tour-on-tour-culture-in-motion_99400781547.html" target="_blank" rel="noopener">‘Le Tour on Tour: Culture in motion’</a></h3>
-        <span class="ev-cat Other">Other</span>
-      </div>
-      <div class="ev-date">27-Jun-2026 to 02-Jul-2026</div>
-      <p class="ev-venue">Barcelona</p>
-      
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/traveling-show-le-tour-on-tour-culture-in-motion_99400781547.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
-      </div>
-    </article>
-<article class="ev-card" data-category="Other">
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">UIA World Congress of Architects</a></h3>
-        <span class="ev-cat Other">Other</span>
-      </div>
-      <div class="ev-date">28-Jun-2026 to 02-Jul-2026</div>
-      <p class="ev-venue">Various locations, Barcelona</p>
-      <p class="ev-desc">Plenary sessions, presentations and debates, open forums, workshops, research presentations and public celebrations will activate the city as a hub of exchange. From 28 June to 2 July, Barcelona is se</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
-      </div>
-    </article></div>
-    </section>
+
 <section class="section" data-section="Ongoing Now" id="ongoing-now">
       <div class="section-header">
         <h2>Ongoing Now</h2>
-        <span class="ct">5 events</span>
+        <span class="ct">13 events</span>
       </div>
-      <div class="events"><article class="ev-card" data-category="Art">
+      <div class="events"><article class="ev-card" data-category="Other">
+      
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/poble-espanyol-de-barcelona_92086008895.html" target="_blank" rel="noopener">Poble Espanyol de Barcelona</a></h3>
+        <span class="ev-cat Other">Other</span>
+      </div>
+      <div class="ev-date">01-May-2026 to 30-Sep-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/poble-espanyol-de-barcelona_92086008895.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Festival">
+      <a class="ev-img" href="https://guia.barcelona.cat/en/detall/xive-festival-bachcelona_99400318126.html" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/7a655caba0242de4.jpg" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/xive-festival-bachcelona_99400318126.html" target="_blank" rel="noopener">Festival Bachcelona</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">07-Jul-2026 to 16-Jul-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/xive-festival-bachcelona_99400318126.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Other">
+      
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/universitat-de-barcelona-jardins-ferran-soldevila_95069105212.html" target="_blank" rel="noopener">Jardins Ferran Soldevila - Universitat de Barcelona</a></h3>
+        <span class="ev-cat Other">Other</span>
+      </div>
+      <div class="ev-date">07-Jul-2026 to 16-Jul-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/universitat-de-barcelona-jardins-ferran-soldevila_95069105212.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Music">
+      <a class="ev-img" href="https://guia.barcelona.cat/en/detall/vespres-d-estiu-concerts-als-jardins-de-la-ub_99400186775.html" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/7720f08b3421633b.jpg" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/vespres-d-estiu-concerts-als-jardins-de-la-ub_99400186775.html" target="_blank" rel="noopener">Summer Evenings. Concerts in the UB Gardens</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">07-Jul-2026 to 16-Jul-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/vespres-d-estiu-concerts-als-jardins-de-la-ub_99400186775.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Other">
+      <a class="ev-img" href="https://guia.barcelona.cat/en/detall/xix-regata-barcelona-vela-classica-trofeu-puig_99400210196.html" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/931bd76aa363f3a2.jpg" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/xix-regata-barcelona-vela-classica-trofeu-puig_99400210196.html" target="_blank" rel="noopener">19th Puig Vela Clàssica Barcelona Regatta</a></h3>
+        <span class="ev-cat Other">Other</span>
+      </div>
+      <div class="ev-date">08-Jul-2026 to 11-Jul-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/xix-regata-barcelona-vela-classica-trofeu-puig_99400210196.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Festival">
+      <a class="ev-img" href="https://guia.barcelona.cat/en/detall/festival-cruilla-bcn_99400209139.html" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/3582ab0fcb781ac6.jpg" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/festival-cruilla-bcn_99400209139.html" target="_blank" rel="noopener">Festival Cruïlla 2026</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">08-Jul-2026 to 11-Jul-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/festival-cruilla-bcn_99400209139.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Art">
+      
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Visit 50,000-year-old Siberian mammoth</a></h3>
+        <span class="ev-cat Art">Art</span>
+      </div>
+      <div class="ev-date">08-Jul-2026 to 07-Aug-2026</div>
+      <p class="ev-venue">CosmoCaixa, Barcelona</p>
+      <p class="ev-desc">Barcelona&#x27;s CosmoCaixa Science Museum unveiled the latest addition to its exhibition: a large six-meter-long and 3.5-meter-tall Siberian mammoth. The mammoth is between 40,000 and 50,000 years old and</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Music">
+      
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Wine Festivals</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">08-Jul-2026 to 07-Aug-2026</div>
+      <p class="ev-venue">Neighbourhoods around Barcelona</p>
+      <p class="ev-desc">Wine Festivals is a platform to celebrate wine, food, music and good living. A project for all those people in love with life. Their aim is to spread the culture of wine in a festive and accessible wa</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Music">
+      
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/museu-de-la-musica_92086004112.html" target="_blank" rel="noopener">Museu de la Música</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">17-Apr-2026 to 30-Sep-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/museu-de-la-musica_92086004112.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Art">
+      
       <div class="ev-top">
         <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Out of Focus: Another Vision of Art</a></h3>
         <span class="ev-cat Art">Art</span>
@@ -350,46 +390,36 @@
         <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
       </div>
     </article>
-<article class="ev-card" data-category="Art">
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/festival-d-art-emergent-de-barcelona-i-l-hospitalet-art-nou_99400759738.html" target="_blank" rel="noopener">Art Nou |  Emerging Art Festival in Barcelona and L&#x27;Hospitalet</a></h3>
-        <span class="ev-cat Art">Art</span>
-      </div>
-      <div class="ev-date">25-Jun-2026 to 03-Sep-2026</div>
-      <p class="ev-venue">Barcelona</p>
+<article class="ev-card" data-category="Other">
       
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/festival-d-art-emergent-de-barcelona-i-l-hospitalet-art-nou_99400759738.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
-      </div>
-    </article>
-<article class="ev-card" data-category="Art">
       <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Visit 50,000-year-old Siberian mammoth</a></h3>
-        <span class="ev-cat Art">Art</span>
+        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Art Nou</a></h3>
+        <span class="ev-cat Other">Other</span>
       </div>
-      <div class="ev-date">25-Jun-2026 to 25-Jul-2026</div>
-      <p class="ev-venue">CosmoCaixa, Barcelona</p>
-      <p class="ev-desc">Barcelona&#x27;s CosmoCaixa Science Museum unveiled the latest addition to its exhibition: a large six-meter-long and 3.5-meter-tall Siberian mammoth. The mammoth is between 40,000 and 50,000 years old and</p>
+      <div class="ev-date">25-Jun-2026 to 09-Sep-2026</div>
+      <p class="ev-venue">Bracelona and L&#x27;Hospitalet de Llobregat</p>
+      <p class="ev-desc">Art Nou is the Emerging Art Festival in Barcelona and L&#x27;Hospitalet that offers young national and international artists the opportunity to establish their first professional relationship with the art </p>
       <div class="ev-bot">
         <span></span>
         <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
       </div>
     </article>
-<article class="ev-card" data-category="Music">
+<article class="ev-card with-img" data-category="Other">
+      <a class="ev-img" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/c2d6ee3789cca0ef.jpg" alt="" loading="lazy" decoding="async"></a>
       <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Wine Festivals</a></h3>
-        <span class="ev-cat Music">Music</span>
+        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Pride Barcelona</a></h3>
+        <span class="ev-cat Other">Other</span>
       </div>
-      <div class="ev-date">25-Jun-2026 to 25-Jul-2026</div>
-      <p class="ev-venue">Neighbourhoods around Barcelona</p>
-      <p class="ev-desc">Wine Festivals is a platform to celebrate wine, food, music and good living. A project for all those people in love with life. Their aim is to spread the culture of wine in a festive and accessible wa</p>
+      <div class="ev-date">27-Jun-2026 to 19-Jul-2026</div>
+      <p class="ev-venue">Various locations, Barcelona</p>
+      <p class="ev-desc">Pride Barcelona is one of the most important LGBTQIA+ events in southern Europe and this year is focusing on intersectionality. From June 27 until July 19, running for almost a month, Pride brings tog</p>
       <div class="ev-bot">
         <span></span>
         <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
       </div>
     </article>
 <article class="ev-card" data-category="Art">
+      
       <div class="ev-top">
         <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Chez Matisse</a></h3>
         <span class="ev-cat Art">Art</span>
@@ -403,50 +433,15 @@
       </div>
     </article></div>
     </section>
-<section class="section" data-section="Next Week" id="next-week">
-      <div class="section-header">
-        <h2>Next Week</h2>
-        <span class="ct">1 event</span>
-      </div>
-      <div class="events"><article class="ev-card" data-category="Sports">
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.letour.barcelona/en" target="_blank" rel="noopener">Tour de France 2026 – Team Presentation</a></h3>
-        <span class="ev-cat Sports">Sports</span>
-      </div>
-      <div class="ev-date">01-Jul-2026</div>
-      <p class="ev-venue">Plaça de Catalunya <span class="nbh">Eixample</span></p>
-      <p class="ev-desc">Official team presentation for the 113th Tour de France, held at Plaça de Catalunya at 18:00 CET. All 22 teams parade ahead of the Grand Départ. Part of the Festa Major del Tour (26-Jun to 05-Jul), wh</p>
-      <div class="ev-bot">
-        <span class="ev-price">Free</span>
-        <a class="ev-src" href="https://www.letour.barcelona/en" target="_blank" rel="noopener">via curated →</a>
-      </div>
-    </article></div>
-    </section>
-<section class="section" data-section="Coming Up" id="coming-up">
-      <div class="section-header">
-        <h2>Coming Up</h2>
-        <span class="ct">1 event</span>
-      </div>
-      <div class="events"><article class="ev-card" data-category="Sports">
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.barcelonaturisme.com/wv3/en/agenda/20589/grand-depart-barcelona-2026-tour-de-france.html" target="_blank" rel="noopener">Tour de France 2026 – Grand Départ Barcelona</a></h3>
-        <span class="ev-cat Sports">Sports</span>
-      </div>
-      <div class="ev-date">04-Jul-2026 to 06-Jul-2026</div>
-      <p class="ev-venue">Barcelona &amp; Catalonia</p>
-      <p class="ev-desc">The 113th Tour de France starts in Barcelona with three Catalan stages: a 19.7 km team time trial on 04-Jul, a 178 km stage from Tarragona to Barcelona on 05-Jul, and a 196 km mountain stage to Les An</p>
-      <div class="ev-bot">
-        <span class="ev-price">Free (roadside viewing)</span>
-        <a class="ev-src" href="https://www.barcelonaturisme.com/wv3/en/agenda/20589/grand-depart-barcelona-2026-tour-de-france.html" target="_blank" rel="noopener">via curated →</a>
-      </div>
-    </article></div>
-    </section>
+
+
 <section class="section" data-section="On the Horizon" id="on-the-horizon">
       <div class="section-header">
         <h2>On the Horizon</h2>
         <span class="ct">1 event</span>
       </div>
       <div class="events"><article class="ev-card" data-category="Other">
+      
       <div class="ev-top">
         <h3 class="ev-title"><a href="https://en.wikipedia.org/wiki/Solar_eclipse_of_August_12,_2026" target="_blank" rel="noopener">Total Solar Eclipse – Catalonia</a></h3>
         <span class="ev-cat Other">Other</span>
@@ -465,7 +460,7 @@
   <span>© Petsolt · Updated Thursdays · Sources:
     <a href="https://www.catalannews.com/things-to-do">catalannews</a>,
     <a href="https://guia.barcelona.cat/en/">guia.barcelona.cat</a>,
-    <a href="https://www.barcelonaturisme.com/wv3/en/page/39/agenda.html">barcelonaturisme.com</a>,
+    <a href="https://thisisbarcelona.com/main-events">thisisbarcelona.com</a>,
     things the Petsolts come across
   </span>
   <span><a href="https://petsolt.com/">petsolt.com</a></span>

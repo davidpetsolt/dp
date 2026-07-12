@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-11T07:02:28.814Z",
+  "updated": "2026-07-12T07:22:44.133Z",
   "status": "in_progress",
   "groupFinal": {
     "A": true,
@@ -120,7 +120,9 @@
     ],
     "SF": [
       "France",
-      "Spain"
+      "Spain",
+      "England",
+      "Argentina"
     ],
     "Final": []
   },
@@ -152,6 +154,8 @@
     "Colombia",
     "Morocco",
     "Belgium",
+    "Norway",
+    "Switzerland",
     "Korea Republic",
     "Czechia",
     "Qatar",

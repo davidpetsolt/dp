@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-14T06:59:52.526Z",
+  "updated": "2026-07-15T07:03:09.376Z",
   "status": "in_progress",
   "groupFinal": {
     "A": true,
@@ -124,7 +124,9 @@
       "England",
       "Argentina"
     ],
-    "Final": []
+    "Final": [
+      "Spain"
+    ]
   },
   "champion": null,
   "eliminated": [
@@ -156,6 +158,7 @@
     "Belgium",
     "Norway",
     "Switzerland",
+    "France",
     "Korea Republic",
     "Czechia",
     "Qatar",

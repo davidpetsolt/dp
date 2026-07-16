@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-15T21:32:30.658Z",
+  "updated": "2026-07-16T07:11:52.333Z",
   "status": "in_progress",
   "groupFinal": {
     "A": true,
@@ -125,7 +125,8 @@
       "Argentina"
     ],
     "Final": [
-      "Spain"
+      "Spain",
+      "Argentina"
     ]
   },
   "champion": null,

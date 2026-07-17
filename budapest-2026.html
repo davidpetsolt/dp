@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>BUDAPEST</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f3d5c'/%3E%3Cpath d='M8 22 C16 13, 24 31, 32 22 C40 13, 48 31, 56 22' stroke='%23c9a227' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M8 36 C16 27, 24 45, 32 36 C40 27, 48 45, 56 36' stroke='%23d4491f' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M8 50 C16 41, 24 59, 32 50 C40 41, 48 59, 56 50' stroke='%23f0e7d3' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,800;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  :root{
+    --paper:#f0e7d3;
+    --paper-2:#e7dcc2;
+    --ink:#1c1a17;
+    --blue:#0f3d5c;
+    --blue-2:#14507a;
+    --paprika:#d4491f;
+    --gold:#c9a227;
+    --teal:#1e6e7e;
+    --plum:#7d3c64;
+    --cream:#f7f1e1;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Archivo',sans-serif;
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--paprika);color:var(--cream)}
+  a{color:var(--blue);text-decoration:none;border-bottom:2px solid var(--gold);font-weight:500}
+  a:hover{background:var(--gold);color:var(--ink)}
+  a:focus-visible{outline:3px solid var(--paprika);outline-offset:2px}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 22px}
+  .mono{font-family:'IBM Plex Mono',monospace}
+
+  /* ================= HERO ================= */
+  .hero{position:relative;padding:56px 0 0;overflow:hidden}
+  .hero .wrap{position:relative;z-index:2}
+  .hero-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;
+    font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+  .hero-top .lines{border-top:3px solid var(--ink);padding-top:8px}
+  h1{
+    font-family:'Anton',sans-serif;
+    font-size:clamp(4rem,17vw,13.5rem);
+    line-height:.88;letter-spacing:.01em;
+    color:var(--blue);
+    text-transform:uppercase;
+    margin:26px 0 0;
+    text-shadow:6px 6px 0 var(--paprika);
+    -webkit-text-stroke:2px var(--blue);
+  }
+  .hero-sub{
+    display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;
+    margin:26px 0 0;padding:14px 0;
+    border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);
+    font-weight:600;font-size:clamp(.9rem,2.4vw,1.15rem);letter-spacing:.06em;text-transform:uppercase;
+  }
+  .hero-sub .dot{color:var(--paprika)}
+  .stamp{
+    position:absolute;right:4%;top:190px;z-index:3;
+    transform:rotate(8deg);
+    border:4px solid var(--paprika);color:var(--paprika);
+    font-family:'Anton',sans-serif;text-transform:uppercase;
+    padding:10px 18px;font-size:clamp(.9rem,2.6vw,1.5rem);letter-spacing:.08em;
+    border-radius:6px;background:rgba(240,231,211,.7);
+    text-align:center;line-height:1.15;
+  }
+  .stamp small{display:block;font-family:'IBM Plex Mono',monospace;font-size:.55em;letter-spacing:.2em}
+  /* op-art danube ripple */
+  .ripple{display:block;width:100%;margin-top:-8px}
+  @media(max-width:700px){.stamp{position:static;display:inline-block;margin-top:18px;transform:rotate(-3deg)}}
+
+  /* ================= MARQUEE ================= */
+  .marquee{
+    background:var(--ink);color:var(--cream);
+    overflow:hidden;white-space:nowrap;
+    border-top:3px solid var(--paprika);border-bottom:3px solid var(--paprika);
+  }
+  .marquee-inner{
+    display:inline-block;padding:10px 0;
+    font-family:'Anton',sans-serif;font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase;
+    animation:scroll 28s linear infinite;
+  }
+  .marquee-inner span{color:var(--gold);margin:0 18px}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){.marquee-inner{animation:none}}
+
+  /* ================= COUNTDOWN ================= */
+  .countdown{
+    background:var(--paprika);color:var(--cream);
+    padding:22px 0;
+  }
+  .countdown .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+  .countdown .label{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(1.1rem,3vw,1.6rem);letter-spacing:.06em}
+  .countdown .label small{display:block;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.24em;opacity:.85}
+  .cd-units{display:flex;gap:10px}
+  .cd-unit{background:var(--ink);padding:8px 14px;text-align:center;min-width:72px;border-radius:4px}
+  .cd-unit b{display:block;font-family:'Anton',sans-serif;font-size:clamp(1.5rem,4vw,2.3rem);line-height:1;color:var(--cream)}
+  .cd-unit i{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+
+  /* ================= NAV ================= */
+  nav{
+    position:sticky;top:0;z-index:900;
+    background:var(--blue);
+    border-bottom:4px solid var(--gold);
+  }
+  nav .wrap{display:flex;overflow-x:auto}
+  nav a{
+    border:none;color:var(--cream);padding:14px 16px;white-space:nowrap;
+    font-family:'Archivo',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+  }
+  nav a:hover{background:var(--paprika);color:var(--cream)}
+
+  /* ================= SECTIONS ================= */
+  section{padding:66px 0 10px}
+  .sec-head{margin-bottom:34px;border-left:10px solid var(--paprika);padding-left:20px}
+  .sec-head .hu{
+    font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--paprika);font-weight:600;
+  }
+  .sec-head h2{
+    font-family:'Anton',sans-serif;text-transform:uppercase;
+    font-size:clamp(1.9rem,6vw,3.2rem);line-height:1.02;color:var(--ink);letter-spacing:.015em;
+  }
+
+  /* ================= GLANCE ================= */
+  .glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:0;border:3px solid var(--ink)}
+  .g-cell{padding:22px;border:1.5px solid var(--ink);position:relative;background:var(--cream)}
+  .g-cell .k{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--paprika);font-weight:600;margin-bottom:8px}
+  .g-cell h3{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:1.35rem;letter-spacing:.02em;margin-bottom:8px;color:var(--blue)}
+  .g-cell p{font-size:.93rem;margin-bottom:6px}
+  .g-cell.blue{background:var(--blue);color:var(--cream)}
+  .g-cell.blue h3{color:var(--gold)}
+  .g-cell.blue a{color:var(--gold);border-color:var(--gold)}
+  .g-cell.blue a:hover{background:var(--gold);color:var(--ink)}
+
+  /* ================= F1 / SCHEDULE ================= */
+  .seatcard{
+    background:var(--ink);color:var(--cream);
+    padding:30px;margin-bottom:26px;position:relative;overflow:hidden;
+    border:3px solid var(--ink);
+  }
+  .seatcard::after{
+    content:"";position:absolute;top:0;right:0;width:120px;height:100%;
+    background:
+      repeating-conic-gradient(var(--cream) 0% 25%, var(--ink) 0% 50%) 0 0/28px 28px;
+    opacity:.9;
+  }
+  .seatcard .inner{position:relative;z-index:2;max-width:calc(100% - 130px)}
+  .seatcard .k{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  .seatcard h3{font-family:'Anton',sans-serif;font-size:clamp(1.4rem,4vw,2.2rem);text-transform:uppercase;line-height:1.1;margin-bottom:10px}
+  .seatcard h3 em{font-style:normal;color:var(--paprika)}
+  .seatcard p{font-size:.95rem;opacity:.92;margin-bottom:6px}
+  .seatcard a{color:var(--gold);border-color:var(--gold)}
+  @media(max-width:600px){.seatcard::after{width:44px}.seatcard .inner{max-width:calc(100% - 50px)}}
+
+  .who{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:30px}
+  .who-card{border:3px solid var(--ink);padding:16px 18px;background:var(--cream)}
+  .who-card .d{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:1.05rem;color:var(--paprika)}
+  .who-card .n{font-weight:600;font-size:1rem;margin-top:2px}
+  .who-card .s{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin-top:4px;color:var(--blue)}
+
+  .day-tabs{display:flex;gap:0;margin-bottom:0;flex-wrap:wrap}
+  .day-tab{
+    font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(.9rem,2.6vw,1.15rem);letter-spacing:.05em;
+    padding:12px 22px;border:3px solid var(--ink);border-bottom:none;background:var(--paper-2);color:var(--ink);cursor:pointer;
+  }
+  .day-tab[aria-selected="true"]{background:var(--blue);color:var(--cream)}
+  .day-tab:focus-visible{outline:3px solid var(--paprika);outline-offset:-3px}
+  .timetable{border:3px solid var(--ink);background:var(--cream)}
+  .timetable table{width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace;font-size:.88rem}
+  .timetable th{
+    text-align:left;padding:12px 16px;background:var(--ink);color:var(--gold);
+    font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;font-weight:500;
+  }
+  .timetable td{padding:10px 16px;border-bottom:1.5px solid var(--paper-2);vertical-align:top}
+  .timetable tr:last-child td{border-bottom:none}
+  .timetable tr.f1 td{background:var(--paprika);color:var(--cream);font-weight:600}
+  .timetable .t{white-space:nowrap;font-weight:600}
+  .tab-panel{display:none}
+  .tab-panel.active{display:block}
+  .heat{
+    margin-top:22px;border:3px solid var(--ink);background:var(--gold);
+    padding:16px 20px;font-weight:500;font-size:.95rem;
+  }
+  .heat b{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:2px}
+
+  /* ================= MAP ================= */
+  #map{height:520px;border:3px solid var(--ink);z-index:1}
+  .map-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .chip{
+    font-family:'Archivo',sans-serif;font-weight:600;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;
+    padding:7px 14px;border:2.5px solid var(--ink);background:var(--cream);color:var(--ink);cursor:pointer;border-radius:999px;
+    display:inline-flex;align-items:center;gap:7px;
+  }
+  .chip .sw{width:10px;height:10px;border-radius:50%;display:inline-block;border:1.5px solid var(--ink)}
+  .chip[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
+  .chip:focus-visible{outline:3px solid var(--paprika);outline-offset:2px}
+  .map-note{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.06em;margin-top:10px;color:var(--blue)}
+  .map-actions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+  .btn{
+    font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:.9rem;
+    background:var(--paprika);color:var(--cream);border:3px solid var(--ink);padding:9px 18px;cursor:pointer;
+  }
+  .btn.alt{background:var(--blue)}
+  .btn:hover{background:var(--ink)}
+  .btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .leaflet-popup-content-wrapper{border-radius:4px;border:2px solid var(--ink);font-family:'Archivo',sans-serif}
+  .leaflet-popup-content b{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.03em;font-size:1rem;color:var(--blue)}
+  .pin{
+    width:22px;height:22px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);
+    border:2.5px solid var(--ink);box-shadow:2px 2px 0 rgba(28,26,23,.35);
+  }
+
+  /* ================= ITINERARY ================= */
+  .iday{border:3px solid var(--ink);margin-bottom:24px;background:var(--cream)}
+  .iday-head{
+    display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;
+    background:var(--blue);color:var(--cream);padding:14px 20px;
+  }
+  .iday-head .dd{font-family:'Anton',sans-serif;font-size:1.3rem;text-transform:uppercase;color:var(--gold)}
+  .iday-head .tt{font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.88rem}
+  .iday ul{list-style:none}
+  .iday li{display:grid;grid-template-columns:130px 1fr;gap:14px;padding:12px 20px;border-bottom:1.5px solid var(--paper-2);font-size:.94rem}
+  .iday li:last-child{border-bottom:none}
+  .iday .t{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:.82rem;color:var(--paprika)}
+  .iday .who2{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--teal);letter-spacing:.04em}
+  .iday li.tbd{background:repeating-linear-gradient(-45deg,transparent 0 12px,rgba(201,162,39,.14) 12px 24px)}
+  .iday li.tbd .t::after{content:" ⚑";color:var(--paprika)}
+  @media(max-width:560px){.iday li{grid-template-columns:1fr}}
+
+  /* ================= PLACES ================= */
+  .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:16px}
+  .pcard{border:3px solid var(--ink);background:var(--cream);display:flex;flex-direction:column}
+  .pcard .band{height:10px}
+  .pcard .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .pcard .tag{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+  .pcard h3{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:1.2rem;letter-spacing:.02em;color:var(--ink)}
+  .pcard p{font-size:.88rem;flex:1}
+  .pcard .links{font-size:.82rem;display:flex;gap:14px}
+
+  /* ================= OPEN ================= */
+  .todo{list-style:none;display:grid;gap:0;border:3px solid var(--ink)}
+  .todo li{
+    display:flex;gap:14px;align-items:flex-start;padding:14px 18px;background:var(--cream);
+    border-bottom:1.5px solid var(--paper-2);font-size:.94rem;
+  }
+  .todo li:last-child{border-bottom:none}
+  .todo li::before{
+    content:"";flex:0 0 16px;height:16px;margin-top:3px;
+    border:2.5px solid var(--ink);background:var(--paper);
+  }
+  .todo li.hot{background:var(--paprika);color:var(--cream)}
+  .todo li.hot::before{background:var(--gold)}
+  .todo b{font-weight:600}
+
+  footer{
+    margin-top:70px;background:var(--ink);color:var(--cream);
+    padding:34px 0;text-align:center;
+  }
+  footer .hu{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);font-size:1.1rem}
+  footer .sub{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;margin-top:8px;opacity:.8}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="lines">Magyar Nagydíj · Hungarian Grand Prix</div>
+      <div class="lines">23-Jul-2026 → 27-Jul-2026</div>
+      <div class="lines">David · Kate · Cameron</div>
+    </div>
+    <h1>Buda&shy;pest</h1>
+    <div class="stamp">Cameron<br>18<small>Születésnap · 25-Jul</small></div>
+    <div class="hero-sub">
+      <span>Hotel Rum</span><span class="dot">●</span>
+      <span>Hungaroring · Sector D</span><span class="dot">●</span>
+      <span>Danube by night</span><span class="dot">●</span>
+      <span>Thermal baths</span>
+    </div>
+  </div>
+  <!-- op-art danube ripple: Vasarely homage -->
+  <svg class="ripple" viewBox="0 0 1200 130" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,70 C150,20 300,120 450,70 C600,20 750,120 900,70 C1050,20 1200,120 1200,70 L1200,130 L0,130 Z" fill="#0f3d5c"/>
+    <path d="M0,86 C150,40 300,132 450,86 C600,40 750,132 900,86 C1050,40 1200,132 1200,86" fill="none" stroke="#c9a227" stroke-width="3"/>
+    <path d="M0,100 C150,58 300,142 450,100 C600,58 750,142 900,100 C1050,58 1200,142 1200,100" fill="none" stroke="#d4491f" stroke-width="3"/>
+    <path d="M0,114 C150,76 300,152 450,114 C600,76 750,152 900,114 C1050,76 1200,152 1200,114" fill="none" stroke="#f0e7d3" stroke-width="2" opacity=".7"/>
+  </svg>
+</div>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-inner">
+    Hungarian Grand Prix <span>★</span> Cameron turns 18 <span>★</span> Lights out Sun 15:00 <span>★</span> Sector D · Row 7 <span>★</span> Gate 8 <span>★</span> Danube by night <span>★</span> Isten hozott Budapesten <span>★</span>
+    Hungarian Grand Prix <span>★</span> Cameron turns 18 <span>★</span> Lights out Sun 15:00 <span>★</span> Sector D · Row 7 <span>★</span> Gate 8 <span>★</span> Danube by night <span>★</span> Isten hozott Budapesten <span>★</span>
+  </div>
+</div>
+
+<!-- ================= COUNTDOWN ================= -->
+<div class="countdown">
+  <div class="wrap">
+    <div class="label">Lights out<small>F1 Hungarian Grand Prix · Sun 26-Jul-2026 · 15:00 CET</small></div>
+    <div class="cd-units" id="cd">
+      <div class="cd-unit"><b id="cd-d">–</b><i>days</i></div>
+      <div class="cd-unit"><b id="cd-h">–</b><i>hrs</i></div>
+      <div class="cd-unit"><b id="cd-m">–</b><i>min</i></div>
+      <div class="cd-unit"><b id="cd-s">–</b><i>sec</i></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= NAV ================= -->
+<nav aria-label="Sections">
+  <div class="wrap">
+    <a href="#glance">Glance</a>
+    <a href="#f1">Race Weekend</a>
+    <a href="#map-sec">Map</a>
+    <a href="#getting-there">Getting There</a>
+    <a href="#itinerary">Day by Day</a>
+    <a href="#places">Places</a>
+    <a href="#open">Still to Book</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ================= GLANCE ================= -->
+  <section id="glance">
+    <div class="sec-head reveal">
+      <div class="hu">Egy pillantásra</div>
+      <h2>At a Glance</h2>
+    </div>
+    <div class="glance reveal">
+      <div class="g-cell">
+        <div class="k">Out · Thu 23-Jul</div>
+        <h3>BCN → BUD</h3>
+        <p class="mono">FR8384 · 08:55 → 11:30</p>
+        <p>Főtaxi to the hotel, ~35 min.</p>
+      </div>
+      <div class="g-cell">
+        <div class="k">Back · Mon 27-Jul</div>
+        <h3>BUD → BCN</h3>
+        <p class="mono">FR8393 · 16:55 → 19:30</p>
+        <p>Leave the city by <strong>14:30</strong>.</p>
+      </div>
+      <div class="g-cell blue">
+        <div class="k">Four nights</div>
+        <h3>Hotel Rum Budapest</h3>
+        <p>Királyi Pál u. 4, 1053 · +36 1 424 9060</p>
+        <p>In Thu (early check-in requested) · out Mon by 11:00.</p>
+        <p><a href="https://www.google.com/maps/search/?api=1&query=Hotel%20Rum%20Budapest&query_place_id=ChIJB4Em2kTcQUcR1pQhOKV-wNM" target="_blank" rel="noopener">Map</a></p>
+      </div>
+      <div class="g-cell">
+        <div class="k">The occasion</div>
+        <h3>Cameron · 18</h3>
+        <p>Birthday lands on <strong>Sat 25-Jul</strong>, qualifying day. Birthday dinner that night is the marquee event — still to book.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= F1 ================= -->
+  <section id="f1">
+    <div class="sec-head reveal">
+      <div class="hu">Versenyhétvége</div>
+      <h2>Race Weekend · Hungaroring</h2>
+    </div>
+
+    <div class="seatcard reveal">
+      <div class="inner">
+        <div class="k">Weekend pass · grandstand</div>
+        <h3>Sector D · Row 7 · Seats <em>24 &amp; 25</em></h3>
+        <p>Main straight, pit-exit view toward Turn 1, live screen on-site. Seats adjacent.</p>
+        <p><strong>Enter via Gate 8</strong> (grandstand holders only). Print@Home: printed tickets, barcode clean, one scan each.</p>
+        <p><a href="https://www.google.com/maps/search/?api=1&query=Hungaroring&query_place_id=ChIJn9hRgpvPQUcRb_UBv5eGuzc" target="_blank" rel="noopener">Map</a> &nbsp; <a href="https://hungaroring.hu/site/en/races/2026-formula-1-aws-magyar-nagydij" target="_blank" rel="noopener">Official event info</a></p>
+      </div>
+    </div>
+
+    <div class="who reveal">
+      <div class="who-card"><div class="d">Fri 24-Jul</div><div class="n">David &amp; Cameron</div><div class="s">Practice · taxi TBD</div></div>
+      <div class="who-card"><div class="d">Sat 25-Jul</div><div class="n">Kate &amp; Cameron</div><div class="s">Qualifying · taxi 09:15</div></div>
+      <div class="who-card"><div class="d">Sun 26-Jul</div><div class="n">David &amp; Cameron</div><div class="s">Race · taxi 09:15</div></div>
+    </div>
+
+    <div class="reveal">
+      <div class="day-tabs" role="tablist" aria-label="Session schedule by day">
+        <button class="day-tab" role="tab" id="tab-fri" aria-controls="panel-fri" aria-selected="true">Fri 24</button>
+        <button class="day-tab" role="tab" id="tab-sat" aria-controls="panel-sat" aria-selected="false">Sat 25 ★</button>
+        <button class="day-tab" role="tab" id="tab-sun" aria-controls="panel-sun" aria-selected="false">Sun 26</button>
+      </div>
+
+      <div class="tab-panel active timetable" id="panel-fri" role="tabpanel" aria-labelledby="tab-fri">
+        <table>
+          <thead><tr><th>Time</th><th>Series</th><th>Session</th></tr></thead>
+          <tbody>
+            <tr><td class="t">07:30</td><td>—</td><td>Gates open</td></tr>
+            <tr><td class="t">09:55–10:40</td><td>F3</td><td>Practice</td></tr>
+            <tr><td class="t">11:05–11:50</td><td>F2</td><td>Practice</td></tr>
+            <tr class="f1"><td class="t">13:30–14:30</td><td>F1</td><td>Free Practice 1</td></tr>
+            <tr><td class="t">15:00–15:30</td><td>F3</td><td>Qualifying</td></tr>
+            <tr><td class="t">16:05–16:35</td><td>F2</td><td>Qualifying</td></tr>
+            <tr class="f1"><td class="t">17:00–18:00</td><td>F1</td><td>Free Practice 2</td></tr>
+            <tr><td class="t">18:30–19:15</td><td>Supercup</td><td>Practice</td></tr>
+            <tr><td class="t">19:30</td><td>—</td><td>Gates close</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tab-panel timetable" id="panel-sat" role="tabpanel" aria-labelledby="tab-sat">
+        <table>
+          <thead><tr><th>Time</th><th>Series</th><th>Session</th></tr></thead>
+          <tbody>
+            <tr><td class="t">07:30</td><td>—</td><td>Gates open</td></tr>
+            <tr><td class="t">10:05–10:50</td><td>F3</td><td>Sprint Race</td></tr>
+            <tr><td class="t">11:20–11:50</td><td>Supercup</td><td>Qualifying</td></tr>
+            <tr class="f1"><td class="t">12:30–13:30</td><td>F1</td><td>Free Practice 3</td></tr>
+            <tr><td class="t">14:15–15:05</td><td>F2</td><td>Sprint Race</td></tr>
+            <tr class="f1"><td class="t">16:00–17:00</td><td>F1</td><td>Qualifying · Q1–Q3</td></tr>
+            <tr><td class="t">19:30</td><td>—</td><td>Gates close</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tab-panel timetable" id="panel-sun" role="tabpanel" aria-labelledby="tab-sun">
+        <table>
+          <thead><tr><th>Time</th><th>Series</th><th>Session</th></tr></thead>
+          <tbody>
+            <tr><td class="t">07:30</td><td>—</td><td>Gates open</td></tr>
+            <tr><td class="t">08:40–09:30</td><td>F3</td><td>Feature Race</td></tr>
+            <tr><td class="t">10:10–10:45</td><td>Supercup</td><td>Race</td></tr>
+            <tr><td class="t">11:25–12:30</td><td>F2</td><td>Feature Race</td></tr>
+            <tr><td class="t">13:00–13:30</td><td>F1</td><td>Drivers' Parade</td></tr>
+            <tr><td class="t">14:44–14:46</td><td>F1</td><td>National Anthem</td></tr>
+            <tr class="f1"><td class="t">15:00–17:00</td><td>F1</td><td>Hungarian Grand Prix · 70 laps</td></tr>
+            <tr><td class="t">20:00</td><td>—</td><td>Gates close</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="heat"><b>Hőség · Heat warning</b>July regularly hits 35°C+ with little grandstand shade. Hats, SPF 50, constant water. Max 1 litre liquid in; refill stations on circuit. Times provisional — verify on the official F1 timetable.</div>
+    </div>
+  </section>
+
+  <!-- ================= MAP ================= -->
+  <section id="map-sec">
+    <div class="sec-head reveal">
+      <div class="hu">Térkép</div>
+      <h2>The Map</h2>
+    </div>
+    <div class="reveal">
+      <div class="map-chips" id="chips"></div>
+      <div id="map"></div>
+      <div class="map-actions">
+        <button class="btn" id="fly-ring">Fly to the circuit →</button>
+        <button class="btn alt" id="fly-city">← Back to the city</button>
+      </div>
+      <div class="map-note">Tap a pin for details and a Maps link. Click the map once to enable scroll-zoom. The Hungaroring sits ~20 km northeast of the city.</div>
+    </div>
+  </section>
+
+  <!-- ================= GETTING THERE ================= -->
+  <section id="getting-there">
+    <div class="sec-head reveal">
+      <div class="hu">Odajutás</div>
+      <h2>Getting to the Circuit</h2>
+    </div>
+    <div class="glance reveal">
+      <div class="g-cell">
+        <div class="k">Out · official taxi</div>
+        <h3>Főtaxi</h3>
+        <p>Official GP taxi, exclusive circuit drop-zone. Book via the Főtaxi app.</p>
+        <p class="mono">Fri TBD · Sat 09:15 ✓ · Sun 09:15 ✓</p>
+      </div>
+      <div class="g-cell">
+        <div class="k">Back · shuttle + train</div>
+        <h3>Gate 3 Route</h3>
+        <p>Free shuttle Gate 3 → Gödöllő station, then train to Keleti (or Főtaxi).</p>
+        <p>HÉV is a separate fare ~€1.50–2.50 — BKK passes <strong>not valid</strong>.</p>
+      </div>
+      <div class="g-cell">
+        <div class="k">Alternative</div>
+        <h3>City Shuttle</h3>
+        <p>Heroes' Square direct to the circuit. €20 pp each way, no booking.</p>
+        <p><a href="https://www.google.com/maps/search/?api=1&query=Heroes%20Square%20Budapest&query_place_id=ChIJaSHx-YfbQUcRPylIurx8QTQ" target="_blank" rel="noopener">Heroes' Square map</a></p>
+      </div>
+      <div class="g-cell blue">
+        <div class="k">Sunday note</div>
+        <h3>F3 at 08:40</h3>
+        <p>The 09:15 taxi misses the F3 Feature Race but makes the Porsche Supercup at 10:10. Rebook earlier if David &amp; Cameron want the F3.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ITINERARY ================= -->
+  <section id="itinerary">
+    <div class="sec-head reveal">
+      <div class="hu">Napról napra</div>
+      <h2>Day by Day</h2>
+    </div>
+
+    <div class="iday reveal">
+      <div class="iday-head"><span class="dd">Thu 23-Jul</span><span class="tt">Arrival</span></div>
+      <ul>
+        <li><span class="t">08:55–11:30</span><span><strong>Fly BCN → BUD</strong> · FR8384 <span class="who2">· all three</span></span></li>
+        <li><span class="t">~12:15</span><span><strong>Főtaxi to Hotel Rum</strong> · ~35 min · early check-in requested <span class="who2">· all three</span></span></li>
+        <li class="tbd"><span class="t">19:00–20:30</span><span><strong>Private Danube boat charter</strong> · <a href="https://privatecruisebudapest.com" target="_blank" rel="noopener">privatecruisebudapest.com</a> · from €450/boat · not booked <span class="who2">· all three</span></span></li>
+        <li><span class="t">21:00</span><span><strong>Dinner — Déryné</strong> · booked · Parisian-Hungarian bistro on the Buda side <span class="who2">· all three</span></span></li>
+      </ul>
+    </div>
+
+    <div class="iday reveal">
+      <div class="iday-head"><span class="dd">Fri 24-Jul</span><span class="tt">Practice Day</span></div>
+      <ul>
+        <li class="tbd"><span class="t">TBD</span><span><strong>Főtaxi to Hungaroring</strong> · gates 07:30 · F2 11:05 · FP1 13:30 <span class="who2">· David &amp; Cameron</span></span></li>
+        <li><span class="t">11:05–19:15</span><span><strong>Full session day</strong> · F2 practice → FP1 → F3 &amp; F2 quali → FP2 → Supercup <span class="who2">· David &amp; Cameron</span></span></li>
+        <li class="tbd"><span class="t">TBD</span><span><strong>Kate's day</strong> · Royal Spa / Mandala / Buda Castle / shops <span class="who2">· Kate</span></span></li>
+        <li class="tbd"><span class="t">TBD</span><span><strong>Dinner together</strong> · Mazel Tov / Dobrumba / Virtu / Circo <span class="who2">· all three</span></span></li>
+      </ul>
+    </div>
+
+    <div class="iday reveal">
+      <div class="iday-head"><span class="dd">Sat 25-Jul</span><span class="tt">Qualifying · Cameron's 18th ★</span></div>
+      <ul>
+        <li><span class="t">09:15</span><span><strong>Főtaxi to Hungaroring</strong> · booked · F3 Sprint 10:05 <span class="who2">· Kate &amp; Cameron</span></span></li>
+        <li><span class="t">10:05–17:00</span><span><strong>Full session day</strong> · F3 Sprint → Supercup quali → FP3 → F2 Sprint → F1 Qualifying <span class="who2">· Kate &amp; Cameron</span></span></li>
+        <li class="tbd"><span class="t">TBD</span><span><strong>David's free day</strong> · spa / sightseeing <span class="who2">· David</span></span></li>
+        <li class="tbd"><span class="t">TBD</span><span><strong>Birthday dinner</strong> · Déryné or Virtu · book ASAP, F1 weekend fills fast <span class="who2">· all three</span></span></li>
+      </ul>
+    </div>
+
+    <div class="iday reveal">
+      <div class="iday-head"><span class="dd">Sun 26-Jul</span><span class="tt">Race Day</span></div>
+      <ul>
+        <li><span class="t">09:15</span><span><strong>Főtaxi to Hungaroring</strong> · booked · misses F3 Feature (08:40), rebook earlier if wanted <span class="who2">· David &amp; Cameron</span></span></li>
+        <li><span class="t">10:10–13:30</span><span><strong>Supercup race → F2 Feature → Drivers' Parade</strong> <span class="who2">· David &amp; Cameron</span></span></li>
+        <li><span class="t">15:00–17:00</span><span><strong>F1 Hungarian Grand Prix — Race</strong> · 70 laps <span class="who2">· David &amp; Cameron</span></span></li>
+        <li class="tbd"><span class="t">TBD</span><span><strong>Kate's day</strong> · Royal Spa / Rudas / Gellért Hill / Buda Castle <span class="who2">· Kate</span></span></li>
+        <li class="tbd"><span class="t">TBD</span><span><strong>Post-race dinner</strong> <span class="who2">· all three</span></span></li>
+      </ul>
+    </div>
+
+    <div class="iday reveal">
+      <div class="iday-head"><span class="dd">Mon 27-Jul</span><span class="tt">Departure</span></div>
+      <ul>
+        <li><span class="t">by 11:00</span><span><strong>Check out</strong> · Hotel Rum Budapest <span class="who2">· all three</span></span></li>
+        <li class="tbd"><span class="t">Morning</span><span><strong>Great Market Hall · New York Café brunch (book ahead) · Váci utca</strong> <span class="who2">· all three</span></span></li>
+        <li><span class="t">16:55–19:30</span><span><strong>Fly BUD → BCN</strong> · FR8393 · leave the city by 14:30 <span class="who2">· all three</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= PLACES ================= -->
+  <section id="places">
+    <div class="sec-head reveal">
+      <div class="hu">Helyek</div>
+      <h2>The Places</h2>
+    </div>
+    <div class="pgrid reveal" id="pgrid"></div>
+  </section>
+
+  <!-- ================= OPEN ================= -->
+  <section id="open">
+    <div class="sec-head reveal">
+      <div class="hu">Teendők</div>
+      <h2>Still to Book</h2>
+    </div>
+    <ul class="todo reveal">
+      <li class="hot"><span><b>Sat birthday dinner</b> — Déryné or Virtu. Book now; F1 weekend fills fast.</span></li>
+      <li><span><b>Thu Danube boat charter</b> — ~19:00–20:30, privatecruisebudapest.com, from €450/boat.</span></li>
+      <li><span><b>Fri dinner</b> — Mazel Tov / Dobrumba / Virtu / Circo, all three together.</span></li>
+      <li><span><b>Sun post-race dinner</b> — venue TBD.</span></li>
+      <li><span><b>Mon brunch</b> — New York Café, reservation recommended.</span></li>
+      <li><span><b>Fri taxi time</b> — F2 practice 11:05, decide how early.</span></li>
+      <li><span><b>Sun taxi time</b> — 09:15 booked; earlier to catch F3 at 08:40 if wanted.</span></li>
+      <li><span><b>Kate's Fri spa</b> — Royal Spa or Mandala Day Spa.</span></li>
+      <li><span><b>Kate's Sun plan</b> — spa / Rudas / Gellért Hill / Buda Castle.</span></li>
+      <li><span><b>David's Fri &amp; Sat plans</b> — free days in the city.</span></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="hu">Kate · David · Cameron</div>
+  <div class="sub">Isten hozott Budapesten · regenerated from the master planning sheet · 17-Jul-2026 · times provisional</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+/* ---------- data ---------- */
+const CATS = {
+  stay:  {label:'Stay',        color:'#0f3d5c'},
+  f1:    {label:'F1',          color:'#1c1a17'},
+  eat:   {label:'Eat & Drink', color:'#d4491f'},
+  spa:   {label:'Spa & Baths', color:'#1e6e7e'},
+  sights:{label:'Sights & Shop',color:'#c9a227'}
+};
+const PLACES = [
+  {n:'Hotel Rum Budapest', c:'stay', lat:47.4905074, lng:19.0591218, note:'Base for four nights. Királyi Pál u. 4. Early check-in requested.', pid:'ChIJB4Em2kTcQUcR1pQhOKV-wNM', q:'Hotel Rum Budapest', tag:'Stay · booked'},
+  {n:'Hungaroring', c:'f1', lat:47.5797591, lng:19.2474159, note:'Sector D · Row 7 · Seats 24 & 25. Enter via Gate 8 (grandstand only). Gates 07:30.', pid:'ChIJn9hRgpvPQUcRb_UBv5eGuzc', q:'Hungaroring', tag:'F1 · weekend pass'},
+  {n:'Déryné', c:'eat', lat:47.4972401, lng:19.0316416, note:'Booked Thu 21:00. Chic Parisian-Hungarian bistro, casually elegant. Buda side.', pid:'ChIJM1KEgCTcQUcRnr7f9tjnbmo', q:'Déryné Budapest', tag:'Eat · booked Thu'},
+  {n:'Mazel Tov', c:'eat', lat:47.5002778, lng:19.0655242, note:'Fri dinner candidate. Leafy ruin-garden Israeli spot, Jewish Quarter. Book online.', pid:'ChIJkQtc62jcQUcR-LiTHtkcmfU', q:'Mazel Tov Budapest', tag:'Eat · Fri candidate'},
+  {n:'Dobrumba', c:'eat', lat:47.4969053, lng:19.0599519, note:'Fri dinner candidate. Middle Eastern sharing plates, 8 min from the hotel. Reserve.', pid:'ChIJeXPibkLcQUcR41_OWXCz9Tw', q:'Dobrumba Budapest', tag:'Eat · Fri candidate'},
+  {n:'Virtu', c:'eat', lat:47.4679454, lng:19.0592763, note:'Birthday dinner candidate. 28th floor of MOL Campus, best panorama in town. Closed Sundays. 15% service fee.', pid:'ChIJh3mjMUbdQUcRKF7tiaaNw4E', q:'VIRTU Restaurant Budapest', tag:'Eat · birthday candidate'},
+  {n:'Circo Pizza', c:'eat', lat:47.5036353, lng:19.057978, note:'Fri dinner candidate. Standout Neapolitan pizza near the Opera. Casual.', pid:'ChIJWxYR64LdQUcRIFe-39kojxI', q:'Circo Pizza Budapest', tag:'Eat · Fri candidate'},
+  {n:'New York Café', c:'eat', lat:47.4987259, lng:19.0704556, note:'Mon brunch candidate. Gilded Belle Époque hall — go for the room, book ahead.', pid:'ChIJmeeg4mbcQUcRIOHu3gDTJDs', q:'New York Café Budapest', tag:'Eat · Mon brunch'},
+  {n:'Royal Spa (Corinthia)', c:'spa', lat:47.5029427, lng:19.0664914, note:'Kate Fri/Sun option. Quiet, elegant hotel spa. Book treatments ahead.', pid:'ChIJryQJuyLdQUcRnkrcrraZ_Ws', q:'Royal Spa Corinthia Budapest', tag:'Spa · Kate'},
+  {n:'Mandala Day Spa', c:'spa', lat:47.520282, lng:19.0549403, note:'Kate Fri alternative. Calm, capped capacity. Bring flip-flops and a towel.', pid:'ChIJCVSRSvbbQUcRUuAqzdBiXRU', q:'Mandala Day Spa Budapest', tag:'Spa · Kate'},
+  {n:'Rudas Baths', c:'spa', lat:47.4891599, lng:19.0479716, note:'Kate Sun option. 16th-c Turkish bath, rooftop pool over the Danube. Co-ed Sundays.', pid:'ChIJvwc6eUjcQUcRevigwh1jDOM', q:'Rudas Thermal Bath Budapest', tag:'Bath · Kate'},
+  {n:'Gellért Hill', c:'sights', lat:47.4863889, lng:19.0411111, note:'Best free views over the city. Steep — go early in July heat.', pid:'ChIJibrLEzbcQUcRDpPMb5am4qw', q:'Gellért Hill Budapest', tag:'Sights'},
+  {n:'Buda Castle', c:'sights', lat:47.4962048, lng:19.0395666, note:'Castle district, funicular, river panoramas. Magical lit up at night.', pid:'ChIJDw826jzcQUcRdiUBqV86zj0', q:'Buda Castle', tag:'Sights'},
+  {n:'Great Market Hall', c:'sights', lat:47.4870848, lng:19.058493, note:'Mon morning. Opens 06:00 — paprika, lángos, souvenirs. 10 min from the hotel.', pid:'ChIJ98Kx4k_cQUcRzC66ex41jKA', q:'Central Market Hall Budapest', tag:'Shop · Mon'},
+  {n:'Váci utca', c:'sights', lat:47.4918902, lng:19.0538414, note:'Mon morning wander back toward the hotel. Pedestrian shopping street.', pid:'ChIJg2RLIUTcQUcRxJJ6HqSN8Bo', q:'Váci utca Budapest', tag:'Shop · Mon'},
+  {n:"Heroes' Square", c:'sights', lat:47.5149429, lng:19.0778626, note:'City Shuttle pickup — direct to the circuit, €20 pp each way, no booking.', pid:'ChIJaSHx-YfbQUcRPylIurx8QTQ', q:'Heroes Square Budapest', tag:'Sights · shuttle stop'}
+];
+const mapsUrl = p => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.q)}&query_place_id=${p.pid}`;
+
+/* ---------- map ---------- */
+const CITY = {center:[47.4955,19.052], zoom:14};
+const map = L.map('map', {scrollWheelZoom:false}).setView(CITY.center, CITY.zoom);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  maxZoom:19
+}).addTo(map);
+map.on('click', () => map.scrollWheelZoom.enable());
+
+const markers = {};
+PLACES.forEach(p => {
+  const icon = L.divIcon({
+    className:'',
+    html:`<div class="pin" style="background:${CATS[p.c].color}"></div>`,
+    iconSize:[22,22], iconAnchor:[4,20], popupAnchor:[7,-18]
+  });
+  const m = L.marker([p.lat, p.lng], {icon}).bindPopup(
+    `<b>${p.n}</b><br><span style="font-size:.8rem">${p.note}</span><br>
+     <a href="${mapsUrl(p)}" target="_blank" rel="noopener">Open in Google Maps →</a>`
+  );
+  m.addTo(map);
+  (markers[p.c] ||= []).push(m);
+});
+
+/* chips */
+const chipsEl = document.getElementById('chips');
+const state = Object.fromEntries(Object.keys(CATS).map(k => [k, true]));
+Object.entries(CATS).forEach(([key, cat]) => {
+  const b = document.createElement('button');
+  b.className = 'chip';
+  b.setAttribute('aria-pressed', 'true');
+  b.innerHTML = `<span class="sw" style="background:${cat.color}"></span>${cat.label}`;
+  b.addEventListener('click', () => {
+    state[key] = !state[key];
+    b.setAttribute('aria-pressed', String(state[key]));
+    markers[key].forEach(m => state[key] ? m.addTo(map) : map.removeLayer(m));
+  });
+  chipsEl.appendChild(b);
+});
+
+/* fly buttons */
+document.getElementById('fly-ring').addEventListener('click', () => map.flyTo([47.5797591,19.2474159], 14, {duration:1.6}));
+document.getElementById('fly-city').addEventListener('click', () => map.flyTo(CITY.center, CITY.zoom, {duration:1.6}));
+
+/* ---------- places grid ---------- */
+const pg = document.getElementById('pgrid');
+PLACES.filter(p => p.c !== 'f1' && p.c !== 'stay').forEach(p => {
+  const col = CATS[p.c].color;
+  const card = document.createElement('div');
+  card.className = 'pcard';
+  card.innerHTML = `
+    <div class="band" style="background:${col}"></div>
+    <div class="body">
+      <div class="tag" style="color:${col}">${p.tag}</div>
+      <h3>${p.n}</h3>
+      <p>${p.note}</p>
+      <div class="links"><a href="${mapsUrl(p)}" target="_blank" rel="noopener">Map</a></div>
+    </div>`;
+  pg.appendChild(card);
+});
+
+/* ---------- countdown ---------- */
+const T0 = new Date('2026-07-26T15:00:00+02:00').getTime();
+const pad = n => String(n).padStart(2,'0');
+function tick(){
+  let d = T0 - Date.now();
+  const cd = document.getElementById('cd');
+  if (d <= 0){ cd.innerHTML = '<div class="cd-unit"><b>🏁</b><i>lights out</i></div>'; return; }
+  const days = Math.floor(d/864e5); d -= days*864e5;
+  const hrs = Math.floor(d/36e5); d -= hrs*36e5;
+  const min = Math.floor(d/6e4); d -= min*6e4;
+  const sec = Math.floor(d/1e3);
+  document.getElementById('cd-d').textContent = days;
+  document.getElementById('cd-h').textContent = pad(hrs);
+  document.getElementById('cd-m').textContent = pad(min);
+  document.getElementById('cd-s').textContent = pad(sec);
+  setTimeout(tick, 1000);
+}
+tick();
+
+/* ---------- tabs ---------- */
+const tabs = document.querySelectorAll('.day-tab');
+tabs.forEach(tab => tab.addEventListener('click', () => {
+  tabs.forEach(t => t.setAttribute('aria-selected','false'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  tab.setAttribute('aria-selected','true');
+  document.getElementById(tab.getAttribute('aria-controls')).classList.add('active');
+}));
+
+/* ---------- scroll reveal ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+}), {threshold:.08});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

@@ -270,6 +270,33 @@
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
   .reveal.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  /* ================= MOBILE ================= */
+  section{scroll-margin-top:58px}
+  @media(max-width:700px){
+    .hero{padding-top:30px}
+    .hero-top{flex-direction:column;gap:7px;font-size:.68rem}
+    .hero-top .lines{border-top-width:2px;padding-top:4px}
+    h1{
+      font-size:clamp(4.2rem,26vw,7rem);
+      line-height:.92;
+      text-shadow:3px 3px 0 var(--paprika);
+      -webkit-text-stroke:0;
+      margin-top:16px;
+    }
+    .hero-sub{gap:6px 14px;font-size:.7rem;padding:9px 0;border-top-width:2px;border-bottom-width:2px;letter-spacing:.08em}
+    .stamp{margin-top:14px;padding:7px 13px;border-width:3px}
+    .marquee-inner{font-size:.82rem;padding:8px 0}
+    .countdown{padding:16px 0}
+    .countdown .wrap{flex-direction:column;align-items:center;text-align:center;gap:10px}
+    .cd-units{gap:6px}
+    .cd-unit{min-width:56px;padding:6px 8px}
+    nav a{padding:12px 12px;font-size:.7rem}
+    section{padding-top:48px;scroll-margin-top:50px}
+    .sec-head{border-left-width:6px;padding-left:14px;margin-bottom:26px}
+    .g-cell{padding:18px}
+    .seatcard{padding:22px}
+  }
 </style>
 </head>
 <body>
@@ -282,7 +309,7 @@
       <div class="lines">23-Jul-2026 → 27-Jul-2026</div>
       <div class="lines">David · Kate · Cameron</div>
     </div>
-    <h1>Buda&shy;pest</h1>
+    <h1>Buda<wbr>pest</h1>
     <div class="stamp">Cameron<br>18<small>Születésnap · 25-Jul</small></div>
     <div class="hero-sub">
       <span>Hotel Rum</span><span class="dot">●</span>
@@ -303,8 +330,8 @@
 <!-- ================= MARQUEE ================= -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-inner">
-    Hungarian Grand Prix <span>★</span> Cameron turns 18 <span>★</span> Lights out Sun 15:00 <span>★</span> Sector D · Row 7 <span>★</span> Gate 8 <span>★</span> Danube by night <span>★</span> Isten hozott Budapesten <span>★</span>
-    Hungarian Grand Prix <span>★</span> Cameron turns 18 <span>★</span> Lights out Sun 15:00 <span>★</span> Sector D · Row 7 <span>★</span> Gate 8 <span>★</span> Danube by night <span>★</span> Isten hozott Budapesten <span>★</span>
+    Hungarian Grand Prix <span>★</span> Cameron turns 18 <span>★</span> Lights out Sun 15:00 <span>★</span> Sector D · Row 7 <span>★</span> Gate 8 <span>★</span> Allez Gasly №10 <span>★</span> Danube by night <span>★</span> Isten hozott Budapesten <span>★</span>
+    Hungarian Grand Prix <span>★</span> Cameron turns 18 <span>★</span> Lights out Sun 15:00 <span>★</span> Sector D · Row 7 <span>★</span> Gate 8 <span>★</span> Allez Gasly №10 <span>★</span> Danube by night <span>★</span> Isten hozott Budapesten <span>★</span>
   </div>
 </div>
 
@@ -544,7 +571,7 @@
       <ul>
         <li><span class="t">09:15</span><span><strong>Főtaxi to Hungaroring</strong> · booked · misses F3 Feature (08:40), rebook earlier if wanted <span class="who2">· David &amp; Cameron</span></span></li>
         <li><span class="t">10:10–13:30</span><span><strong>Supercup race → F2 Feature → Drivers' Parade</strong> <span class="who2">· David &amp; Cameron</span></span></li>
-        <li><span class="t">15:00–17:00</span><span><strong>F1 Hungarian Grand Prix — Race</strong> · 70 laps <span class="who2">· David &amp; Cameron</span></span></li>
+        <li><span class="t">15:00–17:00</span><span><strong>F1 Hungarian Grand Prix — Race</strong> · 70 laps · eyes on the №10 Alpine <span class="who2">· David &amp; Cameron</span></span></li>
         <li class="tbd"><span class="t">TBD</span><span><strong>Kate's day</strong> · Royal Spa / Rudas / Gellért Hill / Buda Castle <span class="who2">· Kate</span></span></li>
         <li class="tbd"><span class="t">TBD</span><span><strong>Post-race dinner</strong> <span class="who2">· all three</span></span></li>
       </ul>

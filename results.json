@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-19T07:18:49.348Z",
-  "status": "in_progress",
+  "updated": "2026-07-20T07:48:55.420Z",
+  "status": "complete",
   "groupFinal": {
     "A": true,
     "B": true,
@@ -129,7 +129,7 @@
       "Argentina"
     ]
   },
-  "champion": null,
+  "champion": "Spain",
   "eliminated": [
     "South Africa",
     "Japan",
@@ -161,6 +161,7 @@
     "Switzerland",
     "France",
     "England",
+    "Argentina",
     "Korea Republic",
     "Czechia",
     "Qatar",

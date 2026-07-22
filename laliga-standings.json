@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-21T07:13:05.584Z",
+  "updated": "2026-07-22T07:14:43.905Z",
   "d1": [
     {
       "rank": 1,
@@ -75,7 +75,7 @@
     },
     {
       "rank": 13,
-      "name": "Sevilla FC",
+      "name": "Elche CF",
       "pts": 43,
       "s": "mid"
     },
@@ -87,25 +87,25 @@
     },
     {
       "rank": 15,
-      "name": "Elche CF",
+      "name": "Sevilla FC",
       "pts": 43,
       "s": "mid"
     },
     {
       "rank": 16,
-      "name": "Levante UD",
-      "pts": 42,
-      "s": "mid"
-    },
-    {
-      "rank": 17,
       "name": "CA Osasuna",
       "pts": 42,
       "s": "mid"
     },
     {
-      "rank": 18,
+      "rank": 17,
       "name": "RCD Mallorca",
+      "pts": 42,
+      "s": "mid"
+    },
+    {
+      "rank": 18,
+      "name": "Levante UD",
       "pts": 42,
       "s": "rel"
     },

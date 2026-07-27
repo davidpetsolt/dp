@@ -47,8 +47,11 @@
   }
   header h1 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
   header .sub { margin: 2px 0 0; color: var(--ink-2); font-size: 14px; }
-  .updated { color: var(--muted); font-size: 13px; text-align: right; }
+  .updated { color: var(--muted); font-size: 13px; text-align: right; line-height: 1.7; }
   .updated b { color: var(--ink-2); font-weight: 600; }
+  .dsi-badge { display: inline-block; margin-top: 8px; padding: 3px 12px; border-radius: 999px;
+    background: #337FBF; color: #fff; font-size: 12.5px; font-weight: 650; letter-spacing: .02em; }
+  @media (max-width: 660px) { .updated { text-align: left; } }
 
   /* ---------- cards & grids ---------- */
   .card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 14px;
@@ -136,9 +139,10 @@
       <div>
         <h1>AT&amp;T &mdash; Google Reviews</h1>
         <p class="sub">Google Business Profile review activity across AT&amp;T retail locations</p>
+        <span class="dsi-badge">Provided by DSI</span>
       </div>
     </div>
-    <div class="updated">Data refreshed daily<br><b id="updated">&nbsp;</b></div>
+    <div class="updated">DSI Costco Review Program started <b>09-Jul-2026</b><br>Data refreshed daily &middot; <b id="updated">&nbsp;</b></div>
   </header>
 
   <div id="app">

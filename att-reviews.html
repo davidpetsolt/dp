@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>AT&T — Google Reviews Dashboard</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2300A8E0'/%3E%3Cpath d='M32 12l5.9 12 13.2 1.9-9.5 9.3 2.2 13.1L32 42.1l-11.8 6.2 2.2-13.1-9.5-9.3L26.1 24z' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+  :root {
+    color-scheme: light;
+    --brand:        #00A8E0;   /* AT&T primary */
+    --brand-deep:   #00587e;
+    --surface-1:    #fcfdfe;   /* card / chart surface */
+    --plane:        #f2f6f8;   /* page plane */
+    --ink:          #10181d;
+    --ink-2:        #4d5a63;
+    --muted:        #8a949b;
+    --grid:         #e3e8ec;
+    --baseline:     #c6cfd5;
+    --border:       rgba(16,24,29,.10);
+    --seq:          #0076a8;   /* single-series data color */
+    --ord-low:      #6cc0e4;   /* 1–3 star  */
+    --ord-mid:      #2ba3d4;   /* 4 star    */
+    --ord-high:     #00587e;   /* 5 star    */
+    --star:         #f5a800;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--plane);
+    color: var(--ink);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 28px 20px 64px; }
+
+  /* ---------- header ---------- */
+  header { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+  .brandline { display: flex; align-items: center; gap: 14px; }
+  .brandmark { width: 44px; height: 44px; border-radius: 50%; flex: none;
+    background: radial-gradient(circle at 32% 30%, #7fd8f4 0%, var(--brand) 45%, #0071a9 100%); position: relative; }
+  .brandmark::after { content: ""; position: absolute; inset: 8px; border-radius: 50%;
+    background:
+      linear-gradient(transparent 42%, rgba(255,255,255,.85) 43%, rgba(255,255,255,.85) 49%, transparent 50%),
+      linear-gradient(transparent 62%, rgba(255,255,255,.7) 63%, rgba(255,255,255,.7) 68%, transparent 69%);
+  }
+  header h1 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+  header .sub { margin: 2px 0 0; color: var(--ink-2); font-size: 14px; }
+  .updated { color: var(--muted); font-size: 13px; text-align: right; }
+  .updated b { color: var(--ink-2); font-weight: 600; }
+
+  /* ---------- cards & grids ---------- */
+  .card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px 20px; box-shadow: 0 1px 2px rgba(16,24,29,.04); }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 14px; }
+  .charts { display: grid; grid-template-columns: 5fr 5fr 4fr; gap: 14px; margin-bottom: 14px; }
+  @media (max-width: 980px) { .charts { grid-template-columns: 1fr 1fr; } .charts .card:last-child { grid-column: 1 / -1; } }
+  @media (max-width: 660px) { .charts { grid-template-columns: 1fr; } }
+
+  /* ---------- stat tiles ---------- */
+  .tile .label { font-size: 13px; color: var(--ink-2); margin-bottom: 6px; }
+  .tile .value { font-size: 34px; font-weight: 650; line-height: 1.1; letter-spacing: -.01em; }
+  .tile .note  { font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+  .stars { color: var(--star); letter-spacing: 2px; font-size: 15px; }
+
+  /* ---------- chart chrome ---------- */
+  .card h2 { margin: 0 0 2px; font-size: 15px; font-weight: 650; }
+  .card .chart-sub { margin: 0 0 12px; font-size: 12.5px; color: var(--muted); }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-2); margin: 0 0 10px; }
+  .legend .key { display: inline-flex; align-items: center; gap: 6px; }
+  .legend .sw { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+  svg text { font: 11.5px system-ui, -apple-system, "Segoe UI", sans-serif; fill: var(--muted); }
+  svg .val { fill: var(--ink-2); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .tooltip { position: fixed; z-index: 30; pointer-events: none; background: #10181d; color: #fff;
+    border-radius: 8px; padding: 8px 11px; font-size: 12.5px; line-height: 1.45; max-width: 260px;
+    box-shadow: 0 6px 18px rgba(16,24,29,.25); opacity: 0; transition: opacity .08s; }
+  .tooltip b { font-weight: 650; }
+  .tooltip .tt-muted { color: #aeb9c0; }
+
+  /* ---------- table & filters ---------- */
+  .filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 4px 0 14px; }
+  .filters select, .filters input[type="search"] {
+    font: inherit; font-size: 13.5px; color: var(--ink); background: #fff;
+    border: 1px solid var(--baseline); border-radius: 9px; padding: 7px 10px; }
+  .filters input[type="search"] { flex: 1 1 220px; min-width: 180px; }
+  .filters .count { font-size: 12.5px; color: var(--muted); margin-left: auto; }
+  .btn { font: inherit; font-size: 13px; font-weight: 600; color: #fff; background: var(--brand-deep);
+    border: 0; border-radius: 9px; padding: 8px 14px; cursor: pointer; }
+  .btn:hover { background: #00344b; }
+  .tbl-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { text-align: left; padding: 9px 12px; vertical-align: top; border-bottom: 1px solid var(--grid); }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted);
+    font-weight: 600; white-space: nowrap; cursor: pointer; user-select: none; position: sticky; top: 0; background: var(--surface-1); }
+  th .arrow { font-size: 10px; }
+  td.c-date { white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--ink-2); }
+  td.c-rating { white-space: nowrap; }
+  td.c-review { min-width: 320px; max-width: 560px; }
+  td.c-name { white-space: nowrap; font-weight: 600; }
+  tr:hover td { background: #f5fafd; }
+  .pill { display: inline-block; font-size: 12px; padding: 2px 9px; border-radius: 999px;
+    background: #eaf6fc; color: var(--brand-deep); font-weight: 600; }
+  .muted-cell { color: var(--muted); font-style: italic; }
+
+  footer { margin-top: 26px; color: var(--muted); font-size: 12.5px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .err { padding: 40px; text-align: center; color: var(--ink-2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brandline">
+      <div class="brandmark" aria-hidden="true"></div>
+      <div>
+        <h1>AT&amp;T &mdash; Google Reviews</h1>
+        <p class="sub">Google Business Profile review activity across AT&amp;T retail locations</p>
+      </div>
+    </div>
+    <div class="updated">Data refreshed daily<br><b id="updated">&nbsp;</b></div>
+  </header>
+
+  <div id="app">
+    <div class="kpis" id="kpis"></div>
+    <div class="charts">
+      <div class="card">
+        <h2>Reviews by month</h2>
+        <p class="chart-sub">Count of reviews received, by star rating</p>
+        <div class="legend" id="legend-monthly"></div>
+        <div id="chart-monthly"></div>
+      </div>
+      <div class="card">
+        <h2>Average rating by month</h2>
+        <p class="chart-sub">Mean star rating of reviews received each month</p>
+        <div id="chart-avg"></div>
+      </div>
+      <div class="card">
+        <h2>Rating distribution</h2>
+        <p class="chart-sub">All reviews, by star rating</p>
+        <div id="chart-dist"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>All reviews</h2>
+      <div class="filters">
+        <select id="f-loc"><option value="">All locations</option></select>
+        <select id="f-rating">
+          <option value="">All ratings</option>
+          <option value="5">5 stars</option><option value="4">4 stars</option>
+          <option value="3">3 stars</option><option value="2">2 stars</option><option value="1">1 star</option>
+        </select>
+        <input type="search" id="f-q" placeholder="Search reviews or reviewers&hellip;">
+        <span class="count" id="f-count"></span>
+        <button class="btn" id="dl">Download CSV</button>
+      </div>
+      <div class="tbl-scroll">
+        <table id="tbl">
+          <thead><tr>
+            <th data-k="d">Date <span class="arrow" id="ar-d">&#9660;</span></th>
+            <th data-k="l">Location</th>
+            <th data-k="r">Rating <span class="arrow" id="ar-r"></span></th>
+            <th>Review</th>
+            <th>Reviewer</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>Source: Google Business Profile review notifications. Review text may be truncated by Google.</span>
+    <span>Prepared by NEXT Fractional</span>
+  </footer>
+</div>
+<div class="tooltip" id="tt"></div>
+
+<script>
+(async function () {
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const fmtDay = d => `${String(d.getUTCDate()).padStart(2,"0")}-${MONTHS[d.getUTCMonth()]}-${d.getUTCFullYear()}`;
+  const fmtMon = ym => { const [y,m] = ym.split("-"); return `${MONTHS[+m-1]} ${y}`; };
+  const esc = s => s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const star = n => "★".repeat(n) + "☆".repeat(5-n);
+
+  let data;
+  try {
+    data = await (await fetch("att-reviews.json", {cache: "no-store"})).json();
+  } catch (e) {
+    document.getElementById("app").innerHTML = '<div class="card err">Could not load review data. Please refresh the page.</div>';
+    return;
+  }
+  const R = data.reviews.slice().sort((a,b) => a.d < b.d ? -1 : a.d > b.d ? 1 : 0);
+  const updated = new Date(data.updated);
+  document.getElementById("updated").textContent = "Last updated " + fmtDay(updated);
+
+  /* ---------- KPIs ---------- */
+  const total = R.length;
+  const avg = R.reduce((s,x) => s + x.r, 0) / total;
+  const fiveShare = Math.round(100 * R.filter(x => x.r === 5).length / total);
+  const wk = new Date(updated); wk.setUTCDate(wk.getUTCDate() - 7);
+  const last7 = R.filter(x => new Date(x.d + "T00:00:00Z") >= wk).length;
+  document.getElementById("kpis").innerHTML = `
+    <div class="card tile"><div class="label">Total reviews</div><div class="value">${total.toLocaleString()}</div>
+      <div class="note">since ${fmtDay(new Date(R[0].d + "T00:00:00Z"))}</div></div>
+    <div class="card tile"><div class="label">Average rating</div><div class="value">${avg.toFixed(2)}</div>
+      <div class="note"><span class="stars">${star(Math.round(avg))}</span></div></div>
+    <div class="card tile"><div class="label">5-star reviews</div><div class="value">${fiveShare}%</div>
+      <div class="note">${R.filter(x => x.r === 5).length.toLocaleString()} of ${total.toLocaleString()} reviews</div></div>
+    <div class="card tile"><div class="label">Last 7 days</div><div class="value">${last7.toLocaleString()}</div>
+      <div class="note">new reviews received</div></div>`;
+
+  /* ---------- tooltip ---------- */
+  const tt = document.getElementById("tt");
+  const showTT = (html, ev) => { tt.innerHTML = html; tt.style.opacity = 1; moveTT(ev); };
+  const moveTT = ev => {
+    const pad = 14, w = tt.offsetWidth, h = tt.offsetHeight;
+    let x = ev.clientX + pad, y = ev.clientY - h - 10;
+    if (x + w > innerWidth - 8) x = ev.clientX - w - pad;
+    if (y < 8) y = ev.clientY + pad;
+    tt.style.left = x + "px"; tt.style.top = y + "px";
+  };
+  const hideTT = () => tt.style.opacity = 0;
+
+  /* ---------- monthly aggregation ---------- */
+  const byMonth = new Map();
+  for (const x of R) {
+    const ym = x.d.slice(0,7);
+    if (!byMonth.has(ym)) byMonth.set(ym, {low:0, four:0, five:0, sum:0, n:0});
+    const m = byMonth.get(ym);
+    if (x.r === 5) m.five++; else if (x.r === 4) m.four++; else m.low++;
+    m.sum += x.r; m.n++;
+  }
+  const months = [...byMonth.keys()].sort();
+  const SERIES = [
+    {key:"five", label:"5 stars",   color:"var(--ord-high)", hex:"#00587e"},
+    {key:"four", label:"4 stars",   color:"var(--ord-mid)",  hex:"#2ba3d4"},
+    {key:"low",  label:"1–3 stars", color:"var(--ord-low)",  hex:"#6cc0e4"},
+  ];
+  document.getElementById("legend-monthly").innerHTML = SERIES.map(s =>
+    `<span class="key"><span class="sw" style="background:${s.color}"></span>${s.label}</span>`).join("");
+
+  /* ---------- chart geometry helpers ---------- */
+  const CH = 240, padL = 34, padR = 12, padT = 12, padB = 26;
+  const niceMax = v => { const p = Math.pow(10, Math.floor(Math.log10(Math.max(v,1)))); const u = v/p;
+    return (u <= 1 ? 1 : u <= 2 ? 2 : u <= 2.5 ? 2.5 : u <= 5 ? 5 : 10) * p; };
+
+  /* ---------- chart 1: stacked columns ---------- */
+  function drawMonthly() {
+    const el = document.getElementById("chart-monthly");
+    const W = Math.max(el.clientWidth, 260);
+    const plotW = W - padL - padR, plotH = CH - padT - padB;
+    const maxN = niceMax(Math.max(...months.map(m => byMonth.get(m).n)));
+    const y = v => padT + plotH - (v / maxN) * plotH;
+    const band = plotW / months.length;
+    const bw = Math.min(24, band * 0.55);
+    let g = "";
+    // gridlines + y ticks
+    const steps = 4;
+    for (let i = 0; i <= steps; i++) {
+      const v = maxN * i / steps, yy = y(v);
+      g += `<line x1="${padL}" y1="${yy}" x2="${W-padR}" y2="${yy}" stroke="var(--grid)" stroke-width="1"/>`;
+      g += `<text x="${padL-7}" y="${yy+4}" text-anchor="end">${Math.round(v)}</text>`;
+    }
+    months.forEach((ym, i) => {
+      const m = byMonth.get(ym);
+      const x = padL + band * i + (band - bw) / 2;
+      let base = y(0);
+      const segs = [["low", m.low], ["four", m.four], ["five", m.five]]; // bottom→top: low, 4, 5
+      segs.forEach(([key, v], si) => {
+        if (!v) return;
+        const s = SERIES.find(s => s.key === key);
+        const top = base - (v / maxN) * plotH;
+        const hgt = Math.max(base - top - (si < 2 ? 2 : 0), 1); // 2px surface gap between segments
+        const isTop = top === y(m.n);
+        const rx = isTop ? 4 : 0;
+        g += `<path class="hit" data-ym="${ym}" d="${roundTopRect(x, top, bw, hgt, rx)}" fill="${s.hex}"/>`;
+        base = top;
+      });
+      g += `<rect class="hit" data-ym="${ym}" x="${padL + band*i}" y="${padT}" width="${band}" height="${plotH}" fill="transparent"/>`;
+      g += `<text x="${x + bw/2}" y="${CH - 8}" text-anchor="middle">${fmtMon(ym)}</text>`;
+      g += `<text class="val" x="${x + bw/2}" y="${y(m.n) - 7}" text-anchor="middle">${m.n}</text>`;
+    });
+    g += `<line x1="${padL}" y1="${y(0)}" x2="${W-padR}" y2="${y(0)}" stroke="var(--baseline)" stroke-width="1"/>`;
+    el.innerHTML = `<svg width="${W}" height="${CH}" role="img" aria-label="Stacked column chart of review counts by month and star rating">${g}</svg>`;
+    el.querySelectorAll(".hit").forEach(n => {
+      const ym = n.dataset.ym, m = byMonth.get(ym);
+      const html = `<b>${fmtMon(ym)}</b> — ${m.n} review${m.n === 1 ? "" : "s"}<br>
+        5 stars: <b>${m.five}</b><br>4 stars: <b>${m.four}</b><br>1–3 stars: <b>${m.low}</b>`;
+      n.addEventListener("mousemove", ev => showTT(html, ev));
+      n.addEventListener("mouseleave", hideTT);
+    });
+  }
+  function roundTopRect(x, y0, w, h, r) {
+    r = Math.min(r, w/2, h);
+    if (!r) return `M${x},${y0} h${w} v${h} h${-w} Z`;
+    return `M${x},${y0+r} a${r},${r} 0 0 1 ${r},${-r} h${w-2*r} a${r},${r} 0 0 1 ${r},${r} v${h-r} h${-w} Z`;
+  }
+
+  /* ---------- chart 2: average rating line ---------- */
+  function drawAvg() {
+    const el = document.getElementById("chart-avg");
+    const W = Math.max(el.clientWidth, 260);
+    const plotW = W - padL - padR, plotH = CH - padT - padB;
+    const y = v => padT + plotH - ((v - 1) / 4) * plotH; // domain 1..5
+    const band = plotW / months.length;
+    const px = i => padL + band * i + band / 2;
+    let g = "";
+    for (let v = 1; v <= 5; v++) {
+      g += `<line x1="${padL}" y1="${y(v)}" x2="${W-padR}" y2="${y(v)}" stroke="var(--grid)" stroke-width="1"/>`;
+      g += `<text x="${padL-7}" y="${y(v)+4}" text-anchor="end">${v}</text>`;
+    }
+    const pts = months.map((ym, i) => [px(i), y(byMonth.get(ym).sum / byMonth.get(ym).n)]);
+    if (pts.length > 1) {
+      g += `<path d="M${pts.map(p => p.join(",")).join(" L")}" fill="none" stroke="var(--seq)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+    }
+    months.forEach((ym, i) => {
+      const m = byMonth.get(ym), v = m.sum / m.n;
+      g += `<circle cx="${pts[i][0]}" cy="${pts[i][1]}" r="4.5" fill="var(--seq)" stroke="var(--surface-1)" stroke-width="2"/>`;
+      g += `<text x="${pts[i][0]}" y="${CH - 8}" text-anchor="middle">${fmtMon(ym)}</text>`;
+      if (i === months.length - 1)
+        g += `<text class="val" x="${pts[i][0]}" y="${pts[i][1] - 11}" text-anchor="middle">${v.toFixed(2)}</text>`;
+      g += `<rect class="hit" data-i="${i}" x="${padL + band*i}" y="${padT}" width="${band}" height="${plotH}" fill="transparent"/>`;
+    });
+    el.innerHTML = `<svg width="${W}" height="${CH}" role="img" aria-label="Line chart of average star rating by month">${g}</svg>`;
+    el.querySelectorAll(".hit").forEach(n => {
+      const ym = months[+n.dataset.i], m = byMonth.get(ym);
+      const html = `<b>${fmtMon(ym)}</b><br>Average rating: <b>${(m.sum/m.n).toFixed(2)}</b> <span class="tt-muted">(${m.n} review${m.n===1?"":"s"})</span>`;
+      n.addEventListener("mousemove", ev => showTT(html, ev));
+      n.addEventListener("mouseleave", hideTT);
+    });
+  }
+
+  /* ---------- chart 3: rating distribution ---------- */
+  function drawDist() {
+    const el = document.getElementById("chart-dist");
+    const W = Math.max(el.clientWidth, 220);
+    const counts = [5,4,3,2,1].map(r => ({r, n: R.filter(x => x.r === r).length}));
+    const maxN = Math.max(...counts.map(c => c.n), 1);
+    const rowH = 38, barH = 16, labW = 46, valPad = 8, H = rowH * 5 + 8;
+    let g = "";
+    counts.forEach((c, i) => {
+      const yMid = 10 + rowH * i + rowH / 2;
+      const bw = Math.max((c.n / maxN) * (W - labW - 56), c.n ? 3 : 0);
+      g += `<text x="${labW - 8}" y="${yMid + 4}" text-anchor="end">${c.r} ★</text>`;
+      g += `<line x1="${labW}" y1="${yMid}" x2="${W - 8}" y2="${yMid}" stroke="var(--grid)" stroke-width="1"/>`;
+      if (c.n) g += `<path class="hit" data-r="${c.r}" d="M${labW},${yMid - barH/2} h${Math.max(bw-4,0)} a4,4 0 0 1 4,4 v${barH-8} a4,4 0 0 1 -4,4 h${-Math.max(bw-4,0)} Z" fill="var(--seq)"/>`;
+      g += `<text class="val" x="${labW + bw + valPad}" y="${yMid + 4}">${c.n}</text>`;
+    });
+    el.innerHTML = `<svg width="${W}" height="${H}" role="img" aria-label="Bar chart of review counts by star rating">${g}</svg>`;
+    el.querySelectorAll(".hit").forEach(n => {
+      const c = counts.find(c => c.r === +n.dataset.r);
+      const html = `<b>${c.r}-star reviews</b><br>${c.n} of ${total} (${Math.round(100*c.n/total)}%)`;
+      n.addEventListener("mousemove", ev => showTT(html, ev));
+      n.addEventListener("mouseleave", hideTT);
+    });
+  }
+
+  /* ---------- table ---------- */
+  const locSel = document.getElementById("f-loc");
+  [...new Set(R.map(x => x.l))].sort().forEach(l => {
+    const o = document.createElement("option"); o.value = l; o.textContent = l; locSel.appendChild(o);
+  });
+  let sortK = "d", sortDir = -1; // newest first by default
+  function currentRows() {
+    const loc = locSel.value, rt = document.getElementById("f-rating").value,
+          q = document.getElementById("f-q").value.trim().toLowerCase();
+    let rows = R.filter(x =>
+      (!loc || x.l === loc) && (!rt || x.r === +rt) &&
+      (!q || x.t.toLowerCase().includes(q) || x.n.toLowerCase().includes(q)));
+    rows.sort((a,b) => {
+      const va = a[sortK], vb = b[sortK];
+      return (va < vb ? -1 : va > vb ? 1 : 0) * sortDir || (a.d < b.d ? 1 : -1);
+    });
+    return rows;
+  }
+  function renderTable() {
+    const rows = currentRows();
+    document.getElementById("f-count").textContent =
+      rows.length === total ? `${total} reviews` : `${rows.length} of ${total} reviews`;
+    document.getElementById("ar-d").innerHTML = sortK === "d" ? (sortDir === 1 ? "&#9650;" : "&#9660;") : "";
+    document.getElementById("ar-r").innerHTML = sortK === "r" ? (sortDir === 1 ? "&#9650;" : "&#9660;") : "";
+    document.querySelector("#tbl tbody").innerHTML = rows.map(x => `
+      <tr>
+        <td class="c-date">${fmtDay(new Date(x.d + "T00:00:00Z"))}</td>
+        <td><span class="pill">${esc(x.l)}</span></td>
+        <td class="c-rating"><span class="stars">${star(x.r)}</span></td>
+        <td class="c-review">${x.t === "This user only left a rating" ? '<span class="muted-cell">Rating only — no written review</span>' : esc(x.t)}</td>
+        <td class="c-name">${esc(x.n)}</td>
+      </tr>`).join("");
+  }
+  document.querySelectorAll("th[data-k]").forEach(th => th.addEventListener("click", () => {
+    const k = th.dataset.k;
+    if (sortK === k) sortDir *= -1; else { sortK = k; sortDir = k === "d" ? -1 : 1; }
+    renderTable();
+  }));
+  ["f-loc","f-rating","f-q"].forEach(id => document.getElementById(id).addEventListener("input", renderTable));
+
+  /* ---------- CSV download (current filter) ---------- */
+  document.getElementById("dl").addEventListener("click", () => {
+    const rows = currentRows().slice().sort((a,b) => a.d < b.d ? -1 : 1);
+    const csvCell = s => /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    const mdy = d => { const [y,m,dd] = d.split("-"); return `${+m}/${+dd}/${y}`; };
+    const csv = ["Date,Location,Rating,Review,Reviewer",
+      ...rows.map(x => [mdy(x.d), x.l, x.r, x.t, x.n].map(v => csvCell(String(v))).join(","))].join("\r\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob(["﻿" + csv], {type: "text/csv;charset=utf-8"}));
+    a.download = "att-google-reviews.csv";
+    a.click(); URL.revokeObjectURL(a.href);
+  });
+
+  /* ---------- render ---------- */
+  function drawAll() { drawMonthly(); drawAvg(); drawDist(); }
+  drawAll(); renderTable();
+  let rT; addEventListener("resize", () => { clearTimeout(rT); rT = setTimeout(drawAll, 120); });
+})();
+</script>
+</body>
+</html>

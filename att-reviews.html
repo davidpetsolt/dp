@@ -53,15 +53,36 @@
   /* ---------- cards & grids ---------- */
   .card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 14px;
     padding: 18px 20px; box-shadow: 0 1px 2px rgba(16,24,29,.04); }
-  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 14px; }
-  .charts { display: grid; grid-template-columns: 5fr 5fr 4fr; gap: 14px; margin-bottom: 14px; }
-  @media (max-width: 980px) { .charts { grid-template-columns: 1fr 1fr; } .charts .card:last-child { grid-column: 1 / -1; } }
-  @media (max-width: 660px) { .charts { grid-template-columns: 1fr; } }
+  .dash { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; margin-bottom: 14px; }
+  .dash > .tile { grid-column: span 3; }
+  .dash > .ch-monthly { grid-column: span 5; }
+  .dash > .ch-avg { grid-column: span 4; }
+  .dash > .ch-dist { grid-column: span 3; }
+  @media (max-width: 980px) {
+    .dash > .tile { grid-column: span 6; }
+    .dash > .ch-monthly, .dash > .ch-avg { grid-column: span 6; }
+    .dash > .ch-dist { grid-column: span 12; }
+  }
+  @media (max-width: 660px) {
+    /* single column: lead with the strongest story — recent rating, then trend charts */
+    .dash > .card { grid-column: span 12; }
+    .dash > .t-hero { order: 1; }
+    .dash > .ch-avg { order: 2; }
+    .dash > .ch-monthly { order: 3; }
+    .dash > .ch-dist { order: 4; }
+    .dash > .t-30count { order: 5; }
+    .dash > .t-5share { order: 6; }
+    .dash > .t-alltime { order: 7; }
+  }
 
   /* ---------- stat tiles ---------- */
   .tile .label { font-size: 13px; color: var(--ink-2); margin-bottom: 6px; }
   .tile .value { font-size: 34px; font-weight: 650; line-height: 1.1; letter-spacing: -.01em; }
   .tile .note  { font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+  .t-hero .value { font-size: 40px; }
+  .t-hero .value .stars { font-size: 19px; margin-left: 8px; letter-spacing: 3px; }
+  .delta-up { color: #006300; font-weight: 600; }
+  .delta-down { color: #b3261e; font-weight: 600; }
   .stars { color: var(--star); letter-spacing: 2px; font-size: 15px; }
 
   /* ---------- chart chrome ---------- */
@@ -121,20 +142,23 @@
   </header>
 
   <div id="app">
-    <div class="kpis" id="kpis"></div>
-    <div class="charts">
-      <div class="card">
+    <div class="dash">
+      <div class="card tile t-hero" id="kpi-hero"></div>
+      <div class="card tile t-30count" id="kpi-30count"></div>
+      <div class="card tile t-5share" id="kpi-5share"></div>
+      <div class="card tile t-alltime" id="kpi-alltime"></div>
+      <div class="card ch-monthly">
         <h2>Reviews by month</h2>
         <p class="chart-sub">Count of reviews received, by star rating</p>
         <div class="legend" id="legend-monthly"></div>
         <div id="chart-monthly"></div>
       </div>
-      <div class="card">
+      <div class="card ch-avg">
         <h2>Average rating by month</h2>
         <p class="chart-sub">Mean star rating of reviews received each month</p>
         <div id="chart-avg"></div>
       </div>
-      <div class="card">
+      <div class="card ch-dist">
         <h2>Rating distribution</h2>
         <p class="chart-sub">All reviews, by star rating</p>
         <div id="chart-dist"></div>
@@ -197,19 +221,35 @@
 
   /* ---------- KPIs ---------- */
   const total = R.length;
-  const avg = R.reduce((s,x) => s + x.r, 0) / total;
-  const fiveShare = Math.round(100 * R.filter(x => x.r === 5).length / total);
-  const wk = new Date(updated); wk.setUTCDate(wk.getUTCDate() - 7);
-  const last7 = R.filter(x => new Date(x.d + "T00:00:00Z") >= wk).length;
-  document.getElementById("kpis").innerHTML = `
-    <div class="card tile"><div class="label">Total reviews</div><div class="value">${total.toLocaleString()}</div>
-      <div class="note">since ${fmtDay(new Date(R[0].d + "T00:00:00Z"))}</div></div>
-    <div class="card tile"><div class="label">Average rating</div><div class="value">${avg.toFixed(2)}</div>
-      <div class="note"><span class="stars">${star(Math.round(avg))}</span></div></div>
-    <div class="card tile"><div class="label">5-star reviews</div><div class="value">${fiveShare}%</div>
-      <div class="note">${R.filter(x => x.r === 5).length.toLocaleString()} of ${total.toLocaleString()} reviews</div></div>
-    <div class="card tile"><div class="label">Last 7 days</div><div class="value">${last7.toLocaleString()}</div>
-      <div class="note">new reviews received</div></div>`;
+  const avgAll = R.reduce((s,x) => s + x.r, 0) / total;
+  const daysAgo = n => { const d = new Date(updated); d.setUTCDate(d.getUTCDate() - n); return d; };
+  const inWin = (x, from, to) => { const d = new Date(x.d + "T00:00:00Z"); return d >= from && d < to; };
+  const last30 = R.filter(x => inWin(x, daysAgo(30), new Date(updated.getTime() + 864e5)));
+  const prev30 = R.filter(x => inWin(x, daysAgo(60), daysAgo(30)));
+  const mean = a => a.length ? a.reduce((s,x) => s + x.r, 0) / a.length : null;
+  const avg30 = mean(last30), avgPrev = mean(prev30);
+  const share5 = a => a.length ? Math.round(100 * a.filter(x => x.r === 5).length / a.length) : 0;
+  let heroDelta = "";
+  if (avg30 != null && avgPrev != null) {
+    const dv = avg30 - avgPrev, up = dv >= 0;
+    heroDelta = ` &middot; <span class="${up ? "delta-up" : "delta-down"}">${up ? "&#9650;" : "&#9660;"} ${(up ? "+" : "") + dv.toFixed(2)}</span> vs prior 30 days`;
+  }
+  document.getElementById("kpi-hero").innerHTML = `
+    <div class="label">Average rating &mdash; last 30 days</div>
+    <div class="value">${avg30 != null ? avg30.toFixed(2) : "&ndash;"}<span class="stars">${star(Math.round(avg30 || 0))}</span></div>
+    <div class="note">${last30.length.toLocaleString()} reviews${heroDelta}</div>`;
+  document.getElementById("kpi-30count").innerHTML = `
+    <div class="label">Reviews &mdash; last 30 days</div>
+    <div class="value">${last30.length.toLocaleString()}</div>
+    <div class="note">${prev30.length.toLocaleString()} in the prior 30 days</div>`;
+  document.getElementById("kpi-5share").innerHTML = `
+    <div class="label">5-star share &mdash; last 30 days</div>
+    <div class="value">${share5(last30)}%</div>
+    <div class="note">all time: ${share5(R)}%</div>`;
+  document.getElementById("kpi-alltime").innerHTML = `
+    <div class="label">All-time average</div>
+    <div class="value">${avgAll.toFixed(2)}</div>
+    <div class="note">${total.toLocaleString()} reviews since ${fmtDay(new Date(R[0].d + "T00:00:00Z"))}</div>`;
 
   /* ---------- tooltip ---------- */
   const tt = document.getElementById("tt");

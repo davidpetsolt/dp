@@ -242,26 +242,31 @@
     `<span class="key"><span class="sw" style="background:${s.color}"></span>${s.label}</span>`).join("");
 
   /* ---------- chart geometry helpers ---------- */
-  const CH = 240, padL = 34, padR = 12, padT = 12, padB = 26;
-  const niceMax = v => { const p = Math.pow(10, Math.floor(Math.log10(Math.max(v,1)))); const u = v/p;
-    return (u <= 1 ? 1 : u <= 2 ? 2 : u <= 2.5 ? 2.5 : u <= 5 ? 5 : 10) * p; };
+  const CH = 248, padL = 38, padR = 12, padT = 22, padB = 26;
+  // round tick step, then extend the max to a whole number of steps
+  function niceScale(v) {
+    const raw = Math.max(v, 1) / 4;
+    const p = Math.pow(10, Math.floor(Math.log10(raw))), u = raw / p;
+    const step = (u <= 1 ? 1 : u <= 2 ? 2 : u <= 2.5 ? 2.5 : u <= 5 ? 5 : 10) * p;
+    return { step, max: step * Math.ceil(Math.max(v, 1) / step) };
+  }
 
   /* ---------- chart 1: stacked columns ---------- */
   function drawMonthly() {
     const el = document.getElementById("chart-monthly");
     const W = Math.max(el.clientWidth, 260);
     const plotW = W - padL - padR, plotH = CH - padT - padB;
-    const maxN = niceMax(Math.max(...months.map(m => byMonth.get(m).n)));
+    const sc = niceScale(Math.max(...months.map(m => byMonth.get(m).n)));
+    const maxN = sc.max;
     const y = v => padT + plotH - (v / maxN) * plotH;
     const band = plotW / months.length;
     const bw = Math.min(24, band * 0.55);
     let g = "";
-    // gridlines + y ticks
-    const steps = 4;
-    for (let i = 0; i <= steps; i++) {
-      const v = maxN * i / steps, yy = y(v);
+    // gridlines + y ticks (round steps)
+    for (let v = 0; v <= maxN; v += sc.step) {
+      const yy = y(v);
       g += `<line x1="${padL}" y1="${yy}" x2="${W-padR}" y2="${yy}" stroke="var(--grid)" stroke-width="1"/>`;
-      g += `<text x="${padL-7}" y="${yy+4}" text-anchor="end">${Math.round(v)}</text>`;
+      g += `<text x="${padL-7}" y="${yy+4}" text-anchor="end">${v.toLocaleString()}</text>`;
     }
     months.forEach((ym, i) => {
       const m = byMonth.get(ym);

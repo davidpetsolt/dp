@@ -112,6 +112,10 @@
   .btn { font: inherit; font-size: 13px; font-weight: 600; color: #fff; background: var(--brand-deep);
     border: 0; border-radius: 9px; padding: 8px 14px; cursor: pointer; }
   .btn:hover { background: #00344b; }
+  .expand-row { text-align: center; padding: 16px 0 4px; }
+  .btn-ghost { background: #fff; color: var(--brand-deep); border: 1px solid var(--baseline); }
+  .btn-ghost:hover { background: #eaf6fc; }
+  .expand-row.hidden { display: none; }
   .tbl-scroll { overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
   th, td { text-align: left; padding: 9px 12px; vertical-align: top; border-bottom: 1px solid var(--grid); }
@@ -197,6 +201,9 @@
           </tr></thead>
           <tbody></tbody>
         </table>
+      </div>
+      <div class="expand-row" id="expand-row">
+        <button class="btn btn-ghost" id="expand-btn"></button>
       </div>
     </div>
   </div>
@@ -416,6 +423,8 @@
     const o = document.createElement("option"); o.value = l; o.textContent = l; locSel.appendChild(o);
   });
   let sortK = "d", sortDir = -1; // newest first by default
+  const PAGE_SIZE = 100;
+  let visibleCount = PAGE_SIZE;
   function currentRows() {
     const loc = locSel.value, rt = document.getElementById("f-rating").value,
           q = document.getElementById("f-q").value.trim().toLowerCase();
@@ -434,7 +443,8 @@
       rows.length === total ? `${total} reviews` : `${rows.length} of ${total} reviews`;
     document.getElementById("ar-d").innerHTML = sortK === "d" ? (sortDir === 1 ? "&#9650;" : "&#9660;") : "";
     document.getElementById("ar-r").innerHTML = sortK === "r" ? (sortDir === 1 ? "&#9650;" : "&#9660;") : "";
-    document.querySelector("#tbl tbody").innerHTML = rows.map(x => `
+    const shown = rows.slice(0, visibleCount);
+    document.querySelector("#tbl tbody").innerHTML = shown.map(x => `
       <tr>
         <td class="c-date">${fmtDay(new Date(x.d + "T00:00:00Z"))}</td>
         <td><span class="pill">${esc(x.l)}</span></td>
@@ -443,13 +453,18 @@
         <td class="c-name">${esc(x.n)}</td>
         <td class="c-link">${x.u ? `<a href="${esc(x.u)}" target="_blank" rel="noopener" title="Open this review in Google Business Profile to reply (sign-in required)">Reply&nbsp;&#8599;</a>` : ""}</td>
       </tr>`).join("");
+    const remaining = rows.length - shown.length;
+    const expandRow = document.getElementById("expand-row"), expandBtn = document.getElementById("expand-btn");
+    expandRow.classList.toggle("hidden", remaining <= 0);
+    if (remaining > 0) expandBtn.textContent = `Show ${Math.min(remaining, PAGE_SIZE)} more (${remaining} remaining)`;
   }
   document.querySelectorAll("th[data-k]").forEach(th => th.addEventListener("click", () => {
     const k = th.dataset.k;
     if (sortK === k) sortDir *= -1; else { sortK = k; sortDir = k === "d" ? -1 : 1; }
     renderTable();
   }));
-  ["f-loc","f-rating","f-q"].forEach(id => document.getElementById(id).addEventListener("input", renderTable));
+  ["f-loc","f-rating","f-q"].forEach(id => document.getElementById(id).addEventListener("input", () => { visibleCount = PAGE_SIZE; renderTable(); }));
+  document.getElementById("expand-btn").addEventListener("click", () => { visibleCount += PAGE_SIZE; renderTable(); });
 
   /* ---------- CSV download (current filter) ---------- */
   document.getElementById("dl").addEventListener("click", () => {

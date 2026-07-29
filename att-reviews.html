@@ -122,6 +122,9 @@
   td.c-rating { white-space: nowrap; }
   td.c-review { min-width: 320px; max-width: 560px; }
   td.c-name { white-space: nowrap; font-weight: 600; }
+  td.c-link { white-space: nowrap; }
+  td.c-link a { color: var(--brand-deep); font-weight: 600; text-decoration: none; font-size: 13px; }
+  td.c-link a:hover { text-decoration: underline; }
   tr:hover td { background: #f5fafd; }
   .pill { display: inline-block; font-size: 12px; padding: 2px 9px; border-radius: 999px;
     background: #eaf6fc; color: var(--brand-deep); font-weight: 600; }
@@ -190,6 +193,7 @@
             <th data-k="r">Rating <span class="arrow" id="ar-r"></span></th>
             <th>Review</th>
             <th>Reviewer</th>
+            <th></th>
           </tr></thead>
           <tbody></tbody>
         </table>
@@ -437,6 +441,7 @@
         <td class="c-rating"><span class="stars">${star(x.r)}</span></td>
         <td class="c-review">${x.t === "This user only left a rating" ? '<span class="muted-cell">Rating only — no written review</span>' : esc(x.t)}</td>
         <td class="c-name">${esc(x.n)}</td>
+        <td class="c-link">${x.u ? `<a href="${esc(x.u)}" target="_blank" rel="noopener" title="Open this review in Google Business Profile to reply (sign-in required)">Reply&nbsp;&#8599;</a>` : ""}</td>
       </tr>`).join("");
   }
   document.querySelectorAll("th[data-k]").forEach(th => th.addEventListener("click", () => {
@@ -451,8 +456,8 @@
     const rows = currentRows().slice().sort((a,b) => a.d < b.d ? -1 : 1);
     const csvCell = s => /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
     const mdy = d => { const [y,m,dd] = d.split("-"); return `${+m}/${+dd}/${y}`; };
-    const csv = ["Date,Location,Rating,Review,Reviewer",
-      ...rows.map(x => [mdy(x.d), x.l, x.r, x.t, x.n].map(v => csvCell(String(v))).join(","))].join("\r\n");
+    const csv = ["Date,Location,Rating,Review,Reviewer,Link",
+      ...rows.map(x => [mdy(x.d), x.l, x.r, x.t, x.n, x.u || ""].map(v => csvCell(String(v))).join(","))].join("\r\n");
     const a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob(["﻿" + csv], {type: "text/csv;charset=utf-8"}));
     a.download = "att-google-reviews.csv";

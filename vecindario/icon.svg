@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Vecindario">
+  <rect width="512" height="512" rx="112" fill="#04101c"/>
+  <!-- Eixample block grid: chamfered corners, the shape of David's neighbourhood -->
+  <g fill="none" stroke="#008eff" stroke-width="16" opacity=".38">
+    <path d="M112 148h84l24 24v84l-24 24h-84l-24-24v-84z"/>
+    <path d="M292 148h84l24 24v84l-24 24h-84l-24-24v-84z"/>
+    <path d="M112 292h84l24 24v84l-24 24h-84l-24-24v-84z"/>
+  </g>
+  <!-- the one lit block: a conversation happening -->
+  <path d="M292 292h84l24 24v84l-24 24h-84l-24-24v-84z" fill="#ff6000"/>
+  <g fill="#04101c">
+    <circle cx="310" cy="358" r="13"/>
+    <circle cx="352" cy="358" r="13"/>
+    <circle cx="394" cy="358" r="13"/>
+  </g>
+</svg>

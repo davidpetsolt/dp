@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#04101c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Vecindario">
+<title>Vecindario</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Karla:ital,wght@0,400..700;1,400..600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#04101c; --card:#0b1f33; --lift:#122b45;
+  --blue:#008eff; --flame:#ff6000;
+  --bone:#e9f2f9; --muted:#7b93a8;
+  --line:rgba(233,242,249,.13);
+  --ok:#4fc98d;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"Karla",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--ground);overscroll-behavior:none}
+body{font-family:var(--body);color:var(--bone);-webkit-font-smoothing:antialiased}
+#app{max-width:440px;margin:0 auto;height:100%;display:flex;flex-direction:column;position:relative;overflow:hidden}
+
+.top{padding:calc(env(safe-area-inset-top,0px) + 14px) 18px 11px;border-bottom:1px solid var(--line);
+  display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex:none}
+.wordmark{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:-.02em;line-height:1}
+.wordmark span{color:var(--blue)}
+.meta{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.gauge{padding:10px 18px;border-bottom:1px solid var(--line);flex:none;display:flex;align-items:center;gap:12px}
+.bar{flex:1;height:5px;background:rgba(233,242,249,.1);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--blue);border-radius:99px;transition:width .5s ease}
+.gauge b{font-family:var(--mono);font-size:11px;font-weight:500}
+.gauge s{font-family:var(--mono);font-size:11px;color:var(--muted);text-decoration:none}
+
+.scroll{flex:1;overflow-y:auto;padding:16px 18px calc(104px + var(--safe-b));-webkit-overflow-scrolling:touch}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  margin:0 0 10px;display:flex;justify-content:space-between;align-items:center}
+
+.card{width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:13px;
+  padding:13px 14px;margin-bottom:9px;color:var(--bone);font-family:var(--body);cursor:pointer;
+  display:flex;align-items:center;gap:12px;transition:transform .14s,border-color .14s}
+.card:hover{border-color:rgba(0,142,255,.6);transform:translateY(-1px)}
+.card:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.card .glyph{font-family:var(--display);font-weight:700;font-size:15px;color:var(--blue);width:26px;flex:none;text-align:center}
+.card .es{font-family:var(--display);font-weight:600;font-size:15.5px;letter-spacing:-.01em;display:block}
+.card .en{font-size:12px;color:var(--muted);display:block;margin-top:2px;line-height:1.35}
+
+.tabs{position:absolute;bottom:0;left:0;right:0;display:flex;background:rgba(4,16,28,.95);
+  backdrop-filter:blur(12px);border-top:1px solid var(--line);padding-bottom:var(--safe-b)}
+.tabs button{flex:1;background:none;border:0;padding:13px 4px 15px;color:var(--muted);
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--blue)}
+.tabs button:focus-visible{outline:2px solid var(--blue);outline-offset:-3px}
+.fab{position:absolute;right:16px;bottom:calc(68px + var(--safe-b));z-index:5;background:var(--flame);
+  color:#04101c;border:0;border-radius:99px;padding:12px 17px;font-family:var(--display);font-weight:700;
+  font-size:13.5px;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.5);letter-spacing:-.01em}
+.fab:focus-visible{outline:2px solid var(--bone);outline-offset:2px}
+
+/* chat */
+.chathead{padding:calc(env(safe-area-inset-top,0px) + 12px) 16px 11px;border-bottom:1px solid var(--line);
+  flex:none;display:flex;align-items:center;gap:10px}
+.chathead .back{background:none;border:1px solid var(--line);color:var(--bone);border-radius:8px;
+  width:29px;height:29px;font-size:15px;cursor:pointer;flex:none;line-height:1}
+.chathead h2{font-family:var(--display);font-size:15.5px;margin:0;font-weight:600;letter-spacing:-.01em}
+.chathead p{margin:1px 0 0;font-size:11px;color:var(--muted)}
+.chathead .vtog{margin-left:auto;display:flex;gap:5px;flex:none}
+.pill{background:none;border:1px solid var(--line);color:var(--muted);border-radius:99px;
+  padding:5px 9px;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;cursor:pointer;text-transform:uppercase}
+.pill[aria-pressed="true"]{border-color:var(--flame);color:var(--flame)}
+.pill:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
+
+.log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.turn{max-width:84%;padding:9px 12px;border-radius:14px;font-size:14.5px;line-height:1.45;position:relative}
+.them{background:var(--card);border:1px solid var(--line);border-bottom-left-radius:5px;align-self:flex-start}
+.me{background:var(--blue);color:#04101c;border-bottom-right-radius:5px;align-self:flex-end;font-weight:500}
+.them .say{position:absolute;right:-30px;bottom:2px;background:none;border:0;color:var(--muted);
+  font-size:14px;cursor:pointer;padding:4px;line-height:1}
+.them .say:hover{color:var(--blue)}
+.heard{font-family:var(--mono);font-size:9.5px;color:rgba(4,16,28,.62);display:block;margin-top:4px;letter-spacing:.03em}
+.sys{align-self:center;font-family:var(--mono);font-size:10.5px;color:var(--muted);text-align:center;
+  line-height:1.6;max-width:92%;letter-spacing:.02em}
+.hint{align-self:flex-start;max-width:88%;background:rgba(255,96,0,.11);border:1px dashed rgba(255,96,0,.5);
+  border-radius:11px;padding:9px 11px;font-size:13px;line-height:1.5}
+.hint b{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--flame);display:block;margin-bottom:4px}
+
+.mic{flex:none;padding:10px 14px calc(14px + var(--safe-b));border-top:1px solid var(--line);background:var(--ground)}
+.microw{display:flex;gap:8px;align-items:center}
+.micbtn{flex:1;border:0;border-radius:14px;padding:15px;font-family:var(--display);font-weight:700;
+  font-size:15px;cursor:pointer;background:var(--blue);color:#04101c;letter-spacing:-.01em;
+  display:flex;align-items:center;justify-content:center;gap:8px}
+.micbtn[data-live="1"]{background:var(--flame);animation:pulse 1.3s infinite}
+.micbtn:disabled{opacity:.4;cursor:default;animation:none}
+.micbtn:focus-visible{outline:2px solid var(--bone);outline-offset:2px}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,96,0,.5)}50%{box-shadow:0 0 0 11px rgba(255,96,0,0)}}
+.sq{background:none;border:1px solid var(--line);color:var(--muted);border-radius:12px;width:46px;height:46px;
+  font-size:16px;cursor:pointer;flex:none;line-height:1}
+.sq:hover{color:var(--blue);border-color:rgba(0,142,255,.5)}
+.sq:disabled{opacity:.35}
+.interim{font-family:var(--mono);font-size:11.5px;color:var(--flame);min-height:15px;margin:0 0 8px;
+  letter-spacing:.02em;line-height:1.4}
+.kbd{display:flex;gap:7px;margin-top:8px}
+.kbd input{flex:1;background:var(--card);border:1px solid var(--line);border-radius:11px;color:var(--bone);
+  font-family:var(--body);font-size:14px;padding:10px 12px}
+.kbd input:focus{outline:none;border-color:var(--blue)}
+.kbd button{background:none;border:1px solid var(--line);color:var(--muted);border-radius:11px;padding:10px 12px;
+  font-family:var(--mono);font-size:11px;cursor:pointer}
+.finrow{display:flex;gap:7px;margin-top:8px}
+.finrow button{flex:1;background:none;border:1px solid var(--line);color:var(--muted);border-radius:11px;
+  padding:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;cursor:pointer;text-transform:uppercase}
+.finrow button:hover{color:var(--flame);border-color:rgba(255,96,0,.5)}
+.finrow button:disabled{opacity:.4}
+
+/* huecos + repaso */
+.hueco{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin-bottom:9px}
+.hueco .es{font-family:var(--display);font-size:15.5px;font-weight:600;color:var(--blue);letter-spacing:-.01em}
+.hueco .en{font-size:12.5px;color:var(--muted);margin-top:2px}
+.hueco .ej{font-size:13.5px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);line-height:1.45;font-style:italic}
+.hueco .nota{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:6px;line-height:1.55}
+.hueco .pend{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+.hueco .tag{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:7px}
+.row{display:flex;gap:7px;margin-top:11px}
+.row button{flex:1;border-radius:9px;padding:9px;font-family:var(--mono);font-size:10.5px;cursor:pointer;
+  border:1px solid var(--line);background:none;color:var(--muted);letter-spacing:.04em}
+.row button.good{border-color:rgba(79,201,141,.5);color:var(--ok)}
+.row button.bad{border-color:rgba(255,96,0,.5);color:var(--flame)}
+.row button.say{border-color:rgba(0,142,255,.5);color:var(--blue);flex:0 0 52px}
+.empty{border:1px dashed var(--line);border-radius:13px;padding:22px 18px;text-align:center;color:var(--muted);
+  font-size:13px;line-height:1.6}
+.empty strong{display:block;font-family:var(--display);color:var(--bone);font-size:15px;margin-bottom:6px;font-weight:600}
+.fullbtn{width:100%;background:none;border:1px solid var(--line);color:var(--bone);border-radius:11px;padding:11px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;cursor:pointer;margin-top:6px}
+.fullbtn:hover{border-color:var(--flame);color:var(--flame)}
+.out{width:100%;min-height:160px;margin-top:10px;background:var(--card);border:1px solid var(--line);
+  border-radius:11px;color:var(--bone);font-family:var(--mono);font-size:11.5px;padding:11px;line-height:1.65}
+.dots{display:inline-flex;gap:3px;align-items:center}
+.dots i{width:4px;height:4px;border-radius:50%;background:var(--muted);animation:b 1.1s infinite}
+.dots i:nth-child(2){animation-delay:.16s}.dots i:nth-child(3){animation-delay:.32s}
+@keyframes b{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.warn{background:rgba(255,96,0,.1);border:1px solid rgba(255,96,0,.4);border-radius:11px;padding:11px 13px;
+  font-size:12.5px;line-height:1.55;margin-bottom:12px;color:var(--bone)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"><div id="root"></div></div>
+
+<script>
+/* ============================================================
+   CONFIG — set API_BASE to your Cloudflare Worker URL.
+   Leave as "" to run inside a Claude artifact (direct API, no voice).
+   ============================================================ */
+const API_BASE = "https://vecindario-api.dp-dh.workers.dev";
+const CLIENT_TOKEN = "efd7797dd89e9f5e7fdbc57baac076db92b57ff2b7f4f3ae36afdf1340332830";
+
+const IN_CLAUDE = typeof window.storage !== "undefined";
+const CFG = IN_CLAUDE
+  ? { url:"https://api.anthropic.com/v1/messages", conv:"claude-sonnet-4-6", util:"claude-sonnet-4-6", direct:true }
+  : { url:API_BASE + "/v1/messages", conv:"claude-sonnet-5", util:"claude-haiku-4-5-20251001", direct:false };
+
+const SCENARIOS = [
+  { id:"portera", glyph:"01", es:"La portera", en:"Escalera small talk. Highest-frequency conversation in your actual life.",
+    persona:"Eres Montse, la portera del edificio de David en Carrer de València, L'Eixample. 58 años, catalana, 20 años en la finca. Hablas del tiempo, los vecinos, los paquetes, las obras de la calle, la basura, el ascensor. Cálida pero directa, y hablas rápido por naturaleza." },
+  { id:"forn", glyph:"02", es:"El forn de pa", en:"Bread and pastries. Quantities, weights, 'algo más'.",
+    persona:"Eres Rosa, trabajas en el forn de pa del barrio y atiendes a David por la mañana. Preguntas qué quiere, cuántos, si algo más. Ofreces lo recién hecho. Vocabulario peninsular: barra, chapata, croissant, ensaimada, media docena, integral." },
+  { id:"barberia", glyph:"03", es:"La barbería", en:"Explaining what you want done. Specific, awkward, unavoidable.",
+    persona:"Eres Nacho, barbero en L'Eixample, 40 años, muy hablador. Preguntas a David cómo lo quiere: máquina o tijera, qué número, los laterales, la barba, el cuello. Charlas de fútbol y del calor mientras cortas." },
+  { id:"bar", glyph:"04", es:"El bar del partido", en:"Barça talk with a stranger at the bar. Your best motivation lever.",
+    persona:"Eres Jordi, culé de toda la vida, 50 años, viendo el partido del Barça en un bar de L'Eixample. Hablas de la alineación, del árbitro, de Lamine, de la Champions, de cómo era el Barça antes. Opinas fuerte y esperas que David opine también." },
+  { id:"cafe", glyph:"05", es:"La cafetería de especialidad", en:"Coffee geekery. Vocabulary you already care about in English.",
+    persona:"Eres Clara, barista en una cafetería de especialidad del barrio. Hablas de origen, tueste, método, filtro, espresso, acidez, molienda. Te encanta un cliente que pregunta de verdad. Recomiendas y preguntas qué prepara en casa." },
+  { id:"colegio", glyph:"06", es:"Padres del colegio", en:"Parent small talk about Cameron. Ages, school years, plans.",
+    persona:"Eres Núria, madre de un compañero del hijo de David en Barcelona. Charláis a la salida: los deberes, los exámenes, la universidad, los planes de verano, lo rápido que crecen. Amable y curiosa, preguntas mucho." },
+  { id:"farmacia", glyph:"07", es:"La farmacia", en:"Symptoms and dosage. Low frequency, high stakes.",
+    persona:"Eres el farmacéutico de guardia en L'Eixample. Preguntas qué le pasa a David, desde cuándo, si tiene alergias, si toma algo más. Explicas la dosis y cada cuántas horas. Preciso y tranquilo." },
+  { id:"foto", glyph:"08", es:"La tienda de fotografía", en:"Leica talk. Gear, film, repairs, permission to shoot.",
+    persona:"Eres Toni, dependiente en una tienda de fotografía clásica de Barcelona. Sabes de Leica, carretes, revelado, objetivos de segunda mano. Preguntas qué cámara lleva David y qué fotografía. Te interesa la fotografía de calle." },
+  { id:"gestoria", glyph:"09", es:"La gestoría", en:"Paperwork Spanish. Formal register, usted, bureaucratic nouns.",
+    persona:"Eres Marta, gestora administrativa en Barcelona. Tratas a David de USTED en todo momento. Hablas de NIE, empadronamiento, modelo, plazo, justificante, cita previa, Hacienda, autónomo. Formal, eficiente, un poco impaciente." },
+  { id:"vermut", glyph:"10", es:"El vermut del domingo", en:"Unstructured social Spanish. The real target.",
+    persona:"Eres Pau, amigo catalán de David, 45 años. Tomáis el vermut un domingo en una terraza. La conversación salta sin orden: planes, un viaje, una serie, una queja del trabajo, un cotilleo del barrio. Bromeas y usas expresiones coloquiales." }
+];
+
+const RULES = `El estudiante es David, americano, vive en L'Eixample (Barcelona) desde agosto de 2020. Nivel A2 real: entiende transacciones, no conversaciones. ESTÁ HABLANDO EN VOZ ALTA, no escribiendo.
+
+REGLAS ESTRICTAS:
+- Español PENINSULAR de Barcelona. Usa "vosotros", "vale", "venga", "coger", "el móvil", "el ordenador", "tío". NUNCA uses "acá", "celular", "ustedes" (salvo formal), ni vocabulario latinoamericano.
+- Responde SIEMPRE en español. Nunca en inglés, ni una palabra, ni entre paréntesis.
+- MÁXIMO 2 frases cortas por turno. Va a escucharlo, no leerlo: frases hablables, sin listas ni guiones.
+- Termina casi todos los turnos con una pregunta directa para obligarle a hablar.
+- NO corrijas sus errores. Sigue la conversación con naturalidad.
+- Su texto viene de reconocimiento de voz, así que puede tener palabras mal transcritas. Interpreta la intención con generosidad y no comentes la transcripción.
+- Si habla en inglés, responde en español diciendo que no lo entiendes y reformula tu pregunta más fácil.
+- No rompas nunca el personaje. No menciones que eres una IA.`;
+
+let S = { huecos:[], sessions:0, week:{}, voice:{speak:true, rate:.9, hands:false}, loaded:false };
+let V = { tab:"escenarios", sc:null, log:[], busy:false, listening:false, interim:"", exported:"", reveal:null, typing:false };
+
+/* ---------- storage: Claude artifact OR localStorage ---------- */
+const KEY = "vecindario:state";
+async function load(){
+  try{
+    let raw = null;
+    if(IN_CLAUDE){ const r = await window.storage.get(KEY); raw = r && r.value; }
+    else raw = localStorage.getItem(KEY);
+    if(raw) S = Object.assign(S, JSON.parse(raw));
+  }catch(e){ /* first run */ }
+  S.loaded = true; render();
+}
+async function save(){
+  const raw = JSON.stringify({huecos:S.huecos, sessions:S.sessions, week:S.week, voice:S.voice});
+  try{
+    if(IN_CLAUDE) await window.storage.set(KEY, raw);
+    else localStorage.setItem(KEY, raw);
+  }catch(e){ console.error("Save failed, progress is memory-only this session.", e); }
+}
+
+/* ---------- api ---------- */
+async function ask(messages, system, model){
+  const headers = {"Content-Type":"application/json"};
+  if(!CFG.direct) headers["X-Client-Token"] = CLIENT_TOKEN;
+  const res = await fetch(CFG.url,{ method:"POST", headers,
+    body:JSON.stringify({ model: model || CFG.conv, max_tokens:1000, system, messages }) });
+  if(!res.ok) throw new Error("HTTP "+res.status);
+  const d = await res.json();
+  return (d.content||[]).filter(b=>b.type==="text").map(b=>b.text).join("\n").trim();
+}
+function parseJSON(t){
+  const c=t.replace(/```json|```/g,"").trim(), a=c.indexOf("{"), b=c.lastIndexOf("}");
+  return JSON.parse(a>=0?c.slice(a,b+1):c);
+}
+
+/* ---------- speech out ---------- */
+let esVoice = null;
+function pickVoice(){
+  const vs = speechSynthesis.getVoices().filter(v=>/^es[-_]ES/i.test(v.lang));
+  esVoice = vs.find(v=>/monica|mónica|marisol|helena/i.test(v.name)) || vs[0] || null;
+}
+if("speechSynthesis" in window){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+
+function speak(text, rate, done){
+  if(!("speechSynthesis" in window)){ done && done(); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text.replace(/[«»"]/g,""));
+  u.lang = "es-ES"; u.rate = rate || S.voice.rate; u.pitch = 1;
+  if(esVoice) u.voice = esVoice;
+  u.onend = () => done && done();
+  u.onerror = () => done && done();
+  speechSynthesis.speak(u);
+}
+
+/* ---------- speech in ---------- */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+let rec = null;
+function listen(){
+  if(!SR){ V.log.push({r:"sys",t:"Este navegador no soporta reconocimiento de voz. Usa el teclado o abre en Safari o Chrome."}); render(); return; }
+  if(V.listening){ try{ rec && rec.stop(); }catch(e){} return; }
+  speechSynthesis && speechSynthesis.cancel();
+  rec = new SR();
+  rec.lang = "es-ES"; rec.interimResults = true; rec.continuous = false; rec.maxAlternatives = 1;
+  let final = "";
+  rec.onstart = () => { V.listening = true; V.interim = ""; render(); };
+  rec.onresult = e => {
+    let itm = "";
+    for(let i=e.resultIndex;i<e.results.length;i++){
+      const r = e.results[i];
+      if(r.isFinal) final += r[0].transcript; else itm += r[0].transcript;
+    }
+    V.interim = (final + " " + itm).trim(); render();
+  };
+  rec.onerror = e => {
+    V.listening = false; V.interim = "";
+    const m = e.error === "not-allowed"
+      ? "Micrófono bloqueado. Actívalo en los ajustes del navegador para este sitio."
+      : e.error === "no-speech" ? "No se ha oído nada. Prueba otra vez." : "Error de micrófono: "+e.error;
+    V.log.push({r:"sys",t:m}); render();
+  };
+  rec.onend = () => {
+    V.listening = false;
+    const said = (final || V.interim).trim();
+    V.interim = "";
+    if(said) turn(said, true); else render();
+  };
+  try{ rec.start(); }catch(e){ V.listening=false; render(); }
+}
+
+/* ---------- turns ---------- */
+function openScenario(sc){
+  V.sc = sc; V.log = []; V.tab = "chat"; V.typing = false; render(); turn(null);
+}
+async function turn(text, spoken){
+  if(text) V.log.push({r:"me", t:text, heard:!!spoken});
+  V.busy = true; render();
+  const msgs = V.log.filter(m=>m.r==="me"||m.r==="them")
+    .map(m=>({role:m.r==="me"?"user":"assistant", content:m.t}));
+  if(!msgs.length) msgs.push({role:"user", content:"[David acaba de llegar. Saluda y empieza la conversación.]"});
+  try{
+    const out = await ask(msgs, V.sc.persona+"\n\n"+RULES);
+    V.log.push({r:"them", t:out});
+    V.busy = false; render(); scrollLog();
+    if(S.voice.speak) speak(out, null, () => { if(S.voice.hands && V.tab==="chat") listen(); });
+  }catch(e){
+    V.log.push({r:"sys", t:"Sin conexión con el servidor. Comprueba la red y vuelve a hablar."});
+    V.busy = false; render(); scrollLog();
+  }
+}
+async function hint(){
+  const want = prompt("What are you trying to say? (English)");
+  if(!want) return;
+  V.busy = true; render();
+  const ctx = V.log.filter(m=>m.r!=="sys").slice(-4).map(m=>(m.r==="me"?"David: ":"Otro: ")+m.t).join("\n");
+  try{
+    const out = await ask([{role:"user",content:`Contexto:\n${ctx}\n\nDavid quiere decir: "${want}"`}],
+      `Da la forma natural de decir eso en español peninsular de Barcelona, nivel A2. Formato exacto:\nLínea 1: la frase en español.\nLínea 2: nota de máximo 10 palabras en inglés sobre uso o error típico.`, CFG.util);
+    V.log.push({r:"hint", t:out});
+    const first = out.split("\n")[0];
+    if(S.voice.speak && first) speak(first, .82);
+  }catch(e){ V.log.push({r:"sys", t:"No se pudo cargar la ayuda."}); }
+  V.busy=false; render(); scrollLog();
+}
+async function finish(){
+  const mine = V.log.filter(m=>m.r==="me");
+  if(mine.length < 2){ back(); return; }
+  V.busy = true; render();
+  const tx = V.log.filter(m=>m.r==="me"||m.r==="them").map(m=>(m.r==="me"?"David: ":"Otro: ")+m.t).join("\n");
+  try{
+    const out = await ask([{role:"user",content:tx}],
+`Analiza esta conversación de práctica ORAL. David es americano, A2, en Barcelona. Su texto viene de reconocimiento de voz: si una palabra está mal transcrita de forma que sugiere mala pronunciación, señálalo. Devuelve SOLO JSON válido:
+{"resumen":"one honest sentence in English on how it went",
+"errores":[{"dijo":"what he said","mejor":"natural Barcelona version","por_que":"short reason in English"}],
+"huecos":[{"en":"an English phrase he clearly needed but avoided or got wrong","es":"peninsular Spanish","ejemplo":"short example sentence in Spanish","nota":"usage note in English, max 12 words"}]}
+Máximo 4 errores y 4 huecos. Prioriza lo que le impide conversar.`);
+    const f = parseJSON(out);
+    S.sessions++;
+    const mins = Math.max(4, mine.length*2), k = today();
+    S.week[k] = (S.week[k]||0) + mins;
+    (f.huecos||[]).forEach(h=>{
+      if(S.huecos.some(x=>x.es===h.es)) return;
+      S.huecos.unshift({id:Date.now()+Math.random(), en:h.en, es:h.es, ejemplo:h.ejemplo, nota:h.nota,
+        box:0, due:today(), src:V.sc.es});
+    });
+    await save();
+    V.log.push({r:"sys", t:"— "+f.resumen});
+    (f.errores||[]).forEach(e=>V.log.push({r:"hint", t:`${e.dijo}\n→ ${e.mejor}\n${e.por_que}`}));
+    V.log.push({r:"sys", t:`${(f.huecos||[]).length} huecos guardados. Están en Repaso.`});
+  }catch(e){
+    V.log.push({r:"sys", t:"No se pudo generar el análisis. La sesión sí se ha guardado."});
+    S.sessions++; await save();
+  }
+  V.busy=false; render(); scrollLog();
+}
+function back(){ speechSynthesis && speechSynthesis.cancel(); try{rec&&rec.stop()}catch(e){}
+  V.tab="escenarios"; V.sc=null; V.log=[]; V.listening=false; render(); }
+
+/* ---------- huecos ---------- */
+async function capture(){
+  const en = prompt("What couldn't you say? (English is fine, be specific)");
+  if(!en) return;
+  const h = {id:Date.now()+Math.random(), en, es:"", ejemplo:"", nota:"", box:0, due:today(), src:"capturado"};
+  S.huecos.unshift(h); V.tab="huecos"; render(); await save();
+  try{
+    const out = await ask([{role:"user",content:en}],
+      `David, americano nivel A2 en Barcelona, necesitaba decir esto. Devuelve SOLO JSON válido:
+{"es":"peninsular Spanish, the way someone in Barcelona actually says it","ejemplo":"short natural example sentence in Spanish","nota":"usage note or common gringo mistake, English, max 14 words"}`, CFG.util);
+    Object.assign(h, parseJSON(out)); await save(); render();
+  }catch(e){ h.nota = "Translation failed. Tap Reintentar."; render(); }
+}
+const STEPS=[0,1,3,7,16,35,90];
+const today = () => new Date().toISOString().slice(0,10);
+const due = h => !h.due || h.due <= today();
+function bump(h,got){
+  h.box = got ? Math.min((h.box||0)+1, STEPS.length-1) : 0;
+  const d=new Date(); d.setDate(d.getDate()+STEPS[h.box]);
+  h.due = d.toISOString().slice(0,10);
+}
+function exportForTutor(){
+  const d = S.huecos.filter(h=>(h.box||0)<3).slice(0,20);
+  const stamp = new Date().toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"}).replace(/ /g,"-");
+  V.exported = d.length
+    ? "Para mi profe — semana del "+stamp+"\n\nCosas que no supe decir:\n\n"+
+      d.map((h,i)=>`${i+1}. ${h.en}\n   → ${h.es||"(pendiente)"}${h.nota?"\n   ("+h.nota+")":""}`).join("\n\n")+
+      "\n\n¿Podemos practicar estas en la próxima clase?"
+    : "Nothing to send yet. Run a scenario or tap + Hueco.";
+  render();
+  setTimeout(()=>{ const t=document.querySelector(".out"); if(t){t.focus();t.select();} },60);
+}
+
+/* ---------- render ---------- */
+const esc = s => (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const nl = s => esc(s).replace(/\n/g,"<br>");
+function weekMinutes(){
+  const n=new Date(); let t=0;
+  for(let i=0;i<7;i++){ const d=new Date(n); d.setDate(d.getDate()-i); t+=S.week[d.toISOString().slice(0,10)]||0; }
+  return t;
+}
+function render(){
+  const root=document.getElementById("root");
+  if(!S.loaded){ root.innerHTML=`<div class="scroll"><p class="eyebrow">Cargando</p></div>`; return; }
+  if(V.tab==="chat" && V.sc){ root.innerHTML=chatView(); wire(); return; }
+  const mins=weekMinutes(), pct=Math.min(100,Math.round(mins/210*100));
+  const dueN=S.huecos.filter(due).length;
+  root.innerHTML=`
+    <div class="top">
+      <div class="wordmark">Vecin<span>dario</span></div>
+      <div class="meta">A2 · ${S.sessions} sesiones</div>
+    </div>
+    <div class="gauge"><b>${(mins/60).toFixed(1)}h</b>
+      <div class="bar"><i style="width:${pct}%"></i></div>
+      <s>de 3.5h esta semana</s></div>
+    <div class="scroll">${V.tab==="escenarios"?listView():V.tab==="huecos"?huecosView():repasoView()}</div>
+    <button class="fab" data-a="capture">+ Hueco</button>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="${V.tab==="escenarios"}" data-t="escenarios">Escenarios</button>
+      <button role="tab" aria-selected="${V.tab==="huecos"}" data-t="huecos">Huecos${S.huecos.length?" · "+S.huecos.length:""}</button>
+      <button role="tab" aria-selected="${V.tab==="repaso"}" data-t="repaso">Repaso${dueN?" · "+dueN:""}</button>
+    </div>`;
+  wire();
+}
+function listView(){
+  const w = (!SR && !IN_CLAUDE) ? `<div class="warn"><strong>Sin micrófono.</strong> Este navegador no soporta reconocimiento de voz. Abre en Safari (iOS) o Chrome, o usa el teclado dentro de cada escenario.</div>` : "";
+  const c = IN_CLAUDE ? `<div class="warn"><strong>Modo Claude.</strong> La voz no funciona aquí. Despliega en tu dominio para usar el micrófono.</div>` : "";
+  return w + c + `<p class="eyebrow"><span>Tu barrio, no un libro de texto</span><span>${SCENARIOS.length}</span></p>`+
+    SCENARIOS.map(s=>`<button class="card" data-sc="${s.id}"><span class="glyph">${s.glyph}</span>
+      <span><span class="es">${esc(s.es)}</span><span class="en">${esc(s.en)}</span></span></button>`).join("");
+}
+function huecosView(){
+  if(!S.huecos.length) return `<div class="empty"><strong>Todavía no hay huecos</strong>
+    Every time you can't say something out there, tap <b>+ Hueco</b>. This becomes the agenda for your tutor sessions.</div>`;
+  return `<p class="eyebrow"><span>Lo que no supiste decir</span><span>${S.huecos.length}</span></p>`+
+    S.huecos.map(h=>`<div class="hueco">
+      <div class="es">${h.es?esc(h.es):'<span class="pend">buscando…</span>'}</div>
+      <div class="en">${esc(h.en)}</div>
+      ${h.ejemplo?`<div class="ej">${esc(h.ejemplo)}</div>`:""}
+      ${h.nota?`<div class="nota">${esc(h.nota)}</div>`:""}
+      <div class="tag">${esc(h.src||"")}</div>
+      ${h.es?`<div class="row"><button class="say" data-speak="${esc(h.es)}">▶</button></div>`:""}
+    </div>`).join("")+
+    `<button class="fullbtn" data-a="export">Copiar para el profe</button>
+     ${V.exported?`<textarea class="out" readonly>${esc(V.exported)}</textarea>`:""}`;
+}
+function repasoView(){
+  const list=S.huecos.filter(due);
+  if(!S.huecos.length) return `<div class="empty"><strong>Nada que repasar</strong>Run a scenario first. Your gaps land here automatically.</div>`;
+  if(!list.length) return `<div class="empty"><strong>Al día</strong>Nothing due today. ${S.huecos.length} huecos scheduled for later.</div>`;
+  const h=list[0];
+  return `<p class="eyebrow"><span>Pendientes hoy</span><span>${list.length}</span></p>
+    <div class="hueco">
+      <div class="en" style="font-size:15.5px;color:var(--bone);line-height:1.4">${esc(h.en)}</div>
+      ${V.reveal===h.id?`
+        <div class="es" style="margin-top:10px">${esc(h.es||"—")}</div>
+        ${h.ejemplo?`<div class="ej">${esc(h.ejemplo)}</div>`:""}
+        ${h.nota?`<div class="nota">${esc(h.nota)}</div>`:""}
+        <div class="row">
+          <button class="say" data-speak="${esc(h.es||"")}">▶</button>
+          <button class="bad" data-g="0" data-id="${h.id}">Otra vez</button>
+          <button class="good" data-g="1" data-id="${h.id}">Lo tenía</button>
+        </div>`
+      :`<div class="row"><button data-rev="${h.id}">Di la frase en voz alta, luego revela</button></div>`}
+    </div>`;
+}
+function chatView(){
+  const sc=V.sc;
+  return `<div class="chathead">
+      <button class="back" data-a="back" aria-label="Volver">←</button>
+      <div><h2>${esc(sc.es)}</h2><p>${esc(sc.en)}</p></div>
+      <div class="vtog">
+        <button class="pill" data-a="tspeak" aria-pressed="${S.voice.speak}" title="Voz">Voz</button>
+        <button class="pill" data-a="trate" aria-pressed="false" title="Velocidad">${S.voice.rate.toFixed(2).replace("0.",".")}x</button>
+        <button class="pill" data-a="thands" aria-pressed="${S.voice.hands}" title="Manos libres">Auto</button>
+      </div>
+    </div>
+    <div class="log" id="log">
+      ${V.log.map(m=>{
+        if(m.r==="me") return `<div class="turn me">${nl(m.t)}${m.heard?`<span class="heard">oído así</span>`:""}</div>`;
+        if(m.r==="them") return `<div class="turn them">${nl(m.t)}<button class="say" data-speak="${esc(m.t)}" aria-label="Repetir">▶</button></div>`;
+        if(m.r==="hint") return `<div class="hint"><b>Ayuda</b>${nl(m.t)}</div>`;
+        return `<div class="sys">${nl(m.t)}</div>`;
+      }).join("")}
+      ${V.busy?`<div class="sys"><span class="dots"><i></i><i></i><i></i></span></div>`:""}
+    </div>
+    <div class="mic">
+      <p class="interim">${V.listening?(V.interim?esc(V.interim):"escuchando…"):""}</p>
+      <div class="microw">
+        <button class="sq" data-a="hint" ${V.busy?"disabled":""} title="¿Cómo se dice?">¿?</button>
+        <button class="micbtn" data-a="mic" data-live="${V.listening?1:0}" ${V.busy?"disabled":""}>
+          ${V.listening?"Parar y enviar":"Hablar"}
+        </button>
+        <button class="sq" data-a="keys" title="Teclado">⌨</button>
+      </div>
+      ${V.typing?`<div class="kbd">
+        <input class="t" id="in" placeholder="Escribe en español…" ${V.busy?"disabled":""}>
+        <button data-a="send">→</button></div>`:""}
+      <div class="finrow">
+        <button data-a="finish" ${V.busy?"disabled":""}>Terminar y corregir</button>
+      </div>
+    </div>`;
+}
+function scrollLog(){ const l=document.getElementById("log"); if(l) l.scrollTop=l.scrollHeight; }
+
+function wire(){
+  document.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{V.tab=b.dataset.t;V.exported="";render()});
+  document.querySelectorAll("[data-sc]").forEach(b=>b.onclick=()=>openScenario(SCENARIOS.find(s=>s.id===b.dataset.sc)));
+  document.querySelectorAll("[data-speak]").forEach(b=>b.onclick=()=>speak(b.dataset.speak));
+  document.querySelectorAll("[data-rev]").forEach(b=>b.onclick=()=>{V.reveal=Number(b.dataset.rev);render()});
+  document.querySelectorAll("[data-g]").forEach(b=>b.onclick=async()=>{
+    const h=S.huecos.find(x=>x.id==b.dataset.id); if(h) bump(h,b.dataset.g==="1");
+    V.reveal=null; await save(); render();
+  });
+  document.querySelectorAll("[data-a]").forEach(b=>b.onclick=async()=>{
+    const a=b.dataset.a;
+    if(a==="capture") capture();
+    if(a==="export") exportForTutor();
+    if(a==="hint") hint();
+    if(a==="finish") finish();
+    if(a==="back") back();
+    if(a==="mic") listen();
+    if(a==="keys"){ V.typing=!V.typing; render(); const i=document.getElementById("in"); i&&i.focus(); }
+    if(a==="tspeak"){ S.voice.speak=!S.voice.speak; if(!S.voice.speak) speechSynthesis.cancel(); await save(); render(); }
+    if(a==="thands"){ S.voice.hands=!S.voice.hands; await save(); render(); }
+    if(a==="trate"){ const r=[.75,.9,1].indexOf(S.voice.rate); S.voice.rate=[.75,.9,1][(r+1)%3]; await save(); render(); }
+    if(a==="send"){ const i=document.getElementById("in"); const v=i.value.trim(); if(v){i.value="";turn(v,false);} }
+  });
+  const i=document.getElementById("in");
+  if(i) i.onkeydown=e=>{ if(e.key==="Enter"){ const v=i.value.trim(); if(v){i.value="";turn(v,false);} } };
+  scrollLog();
+}
+
+if("serviceWorker" in navigator && !IN_CLAUDE)
+  navigator.serviceWorker.register("sw.js").catch(()=>{});
+load();
+</script>
+</body>
+</html>

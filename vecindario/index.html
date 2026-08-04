@@ -105,11 +105,13 @@ body{font-family:var(--body);color:var(--bone);-webkit-font-smoothing:antialiase
 
 .log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
 .turn{max-width:86%;padding:10px 13px;border-radius:14px;font-size:1.0625rem;line-height:1.5;position:relative}
-.them{background:var(--card);border:1px solid var(--line);border-bottom-left-radius:5px;align-self:flex-start;cursor:pointer}
+.them{background:var(--card);border:1px solid var(--line);border-bottom-left-radius:5px;align-self:flex-start;cursor:pointer;max-width:78%}
 .me{background:var(--blue);color:var(--on-accent);border-bottom-right-radius:5px;align-self:flex-end;font-weight:500}
-.them .say{position:absolute;right:-38px;bottom:-2px;background:none;border:0;color:var(--muted);
-  font-size:1rem;cursor:pointer;padding:9px;line-height:1}
-.them .say:hover{color:var(--blue)}
+.them .say{position:absolute;right:-46px;bottom:0;width:38px;height:38px;background:var(--card);
+  border:1px solid var(--line);border-radius:99px;color:var(--blue);font-size:0.9375rem;cursor:pointer;
+  line-height:1;display:flex;align-items:center;justify-content:center;padding:0}
+.them .say:hover{border-color:rgba(0,142,255,.55)}
+.them .say:active{transform:scale(.9)}
 .heard{font-family:var(--mono);font-size:0.65625rem;color:var(--heard-c);display:block;margin-top:4px;letter-spacing:.03em}
 .sys{align-self:center;font-family:var(--mono);font-size:0.75rem;color:var(--muted);text-align:center;
   line-height:1.6;max-width:92%;letter-spacing:.02em}
@@ -119,6 +121,7 @@ body{font-family:var(--body);color:var(--bone);-webkit-font-smoothing:antialiase
   color:var(--flame);display:block;margin-bottom:4px}
 .trans{display:block;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);
   color:var(--muted);font-size:0.90625rem;line-height:1.45;font-style:italic}
+.mutehint{display:block;margin-top:6px;font-family:var(--mono);font-size:0.65625rem;color:var(--flame);letter-spacing:.04em}
 
 .mic{flex:none;padding:10px 14px calc(14px + var(--safe-b));border-top:1px solid var(--line);background:var(--ground)}
 .microw{display:flex;gap:8px;align-items:center}
@@ -282,24 +285,51 @@ function parseJSON(t){
 let esVoice = null;
 function pickVoice(){
   const vs = speechSynthesis.getVoices().filter(v=>/^es[-_]ES/i.test(v.lang));
-  esVoice = vs.find(v=>/monica|mónica|marisol|helena/i.test(v.name)) || vs[0] || null;
+  const id = v => ((v.name||"") + " " + (v.voiceURI||"")).toLowerCase();
+  esVoice =
+    vs.find(v=>/marisol/.test(id(v)) && /premium/.test(id(v))) ||
+    vs.find(v=>/marisol/.test(id(v)) && /enhanced/.test(id(v))) ||
+    vs.find(v=>/m[oó]nica/.test(id(v)) && /enhanced/.test(id(v))) ||
+    vs.find(v=>/marisol|m[oó]nica|helena/.test(id(v))) ||
+    vs[0] || null;
 }
-if("speechSynthesis" in window){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+if("speechSynthesis" in window){
+  pickVoice(); speechSynthesis.onvoiceschanged = pickVoice;
+  // Nudge a wedged engine when the app returns to the foreground.
+  document.addEventListener("visibilitychange", () => { if(!document.hidden) speechSynthesis.resume(); });
+}
 
-function speak(text, rate, done){
+function speak(text, rate, done, onfail){
   if(!("speechSynthesis" in window)){ done && done(); return; }
+  // iOS drops utterances fired while the mic's audio session is still closing.
+  const wait = Math.max(0, 350 - (Date.now() - lastMicEnd));
+  setTimeout(() => speakNow(text, rate, done, onfail, 1), wait);
+}
+function speakNow(text, rate, done, onfail, attempt){
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text.replace(/[«»"]/g,""));
   u.lang = "es-ES"; u.rate = rate || S.voice.rate; u.pitch = 1;
   if(esVoice) u.voice = esVoice;
-  u.onend = () => done && done();
-  u.onerror = () => done && done();
+  let started = false, settled = false;
+  const fin = () => { if(settled) return; settled = true; clearTimeout(watch); done && done(); };
+  u.onstart = () => { started = true; };
+  u.onend = fin;
+  u.onerror = fin;
+  // Watchdog: iOS sometimes wedges the engine and the utterance never starts.
+  const watch = setTimeout(() => {
+    if(started || settled) return;
+    settled = true;
+    speechSynthesis.cancel();
+    if(attempt < 2) speakNow(text, rate, done, onfail, attempt + 1);
+    else { onfail && onfail(); done && done(); }
+  }, 1500);
   speechSynthesis.speak(u);
+  speechSynthesis.resume();
 }
 
 /* ---------- speech in ---------- */
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-let rec = null;
+let rec = null, lastMicEnd = 0;
 function listen(){
   if(!SR){ V.log.push({r:"sys",t:"Este navegador no soporta reconocimiento de voz. Usa el teclado o abre en Safari o Chrome."}); render(); return; }
   if(V.listening){ try{ rec && rec.stop(); }catch(e){} return; }
@@ -324,7 +354,7 @@ function listen(){
     V.log.push({r:"sys",t:m}); render();
   };
   rec.onend = () => {
-    V.listening = false;
+    V.listening = false; lastMicEnd = Date.now();
     const said = (final || V.interim).trim();
     V.interim = "";
     if(said) turn(said, true); else render();
@@ -346,9 +376,11 @@ async function turn(text, spoken){
   if(!msgs.length) msgs.push({role:"user", content:"[David acaba de llegar. Saluda y empieza la conversación.]"});
   try{
     const out = await ask(msgs, V.sc.persona+"\n\n"+RULES);
-    V.log.push({r:"them", t:out});
+    const msg = {r:"them", t:out};
+    V.log.push(msg);
     V.busy = false; render(); scrollLog();
-    if(S.voice.speak) speak(out, null, () => { if(S.voice.hands && V.tab==="chat") listen(); });
+    if(S.voice.speak) speak(out, null, () => { if(S.voice.hands && V.tab==="chat") listen(); },
+      () => { msg.mute = true; render(); scrollLog(); });
   }catch(e){
     V.log.push({r:"sys", t:"Sin conexión con el servidor. Comprueba la red y vuelve a hablar."});
     V.busy = false; render(); scrollLog();
@@ -541,7 +573,7 @@ function chatView(){
     <div class="log" id="log">
       ${V.log.map((m,i)=>{
         if(m.r==="me") return `<div class="turn me">${nl(m.t)}${m.heard?`<span class="heard">oído así</span>`:""}</div>`;
-        if(m.r==="them") return `<div class="turn them" data-tr="${i}" role="button" title="Ver traducción">${nl(m.t)}${m.showEn?`<span class="trans">${m.enLoading?"traduciendo…":nl(m.en||"")}</span>`:""}<button class="say" data-speak="${esc(m.t)}" aria-label="Repetir">▶</button></div>`;
+        if(m.r==="them") return `<div class="turn them" data-tr="${i}" role="button" title="Ver traducción">${nl(m.t)}${m.showEn?`<span class="trans">${m.enLoading?"traduciendo…":nl(m.en||"")}</span>`:""}${m.mute?`<span class="mutehint">🔇 no se pudo reproducir — toca ▶</span>`:""}<button class="say" data-speak="${esc(m.t)}" aria-label="Repetir">▶</button></div>`;
         if(m.r==="hint") return `<div class="hint"><b>Ayuda</b>${nl(m.t)}</div>`;
         return `<div class="sys">${nl(m.t)}</div>`;
       }).join("")}
@@ -569,7 +601,11 @@ function scrollLog(){ const l=document.getElementById("log"); if(l) l.scrollTop=
 function wire(){
   document.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{V.tab=b.dataset.t;V.exported="";render()});
   document.querySelectorAll("[data-sc]").forEach(b=>b.onclick=()=>openScenario(SCENARIOS.find(s=>s.id===b.dataset.sc)));
-  document.querySelectorAll("[data-speak]").forEach(b=>b.onclick=()=>speak(b.dataset.speak));
+  document.querySelectorAll("[data-speak]").forEach(b=>b.onclick=()=>{
+    const w=b.closest("[data-tr]");
+    if(w){ const m=V.log[Number(w.dataset.tr)]; if(m && m.mute){ m.mute=false; render(); } }
+    speak(b.dataset.speak);
+  });
   document.querySelectorAll("[data-tr]").forEach(b=>b.onclick=e=>{
     if(e.target.closest("[data-speak]")) return;
     translate(Number(b.dataset.tr));

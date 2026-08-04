@@ -2,7 +2,7 @@
    Caches the app shell so Repaso and Huecos work with no signal.
    API calls are never cached: conversation always needs the network. */
 
-const CACHE = "vecindario-v2";
+const CACHE = "vecindario-v3";
 const SHELL = [
   "./",
   "./index.html",

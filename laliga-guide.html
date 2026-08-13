@@ -120,8 +120,9 @@
   .card{background:#fff;border:1px solid var(--rule);border-radius:var(--radius-md);
     box-shadow:var(--shadow-card);overflow:hidden;transition:transform .12s,box-shadow .12s}
   .card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(15,20,50,.13)}
-  .row{display:grid;grid-template-columns:64px 60px 1fr auto auto auto;gap:16px;
+  .row{display:grid;grid-template-columns:64px 60px 1fr auto auto auto auto;gap:16px;
     align-items:center;padding:18px 22px;cursor:pointer}
+  .row-form{display:flex;gap:4px}
   .rank{font-family:'Lato',sans-serif;font-weight:900;font-size:32px;color:var(--navy);text-align:center;line-height:1}
   .crest{width:52px;height:52px;border-radius:10px;display:grid;place-items:center;
     background:#f4f5f9;color:var(--navy);font-family:'Lato',sans-serif;font-weight:900;
@@ -159,11 +160,16 @@
     background:var(--sky);border-radius:999px;display:inline-block;padding:6px 14px;margin:0 0 14px}
   .form-line{font-family:'Lato',sans-serif;font-size:14px;font-weight:600;color:var(--muted);
     display:flex;align-items:center;gap:6px;margin:0 0 10px}
-  .panel .f{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;
-    color:#fff;font-size:11px;font-weight:900;flex:none}
-  .panel .f.w{background:var(--t-conf)}
-  .panel .f.d{background:var(--t-mid)}
-  .panel .f.l{background:var(--t-rel)}
+  .f{display:inline-grid;place-items:center;border-radius:50%;
+    color:#fff;font-weight:900;flex:none}
+  .panel .f{width:22px;height:22px;font-size:11px}
+  .row-form .f{width:19px;height:19px;font-size:10px}
+  .f.w{background:var(--t-conf)}
+  .f.d{background:var(--t-mid)}
+  .f.l{background:var(--t-rel)}
+  @media (min-width:721px){
+    .panel .form-line{display:none}  /* form lives in the row on desktop */
+  }
   .fixture-line{font-family:'Lato',sans-serif;font-size:15px;font-weight:600;color:var(--ink);
     display:flex;align-items:center;gap:8px;margin:0 0 10px;flex-wrap:wrap}
   .fixture-line .fx-lab{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
@@ -215,6 +221,7 @@
     .btn{width:100%;text-align:center}
     .tab{font-size:16px;padding:12px 12px}
     .row{grid-template-columns:48px 44px 1fr auto auto;gap:10px;padding:14px 16px}
+    .row-form{display:none}
     .rank{font-size:26px}
     .crest{width:44px;height:44px;font-size:13px}
     .info .name{font-size:19px}
@@ -408,15 +415,15 @@
   })();
 
 const SC = {
-  cl:  {label:'Champions League', badge:'cl',   dot:'#1f6feb'},
-  el:  {label:'Europa League',    badge:'el',   dot:'#f59e0b'},
-  conf:{label:'Conference',       badge:'conf', dot:'#16a34a'},
-  mid: {label:'',                 badge:'mid',  dot:'#9aa0ac'},
-  rel: {label:'Relegation',       badge:'rel',  dot:'#dc2626'},
-  aup: {label:'Auto-Promotion',   badge:'aup',  dot:'#16a34a'},
-  plo: {label:'Playoff',          badge:'plo',  dot:'#f59e0b'},
-  wcl: {label:'UWCL',             badge:'cl',   dot:'#1f6feb'},
-  wclq:{label:'UWCL Qualifying',  badge:'plo',  dot:'#f59e0b'},
+  cl:  {label:'Champions League spot', b:'UCL',       badge:'cl',   dot:'#1f6feb'},
+  el:  {label:'Europa League spot',    b:'UEL',       badge:'el',   dot:'#f59e0b'},
+  conf:{label:'Conference spot',       b:'Conference',badge:'conf', dot:'#16a34a'},
+  mid: {label:'',                      b:'',          badge:'mid',  dot:'#9aa0ac'},
+  rel: {label:'Relegation zone',       b:'Relegation',badge:'rel',  dot:'#dc2626'},
+  aup: {label:'Auto-Promotion',        b:'Promotion', badge:'aup',  dot:'#16a34a'},
+  plo: {label:'Promotion Playoff',     b:'Playoff',   badge:'plo',  dot:'#f59e0b'},
+  wcl: {label:'UWCL League Phase',     b:'UWCL',      badge:'cl',   dot:'#1f6feb'},
+  wclq:{label:'UWCL Qualifying',       b:'UWCL Qual', badge:'plo',  dot:'#f59e0b'},
 };
 
 // 2026/27 season. pts start null (shown as "–") until the first matchday lands
@@ -645,7 +652,8 @@ function formHtml(f){
 function madridDate(iso, withTime){
   const d = new Date(iso);
   const wd = d.toLocaleDateString('en-GB',{weekday:'short',timeZone:'Europe/Madrid'});
-  const dd = d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',timeZone:'Europe/Madrid'}).replace(' ','-');
+  const dd = d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',timeZone:'Europe/Madrid'})
+    .replace(' ','-').replace('Sept','Sep');
   if(!withTime) return `${dd}`;
   const tm = d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Madrid'});
   return `${wd} ${dd} · ${tm}`;
@@ -663,7 +671,7 @@ function nextHtml(t){
   if(!N || !N.date) return '';
   return `<div class="fixture-line"><span class="fx-lab">Next</span>
     <span>vs ${N.opp} (${N.hm?'H':'A'})</span>
-    <span class="fx-when">${madridDate(N.date,true)} Madrid time</span></div>`;
+    <span class="fx-when">${madridDate(N.date,true)} Barcelona time</span></div>`;
 }
 
 // ── CARDS ──
@@ -678,7 +686,10 @@ function buildCards(teams,id){
                  : !preSeason && mv<0 ? `<span class="mv down">▼${-mv}</span>` : '';
     const rankHtml = (preSeason ? '–' : t.rank) + mvHtml;
     const ptsHtml = !preSeason ? `<div class="pts">${t.pts}<small>pts${t.p!=null?` · ${t.p} gp`:''}</small></div>` : `<div class="pts empty">0<small>pts</small></div>`;
-    const badge = sc.label ? `<span class="badge ${sc.badge}">${sc.label.replace(' League','').replace('-','')}</span>` : '';
+    const badge = sc.b ? `<span class="badge ${sc.badge}">${sc.b}</span>` : '';
+    const rowFormCells = t.form ? String(t.form).split(',').map(x=>x.trim().toUpperCase()).filter(x=>'WDL'.includes(x))
+      .map(x=>`<span class="f ${x.toLowerCase()}">${x}</span>`).join('') : '';
+    const rowForm = `<div class="row-form">${rowFormCells}</div>`;
     const crest = t.crest
       ? `<div class="crest"><img src="${t.crest}" alt="${t.name} crest" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'${abbr(t.name)}'}))"></div>`
       : `<div class="crest">${abbr(t.name)}</div>`;
@@ -695,6 +706,7 @@ function buildCards(teams,id){
           <p class="meta">${t.city} · Est. ${t.founded}</p>
         </div>
         ${ptsHtml}
+        ${rowForm}
         ${badge}
         <button class="toggle" aria-label="Expand">▾</button>
       </div>
@@ -768,7 +780,7 @@ function buildMap(svgId,dotsId,teams,infoId){
     lbl.setAttribute('font-family','Lato, sans-serif');
     lbl.setAttribute('font-weight','900');
     lbl.setAttribute('fill','#fff'); lbl.setAttribute('pointer-events','none');
-    lbl.textContent = (t.pts==null) ? '' : t.rank;
+    lbl.textContent = t.rank;
 
     const g = document.createElementNS(NS,'g');
     g.style.cursor = 'pointer';

@@ -25,6 +25,7 @@ if (!TOKEN) { console.error("Missing FD_TOKEN"); process.exit(1); }
 
 const BASE = "https://api.football-data.org/v4";
 const ESPN_BASE = "https://site.api.espn.com/apis/v2/sports/soccer";
+const ESPN_SITE = "https://site.api.espn.com/apis/site/v2/sports/soccer";
 const OUT_FILE = "laliga-standings.json";
 
 // football-data API name -> page display name (must match the names in the page arrays)
@@ -144,6 +145,10 @@ async function comp(code, statusFn, label){
   }
   const { rows, unmatched } = tableToRows(res.json, statusFn);
   if (unmatched.length) console.warn(`${label}: unmatched API names -> ${unmatched.join(", ")}`);
+  if (rows.length && !rows.some(r => r.p > 0)){
+    console.log(`${label}: season not started (0 games played); skipping.`);
+    return null;
+  }
   console.log(`${label}: ${rows.length} teams`);
   return { rows, season: seasonOf(res.json) };
 }
@@ -217,6 +222,54 @@ async function d1Fixtures(rows){
   console.log(`D1 fixtures: last for ${Object.keys(seen.last).length}, next for ${Object.keys(seen.next).length} teams`);
 }
 
+// Last result, next fixture, and (when the table has none) last-5 form per
+// team, from ESPN's scoreboard: finished games in the past 45 days, upcoming
+// in the next 21.
+async function espnFixtures(code, rows, nameMap, label){
+  const day = 86400000, now = Date.now();
+  const ymd = t => new Date(t).toISOString().slice(0, 10).replace(/-/g, "");
+  try{
+    const url = `${ESPN_SITE}/${code}/scoreboard?dates=${ymd(now - 45 * day)}-${ymd(now + 21 * day)}&limit=400`;
+    const r = await fetch(url, { headers: { "User-Agent": "Mozilla/5.0 (laliga-guide)" } });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const json = await r.json();
+    const byName = {};
+    rows.forEach(t => { byName[t.name] = t; });
+    const hist = {};
+    const events = (json.events || []).slice().sort((a, b) => new Date(a.date) - new Date(b.date));
+    let nLast = 0, nNext = 0;
+    for (const e of events){
+      const c = (e.competitions || [])[0];
+      if (!c) continue;
+      const side = {};
+      for (const x of (c.competitors || [])){
+        side[x.homeAway] = { name: nameMap[x.team.displayName] || canonName(x.team.displayName), score: Number(x.score) };
+      }
+      const h = side.home, a = side.away;
+      if (!h || !a || !h.name || !a.name) continue;
+      const t = new Date(e.date).getTime();
+      const state = e.status && e.status.type && e.status.type.state;
+      if (state === "post" && !Number.isNaN(h.score) && !Number.isNaN(a.score)){
+        // events are time-sorted, so the latest finished one wins
+        if (byName[h.name]){ byName[h.name].last = { opp: a.name, hm: true,  gf: h.score, ga: a.score, date: e.date }; nLast++; }
+        if (byName[a.name]){ byName[a.name].last = { opp: h.name, hm: false, gf: a.score, ga: h.score, date: e.date }; nLast++; }
+        const res = (x, y) => x > y ? "W" : x < y ? "L" : "D";
+        (hist[h.name] = hist[h.name] || []).push(res(h.score, a.score));
+        (hist[a.name] = hist[a.name] || []).push(res(a.score, h.score));
+      } else if (state === "pre" && t > now){
+        if (byName[h.name] && !byName[h.name].next){ byName[h.name].next = { opp: a.name, hm: true,  date: e.date }; nNext++; }
+        if (byName[a.name] && !byName[a.name].next){ byName[a.name].next = { opp: h.name, hm: false, date: e.date }; nNext++; }
+      }
+    }
+    for (const [n, seq] of Object.entries(hist)){
+      if (byName[n] && !byName[n].form) byName[n].form = seq.slice(-5).join(",");
+    }
+    console.log(`${label} fixtures (ESPN): last for ${nLast}, next for ${nNext} team-slots`);
+  }catch(err){
+    console.warn(`${label} fixtures (ESPN): failed (${err.message}); skipping.`);
+  }
+}
+
 // Rank movement vs the previous run (same season only). Positive = climbed.
 function addMovement(rows, prevRows){
   if (!Array.isArray(rows) || !Array.isArray(prevRows)) return;
@@ -261,6 +314,9 @@ function addMovement(rows, prevRows){
     out.f = prev.f;
     console.log("Liga F: carried forward previous table.");
   }
+
+  if (out.d2) await espnFixtures("esp.2",   out.d2, ESPN_MAP,   "D2");
+  if (out.f)  await espnFixtures("esp.w.1", out.f,  ESPN_F_MAP, "Liga F");
 
   // movement arrows: only meaningful within one season
   const sameSeason = prev.season && out.season && prev.season.start === out.season.start;

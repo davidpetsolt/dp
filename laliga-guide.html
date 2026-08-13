@@ -158,12 +158,20 @@
   .lastyr{font-family:'Lato',sans-serif;font-size:15px;font-weight:600;color:var(--navy);
     background:var(--sky);border-radius:999px;display:inline-block;padding:6px 14px;margin:0 0 14px}
   .form-line{font-family:'Lato',sans-serif;font-size:14px;font-weight:600;color:var(--muted);
-    display:flex;align-items:center;gap:6px;margin:0 0 14px}
-  .form-line .f{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;
-    color:#fff;font-size:11px;font-weight:900}
-  .form-line .f.w{background:var(--t-conf)}
-  .form-line .f.d{background:var(--t-mid)}
-  .form-line .f.l{background:var(--t-rel)}
+    display:flex;align-items:center;gap:6px;margin:0 0 10px}
+  .panel .f{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;
+    color:#fff;font-size:11px;font-weight:900;flex:none}
+  .panel .f.w{background:var(--t-conf)}
+  .panel .f.d{background:var(--t-mid)}
+  .panel .f.l{background:var(--t-rel)}
+  .fixture-line{font-family:'Lato',sans-serif;font-size:15px;font-weight:600;color:var(--ink);
+    display:flex;align-items:center;gap:8px;margin:0 0 10px;flex-wrap:wrap}
+  .fixture-line .fx-lab{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);min-width:36px}
+  .fixture-line .fx-when{color:var(--muted);font-weight:400;font-family:'Lora',serif;font-size:14.5px}
+  .rank .mv{display:block;font-size:11px;font-weight:900;line-height:1.2;margin-top:3px}
+  .mv.up{color:var(--t-conf)}
+  .mv.down{color:var(--t-rel)}
   .mm{margin:0 0 16px;max-width:360px;background:var(--sky);border-radius:12px;padding:10px}
   .mm svg{display:block;width:100%;height:auto}
 
@@ -260,7 +268,6 @@
       <h3>Updated daily · Both divisions · 42 teams</h3>
       <p id="ts">Season 2026/27 · Standings appear after the opening matchday (D2 kicks off 14-Aug, D1 15-Aug)</p>
     </div>
-    <a href="#standings" class="btn">See Standings →</a>
   </div>
 </section>
 
@@ -297,7 +304,7 @@
 <div class="tabpanel" data-panel="maps" hidden>
   <div class="maps">
     <div class="map-card">
-      <h3 class="map-title">División 1 — LaLiga EA Sports</h3>
+      <h3 class="map-title">División 1 — LaLiga</h3>
       <p class="map-sub">Each pin marks a club's home city.</p>
       <div class="map-frame">
         <svg id="svg1" viewBox="0 0 680 460" xmlns="http://www.w3.org/2000/svg" aria-label="Map of Spain with División 1 clubs">
@@ -343,7 +350,7 @@
 
 <footer class="footer">
   <div class="wrap">
-    <div>© Petsolt · Updated daily · Source: <a href="https://www.football-data.org/" target="_blank" rel="noopener">football-data.org</a> + <a href="https://en.wikipedia.org/" target="_blank" rel="noopener">Wikipedia</a></div>
+    <div>© Petsolt · Updated daily · Source: <a href="https://www.football-data.org/" target="_blank" rel="noopener">football-data.org</a> (D1) + ESPN (D2) + <a href="https://en.wikipedia.org/" target="_blank" rel="noopener">Wikipedia</a></div>
     <div><a href="https://petsolt.com/">petsolt.com</a></div>
   </div>
 </footer>
@@ -437,7 +444,7 @@ const D1=[
   {rank:18, name:'Racing de Santander',      city:'Santander',   founded:1913,pts:null,s:'mid', ly:{r:1,div:2,pts:82,note:'champions, promoted'}, x:293,y:50, crest:'https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Racing_de_Santander_logo.svg/120px-Racing_de_Santander_logo.svg.png',
    nicks:[{n:'Los Verdiblancos',m:"'The Green and Whites' — their green and white kit"},{n:'El Racing',m:"An affectionate shortening of the club name — 'Racing' became both name and identity"}],
    bv:'A historic name from the north coast, back in the top flight after a decade adrift. Culés have no strong feelings beyond a vague nostalgia for the Racing of the 90s and 2000s. Neutral, and quietly pleased to see an old name return.'},
-  {rank:19, name:'RC Deportivo La Coruña',   city:'A Coruña',    founded:1906,pts:null,s:'mid', ly:{r:2,div:2,pts:77,note:'promoted'}, x:93, y:57, crest:'https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/RC_Deportivo_La_Coru%C3%B1a_logo.svg/250px-RC_Deportivo_La_Coru%C3%B1a_logo.svg.png',
+  {rank:19, name:'RC Deportivo La Coruña',   city:'A Coruña',    founded:1906,pts:null,s:'mid', ly:{r:2,div:2,pts:77,note:'promoted'}, x:93, y:57, crest:'https://crests.football-data.org/560.png',
    nicks:[{n:'Super Depor',m:"Coined during their 1990s–2000s golden era — La Liga winners in 2000, Champions League semi-finals. A badge of that generation's ambition"},{n:'Los Coruñeses',m:"'The Coruña People' — straightforward geographic identity"},{n:'Blanquiazules',m:"'The Blue and Whites' — their kit colors"}],
    bv:'Real nostalgia — and now they\'re back. Deportivo won the league in 2000 and famously knocked out AC Milan in the 2004 Champions League quarter-finals. Barça fans remember them as a genuine force of that era and respect the history. Seeing Riazor host top-flight football again feels right.'},
   {rank:20, name:'Málaga CF',                city:'Málaga',      founded:1904,pts:null,s:'mid', ly:{r:4,div:2,pts:73,note:'promoted via playoff'}, x:265,y:396, crest:'https://upload.wikimedia.org/wikipedia/en/thumb/6/6d/M%C3%A1laga_CF.svg/330px-M%C3%A1laga_CF.svg.png',
@@ -525,7 +532,7 @@ function ord(n){
   const s=['th','st','nd','rd'], v=n%100;
   return n+(s[(v-20)%10]||s[v]||s[0]);
 }
-const DIV_NAMES = {1:'LaLiga EA Sports', 2:'LaLiga Hypermotion', 0:'Primera Federación'};
+const DIV_NAMES = {1:'LaLiga', 2:'LaLiga Hypermotion', 0:'Primera Federación'};
 function lyText(t){
   if(!t.ly) return '';
   const L=t.ly, dn=DIV_NAMES[L.div];
@@ -548,6 +555,29 @@ function formHtml(f){
     .map(x=>`<span class="f ${x.toLowerCase()}">${x}</span>`).join('');
   return cells ? `<div class="form-line">Last 5: ${cells}</div>` : '';
 }
+function madridDate(iso, withTime){
+  const d = new Date(iso);
+  const wd = d.toLocaleDateString('en-GB',{weekday:'short',timeZone:'Europe/Madrid'});
+  const dd = d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',timeZone:'Europe/Madrid'}).replace(' ','-');
+  if(!withTime) return `${dd}`;
+  const tm = d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Madrid'});
+  return `${wd} ${dd} · ${tm}`;
+}
+function lastHtml(t){
+  const L = t.last;
+  if(!L || L.gf==null) return '';
+  const res = L.gf>L.ga ? 'w' : L.gf<L.ga ? 'l' : 'd';
+  return `<div class="fixture-line"><span class="fx-lab">Last</span>
+    <span class="f ${res}">${res.toUpperCase()}</span> <span>${L.gf}–${L.ga} vs ${L.opp} (${L.hm?'H':'A'})</span>
+    <span class="fx-when">${madridDate(L.date,false)}</span></div>`;
+}
+function nextHtml(t){
+  const N = t.next;
+  if(!N || !N.date) return '';
+  return `<div class="fixture-line"><span class="fx-lab">Next</span>
+    <span>vs ${N.opp} (${N.hm?'H':'A'})</span>
+    <span class="fx-when">${madridDate(N.date,true)} Madrid time</span></div>`;
+}
 
 // ── CARDS ──
 function buildCards(teams,id){
@@ -556,7 +586,10 @@ function buildCards(teams,id){
   sorted.forEach(t=>{
     const sc = SC[t.s];
     const preSeason = (t.pts==null);
-    const rankHtml = preSeason ? '–' : t.rank;
+    const mv = t.mv|0;
+    const mvHtml = !preSeason && mv>0 ? `<span class="mv up">▲${mv}</span>`
+                 : !preSeason && mv<0 ? `<span class="mv down">▼${-mv}</span>` : '';
+    const rankHtml = (preSeason ? '–' : t.rank) + mvHtml;
     const ptsHtml = !preSeason ? `<div class="pts">${t.pts}<small>pts${t.p!=null?` · ${t.p} gp`:''}</small></div>` : `<div class="pts empty">0<small>pts</small></div>`;
     const badge = sc.label ? `<span class="badge ${sc.badge}">${sc.label.replace(' League','').replace('-','')}</span>` : '';
     const crest = t.crest
@@ -581,6 +614,8 @@ function buildCards(teams,id){
       <div class="panel">
         ${ly}
         ${formHtml(t.form)}
+        ${lastHtml(t)}
+        ${nextHtml(t)}
         <h4>Location — ${t.city}</h4>
         ${miniMap(t)}
         <h4>Nicknames &amp; origin</h4>
@@ -698,7 +733,7 @@ function buildMap(svgId,dotsId,teams,infoId){
           if(!Array.isArray(arr) || !Array.isArray(live)) return;
           const byName = {};
           live.forEach(t => { byName[t.name] = t; });
-          arr.forEach(o => { const t = byName[o.name]; if(t){ o.rank = t.rank; o.pts = t.pts; o.s = t.s; o.p = t.p; o.gd = t.gd; o.form = t.form; } });
+          arr.forEach(o => { const t = byName[o.name]; if(t){ o.rank = t.rank; o.pts = t.pts; o.s = t.s; o.p = t.p; o.gd = t.gd; o.form = t.form; o.mv = t.mv; o.last = t.last; o.next = t.next; } });
         };
         applyLive(D1, data.d1);
         applyLive(D2, data.d2);

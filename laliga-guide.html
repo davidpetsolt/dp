@@ -259,14 +259,14 @@
 <section class="hero">
   <p class="eyebrow">España · Professional Football · 2026/27</p>
   <h1 class="title">LaLiga <b>Guide</b></h1>
-  <p class="lede">A daily snapshot of both Spanish divisions — 42 clubs, current standings, last season&rsquo;s finish, nicknames, and the cities they call home. Updated daily.</p>
+  <p class="lede">A daily snapshot of Spanish professional football — both men&rsquo;s divisions plus Liga F, 58 clubs, current standings, last season&rsquo;s finish, nicknames, and the cities they call home. Updated daily.</p>
 </section>
 
 <section class="callout" aria-label="Update banner">
   <div class="callout-inner">
     <div>
-      <h3>Updated daily · Both divisions · 42 teams</h3>
-      <p id="ts">Season 2026/27 · Standings appear after the opening matchday (D2 kicks off 14-Aug, D1 15-Aug)</p>
+      <h3>Updated daily · D1 · D2 · Liga F · 58 teams</h3>
+      <p id="ts">Season 2026/27 · Standings appear after each opening matchday (D2 14-Aug · D1 15-Aug · Liga F 29-Aug)</p>
     </div>
   </div>
 </section>
@@ -274,6 +274,7 @@
 <div class="tabs" id="standings" role="tablist">
   <button class="tab active" role="tab" data-tab="d1">División 1 <span class="count">20</span></button>
   <button class="tab" role="tab" data-tab="d2">División 2 <span class="count">22</span></button>
+  <button class="tab" role="tab" data-tab="f">Liga F <span class="count">16</span></button>
   <button class="tab" role="tab" data-tab="maps">Maps</button>
 </div>
 
@@ -298,6 +299,17 @@
     <span class="hint">Tap any card to expand details</span>
   </div>
   <div class="standings" id="d2c"></div>
+</div>
+
+<!-- ── Liga F ── -->
+<div class="tabpanel" data-panel="f" hidden>
+  <div class="legend" id="f-legend">
+    <span class="chip cl"><span class="dot"></span> UWCL League Phase (1–2)</span>
+    <span class="chip plo"><span class="dot"></span> UWCL Qualifying (3)</span>
+    <span class="chip rel"><span class="dot"></span> Relegation (15–16)</span>
+    <span class="hint">Tap any card to expand details</span>
+  </div>
+  <div class="standings" id="f1c"></div>
 </div>
 
 <!-- ── Maps ── -->
@@ -344,8 +356,30 @@
       </div>
       <div class="minfo" id="info2"><span class="mi-empty">Tap a coloured dot to see team details</span></div>
     </div>
+
+    <div class="map-card">
+      <h3 class="map-title">Liga F — Women's First Division</h3>
+      <p class="map-sub">Same projection, Liga F clubs.</p>
+      <div class="map-frame">
+        <svg id="svg3" viewBox="0 0 680 460" xmlns="http://www.w3.org/2000/svg" aria-label="Map of Spain with Liga F clubs">
+          <rect width="680" height="460" fill="#C9E2F5"/>
+          <use href="#es-path"/>
+          <rect x="6" y="380" width="92" height="72" rx="5" fill="#fff" stroke="#b8a98a" stroke-width="1"/>
+          <text x="52" y="393" font-size="8" fill="#7a6a4a" text-anchor="middle" font-family="sans-serif" font-style="italic">Tenerife</text>
+          <text x="52" y="402" font-size="8" fill="#7a6a4a" text-anchor="middle" font-family="sans-serif" font-style="italic">(Canary Islands)</text>
+          <g id="dots3"></g>
+        </svg>
+      </div>
+      <div class="map-leg">
+        <span class="li"><span class="ld" style="background:var(--t-cl)"></span>UWCL</span>
+        <span class="li"><span class="ld" style="background:var(--t-plo)"></span>UWCL Qualifying</span>
+        <span class="li"><span class="ld" style="background:var(--t-mid)"></span>Mid-table</span>
+        <span class="li"><span class="ld" style="background:var(--t-rel)"></span>Relegation</span>
+      </div>
+      <div class="minfo" id="info3"><span class="mi-empty">Tap a coloured dot to see team details</span></div>
+    </div>
   </div>
-  <p class="map-note">Balearics shown in the Mediterranean · Ceuta at the southern tip · Tenerife &amp; Las Palmas in the Canary inset (D2, bottom-left). Natural Earth outline, equirectangular projection.</p>
+  <p class="map-note">Balearics shown in the Mediterranean · Ceuta at the southern tip · Canary clubs in the inset box (bottom-left of D2 &amp; Liga F maps). Natural Earth outline, equirectangular projection.</p>
 </div>
 
 <footer class="footer">
@@ -381,6 +415,8 @@ const SC = {
   rel: {label:'Relegation',       badge:'rel',  dot:'#dc2626'},
   aup: {label:'Auto-Promotion',   badge:'aup',  dot:'#16a34a'},
   plo: {label:'Playoff',          badge:'plo',  dot:'#f59e0b'},
+  wcl: {label:'UWCL',             badge:'cl',   dot:'#1f6feb'},
+  wclq:{label:'UWCL Qualifying',  badge:'plo',  dot:'#f59e0b'},
 };
 
 // 2026/27 season. pts start null (shown as "–") until the first matchday lands
@@ -521,6 +557,57 @@ const D2=[
    bv:'The reserve side of a club Barcelona respects — Galician, well-run, and a production line worth keeping an eye on. Goodwill by association, same as Sanse.'},
 ];
 
+const F=[
+  {rank:1, name:'FC Barcelona',        city:'Barcelona',            founded:2002,pts:null,s:'mid', ly:{r:1,div:3,pts:87,note:'champions, 11th title'}, x:548,y:159, crest:'https://a.espncdn.com/i/teamlogos/soccer/500/20091.png',
+   nicks:[{n:'Barça Femení',m:"The women's first team of FC Barcelona — official section since 2002, with roots back to 1988"},{n:'Les Culers',m:"The Catalan feminine form of Culés — same wall-sitting origin, same badge"}],
+   bv:'The pride of the club, full stop. The most dominant team in women\'s football — European champions multiple times over, Ballon d\'Or winners in the dressing room, and an 87-point title last season for an 11th league crown. For many Culés the Femení are not a side project; they\'re the standard the men get measured against.'},
+  {rank:2, name:'Real Madrid',         city:'Madrid',               founded:2020,pts:null,s:'mid', ly:{r:2,div:3,pts:72}, x:292,y:200, crest:'https://a.espncdn.com/i/teamlogos/soccer/500/21128.png',
+   nicks:[{n:'Las Blancas',m:"'The Whites' — feminine form of the men's nickname"}],
+   bv:'The manufactured rival. Real Madrid didn\'t have a women\'s team until 2020, when they bought and absorbed CD Tacón — a fact Culés bring up at every opportunity. The Clásico scoreline history since then has been overwhelmingly blaugrana, and Barça fans intend to keep reminding everyone.'},
+  {rank:3, name:'Real Sociedad',       city:'San Sebastián',        founded:2004,pts:null,s:'mid', ly:{r:3,div:3,pts:66}, x:375,y:59, crest:'https://a.espncdn.com/i/teamlogos/soccer/500/21428.png',
+   nicks:[{n:'Txuri-urdin',m:"Basque for 'white-blue' — the same identity as the men's side"}],
+   bv:'Same warmth as for the men\'s club — Basque identity, proper development work, and a genuinely strong side that finished third last season. Copa de la Reina winners in 2019. Respected opposition, never hated.'},
+  {rank:4, name:'Costa Adeje Tenerife',city:'Santa Cruz de Tenerife',founded:2013,pts:null,s:'mid', ly:{r:4,div:3,pts:54}, x:30,y:431, inset:true, crest:'https://upload.wikimedia.org/wikipedia/en/thumb/1/12/UD_Granadilla_Tenerife.png/250px-UD_Granadilla_Tenerife.png',
+   nicks:[{n:'Tenerife Femenino',m:"The club's own brand since integrating under the CD Tenerife umbrella in 2025 — founded in Granadilla in 2013 as UD Granadilla Tenerife Sur"}],
+   bv:'Island overachievers. Fourth place last season out of a Canary club that barely existed a decade ago is remarkable work. Culés have no history with them beyond respect — and the away trip is the league\'s best excuse for a beach weekend.'},
+  {rank:5, name:'Atlético de Madrid',  city:'Madrid',               founded:2001,pts:null,s:'mid', ly:{r:5,div:3,pts:51}, x:309,y:212, crest:'https://a.espncdn.com/i/teamlogos/soccer/500/20093.png',
+   nicks:[{n:'Las Colchoneras',m:"'The Mattress Makers' — feminine form of the men's nickname, same striped-ticking origin"}],
+   bv:'The old rival. Atleti were the team that broke Barça\'s dominance in the late 2010s, winning back-to-back titles, and those title races were genuinely fierce. They\'ve since fallen off that level, but the edge from those years hasn\'t fully faded.'},
+  {rank:6, name:'Granada CF',          city:'Granada',              founded:2003,pts:null,s:'mid', ly:{r:6,div:3,pts:45}, x:302,y:371, crest:'https://a.espncdn.com/i/teamlogos/soccer/500/21140.png',
+   nicks:[{n:'Las Nazaríes',m:"After the Nasrid dynasty of the Alhambra — same identity as the men's club"}],
+   bv:'Neutral to warm, same as the men\'s side. A solid mid-table Liga F team that earned its place. No history with Barcelona worth mentioning.'},
+  {rank:7, name:'Athletic Club',       city:'Bilbao',               founded:2002,pts:null,s:'mid', ly:{r:7,div:3,pts:44}, x:332,y:63, crest:'https://a.espncdn.com/i/teamlogos/soccer/500/21372.png',
+   nicks:[{n:'Las Leonas',m:"'The Lionesses' — feminine counterpart of Los Leones of San Mamés"}],
+   bv:'Kinship, exactly like the men\'s clubs. Athletic\'s women\'s section carries the same Basque-only philosophy and won five of the earliest league titles. Identity football, deeply respected in Barcelona.'},
+  {rank:8, name:'Sevilla FC',          city:'Seville',              founded:2008,pts:null,s:'mid', ly:{r:8,div:3,pts:41}, x:207,y:356, crest:'https://a.espncdn.com/i/teamlogos/soccer/500/21424.png',
+   nicks:[{n:'Las Rojiblancas',m:"'The Red and Whites' — the club colors, same as the men's side"}],
+   bv:'Neutral. A steady top-half Liga F side. Culés watch the fixture for the football, not the needle.'},
+  {rank:9, name:'Madrid CFF',          city:'Madrid',               founded:2010,pts:null,s:'mid', ly:{r:9,div:3,pts:37}, x:281,y:209, crest:'https://a.espncdn.com/i/teamlogos/soccer/500/21425.png',
+   nicks:[{n:'CFF',m:"Club de Fútbol Femenino — an independent, women-only Madrid club founded in 2010, unattached to any men's team"}],
+   bv:'Quiet respect. An independent women-only club holding its own in a league of giant men\'s-club sections — the kind of self-made project neutrals root for. No relation to Real Madrid, whatever the white kit suggests.'},
+  {rank:10,name:'FC Badalona Women',   city:'Badalona',             founded:1998,pts:null,s:'mid', ly:{r:10,div:3,pts:36,note:'incl. 3-pt deduction'}, x:560,y:152, crest:'https://a.espncdn.com/i/teamlogos/soccer/500/21149.png',
+   nicks:[{n:'ONA',m:"Catalan for 'wave' — the club's brand under Mercury/13 ownership; formerly Levante Las Planas, renamed after its move to Badalona"}],
+   bv:'The Catalan neighbours with a corporate twist. A local women\'s club with real history, now owned by the Mercury/13 multi-club group. Culés like having another Catalan derby on the calendar; the private-equity wrapper gets the same side-eye Girona\'s CFG does.'},
+  {rank:11,name:'RCD Espanyol',        city:'Barcelona',            founded:1970,pts:null,s:'mid', ly:{r:11,div:3,pts:31}, x:543,y:168, crest:'https://a.espncdn.com/i/teamlogos/soccer/500/21154.png',
+   nicks:[{n:'Las Periquitas',m:"The feminine Parakeets — Espanyol founded Spain's pioneering women's section in 1970, decades before most"}],
+   bv:'The city rival, with an asterisk of respect: Espanyol\'s women\'s section is the oldest in Spain, founded in 1970 when almost nobody else bothered. The derby feeling applies, but Culés who know the history tip their cap to the pioneers.'},
+  {rank:12,name:'Deportivo Abanca',    city:'A Coruña',             founded:2016,pts:null,s:'mid', ly:{r:12,div:3,pts:31}, x:93,y:57, crest:'https://a.espncdn.com/i/teamlogos/soccer/500/21145.png',
+   nicks:[{n:'Dépor',m:"The universal short form — Abanca is the sponsoring Galician bank"},{n:'Blanquiazules',m:"'The Blue and Whites' — Depor's colors, women's section founded 2016"}],
+   bv:'Same nostalgia-tinted warmth as for the men — and with Depor back in D1 and the women established in Liga F, A Coruña football is having its best moment in years. Culés approve.'},
+  {rank:13,name:'SD Eibar',            city:'Eibar',                founded:1991,pts:null,s:'mid', ly:{r:13,div:3,pts:28}, x:354,y:68, crest:'https://a.espncdn.com/i/teamlogos/soccer/500/21376.png',
+   nicks:[{n:'Armagiñak',m:"Basque for 'gunsmiths' — the town's centuries-old trade, same identity as the men's side; born in 1991 as Eibartarrak FT"}],
+   bv:'The beloved underdog story extends to the women\'s side: a town of 27,000 keeping a team in the top flight of both leagues. Genuine soul. Culés respect it enormously.'},
+  {rank:14,name:'Logroño United',      city:'Logroño',              founded:2008,pts:null,s:'mid', ly:{r:14,div:3,pts:21,note:'as DUX Logroño'}, x:353,y:104, crest:'https://upload.wikimedia.org/wikipedia/en/thumb/a/a5/Logro%C3%B1o_United.png/250px-Logro%C3%B1o_United.png',
+   nicks:[{n:'United',m:"Rebranded from DUX Logroño in July 2026 under new ownership — new crest, new era; born in 2008 as EDF Logroño"}],
+   bv:'Honest answer: mostly off the radar. A Rioja club on its third identity in five years, fighting to stay up. Culés wish them no ill — La Rioja deserves top-flight football — but rarely think about them.'},
+  {rank:15,name:'Deportivo Alavés',    city:'Vitoria-Gasteiz',      founded:2017,pts:null,s:'mid', ly:{div:0,note:'champions, promoted'}, x:343,y:83, crest:'https://a.espncdn.com/i/teamlogos/soccer/500/21378.png',
+   nicks:[{n:'Gloriosas',m:"'The Glorious Ones' — the feminine form of the men's historic nickname, adopted when the section formed in 2017"}],
+   bv:'A newly promoted Basque side — the same mild goodwill the men\'s Alavés gets, plus underdog sympathy. Staying up would be the achievement of their short history.'},
+  {rank:16,name:'Valencia CF',         city:'Valencia',             founded:2009,pts:null,s:'mid', ly:{div:0,note:'promoted'}, x:444,y:256, crest:'https://a.espncdn.com/i/teamlogos/soccer/500/21374.png',
+   nicks:[{n:'VCF Femenino',m:"The club's own brand for its women's team, founded in 2009 by absorbing DSV Colegio Alemán"}],
+   bv:'Back where a club that size belongs. The men\'s decline dragged the whole institution down, and the women\'s relegation stung; promotion at the first attempt restores some pride. Culés watch with the same sympathy they extend to the men.'},
+];
+
 // ── HELPERS ──
 function abbr(name){
   const stop = new Set(['fc','cf','rc','ad','rcd','sd','cd','ud','ca','ce','de','la','el','los','las','y']);
@@ -532,7 +619,7 @@ function ord(n){
   const s=['th','st','nd','rd'], v=n%100;
   return n+(s[(v-20)%10]||s[v]||s[0]);
 }
-const DIV_NAMES = {1:'LaLiga', 2:'LaLiga Hypermotion', 0:'Primera Federación'};
+const DIV_NAMES = {1:'LaLiga', 2:'LaLiga Hypermotion', 3:'Liga F', 0:'Primera Federación'};
 function lyText(t){
   if(!t.ly) return '';
   const L=t.ly, dn=DIV_NAMES[L.div];
@@ -737,6 +824,7 @@ function buildMap(svgId,dotsId,teams,infoId){
         };
         applyLive(D1, data.d1);
         applyLive(D2, data.d2);
+        applyLive(F, data.f);
         if(data.updated){
           const ts = document.getElementById('ts');
           if(ts){
@@ -754,8 +842,10 @@ function buildMap(svgId,dotsId,teams,infoId){
   }catch(e){ /* keep inline fallback values */ }
   buildCards(D1,'d1c');
   buildCards(D2,'d2c');
+  buildCards(F,'f1c');
   buildMap('svg1','dots1',D1,'info1');
   buildMap('svg2','dots2',D2,'info2');
+  buildMap('svg3','dots3',F,'info3');
 })();
 </script>
 </body>

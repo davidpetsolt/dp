@@ -24,7 +24,7 @@ const TOKEN = process.env.FD_TOKEN;
 if (!TOKEN) { console.error("Missing FD_TOKEN"); process.exit(1); }
 
 const BASE = "https://api.football-data.org/v4";
-const ESPN_D2 = "https://site.api.espn.com/apis/v2/sports/soccer/esp.2/standings";
+const ESPN_BASE = "https://site.api.espn.com/apis/v2/sports/soccer";
 const OUT_FILE = "laliga-standings.json";
 
 // football-data API name -> page display name (must match the names in the page arrays)
@@ -55,6 +55,21 @@ const NAME_MAP = {
   "Cultural y Deportiva Leonesa":"Cultural y Dep. Leonesa",
 };
 
+// ESPN displayName -> page display name, Liga F (esp.w.1). Page names follow
+// ligaf.es. ESPN's "Dux Logroño" is stale (rebranded Logroño United Jul-2026)
+// and its "CD Tenerife" is listed by Liga F as Costa Adeje Tenerife — both
+// mapped here, with the fresh names included in case ESPN catches up.
+const ESPN_F_MAP = {
+  "Alavés":"Deportivo Alavés", "Athletic Club":"Athletic Club",
+  "Atlético Madrid":"Atlético de Madrid", "FC Badalona":"FC Badalona Women",
+  "Barcelona":"FC Barcelona", "Deportivo":"Deportivo Abanca", "Eibar":"SD Eibar",
+  "Espanyol":"RCD Espanyol", "Granada":"Granada CF",
+  "Dux Logroño":"Logroño United", "Logroño United":"Logroño United",
+  "Madrid CFF":"Madrid CFF", "Real Madrid":"Real Madrid", "Real Sociedad":"Real Sociedad",
+  "Sevilla":"Sevilla FC", "CD Tenerife":"Costa Adeje Tenerife",
+  "Costa Adeje Tenerife":"Costa Adeje Tenerife", "Valencia":"Valencia CF",
+};
+
 // ESPN displayName -> page display name (ESPN uses short names)
 const ESPN_MAP = {
   "Albacete":"Albacete Balompié", "Almería":"UD Almería", "Burgos":"Burgos CF",
@@ -81,6 +96,8 @@ function canonName(apiName){
 // after the 25/26 coefficient bonus year).
 const statusD1 = r => r <= 4 ? "cl" : r <= 6 ? "el" : r === 7 ? "conf" : r >= 18 ? "rel" : "mid";
 const statusD2 = r => r <= 2 ? "aup" : r <= 6 ? "plo" : r >= 19 ? "rel" : "mid";
+// Liga F 26/27: 1-2 direct to UWCL league phase, 3rd to qualifying, bottom 2 down
+const statusF  = r => r <= 2 ? "wcl" : r === 3 ? "wclq" : r >= 15 ? "rel" : "mid";
 
 async function get(path, tries = 4){
   for (let i = 0; i < tries; i++){
@@ -131,12 +148,13 @@ async function comp(code, statusFn, label){
   return { rows, season: seasonOf(res.json) };
 }
 
-// D2 via ESPN's public standings JSON (no key). Returns rows or null.
-// Pre-season ESPN lists teams alphabetically with 0 games played — refuse
-// that so the page keeps its seeded "–" cards until real football happens.
-async function espnD2(){
+// A league table via ESPN's public standings JSON (no key). Returns rows or
+// null. Pre-season ESPN lists teams alphabetically with 0 games played —
+// refuse that so the page keeps its seeded "–" cards until real football
+// happens.
+async function espnTable(code, statusFn, nameMap, minTeams, label){
   try{
-    const r = await fetch(ESPN_D2, { headers: { "User-Agent": "Mozilla/5.0 (laliga-guide)" } });
+    const r = await fetch(`${ESPN_BASE}/${code}/standings`, { headers: { "User-Agent": "Mozilla/5.0 (laliga-guide)" } });
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     const json = await r.json();
     const entries = (((json.children || [])[0] || {}).standings || {}).entries || [];
@@ -147,24 +165,24 @@ async function espnD2(){
       const stats = {};
       for (const s of (e.stats || [])) stats[s.name] = s.value;
       const disp = e.team.displayName;
-      const name = ESPN_MAP[disp] || canonName(disp);
+      const name = nameMap[disp] || canonName(disp);
       if (!name){ unmatched.push(disp); continue; }
       const rank = Math.round(stats.rank || 0);
       played += (stats.gamesPlayed || 0);
       rows.push({
-        rank, name, pts: Math.round(stats.points || 0), s: statusD2(rank),
+        rank, name, pts: Math.round(stats.points || 0), s: statusFn(rank),
         p: Math.round(stats.gamesPlayed || 0), gd: Math.round(stats.pointDifferential || 0),
         form: null,
       });
     }
-    if (unmatched.length) console.warn(`D2 (ESPN): unmatched names -> ${unmatched.join(", ")}`);
-    if (rows.length < 20) throw new Error(`only ${rows.length} teams mapped`);
-    if (played === 0){ console.log("D2 (ESPN): season not started (0 games played); skipping."); return null; }
+    if (unmatched.length) console.warn(`${label} (ESPN): unmatched names -> ${unmatched.join(", ")}`);
+    if (rows.length < minTeams) throw new Error(`only ${rows.length} teams mapped`);
+    if (played === 0){ console.log(`${label} (ESPN): season not started (0 games played); skipping.`); return null; }
     rows.sort((a, b) => a.rank - b.rank);
-    console.log(`D2 (ESPN): ${rows.length} teams`);
+    console.log(`${label} (ESPN): ${rows.length} teams`);
     return rows;
   }catch(err){
-    console.warn(`D2 (ESPN): failed (${err.message}); will carry forward previous d2 if present.`);
+    console.warn(`${label} (ESPN): failed (${err.message}); will carry forward previous table if present.`);
     return null;
   }
 }
@@ -227,7 +245,7 @@ function addMovement(rows, prevRows){
   if (d2){
     out.d2 = d2.rows;
   } else {
-    const espn = await espnD2();
+    const espn = await espnTable("esp.2", statusD2, ESPN_MAP, 20, "D2");
     if (espn){
       out.d2 = espn;
     } else if (Array.isArray(prev.d2)){
@@ -236,11 +254,20 @@ function addMovement(rows, prevRows){
     }
   }
 
+  const f = await espnTable("esp.w.1", statusF, ESPN_F_MAP, 14, "Liga F");
+  if (f){
+    out.f = f;
+  } else if (Array.isArray(prev.f)){
+    out.f = prev.f;
+    console.log("Liga F: carried forward previous table.");
+  }
+
   // movement arrows: only meaningful within one season
   const sameSeason = prev.season && out.season && prev.season.start === out.season.start;
   if (sameSeason){
     addMovement(out.d1, prev.d1);
     addMovement(out.d2, prev.d2);
+    addMovement(out.f, prev.f);
   }
 
   fs.writeFileSync(OUT_FILE, JSON.stringify(out, null, 2) + "\n");

@@ -827,17 +827,30 @@ function buildMap(svgId,dotsId,teams,infoId){
     if(res.ok){
       const data = await res.json();
       const seasonOk = data.season && typeof data.season.start === 'string' && data.season.start >= '2026-07-01';
+      // Belt and suspenders vs football-data's transitional window (season
+      // stamp already 26/27 but the table still last season's): if the season
+      // hasn't started yet relative to the feed's own timestamp, take only
+      // fixtures — never ranks/points.
+      const started = seasonOk && !(data.updated && data.season.start > data.updated.slice(0,10));
       if(seasonOk){
         const applyLive = (arr, live) => {
           if(!Array.isArray(arr) || !Array.isArray(live)) return;
           const byName = {};
           live.forEach(t => { byName[t.name] = t; });
-          arr.forEach(o => { const t = byName[o.name]; if(t){ o.rank = t.rank; o.pts = t.pts; o.s = t.s; o.p = t.p; o.gd = t.gd; o.form = t.form; o.mv = t.mv; o.last = t.last; o.next = t.next; } });
+          arr.forEach(o => {
+            const t = byName[o.name];
+            if(!t) return;
+            if(t.last) o.last = t.last;
+            if(t.next) o.next = t.next;
+            if(!started || t.rank == null || t.pts == null) return;  // fixture stub or stale table
+            o.rank = t.rank; o.pts = t.pts; o.s = t.s;
+            o.p = t.p; o.gd = t.gd; o.form = t.form; o.mv = t.mv;
+          });
         };
         applyLive(D1, data.d1);
         applyLive(D2, data.d2);
         applyLive(F, data.f);
-        if(data.updated){
+        if(data.updated && started){
           const ts = document.getElementById('ts');
           if(ts){
             const d = new Date(data.updated);

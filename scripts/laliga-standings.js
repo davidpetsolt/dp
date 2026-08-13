@@ -145,12 +145,22 @@ async function comp(code, statusFn, label){
   }
   const { rows, unmatched } = tableToRows(res.json, statusFn);
   if (unmatched.length) console.warn(`${label}: unmatched API names -> ${unmatched.join(", ")}`);
-  if (rows.length && !rows.some(r => r.p > 0)){
-    console.log(`${label}: season not started (0 games played); skipping.`);
-    return null;
+  const season = seasonOf(res.json);
+  const totalGp = rows.reduce((s, r) => s + (r.p || 0), 0);
+  // Pre-season detection. football-data has a transitional window where the
+  // season block already says 26/27 but the table still carries last season's
+  // final numbers (seen 13-Aug-2026: matchday 1 with 760 games on the books).
+  // Emit name-only stub rows then: fixtures can still attach, but no stale
+  // ranks/points ever reach the page.
+  const notStarted = totalGp === 0
+    || (season.start && new Date(season.start).getTime() > Date.now())
+    || (season.matchday != null && season.matchday <= 1 && totalGp > rows.length * 3);
+  if (rows.length && notStarted){
+    console.log(`${label}: season not started (stale or empty table); emitting fixture stubs only.`);
+    return { rows: rows.map(r => ({ name: r.name })), season, preseason: true };
   }
   console.log(`${label}: ${rows.length} teams`);
-  return { rows, season: seasonOf(res.json) };
+  return { rows, season };
 }
 
 // A league table via ESPN's public standings JSON (no key). Returns rows or
@@ -182,10 +192,13 @@ async function espnTable(code, statusFn, nameMap, minTeams, label){
     }
     if (unmatched.length) console.warn(`${label} (ESPN): unmatched names -> ${unmatched.join(", ")}`);
     if (rows.length < minTeams) throw new Error(`only ${rows.length} teams mapped`);
-    if (played === 0){ console.log(`${label} (ESPN): season not started (0 games played); skipping.`); return null; }
+    if (played === 0){
+      console.log(`${label} (ESPN): season not started (0 games played); emitting fixture stubs only.`);
+      return { rows: rows.map(r => ({ name: r.name })), preseason: true };
+    }
     rows.sort((a, b) => a.rank - b.rank);
     console.log(`${label} (ESPN): ${rows.length} teams`);
-    return rows;
+    return { rows, preseason: false };
   }catch(err){
     console.warn(`${label} (ESPN): failed (${err.message}); will carry forward previous table if present.`);
     return null;
@@ -193,13 +206,23 @@ async function espnTable(code, statusFn, nameMap, minTeams, label){
 }
 
 // Last result + next fixture per D1 team from a +/-3 week matches window.
-async function d1Fixtures(rows){
+// createMissing: add name-only stub rows for teams seen in fixtures but absent
+// from the table (pre-season, football-data's stale table lacks promoted clubs).
+async function d1Fixtures(rows, createMissing){
   const day = 86400000, now = Date.now();
   const iso = t => new Date(t).toISOString().slice(0, 10);
   const res = await get(`/competitions/PD/matches?dateFrom=${iso(now - 21 * day)}&dateTo=${iso(now + 21 * day)}`);
   if (!res.ok){ console.warn("D1 matches: unavailable; skipping last/next."); return; }
   const byName = {};
   rows.forEach(r => { byName[r.name] = r; });
+  if (createMissing){
+    for (const m of (res.json.matches || [])){
+      for (const side of [m.homeTeam, m.awayTeam]){
+        const n = canonName(side.name);
+        if (n && !byName[n]){ byName[n] = { name: n }; rows.push(byName[n]); }
+      }
+    }
+  }
   const seen = { last: {}, next: {} };
   const matches = (res.json.matches || []).slice()
     .sort((a, b) => new Date(a.utcDate) - new Date(b.utcDate));
@@ -277,7 +300,7 @@ function addMovement(rows, prevRows){
   prevRows.forEach(t => { prevRank[t.name] = t.rank; });
   rows.forEach(t => {
     const p = prevRank[t.name];
-    if (p != null && p !== t.rank) t.mv = p - t.rank;
+    if (p != null && t.rank != null && p !== t.rank) t.mv = p - t.rank;
   });
 }
 
@@ -291,29 +314,27 @@ function addMovement(rows, prevRows){
   if (d1){
     out.d1 = d1.rows;
     out.season = d1.season;
-    await d1Fixtures(out.d1);
+    await d1Fixtures(out.d1, !!d1.preseason);
   }
+
+  // A pre-season stub result must never replace a previous REAL table (e.g. a
+  // source glitching back to zeros mid-season keeps yesterday's standings).
+  const pick = (espn, prevRows, label) => {
+    if (espn && !(espn.preseason && Array.isArray(prevRows) && prevRows.some(r => r.pts > 0))) return espn.rows;
+    if (Array.isArray(prevRows)){ console.log(`${label}: carried forward previous table.`); return prevRows; }
+    return espn ? espn.rows : undefined;
+  };
 
   const d2 = await comp("SD", statusD2, "D2 (LaLiga Hypermotion)");
   if (d2){
     out.d2 = d2.rows;
   } else {
-    const espn = await espnTable("esp.2", statusD2, ESPN_MAP, 20, "D2");
-    if (espn){
-      out.d2 = espn;
-    } else if (Array.isArray(prev.d2)){
-      out.d2 = prev.d2;
-      console.log("D2: carried forward previous table.");
-    }
+    out.d2 = pick(await espnTable("esp.2", statusD2, ESPN_MAP, 20, "D2"), prev.d2, "D2");
+    if (!out.d2) delete out.d2;
   }
 
-  const f = await espnTable("esp.w.1", statusF, ESPN_F_MAP, 14, "Liga F");
-  if (f){
-    out.f = f;
-  } else if (Array.isArray(prev.f)){
-    out.f = prev.f;
-    console.log("Liga F: carried forward previous table.");
-  }
+  out.f = pick(await espnTable("esp.w.1", statusF, ESPN_F_MAP, 14, "Liga F"), prev.f, "Liga F");
+  if (!out.f) delete out.f;
 
   if (out.d2) await espnFixtures("esp.2",   out.d2, ESPN_MAP,   "D2");
   if (out.f)  await espnFixtures("esp.w.1", out.f,  ESPN_F_MAP, "Liga F");

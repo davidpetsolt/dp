@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-13T23:54:52.246Z",
+  "updated": "2026-08-13T23:55:48.726Z",
   "d1": [
     {
       "name": "FC Barcelona",
@@ -160,6 +160,14 @@
         "opp": "Atlético de Madrid",
         "hm": false,
         "date": "2026-08-19T19:00:00Z"
+      }
+    },
+    {
+      "name": "RC Deportivo La Coruña",
+      "next": {
+        "opp": "Elche CF",
+        "hm": true,
+        "date": "2026-08-17T19:00Z"
       }
     }
   ],

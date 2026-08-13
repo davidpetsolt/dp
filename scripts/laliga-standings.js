@@ -56,6 +56,21 @@ const NAME_MAP = {
   "Cultural y Deportiva Leonesa":"Cultural y Dep. Leonesa",
 };
 
+// ESPN displayName -> page display name, D1 (esp.1). Used only to fill fixture
+// gaps football-data leaves during its season rollover (e.g. promoted clubs
+// missing from its matches feed). Explicit map required: canonName's fuzzy
+// fallback would send ESPN's bare "Deportivo" to Deportivo Alavés.
+const ESPN_D1_MAP = {
+  "Alavés":"Deportivo Alavés", "Athletic Club":"Athletic Club",
+  "Atlético Madrid":"Atlético de Madrid", "Barcelona":"FC Barcelona",
+  "Celta Vigo":"RC Celta de Vigo", "Deportivo":"RC Deportivo La Coruña",
+  "Elche":"Elche CF", "Espanyol":"RCD Espanyol", "Getafe":"Getafe CF",
+  "Levante":"Levante UD", "Málaga":"Málaga CF", "Osasuna":"CA Osasuna",
+  "Racing Santander":"Racing de Santander", "Rayo Vallecano":"Rayo Vallecano",
+  "Real Betis":"Real Betis", "Real Madrid":"Real Madrid", "Real Sociedad":"Real Sociedad",
+  "Sevilla":"Sevilla FC", "Valencia":"Valencia CF", "Villarreal":"Villarreal CF",
+};
+
 // ESPN displayName -> page display name, Liga F (esp.w.1). Page names follow
 // ligaf.es. ESPN's "Dux Logroño" is stale (rebranded Logroño United Jul-2026)
 // and its "CD Tenerife" is listed by Liga F as Costa Adeje Tenerife — both
@@ -248,7 +263,7 @@ async function d1Fixtures(rows, createMissing){
 // Last result, next fixture, and (when the table has none) last-5 form per
 // team, from ESPN's scoreboard: finished games in the past 45 days, upcoming
 // in the next 21.
-async function espnFixtures(code, rows, nameMap, label){
+async function espnFixtures(code, rows, nameMap, label, createMissing){
   const day = 86400000, now = Date.now();
   const ymd = t => new Date(t).toISOString().slice(0, 10).replace(/-/g, "");
   try{
@@ -258,6 +273,14 @@ async function espnFixtures(code, rows, nameMap, label){
     const json = await r.json();
     const byName = {};
     rows.forEach(t => { byName[t.name] = t; });
+    if (createMissing){
+      for (const e of (json.events || [])){
+        for (const x of (((e.competitions || [])[0] || {}).competitors || [])){
+          const n = nameMap[x.team.displayName];
+          if (n && !byName[n]){ byName[n] = { name: n }; rows.push(byName[n]); }
+        }
+      }
+    }
     const hist = {};
     const events = (json.events || []).slice().sort((a, b) => new Date(a.date) - new Date(b.date));
     let nLast = 0, nNext = 0;
@@ -315,6 +338,9 @@ function addMovement(rows, prevRows){
     out.d1 = d1.rows;
     out.season = d1.season;
     await d1Fixtures(out.d1, !!d1.preseason);
+    // ESPN fills fixture gaps football-data leaves mid-rollover (missing
+    // promoted clubs); next is only set where football-data provided none.
+    if (out.d1.some(r => !r.next)) await espnFixtures("esp.1", out.d1, ESPN_D1_MAP, "D1 fill", !!d1.preseason);
   }
 
   // A pre-season stub result must never replace a previous REAL table (e.g. a

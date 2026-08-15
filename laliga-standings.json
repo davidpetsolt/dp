@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-14T05:59:10.707Z",
+  "updated": "2026-08-15T04:58:16.334Z",
   "d1": [
     {
       "name": "FC Barcelona",
@@ -44,9 +44,9 @@
     {
       "name": "RC Celta de Vigo",
       "next": {
-        "opp": "CA Osasuna",
-        "hm": true,
-        "date": "2026-08-16T19:30:00Z"
+        "opp": "Valencia CF",
+        "hm": false,
+        "date": "2026-08-22T17:30:00Z"
       }
     },
     {
@@ -124,9 +124,9 @@
     {
       "name": "CA Osasuna",
       "next": {
-        "opp": "RC Celta de Vigo",
-        "hm": false,
-        "date": "2026-08-16T19:30:00Z"
+        "opp": "Levante UD",
+        "hm": true,
+        "date": "2026-08-24T17:30:00Z"
       }
     },
     {
@@ -178,7 +178,34 @@
   },
   "d2": [
     {
+      "rank": 1,
+      "name": "CD Castellón",
+      "pts": 3,
+      "s": "aup",
+      "p": 1,
+      "gd": 1,
+      "form": "W",
+      "last": {
+        "opp": "Real Sociedad B",
+        "hm": false,
+        "gf": 1,
+        "ga": 0,
+        "date": "2026-08-14T18:30Z"
+      },
+      "next": {
+        "opp": "CE Sabadell",
+        "hm": true,
+        "date": "2026-08-23T17:00Z"
+      }
+    },
+    {
+      "rank": 2,
       "name": "Albacete Balompié",
+      "pts": 0,
+      "s": "aup",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "UD Las Palmas",
         "hm": false,
@@ -186,7 +213,13 @@
       }
     },
     {
+      "rank": 3,
       "name": "UD Almería",
+      "pts": 0,
+      "s": "plo",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "CD Eldense",
         "hm": true,
@@ -194,7 +227,13 @@
       }
     },
     {
+      "rank": 4,
       "name": "Burgos CF",
+      "pts": 0,
+      "s": "plo",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "Córdoba CF",
         "hm": true,
@@ -202,7 +241,13 @@
       }
     },
     {
+      "rank": 5,
       "name": "Cádiz CF",
+      "pts": 0,
+      "s": "plo",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "Celta Fortuna",
         "hm": true,
@@ -210,15 +255,13 @@
       }
     },
     {
-      "name": "CD Castellón",
-      "next": {
-        "opp": "Real Sociedad B",
-        "hm": false,
-        "date": "2026-08-14T18:30Z"
-      }
-    },
-    {
+      "rank": 6,
       "name": "Celta Fortuna",
+      "pts": 0,
+      "s": "plo",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "Cádiz CF",
         "hm": false,
@@ -226,7 +269,13 @@
       }
     },
     {
+      "rank": 7,
       "name": "AD Ceuta FC",
+      "pts": 0,
+      "s": "mid",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "FC Andorra",
         "hm": false,
@@ -234,7 +283,13 @@
       }
     },
     {
+      "rank": 8,
       "name": "Córdoba CF",
+      "pts": 0,
+      "s": "mid",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "Burgos CF",
         "hm": false,
@@ -242,7 +297,13 @@
       }
     },
     {
+      "rank": 9,
       "name": "SD Eibar",
+      "pts": 0,
+      "s": "mid",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "CD Tenerife",
         "hm": true,
@@ -250,7 +311,13 @@
       }
     },
     {
+      "rank": 10,
       "name": "CD Eldense",
+      "pts": 0,
+      "s": "mid",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "UD Almería",
         "hm": false,
@@ -258,7 +325,13 @@
       }
     },
     {
+      "rank": 11,
       "name": "FC Andorra",
+      "pts": 0,
+      "s": "mid",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "AD Ceuta FC",
         "hm": true,
@@ -266,7 +339,13 @@
       }
     },
     {
+      "rank": 12,
       "name": "Girona FC",
+      "pts": 0,
+      "s": "mid",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "CD Leganés",
         "hm": true,
@@ -274,7 +353,13 @@
       }
     },
     {
+      "rank": 13,
       "name": "Granada CF",
+      "pts": 0,
+      "s": "mid",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "Real Oviedo",
         "hm": false,
@@ -282,7 +367,13 @@
       }
     },
     {
+      "rank": 14,
       "name": "UD Las Palmas",
+      "pts": 0,
+      "s": "mid",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "Albacete Balompié",
         "hm": true,
@@ -290,7 +381,13 @@
       }
     },
     {
+      "rank": 15,
       "name": "CD Leganés",
+      "pts": 0,
+      "s": "mid",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "Girona FC",
         "hm": false,
@@ -298,7 +395,13 @@
       }
     },
     {
+      "rank": 16,
       "name": "RCD Mallorca",
+      "pts": 0,
+      "s": "mid",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "Real Valladolid",
         "hm": true,
@@ -306,7 +409,13 @@
       }
     },
     {
+      "rank": 17,
       "name": "Real Oviedo",
+      "pts": 0,
+      "s": "mid",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "Granada CF",
         "hm": true,
@@ -314,15 +423,13 @@
       }
     },
     {
-      "name": "Real Sociedad B",
-      "next": {
-        "opp": "CD Castellón",
-        "hm": true,
-        "date": "2026-08-14T18:30Z"
-      }
-    },
-    {
+      "rank": 18,
       "name": "Real Valladolid",
+      "pts": 0,
+      "s": "mid",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "RCD Mallorca",
         "hm": false,
@@ -330,7 +437,13 @@
       }
     },
     {
+      "rank": 19,
       "name": "CE Sabadell",
+      "pts": 0,
+      "s": "rel",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "Sporting Gijón",
         "hm": false,
@@ -338,7 +451,13 @@
       }
     },
     {
+      "rank": 20,
       "name": "Sporting Gijón",
+      "pts": 0,
+      "s": "rel",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "CE Sabadell",
         "hm": true,
@@ -346,11 +465,38 @@
       }
     },
     {
+      "rank": 21,
       "name": "CD Tenerife",
+      "pts": 0,
+      "s": "rel",
+      "p": 0,
+      "gd": 0,
+      "form": null,
       "next": {
         "opp": "SD Eibar",
         "hm": false,
         "date": "2026-08-16T15:00Z"
+      }
+    },
+    {
+      "rank": 22,
+      "name": "Real Sociedad B",
+      "pts": 0,
+      "s": "rel",
+      "p": 1,
+      "gd": -1,
+      "form": "L",
+      "last": {
+        "opp": "CD Castellón",
+        "hm": true,
+        "gf": 0,
+        "ga": 1,
+        "date": "2026-08-14T18:30Z"
+      },
+      "next": {
+        "opp": "Albacete Balompié",
+        "hm": false,
+        "date": "2026-08-22T17:00Z"
       }
     }
   ],

@@ -322,6 +322,9 @@ function addMovement(rows, prevRows){
   const prevRank = {};
   prevRows.forEach(t => { prevRank[t.name] = t.rank; });
   rows.forEach(t => {
+    // no arrow until the team has actually played — rank shuffles among
+    // 0-point teams are sorting noise, not movement
+    if (!t.p) return;
     const p = prevRank[t.name];
     if (p != null && t.rank != null && p !== t.rank) t.mv = p - t.rank;
   });
@@ -338,9 +341,11 @@ function addMovement(rows, prevRows){
     out.d1 = d1.rows;
     out.season = d1.season;
     await d1Fixtures(out.d1, !!d1.preseason);
-    // ESPN fills fixture gaps football-data leaves mid-rollover (missing
-    // promoted clubs); next is only set where football-data provided none.
-    if (out.d1.some(r => !r.next)) await espnFixtures("esp.1", out.d1, ESPN_D1_MAP, "D1 fill", !!d1.preseason);
+    // ESPN complements football-data, which lags at season rollover (Depor
+    // absent from its 26/27 table days into the season) and returns form:null
+    // early on. Creates missing teams, fills next-fixture gaps, and derives
+    // last-5 form from results; football-data data wins wherever present.
+    await espnFixtures("esp.1", out.d1, ESPN_D1_MAP, "D1 fill", true);
   }
 
   // A pre-season stub result must never replace a previous REAL table (e.g. a

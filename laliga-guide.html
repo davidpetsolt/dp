@@ -681,7 +681,7 @@ function buildCards(teams,id){
   sorted.forEach(t=>{
     const sc = SC[t.s];
     const preSeason = (t.pts==null);
-    const mv = t.mv|0;
+    const mv = t.p > 0 ? (t.mv|0) : 0;  // no arrows for teams yet to play
     const mvHtml = !preSeason && mv>0 ? `<span class="mv up">▲${mv}</span>`
                  : !preSeason && mv<0 ? `<span class="mv down">▼${-mv}</span>` : '';
     const rankHtml = (preSeason ? '–' : t.rank) + mvHtml;

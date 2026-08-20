@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-19T05:04:15.455Z",
+  "updated": "2026-08-20T05:05:56.329Z",
   "d1": [
     {
       "rank": 1,
@@ -45,6 +45,28 @@
     },
     {
       "rank": 3,
+      "name": "Atlético de Madrid",
+      "pts": 3,
+      "s": "cl",
+      "p": 1,
+      "gd": 2,
+      "form": "W",
+      "last": {
+        "opp": "Málaga CF",
+        "hm": true,
+        "gf": 2,
+        "ga": 0,
+        "date": "2026-08-19T19:00Z"
+      },
+      "next": {
+        "opp": "Villarreal CF",
+        "hm": true,
+        "date": "2026-08-23T15:00:00Z"
+      },
+      "mv": 5
+    },
+    {
+      "rank": 4,
       "name": "Sevilla FC",
       "pts": 3,
       "s": "cl",
@@ -62,13 +84,14 @@
         "opp": "Athletic Club",
         "hm": false,
         "date": "2026-08-22T15:00:00Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 4,
+      "rank": 5,
       "name": "Racing de Santander",
       "pts": 1,
-      "s": "cl",
+      "s": "el",
       "p": 1,
       "gd": 0,
       "form": "D",
@@ -83,13 +106,14 @@
         "opp": "Getafe CF",
         "hm": false,
         "date": "2026-08-23T17:30:00Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 4,
+      "rank": 5,
       "name": "Villarreal CF",
       "pts": 1,
-      "s": "cl",
+      "s": "el",
       "p": 1,
       "gd": 0,
       "form": "D",
@@ -104,13 +128,14 @@
         "opp": "Atlético de Madrid",
         "hm": false,
         "date": "2026-08-23T15:00:00Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 6,
+      "rank": 7,
       "name": "Elche CF",
       "pts": 1,
-      "s": "el",
+      "s": "conf",
       "p": 1,
       "gd": 0,
       "form": "D",
@@ -125,10 +150,11 @@
         "gf": 1,
         "ga": 1,
         "date": "2026-08-17T19:00Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 8,
+      "rank": 9,
       "name": "Athletic Club",
       "pts": 0,
       "s": "mid",
@@ -142,21 +168,7 @@
       }
     },
     {
-      "rank": 8,
-      "name": "Atlético de Madrid",
-      "pts": 0,
-      "s": "mid",
-      "p": 0,
-      "gd": 0,
-      "form": null,
-      "next": {
-        "opp": "Málaga CF",
-        "hm": true,
-        "date": "2026-08-19T19:00:00Z"
-      }
-    },
-    {
-      "rank": 8,
+      "rank": 9,
       "name": "CA Osasuna",
       "pts": 0,
       "s": "mid",
@@ -170,7 +182,7 @@
       }
     },
     {
-      "rank": 8,
+      "rank": 9,
       "name": "FC Barcelona",
       "pts": 0,
       "s": "mid",
@@ -184,21 +196,7 @@
       }
     },
     {
-      "rank": 8,
-      "name": "Málaga CF",
-      "pts": 0,
-      "s": "mid",
-      "p": 0,
-      "gd": 0,
-      "form": null,
-      "next": {
-        "opp": "Atlético de Madrid",
-        "hm": false,
-        "date": "2026-08-19T19:00:00Z"
-      }
-    },
-    {
-      "rank": 8,
+      "rank": 9,
       "name": "RC Celta de Vigo",
       "pts": 0,
       "s": "mid",
@@ -212,7 +210,7 @@
       }
     },
     {
-      "rank": 8,
+      "rank": 9,
       "name": "Real Betis",
       "pts": 0,
       "s": "mid",
@@ -226,7 +224,7 @@
       }
     },
     {
-      "rank": 8,
+      "rank": 9,
       "name": "Real Madrid",
       "pts": 0,
       "s": "mid",
@@ -240,7 +238,7 @@
       }
     },
     {
-      "rank": 8,
+      "rank": 9,
       "name": "Real Sociedad",
       "pts": 0,
       "s": "mid",
@@ -254,7 +252,7 @@
       }
     },
     {
-      "rank": 8,
+      "rank": 9,
       "name": "Valencia CF",
       "pts": 0,
       "s": "mid",
@@ -268,10 +266,10 @@
       }
     },
     {
-      "rank": 18,
+      "rank": 17,
       "name": "Rayo Vallecano",
       "pts": 0,
-      "s": "rel",
+      "s": "mid",
       "p": 1,
       "gd": -1,
       "form": "L",
@@ -286,7 +284,30 @@
         "opp": "Deportivo Alavés",
         "hm": true,
         "date": "2026-08-20T19:00:00Z"
-      }
+      },
+      "mv": 1
+    },
+    {
+      "rank": 18,
+      "name": "Málaga CF",
+      "pts": 0,
+      "s": "rel",
+      "p": 1,
+      "gd": -2,
+      "form": "L",
+      "last": {
+        "opp": "Atlético de Madrid",
+        "hm": false,
+        "gf": 0,
+        "ga": 2,
+        "date": "2026-08-19T19:00Z"
+      },
+      "next": {
+        "opp": "Real Madrid",
+        "hm": false,
+        "date": "2026-08-30T15:00:00Z"
+      },
+      "mv": -10
     },
     {
       "rank": 19,
@@ -350,7 +371,7 @@
   "season": {
     "start": "2026-08-16",
     "end": "2027-05-30",
-    "matchday": 1
+    "matchday": 2
   },
   "d2": [
     {

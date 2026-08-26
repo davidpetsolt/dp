@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-25T05:07:08.564Z",
+  "updated": "2026-08-26T05:07:13.341Z",
   "d1": [
     {
       "rank": 1,
@@ -24,6 +24,28 @@
     },
     {
       "rank": 2,
+      "name": "Real Betis",
+      "pts": 6,
+      "s": "cl",
+      "p": 2,
+      "gd": 2,
+      "form": "W,W",
+      "last": {
+        "opp": "Valencia CF",
+        "hm": false,
+        "gf": 1,
+        "ga": 0,
+        "date": "2026-08-25T19:00Z"
+      },
+      "next": {
+        "opp": "Levante UD",
+        "hm": false,
+        "date": "2026-08-29T15:00:00Z"
+      },
+      "mv": 5
+    },
+    {
+      "rank": 3,
       "name": "Deportivo Alavés",
       "pts": 4,
       "s": "cl",
@@ -41,10 +63,11 @@
         "opp": "Villarreal CF",
         "hm": true,
         "date": "2026-08-28T19:30:00Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 3,
+      "rank": 4,
       "name": "Atlético de Madrid",
       "pts": 4,
       "s": "cl",
@@ -62,13 +85,14 @@
         "opp": "Sevilla FC",
         "hm": false,
         "date": "2026-08-29T19:30:00Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 4,
+      "rank": 5,
       "name": "FC Barcelona",
       "pts": 3,
-      "s": "cl",
+      "s": "el",
       "p": 1,
       "gd": 5,
       "form": "W",
@@ -83,10 +107,11 @@
         "opp": "Athletic Club",
         "hm": true,
         "date": "2026-08-27T19:00:00Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 5,
+      "rank": 6,
       "name": "RCD Espanyol",
       "pts": 3,
       "s": "el",
@@ -104,13 +129,14 @@
         "opp": "Real Sociedad",
         "hm": false,
         "date": "2026-08-29T17:00:00Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 6,
+      "rank": 7,
       "name": "Real Madrid",
       "pts": 3,
-      "s": "el",
+      "s": "conf",
       "p": 1,
       "gd": 1,
       "form": "W",
@@ -125,28 +151,8 @@
         "opp": "Real Sociedad",
         "hm": true,
         "date": "2026-08-26T19:00:00Z"
-      }
-    },
-    {
-      "rank": 7,
-      "name": "Real Betis",
-      "pts": 3,
-      "s": "conf",
-      "p": 1,
-      "gd": 1,
-      "form": "W",
-      "last": {
-        "opp": "Real Sociedad",
-        "hm": true,
-        "gf": 1,
-        "ga": 0,
-        "date": "2026-08-21T19:00Z"
       },
-      "next": {
-        "opp": "Valencia CF",
-        "hm": false,
-        "date": "2026-08-25T19:00:00Z"
-      }
+      "mv": -1
     },
     {
       "rank": 8,
@@ -209,8 +215,7 @@
         "opp": "RC Celta de Vigo",
         "hm": false,
         "date": "2026-08-27T18:30:00Z"
-      },
-      "mv": 5
+      }
     },
     {
       "rank": 11,
@@ -234,28 +239,7 @@
       }
     },
     {
-      "rank": 11,
-      "name": "Valencia CF",
-      "pts": 1,
-      "s": "mid",
-      "p": 1,
-      "gd": 0,
-      "form": "D",
-      "last": {
-        "opp": "RC Celta de Vigo",
-        "hm": true,
-        "gf": 0,
-        "ga": 0,
-        "date": "2026-08-22T17:30Z"
-      },
-      "next": {
-        "opp": "Real Betis",
-        "hm": true,
-        "date": "2026-08-25T19:00:00Z"
-      }
-    },
-    {
-      "rank": 14,
+      "rank": 13,
       "name": "Racing de Santander",
       "pts": 1,
       "s": "mid",
@@ -274,10 +258,10 @@
         "hm": true,
         "date": "2026-08-28T17:00:00Z"
       },
-      "mv": -1
+      "mv": 1
     },
     {
-      "rank": 14,
+      "rank": 13,
       "name": "Rayo Vallecano",
       "pts": 1,
       "s": "mid",
@@ -296,7 +280,29 @@
         "hm": false,
         "date": "2026-08-31T19:30:00Z"
       },
-      "mv": -1
+      "mv": 1
+    },
+    {
+      "rank": 15,
+      "name": "Valencia CF",
+      "pts": 1,
+      "s": "mid",
+      "p": 2,
+      "gd": -1,
+      "form": "D,L",
+      "last": {
+        "opp": "Real Betis",
+        "hm": true,
+        "gf": 0,
+        "ga": 1,
+        "date": "2026-08-25T19:00Z"
+      },
+      "next": {
+        "opp": "FC Barcelona",
+        "hm": true,
+        "date": "2026-09-06T14:15:00Z"
+      },
+      "mv": -4
     },
     {
       "rank": 16,
@@ -317,8 +323,7 @@
         "opp": "Real Madrid",
         "hm": false,
         "date": "2026-08-30T15:00:00Z"
-      },
-      "mv": 3
+      }
     },
     {
       "rank": 17,
@@ -339,8 +344,7 @@
         "opp": "Real Betis",
         "hm": true,
         "date": "2026-08-29T15:00:00Z"
-      },
-      "mv": 3
+      }
     },
     {
       "rank": 18,
@@ -361,8 +365,7 @@
         "opp": "Racing de Santander",
         "hm": false,
         "date": "2026-08-28T17:00:00Z"
-      },
-      "mv": -3
+      }
     },
     {
       "rank": 19,
@@ -383,8 +386,7 @@
         "opp": "Real Madrid",
         "hm": false,
         "date": "2026-08-26T19:00:00Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 20,
@@ -405,8 +407,7 @@
         "opp": "FC Barcelona",
         "hm": false,
         "date": "2026-08-27T19:00:00Z"
-      },
-      "mv": -2
+      }
     },
     {
       "name": "RC Deportivo La Coruña",
@@ -492,8 +493,7 @@
         "opp": "CD Castellón",
         "hm": true,
         "date": "2026-08-31T19:30Z"
-      },
-      "mv": 12
+      }
     },
     {
       "rank": 4,
@@ -514,8 +514,7 @@
         "opp": "Córdoba CF",
         "hm": false,
         "date": "2026-08-30T19:30Z"
-      },
-      "mv": 12
+      }
     },
     {
       "rank": 5,
@@ -536,8 +535,7 @@
         "opp": "CD Eldense",
         "hm": true,
         "date": "2026-08-29T17:00Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 6,
@@ -558,8 +556,7 @@
         "opp": "CD Tenerife",
         "hm": false,
         "date": "2026-08-28T19:00Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 7,
@@ -580,8 +577,7 @@
         "opp": "Celta Fortuna",
         "hm": false,
         "date": "2026-08-31T19:30Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 8,
@@ -602,8 +598,7 @@
         "opp": "SD Eibar",
         "hm": true,
         "date": "2026-08-30T15:00Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 9,
@@ -624,8 +619,7 @@
         "opp": "CE Sabadell",
         "hm": false,
         "date": "2026-08-29T15:00Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 10,
@@ -646,8 +640,7 @@
         "opp": "Granada CF",
         "hm": true,
         "date": "2026-08-30T19:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 11,
@@ -668,8 +661,7 @@
         "opp": "Real Sociedad B",
         "hm": true,
         "date": "2026-08-31T17:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 12,
@@ -690,8 +682,7 @@
         "opp": "Burgos CF",
         "hm": false,
         "date": "2026-08-31T17:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 13,
@@ -712,8 +703,7 @@
         "opp": "AD Ceuta FC",
         "hm": true,
         "date": "2026-08-30T17:00Z"
-      },
-      "mv": -5
+      }
     },
     {
       "rank": 14,
@@ -734,8 +724,7 @@
         "opp": "FC Andorra",
         "hm": false,
         "date": "2026-08-30T15:00Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 15,
@@ -756,8 +745,7 @@
         "opp": "Real Valladolid",
         "hm": true,
         "date": "2026-08-30T17:00Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 16,
@@ -778,8 +766,7 @@
         "opp": "UD Almería",
         "hm": true,
         "date": "2026-08-29T15:00Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 17,

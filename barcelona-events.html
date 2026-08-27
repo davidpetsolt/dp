@@ -136,6 +136,15 @@
   .section[data-section="Coming Up"]    .section-header h2::before{background:var(--s-soon)}
   .section-header .ct{color:var(--muted);font-family:'Lora',serif;font-size:16px}
 
+  /* "See more" button shown when a section is capped */
+  .section-more{margin-top:16px;display:flex;justify-content:center}
+  .more-btn{display:inline-block;font-family:'Lato',sans-serif;font-weight:700;
+    font-size:15px;letter-spacing:.02em;text-decoration:none;color:var(--navy);
+    background:var(--bg-soft);border:1px solid var(--rule);
+    border-radius:var(--radius-pill);padding:11px 22px;
+    transition:background .15s ease,border-color .15s ease,color .15s ease}
+  .more-btn:hover{background:var(--navy);border-color:var(--navy);color:#fff}
+
   /* Event grid */
   .events{display:grid;gap:14px;grid-template-columns:1fr}
   @media (min-width:780px){.events{grid-template-columns:1fr 1fr}}
@@ -229,102 +238,192 @@
 <section class="callout" aria-label="Update banner">
   <div class="callout-inner">
     <div>
-      <h3>Updated weekly · 14 events live</h3>
-      <p>Last refreshed 21-Aug-2026 (auto-updated every Thursday)</p>
+      <h3>Updated weekly · 31 events live</h3>
+      <p>Last refreshed 27-Aug-2026 (auto-updated every Thursday)</p>
     </div>
     <a href="#this-weekend" class="btn">See This Weekend →</a>
   </div>
 </section>
 
 <div class="filters" id="filters" role="tablist" aria-label="Filter by category">
-  <button class="filter active" data-cat="All">All <span class="count">14</span></button>
-  <button class="filter" data-cat="Music"><span class="dot"></span>Music <span class="count">1</span></button>
-<button class="filter" data-cat="Art"><span class="dot"></span>Art <span class="count">2</span></button>
-<button class="filter" data-cat="Festival"><span class="dot"></span>Festival <span class="count">3</span></button>
-<button class="filter" data-cat="Theater"><span class="dot"></span>Theater <span class="count">1</span></button>
-<button class="filter" data-cat="Other"><span class="dot"></span>Other <span class="count">7</span></button>
+  <button class="filter active" data-cat="All">All <span class="count">31</span></button>
+  <button class="filter" data-cat="Music"><span class="dot"></span>Music <span class="count">9</span></button>
+<button class="filter" data-cat="Art"><span class="dot"></span>Art <span class="count">6</span></button>
+<button class="filter" data-cat="Sports"><span class="dot"></span>Sports <span class="count">6</span></button>
+<button class="filter" data-cat="Festival"><span class="dot"></span>Festival <span class="count">10</span></button>
 </div>
 
 <section class="section" data-section="This Weekend" id="this-weekend">
       <div class="section-header">
         <h2>This Weekend</h2>
-        <span class="ct">7 events</span>
+        <span class="ct">3 events</span>
       </div>
-      <div class="events"><article class="ev-card" data-category="Other">
-      
+      <div class="events"><article class="ev-card with-img" data-category="Music">
+      <a class="ev-img" href="https://guia.barcelona.cat/en/detall/concert-tom-barford-quintet_99400785336.html" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/74cb704db9e22c24.jpg" alt="" loading="lazy" decoding="async"></a>
       <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/futbol-club-barcelona-estadi-johan-cruyff_99400637819.html" target="_blank" rel="noopener">Estadi Johan Cruyff - Futbol Club Barcelona</a></h3>
-        <span class="ev-cat Other">Other</span>
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/concert-tom-barford-quintet_99400785336.html" target="_blank" rel="noopener">&#x27;Tom Barford Quintet&#x27;</a></h3>
+        <span class="ev-cat Music">Music</span>
       </div>
-      <div class="ev-date">08-Aug-2026 to 23-Aug-2026</div>
+      <div class="ev-date">28-Aug-2026</div>
       <p class="ev-venue">Barcelona</p>
       
       <div class="ev-bot">
         <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/futbol-club-barcelona-estadi-johan-cruyff_99400637819.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
-      </div>
-    </article>
-<article class="ev-card" data-category="Other">
-      
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Festa Major de Gràcia</a></h3>
-        <span class="ev-cat Other">Other</span>
-      </div>
-      <div class="ev-date">15-Aug-2026 to 21-Aug-2026</div>
-      <p class="ev-venue">Gràcia, Barcelona <span class="nbh">Gràcia</span></p>
-      <p class="ev-desc">Gràcia&#x27;s festa major is perhaps the best-known local traditional street festival in the Catalan capital, with images of its marvelously decorated streets amazing visitors each year. Plus, the week&#x27;s a</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/concert-tom-barford-quintet_99400785336.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
       </div>
     </article>
 <article class="ev-card with-img" data-category="Festival">
-      <a class="ev-img" href="https://guia.barcelona.cat/en/detall/dates-de-festa-major_1298113457.html" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/920c25b0362b3b35.jpg" alt="" loading="lazy" decoding="async"></a>
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/diada-de-sant-felix-de-vilafranca" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/6fe941b2c9c548c5.webp" alt="" loading="lazy" decoding="async"></a>
       <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/dates-de-festa-major_1298113457.html" target="_blank" rel="noopener">Gràcia’s Big Annual Festival</a></h3>
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/diada-de-sant-felix-de-vilafranca" target="_blank" rel="noopener">Diada de Sant Fèlix de Vilafranca</a></h3>
         <span class="ev-cat Festival">Festival</span>
       </div>
-      <div class="ev-date">15-Aug-2026 to 21-Aug-2026</div>
-      <p class="ev-venue">Barcelona</p>
-      
+      <div class="ev-date">29-Aug-2026 to 06-Sep-2026</div>
+      <p class="ev-venue">Vilafranca del Penedès</p>
+      <p class="ev-desc">Around the Diada de Sant Fèlix, the feast of the patron saint of Vilafranca del Penedès, the town hosts one of Catalonia’s most important traditional festivals.</p>
       <div class="ev-bot">
         <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/dates-de-festa-major_1298113457.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/diada-de-sant-felix-de-vilafranca" target="_blank" rel="noopener">via This is Barcelona →</a>
       </div>
     </article>
 <article class="ev-card with-img" data-category="Music">
-      <a class="ev-img" href="https://guia.barcelona.cat/en/detall/concert-rolling-stones-tribute-amb-rayo-stoned_99400785071.html" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/7f2af845ad6b6add.jpg" alt="" loading="lazy" decoding="async"></a>
+      <a class="ev-img" href="https://www.ticketmaster.es/event/hermanos-gutierrez-tickets/1129406292?language=en-us" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/2ffcb094665bc13f.jpg" alt="" loading="lazy" decoding="async"></a>
       <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/concert-rolling-stones-tribute-amb-rayo-stoned_99400785071.html" target="_blank" rel="noopener">&#x27;Rolling Stones Tribute&#x27;, with Rayo Stoned</a></h3>
+        <h3 class="ev-title"><a href="https://www.ticketmaster.es/event/hermanos-gutierrez-tickets/1129406292?language=en-us" target="_blank" rel="noopener">Hermanos Gutierrez</a></h3>
         <span class="ev-cat Music">Music</span>
       </div>
-      <div class="ev-date">21-Aug-2026</div>
-      <p class="ev-venue">Barcelona</p>
-      
+      <div class="ev-date">30-Aug-2026 · 20:30</div>
+      <p class="ev-venue">Gran Teatre del Liceu</p>
+      <p class="ev-desc">A handling fee of 2€ applies per order. Minors under the age of 16 may only enter the venue if accompanied by their mother, father, or legal guardian. *All attendees must have a ticket, regardless of </p>
       <div class="ev-bot">
         <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/concert-rolling-stones-tribute-amb-rayo-stoned_99400785071.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+        <a class="ev-src" href="https://www.ticketmaster.es/event/hermanos-gutierrez-tickets/1129406292?language=en-us" target="_blank" rel="noopener">via Ticketmaster →</a>
       </div>
-    </article>
-<article class="ev-card with-img" data-category="Other">
-      <a class="ev-img" href="https://guia.barcelona.cat/en/detall/5a-trofeu-joan-gamper-femeni-futbol-f-c-barcelona-femeni-brighton-women_99400694895.html" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/978f6e1c25af49d9.jpg" alt="" loading="lazy" decoding="async"></a>
+    </article></div>
+      
+    </section>
+<section class="section" data-section="Ongoing Now" id="ongoing-now">
+      <div class="section-header">
+        <h2>Ongoing Now</h2>
+        <span class="ct">12 of 42 events</span>
+      </div>
+      <div class="events"><article class="ev-card with-img" data-category="Music">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/mas-i-mas-festival" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/0be90a2381f0fd7f.webp" alt="" loading="lazy" decoding="async"></a>
       <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/5a-trofeu-joan-gamper-femeni-futbol-f-c-barcelona-femeni-brighton-women_99400694895.html" target="_blank" rel="noopener">Women&#x27;s Gamper Trophy: FC Barcelona – Brighton Women</a></h3>
-        <span class="ev-cat Other">Other</span>
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/mas-i-mas-festival" target="_blank" rel="noopener">Mas i Mas Festival</a></h3>
+        <span class="ev-cat Music">Music</span>
       </div>
-      <div class="ev-date">21-Aug-2026</div>
-      <p class="ev-venue">Barcelona</p>
-      
+      <div class="ev-date">01-Apr-2026 to 01-Sep-2026</div>
+      <p class="ev-venue">Various venues</p>
+      <p class="ev-desc">Summer music series with an eclectic line-up across some of Barcelona’s most iconic venues.</p>
       <div class="ev-bot">
         <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/5a-trofeu-joan-gamper-femeni-futbol-f-c-barcelona-femeni-brighton-women_99400694895.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/mas-i-mas-festival" target="_blank" rel="noopener">via This is Barcelona →</a>
       </div>
     </article>
-<article class="ev-card" data-category="Other">
+<article class="ev-card with-img" data-category="Art">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/centenary-of-gaudi-s-death" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/1bafeec4ce452be0.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/centenary-of-gaudi-s-death" target="_blank" rel="noopener">Centenary of Gaudí’s Death</a></h3>
+        <span class="ev-cat Art">Art</span>
+      </div>
+      <div class="ev-date">01-Jan-2026 to 31-Dec-2026</div>
+      <p class="ev-venue">Various venues</p>
+      <p class="ev-desc">Official commemoration of the centenary of Gaudí’s death, marking his legacy in architecture, nature and religion.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/centenary-of-gaudi-s-death" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Art">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/immersive-exhibition-coliseum-the-legendary-arena" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/bc1314a737dbf010.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/immersive-exhibition-coliseum-the-legendary-arena" target="_blank" rel="noopener">Immersive exhibition &quot;Coliseum: the legendary arena&quot;</a></h3>
+        <span class="ev-cat Art">Art</span>
+      </div>
+      <div class="ev-date">01-Jan-2026 to 31-Dec-2026</div>
+      <p class="ev-venue">Arenas de Barcelona</p>
+      <p class="ev-desc">Virtual reality experience transporting you to ancient Rome to explore the Empire&#x27;s splendour.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/immersive-exhibition-coliseum-the-legendary-arena" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Art">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/world-capital-of-architecture" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/40e4a29f9ef928a4.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/world-capital-of-architecture" target="_blank" rel="noopener">World Capital of Architecture</a></h3>
+        <span class="ev-cat Art">Art</span>
+      </div>
+      <div class="ev-date">01-Jan-2026 to 31-Dec-2026</div>
+      <p class="ev-venue">Various venues</p>
+      <p class="ev-desc">A recognition awarded to Barcelona in 2026, showcasing its urban model internationally and accompanied by events focused on the city’s architecture.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/world-capital-of-architecture" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Festival">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/magical-nights" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/63f1aa0b4a18fe32.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/magical-nights" target="_blank" rel="noopener">Magical Nights</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">01-May-2026 to 30-Nov-2026</div>
+      <p class="ev-venue">Casa Batlló</p>
+      <p class="ev-desc">An evening visit to Casa Batlló, rounded off with live music on its modernista rooftop.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/magical-nights" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Music">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/Estiu-al-Palau" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/a5f40fa4f16bdb81.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/Estiu-al-Palau" target="_blank" rel="noopener">Summer at the Palau</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">02-Jul-2026 to 31-Aug-2026</div>
+      <p class="ev-venue">Palau de la Música Catalana</p>
+      <p class="ev-desc">Summer concert series at the Palau de la Música Catalana.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/Estiu-al-Palau" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Art">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/the-magic-hour-at-the-monastery-of-pedralbes" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/af279bb429b6b5c5.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/the-magic-hour-at-the-monastery-of-pedralbes" target="_blank" rel="noopener">The Magic Hour at the Monastery of Pedralbes</a></h3>
+        <span class="ev-cat Art">Art</span>
+      </div>
+      <div class="ev-date">03-Jun-2026 to 19-Sep-2026</div>
+      <p class="ev-venue">Reial Monestir de Santa Maria de Pedralbes</p>
+      <p class="ev-desc">A special summer opening of the Gothic cloister at the monastery of Pedralbes at sunset, one of the largest of its kind in the world.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/the-magic-hour-at-the-monastery-of-pedralbes" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Art">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/anna-moreno-la-tercera-torsio-anna-moreno-the-third-twist-exhibition" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/3dcce0ae615c3411.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/anna-moreno-la-tercera-torsio-anna-moreno-the-third-twist-exhibition" target="_blank" rel="noopener">Exposició &quot;Anna Moreno. La tercera torsió&quot;</a></h3>
+        <span class="ev-cat Art">Art</span>
+      </div>
+      <div class="ev-date">05-Feb-2026 to 28-Sep-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      <p class="ev-desc">The &quot;Anna Moreno. La Tercera Torsió&quot; exhibition at the MACBA reflects on utopian architecture based on the work of Ricardo Bofill.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/anna-moreno-la-tercera-torsio-anna-moreno-the-third-twist-exhibition" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Festival">
       
       <div class="ev-top">
         <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Festa Major de Sants</a></h3>
-        <span class="ev-cat Other">Other</span>
+        <span class="ev-cat Festival">Festival</span>
       </div>
       <div class="ev-date">22-Aug-2026 to 30-Aug-2026</div>
       <p class="ev-venue">Sants, Barcelona <span class="nbh">Sants</span></p>
@@ -332,6 +431,20 @@
       <div class="ev-bot">
         <span></span>
         <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Festival">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/festa-major-de-sants" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/b605f7aa4dfe9c8b.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/festa-major-de-sants" target="_blank" rel="noopener">Festa Major de Sants</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">22-Aug-2026 to 30-Aug-2026</div>
+      <p class="ev-venue">Sants neighbourhood</p>
+      <p class="ev-desc">A lively local festival brings Sants to life with activities, concerts and decorated streets.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/festa-major-de-sants" target="_blank" rel="noopener">via This is Barcelona →</a>
       </div>
     </article>
 <article class="ev-card with-img" data-category="Festival">
@@ -347,105 +460,43 @@
         <span></span>
         <a class="ev-src" href="https://guia.barcelona.cat/en/detall/dates-de-festa-major_99400003012.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
       </div>
-    </article></div>
-    </section>
-<section class="section" data-section="Ongoing Now" id="ongoing-now">
-      <div class="section-header">
-        <h2>Ongoing Now</h2>
-        <span class="ct">6 events</span>
-      </div>
-      <div class="events"><article class="ev-card" data-category="Other">
-      
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Summer Cinema for the Whole Family</a></h3>
-        <span class="ev-cat Other">Other</span>
-      </div>
-      <div class="ev-date">08-Jul-2026 to 05-Sep-2026</div>
-      <p class="ev-venue">CCCB, Barcelona</p>
-      <p class="ev-desc">How do filmmakers, animators and artists imagine and recreate the city? To find out, we invite you to summer afternoon cinema at the CCCB. Every Wednesday and Saturday we present screenings of animate</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
-      </div>
     </article>
-<article class="ev-card with-img" data-category="Other">
-      <a class="ev-img" href="https://guia.barcelona.cat/en/detall/espectacle-el-llac-dels-cignes-amb-el-ballet-de-kiev_99400752327.html" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/ddba881b6384dfe0.jpg" alt="" loading="lazy" decoding="async"></a>
+<article class="ev-card with-img" data-category="Festival">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/summer-nights-at-poble-espanyol" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/1238dc134fb993e4.webp" alt="" loading="lazy" decoding="async"></a>
       <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/espectacle-el-llac-dels-cignes-amb-el-ballet-de-kiev_99400752327.html" target="_blank" rel="noopener">c</a></h3>
-        <span class="ev-cat Other">Other</span>
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/summer-nights-at-poble-espanyol" target="_blank" rel="noopener">Summer Nights at Poble Espanyol</a></h3>
+        <span class="ev-cat Festival">Festival</span>
       </div>
-      <div class="ev-date">19-Aug-2026 to 30-Aug-2026</div>
-      <p class="ev-venue">Barcelona</p>
-      
+      <div class="ev-date">30-Jul-2026 to 31-Aug-2026</div>
+      <p class="ev-venue">Poble Espanyol de Barcelona</p>
+      <p class="ev-desc">Live music programmes spanning a range of styles, complemented by dining options and DJ sets before and after each concert.</p>
       <div class="ev-bot">
         <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/espectacle-el-llac-dels-cignes-amb-el-ballet-de-kiev_99400752327.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
-      </div>
-    </article>
-<article class="ev-card with-img" data-category="Theater">
-      <a class="ev-img" href="https://guia.barcelona.cat/en/detall/teatre-angle-mort_99400783788.html" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/e0dc8cc8cf2dbecc.jpg" alt="" loading="lazy" decoding="async"></a>
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/teatre-angle-mort_99400783788.html" target="_blank" rel="noopener">‘Angle mort’</a></h3>
-        <span class="ev-cat Theater">Theater</span>
-      </div>
-      <div class="ev-date">20-Aug-2026 to 13-Sep-2026</div>
-      <p class="ev-venue">Barcelona</p>
-      
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/teatre-angle-mort_99400783788.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
-      </div>
-    </article>
-<article class="ev-card" data-category="Art">
-      
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Visit 50,000-year-old Siberian mammoth</a></h3>
-        <span class="ev-cat Art">Art</span>
-      </div>
-      <div class="ev-date">21-Aug-2026 to 20-Sep-2026</div>
-      <p class="ev-venue">CosmoCaixa, Barcelona</p>
-      <p class="ev-desc">Barcelona&#x27;s CosmoCaixa Science Museum unveiled the latest addition to its exhibition: a large six-meter-long and 3.5-meter-tall Siberian mammoth. The mammoth is between 40,000 and 50,000 years old and</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
-      </div>
-    </article>
-<article class="ev-card" data-category="Art">
-      
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Out of Focus: Another Vision of Art</a></h3>
-        <span class="ev-cat Art">Art</span>
-      </div>
-      <div class="ev-date">21-May-2026 to 27-Sep-2026</div>
-      <p class="ev-venue">CaixaForum Barcelona</p>
-      <p class="ev-desc">Monet&#x27;s Water Lilies series introduced the concept of blur in art, using the blurred and indistinct as expressive elements. This exhibition explores how this phenomenon provided a new way of understan</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
-      </div>
-    </article>
-<article class="ev-card" data-category="Other">
-      
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Art Nou</a></h3>
-        <span class="ev-cat Other">Other</span>
-      </div>
-      <div class="ev-date">25-Jun-2026 to 09-Sep-2026</div>
-      <p class="ev-venue">Barcelona and L&#x27;Hospitalet de Llobregat</p>
-      <p class="ev-desc">Art Nou is the Emerging Art Festival in Barcelona and L&#x27;Hospitalet that offers young national and international artists the opportunity to establish their first professional relationship with the art </p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/summer-nights-at-poble-espanyol" target="_blank" rel="noopener">via This is Barcelona →</a>
       </div>
     </article></div>
+      <div class="section-more"><a class="more-btn" href="https://thisisbarcelona.com/agenda" target="_blank" rel="noopener">See 30 more events on This is Barcelona <span aria-hidden="true">&rarr;</span></a></div>
     </section>
-
-<section class="section" data-section="Coming Up" id="coming-up">
+<section class="section" data-section="Next Week" id="next-week">
       <div class="section-header">
-        <h2>Coming Up</h2>
-        <span class="ct">1 event</span>
+        <h2>Next Week</h2>
+        <span class="ct">4 events</span>
       </div>
-      <div class="events"><article class="ev-card" data-category="Festival">
+      <div class="events"><article class="ev-card with-img" data-category="Music">
+      <a class="ev-img" href="https://www.ticketmaster.es/event/the-weeknd-after-hours-til-dawn-tour-%7C-vip-packages-tickets/1447645814?language=en-us" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/175227f7bf2ba315.jpg" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.ticketmaster.es/event/the-weeknd-after-hours-til-dawn-tour-%7C-vip-packages-tickets/1447645814?language=en-us" target="_blank" rel="noopener">The Weeknd: After Hours Til Dawn Tour | VIP Packages</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">01-Sep-2026 · 20:45</div>
+      <p class="ev-venue">Estadi Olímpic Lluis Companys</p>
+      <p class="ev-desc">A handling fee of 2€ applies per order. Guest Artist: Playboi Carti Ages: Children under 16 will be able to access only if they are accompanied by the parent or the legal guardian. It is mandatory to </p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.ticketmaster.es/event/the-weeknd-after-hours-til-dawn-tour-%7C-vip-packages-tickets/1447645814?language=en-us" target="_blank" rel="noopener">via Ticketmaster →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Festival">
       
       <div class="ev-top">
         <h3 class="ev-title"><a href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">Korean Film Festival Barcelona</a></h3>
@@ -458,7 +509,211 @@
         <span></span>
         <a class="ev-src" href="https://www.catalannews.com/things-to-do/item/whats-on-this-weekend-in-barcelona" target="_blank" rel="noopener">via Catalan News →</a>
       </div>
+    </article>
+<article class="ev-card with-img" data-category="Art">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/cirque-du-soleil-kurios" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/387c65048d729c9d.jpg" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/cirque-du-soleil-kurios" target="_blank" rel="noopener">Cirque du Soleil Kurios</a></h3>
+        <span class="ev-cat Art">Art</span>
+      </div>
+      <div class="ev-date">03-Sep-2026 to 27-Sep-2026</div>
+      <p class="ev-venue">L&#x27; Hospitalet</p>
+      <p class="ev-desc">A circus show imagining an alternative past, where an inventor explores an unseen universe brimming with possibility.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/cirque-du-soleil-kurios" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Music">
+      <a class="ev-img" href="https://www.ticketmaster.es/event/hermanos-gutierrez-tickets/1365979689?language=en-us" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/2ffcb094665bc13f.jpg" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.ticketmaster.es/event/hermanos-gutierrez-tickets/1365979689?language=en-us" target="_blank" rel="noopener">Hermanos Gutierrez</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">31-Aug-2026 · 20:30</div>
+      <p class="ev-venue">Gran Teatre del Liceu</p>
+      <p class="ev-desc">A handling fee of 2€ applies per order. Minors under the age of 16 may only enter the venue if accompanied by their mother, father, or legal guardian. *All attendees must have a ticket, regardless of </p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.ticketmaster.es/event/hermanos-gutierrez-tickets/1365979689?language=en-us" target="_blank" rel="noopener">via Ticketmaster →</a>
+      </div>
     </article></div>
+      
+    </section>
+<section class="section" data-section="Coming Up" id="coming-up">
+      <div class="section-header">
+        <h2>Coming Up</h2>
+        <span class="ct">12 of 25 events</span>
+      </div>
+      <div class="events"><article class="ev-card with-img" data-category="Sports">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/extreme-barcelona" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/276ba91eb467b123.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/extreme-barcelona" target="_blank" rel="noopener">Extreme Barcelona</a></h3>
+        <span class="ev-cat Sports">Sports</span>
+      </div>
+      <div class="ev-date">04-Sep-2026 to 05-Sep-2026</div>
+      <p class="ev-venue">Parc del Fòrum</p>
+      <p class="ev-desc">Parc del Fòrum becomes the epicentre of urban sports, hosting competitions, concerts, street art and street culture.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/extreme-barcelona" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Music">
+      <a class="ev-img" href="https://www.ticketmaster.es/event/aria-vega-tickets/426985546?language=en-us" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/414a239d71352f1e.jpg" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.ticketmaster.es/event/aria-vega-tickets/426985546?language=en-us" target="_blank" rel="noopener">Aria Vega</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">05-Sep-2026 · 21:00</div>
+      <p class="ev-venue">Sala Razzmatazz 2</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.ticketmaster.es/event/aria-vega-tickets/426985546?language=en-us" target="_blank" rel="noopener">via Ticketmaster →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Music">
+      <a class="ev-img" href="https://www.ticketmaster.es/event/the-living-tombstone-the-multiplayer-tour-tickets/2031649631?language=en-us" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/9ba3bfa65c6fd87c.jpg" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.ticketmaster.es/event/the-living-tombstone-the-multiplayer-tour-tickets/2031649631?language=en-us" target="_blank" rel="noopener">The Living Tombstone: The Multiplayer Tour</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">07-Sep-2026 · 20:30</div>
+      <p class="ev-venue">Sala Razzmatazz 1</p>
+      
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.ticketmaster.es/event/the-living-tombstone-the-multiplayer-tour-tickets/2031649631?language=en-us" target="_blank" rel="noopener">via Ticketmaster →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Music">
+      <a class="ev-img" href="https://www.ticketmaster.es/event/ca7riel--paco-amoroso-free-spirits-world-tour-tickets/1859487568?language=en-us" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/0236d1579aae44ec.jpg" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://www.ticketmaster.es/event/ca7riel--paco-amoroso-free-spirits-world-tour-tickets/1859487568?language=en-us" target="_blank" rel="noopener">CA7RIEL &amp; Paco Amoroso - FREE SPIRITS WORLD TOUR</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">10-Sep-2026 · 20:30</div>
+      <p class="ev-venue">Palau Sant Jordi</p>
+      <p class="ev-desc">A handling fee of 2€ applies. Children under 16 will be able to access only if they are accompanied by the parent or the legal guardian with a ticket for the same zone. *All attendees must have a tick</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://www.ticketmaster.es/event/ca7riel--paco-amoroso-free-spirits-world-tour-tickets/1859487568?language=en-us" target="_blank" rel="noopener">via Ticketmaster →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Festival">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/diada-nacional-de-catalunya" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/efa1587a03011d93.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/diada-nacional-de-catalunya" target="_blank" rel="noopener">Diada Nacional de Catalunya</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">11-Sep-2026</div>
+      <p class="ev-venue">Various locations</p>
+      <p class="ev-desc">Celebrations and tribute events held across the territory to mark La Diada Nacional de Catalunya.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/diada-nacional-de-catalunya" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Sports">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/wodcelona" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/3fb47cf746827da9.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/wodcelona" target="_blank" rel="noopener">Wodcelona</a></h3>
+        <span class="ev-cat Sports">Sports</span>
+      </div>
+      <div class="ev-date">11-Sep-2026 to 13-Sep-2026</div>
+      <p class="ev-venue">Platja de Llevant</p>
+      <p class="ev-desc">An international CrossFit competition with categories for all ages and abilities.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/wodcelona" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Sports">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/24h-barcelona-of-motorsport-fermi-velez-trophy" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/02f50c90ce9af4d5.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/24h-barcelona-of-motorsport-fermi-velez-trophy" target="_blank" rel="noopener">24H Barcelona of Motorsport - Fermí Vélez Trophy</a></h3>
+        <span class="ev-cat Sports">Sports</span>
+      </div>
+      <div class="ev-date">19-Sep-2026 to 20-Sep-2026</div>
+      <p class="ev-venue">Circuit de Barcelona-Catalunya</p>
+      <p class="ev-desc">Prestigious international endurance race held each year at the Circuit de Barcelona-Catalunya.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/24h-barcelona-of-motorsport-fermi-velez-trophy" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Sports">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/cursa-de-la-merce-bimbo-global-race" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/f6b55c21b4e5e219.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/cursa-de-la-merce-bimbo-global-race" target="_blank" rel="noopener">Cursa de la Mercè Bimbo Global Race</a></h3>
+        <span class="ev-cat Sports">Sports</span>
+      </div>
+      <div class="ev-date">19-Sep-2026</div>
+      <p class="ev-venue">Various locations</p>
+      <p class="ev-desc">A fun run with various categories, organised as part of the La Mercè festivities.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/cursa-de-la-merce-bimbo-global-race" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Sports">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/olla-de-nuria" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/1d03c6b0af8a177c.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/olla-de-nuria" target="_blank" rel="noopener">Olla de Núria</a></h3>
+        <span class="ev-cat Sports">Sports</span>
+      </div>
+      <div class="ev-date">19-Sep-2026 to 20-Sep-2026</div>
+      <p class="ev-venue">Vall de Núria</p>
+      <p class="ev-desc">An iconic mountain race that crosses peaks rising above 2,700 metres in the Catalan Pyrenees.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/olla-de-nuria" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Festival">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/la-merce" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/c069785627a74ada.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/la-merce" target="_blank" rel="noopener">La Mercè</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">23-Sep-2026 to 27-Sep-2026</div>
+      <p class="ev-venue">Various venues</p>
+      <p class="ev-desc">Music and popular culture fill the streets of Barcelona during its main annual festival, held around 24 September in honour of the city’s patron saint.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/la-merce" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Sports">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/fitness-fest" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/9aceade6bb359ae5.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/fitness-fest" target="_blank" rel="noopener">Fitness Fest</a></h3>
+        <span class="ev-cat Sports">Sports</span>
+      </div>
+      <div class="ev-date">24-Sep-2026</div>
+      <p class="ev-venue">Port Vell</p>
+      <p class="ev-desc">A sporting event held within the framework of the La Mercè festivities, featuring an open-air fitness masterclass.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/fitness-fest" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Festival">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/historic-castellers-day-of-la-merce" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/a10571b0bdc95edc.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/historic-castellers-day-of-la-merce" target="_blank" rel="noopener">Historic Castellers Day of La Mercè</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">24-Sep-2026</div>
+      <p class="ev-venue">Plaça de Sant Jaume</p>
+      <p class="ev-desc">Human towers rise in Plaça de Sant Jaume, a tradition observed every 24 September during Barcelona’s main festival.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/historic-castellers-day-of-la-merce" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article></div>
+      <div class="section-more"><a class="more-btn" href="https://thisisbarcelona.com/agenda" target="_blank" rel="noopener">See 13 more events on This is Barcelona <span aria-hidden="true">&rarr;</span></a></div>
     </section>
 
 
@@ -500,6 +755,11 @@
     cards.forEach(c => {
       const cardCat = c.dataset.category;
       c.classList.toggle("hidden", cat !== "All" && cardCat !== cat);
+    });
+    // The "See more" button counts events across all categories, so it only
+    // makes sense while the unfiltered view is showing.
+    document.querySelectorAll(".section-more").forEach(m => {
+      m.style.display = (cat === "All") ? "" : "none";
     });
     // Hide empty sections
     document.querySelectorAll(".section").forEach(sec => {

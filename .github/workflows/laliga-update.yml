@@ -2,7 +2,11 @@ name: LaLiga standings update
 
 on:
   schedule:
-    - cron: '30 4 * * *'   # 04:30 UTC = 06:30 CET; runs daily, catches the prior night's matches
+    # Three ticks/day: GitHub drops scheduled runs under load (two morning
+    # crons skipped 27/28-Aug-2026), and commit-if-changed makes extras free.
+    - cron: '30 4 * * *'    # 06:30 Barcelona — morning catch-all
+    - cron: '45 12 * * *'   # 14:45 Barcelona — midday recovery tick
+    - cron: '50 22 * * *'   # 00:50 Barcelona — same-night results, all kickoffs done
   workflow_dispatch:        # manual run from the Actions tab
 
 permissions:

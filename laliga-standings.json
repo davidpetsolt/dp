@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-28T12:28:10.491Z",
+  "updated": "2026-08-28T16:52:00.036Z",
   "d1": [
     {
       "rank": 1,
@@ -20,8 +20,7 @@
         "opp": "Rayo Vallecano",
         "hm": true,
         "date": "2026-08-31T19:30:00Z"
-      },
-      "mv": 5
+      }
     },
     {
       "rank": 2,
@@ -42,8 +41,7 @@
         "opp": "Málaga CF",
         "hm": true,
         "date": "2026-08-30T15:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 3,
@@ -64,8 +62,7 @@
         "opp": "Atlético de Madrid",
         "hm": true,
         "date": "2026-08-29T19:30:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 4,
@@ -86,8 +83,7 @@
         "opp": "Levante UD",
         "hm": false,
         "date": "2026-08-29T15:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 5,
@@ -108,8 +104,7 @@
         "opp": "Villarreal CF",
         "hm": true,
         "date": "2026-08-28T19:30:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 6,
@@ -130,8 +125,7 @@
         "opp": "Sevilla FC",
         "hm": false,
         "date": "2026-08-29T19:30:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 7,
@@ -152,8 +146,7 @@
         "opp": "Getafe CF",
         "hm": true,
         "date": "2026-08-31T17:30:00Z"
-      },
-      "mv": 4
+      }
     },
     {
       "rank": 8,
@@ -174,8 +167,7 @@
         "opp": "Real Sociedad",
         "hm": false,
         "date": "2026-08-29T17:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 9,
@@ -196,8 +188,7 @@
         "opp": "CA Osasuna",
         "hm": false,
         "date": "2026-08-31T17:30:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 10,
@@ -218,8 +209,7 @@
         "opp": "Deportivo Alavés",
         "hm": false,
         "date": "2026-08-28T19:30:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 12,
@@ -240,8 +230,7 @@
         "opp": "Elche CF",
         "hm": true,
         "date": "2026-08-28T17:00:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 12,
@@ -262,8 +251,7 @@
         "opp": "FC Barcelona",
         "hm": false,
         "date": "2026-08-31T19:30:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 14,
@@ -284,8 +272,7 @@
         "opp": "Athletic Club",
         "hm": true,
         "date": "2026-08-30T19:30:00Z"
-      },
-      "mv": -3
+      }
     },
     {
       "rank": 15,
@@ -411,8 +398,7 @@
         "opp": "RCD Espanyol",
         "hm": true,
         "date": "2026-08-29T17:00:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "name": "RC Deportivo La Coruña",

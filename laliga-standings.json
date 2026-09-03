@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-02T08:58:10.781Z",
+  "updated": "2026-09-03T09:07:26.324Z",
   "d1": [
     {
       "rank": 1,
@@ -38,9 +38,9 @@
         "date": "2026-08-30T15:00Z"
       },
       "next": {
-        "opp": "Real Betis",
-        "hm": false,
-        "date": "2026-09-04T19:00:00Z"
+        "opp": "Rayo Vallecano",
+        "hm": true,
+        "date": "2026-09-12T19:00:00Z"
       }
     },
     {
@@ -59,9 +59,9 @@
         "date": "2026-08-29T19:30Z"
       },
       "next": {
-        "opp": "Athletic Club",
+        "opp": "Real Sociedad",
         "hm": false,
-        "date": "2026-09-05T14:15:00Z"
+        "date": "2026-09-13T19:00:00Z"
       }
     },
     {
@@ -143,9 +143,9 @@
         "date": "2026-08-29T15:00Z"
       },
       "next": {
-        "opp": "Real Madrid",
-        "hm": true,
-        "date": "2026-09-04T19:00:00Z"
+        "opp": "Villarreal CF",
+        "hm": false,
+        "date": "2026-09-14T19:00:00Z"
       }
     },
     {
@@ -227,9 +227,9 @@
         "date": "2026-08-30T19:30Z"
       },
       "next": {
-        "opp": "Atlético de Madrid",
+        "opp": "Elche CF",
         "hm": true,
-        "date": "2026-09-05T14:15:00Z"
+        "date": "2026-09-12T16:30:00Z"
       }
     },
     {
@@ -290,9 +290,9 @@
         "date": "2026-08-28T19:30Z"
       },
       "next": {
-        "opp": "RC Deportivo La Coruña",
+        "opp": "Real Betis",
         "hm": true,
-        "date": "2026-09-05T19:00Z"
+        "date": "2026-09-14T19:00:00Z"
       }
     },
     {

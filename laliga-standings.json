@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-05T00:24:25.833Z",
+  "updated": "2026-09-05T08:31:35.647Z",
   "d1": [
     {
       "rank": 1,
@@ -62,8 +62,7 @@
         "opp": "Villarreal CF",
         "hm": false,
         "date": "2026-09-14T19:00:00Z"
-      },
-      "mv": 4
+      }
     },
     {
       "rank": 4,
@@ -84,8 +83,7 @@
         "opp": "Athletic Club",
         "hm": false,
         "date": "2026-09-05T14:15:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 5,
@@ -106,8 +104,7 @@
         "opp": "CA Osasuna",
         "hm": true,
         "date": "2026-09-06T16:30:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 6,
@@ -128,8 +125,7 @@
         "opp": "Deportivo Alavés",
         "hm": false,
         "date": "2026-09-06T16:30:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 7,
@@ -150,8 +146,7 @@
         "opp": "RCD Espanyol",
         "hm": false,
         "date": "2026-09-06T19:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 9,
@@ -447,8 +442,7 @@
         "opp": "CD Tenerife",
         "hm": false,
         "date": "2026-09-13T19:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 2,
@@ -469,8 +463,7 @@
         "opp": "SD Eibar",
         "hm": false,
         "date": "2026-09-06T12:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 3,
@@ -533,8 +526,7 @@
         "opp": "Cádiz CF",
         "hm": false,
         "date": "2026-09-12T14:15Z"
-      },
-      "mv": 2
+      }
     },
     {
       "rank": 6,
@@ -555,8 +547,7 @@
         "opp": "CD Eldense",
         "hm": false,
         "date": "2026-09-05T19:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 7,
@@ -577,8 +568,7 @@
         "opp": "Real Sociedad B",
         "hm": false,
         "date": "2026-09-05T12:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 8,

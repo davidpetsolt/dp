@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-04T16:36:09.567Z",
+  "updated": "2026-09-05T00:24:25.833Z",
   "d1": [
     {
       "rank": 1,
@@ -27,15 +27,15 @@
       "name": "Real Madrid",
       "pts": 9,
       "s": "cl",
-      "p": 3,
-      "gd": 8,
-      "form": "W,W,W",
+      "p": 4,
+      "gd": 7,
+      "form": "W,W,W,L",
       "last": {
-        "opp": "Málaga CF",
-        "hm": true,
-        "gf": 4,
-        "ga": 0,
-        "date": "2026-08-30T15:00Z"
+        "opp": "Real Betis",
+        "hm": false,
+        "gf": 0,
+        "ga": 1,
+        "date": "2026-09-04T19:00Z"
       },
       "next": {
         "opp": "Rayo Vallecano",
@@ -45,6 +45,28 @@
     },
     {
       "rank": 3,
+      "name": "Real Betis",
+      "pts": 9,
+      "s": "cl",
+      "p": 4,
+      "gd": 0,
+      "form": "W,W,L,W",
+      "last": {
+        "opp": "Real Madrid",
+        "hm": true,
+        "gf": 1,
+        "ga": 0,
+        "date": "2026-09-04T19:00Z"
+      },
+      "next": {
+        "opp": "Villarreal CF",
+        "hm": false,
+        "date": "2026-09-14T19:00:00Z"
+      },
+      "mv": 4
+    },
+    {
+      "rank": 4,
       "name": "Atlético de Madrid",
       "pts": 7,
       "s": "cl",
@@ -62,13 +84,14 @@
         "opp": "Athletic Club",
         "hm": false,
         "date": "2026-09-05T14:15:00Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 4,
+      "rank": 5,
       "name": "Deportivo Alavés",
       "pts": 7,
-      "s": "cl",
+      "s": "el",
       "p": 3,
       "gd": 4,
       "form": "W,D,W",
@@ -83,10 +106,11 @@
         "opp": "CA Osasuna",
         "hm": true,
         "date": "2026-09-06T16:30:00Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 5,
+      "rank": 6,
       "name": "CA Osasuna",
       "pts": 7,
       "s": "el",
@@ -104,13 +128,14 @@
         "opp": "Deportivo Alavés",
         "hm": false,
         "date": "2026-09-06T16:30:00Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 6,
+      "rank": 7,
       "name": "Sevilla FC",
       "pts": 6,
-      "s": "el",
+      "s": "conf",
       "p": 3,
       "gd": 1,
       "form": "W,W,L",
@@ -125,28 +150,8 @@
         "opp": "RCD Espanyol",
         "hm": false,
         "date": "2026-09-06T19:00:00Z"
-      }
-    },
-    {
-      "rank": 7,
-      "name": "Real Betis",
-      "pts": 6,
-      "s": "conf",
-      "p": 3,
-      "gd": -1,
-      "form": "W,W,L",
-      "last": {
-        "opp": "Levante UD",
-        "hm": false,
-        "gf": 2,
-        "ga": 5,
-        "date": "2026-08-29T15:00Z"
       },
-      "next": {
-        "opp": "Villarreal CF",
-        "hm": false,
-        "date": "2026-09-14T19:00:00Z"
-      }
+      "mv": -1
     },
     {
       "rank": 9,
@@ -425,6 +430,28 @@
   "d2": [
     {
       "rank": 1,
+      "name": "CD Leganés",
+      "pts": 8,
+      "s": "aup",
+      "p": 4,
+      "gd": 2,
+      "form": "D,W,W,D",
+      "last": {
+        "opp": "UD Las Palmas",
+        "hm": false,
+        "gf": 0,
+        "ga": 0,
+        "date": "2026-09-04T18:30Z"
+      },
+      "next": {
+        "opp": "CD Tenerife",
+        "hm": false,
+        "date": "2026-09-13T19:00Z"
+      },
+      "mv": 1
+    },
+    {
+      "rank": 2,
       "name": "Granada CF",
       "pts": 7,
       "s": "aup",
@@ -442,28 +469,8 @@
         "opp": "SD Eibar",
         "hm": false,
         "date": "2026-09-06T12:00Z"
-      }
-    },
-    {
-      "rank": 2,
-      "name": "CD Leganés",
-      "pts": 7,
-      "s": "aup",
-      "p": 3,
-      "gd": 2,
-      "form": "D,W,W",
-      "last": {
-        "opp": "CD Eldense",
-        "hm": true,
-        "gf": 1,
-        "ga": 0,
-        "date": "2026-08-29T17:00Z"
       },
-      "next": {
-        "opp": "UD Las Palmas",
-        "hm": false,
-        "date": "2026-09-04T18:30Z"
-      }
+      "mv": -1
     },
     {
       "rank": 3,
@@ -509,6 +516,28 @@
     },
     {
       "rank": 5,
+      "name": "UD Las Palmas",
+      "pts": 7,
+      "s": "plo",
+      "p": 4,
+      "gd": 0,
+      "form": "W,W,L,D",
+      "last": {
+        "opp": "CD Leganés",
+        "hm": true,
+        "gf": 0,
+        "ga": 0,
+        "date": "2026-09-04T18:30Z"
+      },
+      "next": {
+        "opp": "Cádiz CF",
+        "hm": false,
+        "date": "2026-09-12T14:15Z"
+      },
+      "mv": 2
+    },
+    {
+      "rank": 6,
       "name": "RCD Mallorca",
       "pts": 6,
       "s": "plo",
@@ -526,13 +555,14 @@
         "opp": "CD Eldense",
         "hm": false,
         "date": "2026-09-05T19:00Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 6,
+      "rank": 7,
       "name": "CD Tenerife",
       "pts": 6,
-      "s": "plo",
+      "s": "mid",
       "p": 3,
       "gd": 2,
       "form": "W,W,L",
@@ -547,28 +577,8 @@
         "opp": "Real Sociedad B",
         "hm": false,
         "date": "2026-09-05T12:00Z"
-      }
-    },
-    {
-      "rank": 7,
-      "name": "UD Las Palmas",
-      "pts": 6,
-      "s": "mid",
-      "p": 3,
-      "gd": 0,
-      "form": "W,W,L",
-      "last": {
-        "opp": "Girona FC",
-        "hm": false,
-        "gf": 2,
-        "ga": 5,
-        "date": "2026-08-29T19:30Z"
       },
-      "next": {
-        "opp": "CD Leganés",
-        "hm": true,
-        "date": "2026-09-04T18:30Z"
-      }
+      "mv": -1
     },
     {
       "rank": 8,

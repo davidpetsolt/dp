@@ -39,7 +39,13 @@ const NAME_MAP = {
   "Valencia CF":"Valencia CF", "Sevilla FC":"Sevilla FC",
   "Deportivo Alavés":"Deportivo Alavés", "Elche CF":"Elche CF", "Levante UD":"Levante UD",
   "Real Racing Club":"Racing de Santander", "Real Racing Club de Santander":"Racing de Santander",
-  "RC Deportivo de La Coruña":"RC Deportivo La Coruña", "Málaga CF":"Málaga CF",
+  // Depor: football-data renamed them mid-Aug-2026 (dropped the "de"); the
+  // club is also listed elsewhere as A Coruña. Map every known variant.
+  "RC Deportivo de La Coruña":"RC Deportivo La Coruña",
+  "RC Deportivo La Coruña":"RC Deportivo La Coruña",
+  "RC Deportivo de A Coruña":"RC Deportivo La Coruña",
+  "Real Club Deportivo de La Coruña":"RC Deportivo La Coruña",
+  "Málaga CF":"Málaga CF",
   // D2 2026/27 (used when the tier covers SD)
   "Girona FC":"Girona FC", "RCD Mallorca":"RCD Mallorca", "Real Oviedo":"Real Oviedo",
   "CD Castellón":"CD Castellón", "UD Almería":"UD Almería",

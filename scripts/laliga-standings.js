@@ -104,6 +104,18 @@ const ESPN_MAP = {
   "Sporting Gijón":"Sporting Gijón", "Tenerife":"CD Tenerife",
 };
 
+// Unmatched names mean a feed renamed a club and its rows are being dropped
+// (Depor vanished for three weeks in Aug-2026 this way). Besides the log
+// warning, collect them into unmatched.txt so the workflow can raise a
+// GitHub issue — a silent rename should not stay silent.
+const UNMATCHED_FILE = "unmatched.txt";
+function reportUnmatched(label, names){
+  if (!names.length) return;
+  console.warn(`${label}: unmatched API names -> ${names.join(", ")}`);
+  const lines = names.map(n => `${label}: ${n}\n`).join("");
+  fs.appendFileSync(UNMATCHED_FILE, lines);
+}
+
 function canonName(apiName){
   if (NAME_MAP[apiName]) return NAME_MAP[apiName];
   const lo = apiName.toLowerCase();
@@ -165,7 +177,7 @@ async function comp(code, statusFn, label){
     return null;
   }
   const { rows, unmatched } = tableToRows(res.json, statusFn);
-  if (unmatched.length) console.warn(`${label}: unmatched API names -> ${unmatched.join(", ")}`);
+  reportUnmatched(label, unmatched);
   const season = seasonOf(res.json);
   const totalGp = rows.reduce((s, r) => s + (r.p || 0), 0);
   // Pre-season detection. football-data has a transitional window where the
@@ -211,7 +223,7 @@ async function espnTable(code, statusFn, nameMap, minTeams, label){
         form: null,
       });
     }
-    if (unmatched.length) console.warn(`${label} (ESPN): unmatched names -> ${unmatched.join(", ")}`);
+    reportUnmatched(`${label} (ESPN)`, unmatched);
     if (rows.length < minTeams) throw new Error(`only ${rows.length} teams mapped`);
     if (played === 0){
       console.log(`${label} (ESPN): season not started (0 games played); emitting fixture stubs only.`);

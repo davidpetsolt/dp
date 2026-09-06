@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: write
+  issues: write   # unmatched-team-name alerts
 
 concurrency:
   group: laliga-update
@@ -32,6 +33,28 @@ jobs:
         env:
           FD_TOKEN: ${{ secrets.FD_TOKEN }}
         run: node scripts/laliga-standings.js
+
+      # A feed renaming a club silently drops its rows (Depor, Aug-2026).
+      # Surface it: one open issue, updated with a comment on later runs.
+      - name: Alert on unmatched team names
+        if: ${{ hashFiles('unmatched.txt') != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TITLE="LaLiga feed: unmatched team names"
+          BODY="A data feed is using team names the standings script cannot map — their rows are being DROPPED from laliga-standings.json until NAME_MAP / ESPN_*_MAP in scripts/laliga-standings.js learns the new names.
+
+          Unmatched on $(date -u +%d-%b-%Y):
+          \`\`\`
+          $(cat unmatched.txt)
+          \`\`\`"
+          NUM=$(gh issue list --state open --search "in:title \"$TITLE\"" --json number --jq '.[0].number' 2>/dev/null || true)
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --body "$BODY"
+          else
+            gh issue create --title "$TITLE" --body "$BODY"
+          fi
+          rm -f unmatched.txt   # never let it reach the commit step
 
       - name: Commit if changed
         run: |

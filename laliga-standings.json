@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-15T00:55:54.297Z",
+  "updated": "2026-09-15T09:33:20.563Z",
   "d1": [
     {
       "rank": 1,
@@ -62,8 +62,7 @@
         "opp": "Getafe CF",
         "hm": true,
         "date": "2026-09-17T17:00:00Z"
-      },
-      "mv": 4
+      }
     },
     {
       "rank": 4,
@@ -84,8 +83,7 @@
         "opp": "Valencia CF",
         "hm": true,
         "date": "2026-09-15T18:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 5,
@@ -106,8 +104,7 @@
         "opp": "CA Osasuna",
         "hm": true,
         "date": "2026-09-16T17:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 6,
@@ -128,8 +125,7 @@
         "opp": "RC Deportivo La Coruña",
         "hm": false,
         "date": "2026-09-16T17:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 7,
@@ -150,8 +146,7 @@
         "opp": "Sevilla FC",
         "hm": true,
         "date": "2026-09-16T17:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 8,
@@ -473,8 +468,7 @@
         "opp": "CD Eldense",
         "hm": false,
         "date": "2026-09-19T16:30Z"
-      },
-      "mv": 4
+      }
     },
     {
       "rank": 3,
@@ -495,8 +489,7 @@
         "opp": "Real Sociedad B",
         "hm": false,
         "date": "2026-09-19T12:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 4,
@@ -517,8 +510,7 @@
         "opp": "CD Castellón",
         "hm": false,
         "date": "2026-09-19T16:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 5,
@@ -539,8 +531,7 @@
         "opp": "Burgos CF",
         "hm": true,
         "date": "2026-09-20T16:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 6,
@@ -561,8 +552,7 @@
         "opp": "Celta Fortuna",
         "hm": true,
         "date": "2026-09-20T16:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 7,

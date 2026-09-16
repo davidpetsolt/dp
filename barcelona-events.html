@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700;900&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#1B2352; --navy-deep:#131838;
@@ -33,49 +34,6 @@
   html{-webkit-text-size-adjust:100%}
   body{margin:0;background:var(--bg);color:var(--body);
     font-family:'Lora',Georgia,serif;font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
-
-  /* Header */
-  .site-header{background:var(--navy);color:#fff;padding:6px 0;position:sticky;top:0;z-index:50}
-  .site-header .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;
-    display:flex;align-items:center;justify-content:space-between;gap:24px}
-  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff}
-  .brand-logo{width:96px;height:96px;display:block;margin:-6px 0}
-  .nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap;
-    font-family:'Lato',sans-serif;font-weight:400;font-size:17px}
-  .nav a{color:#fff;text-decoration:none;opacity:.85;padding:6px 2px;border-bottom:2px solid transparent}
-  .nav a:hover{opacity:1}
-  .nav a.active{opacity:1;border-bottom-color:var(--orange);font-weight:600}
-  .nav .sep{opacity:.4}
-
-  /* Hamburger (mobile only) */
-  .nav-toggle{display:none;background:transparent;border:0;cursor:pointer;
-    padding:10px;width:44px;height:44px;align-items:center;justify-content:center}
-  .nav-toggle .bars,
-  .nav-toggle .bars::before,
-  .nav-toggle .bars::after{
-    display:block;width:24px;height:2px;background:#fff;border-radius:2px;
-    transition:transform .25s ease,background .2s ease,opacity .2s ease}
-  .nav-toggle .bars{position:relative}
-  .nav-toggle .bars::before,.nav-toggle .bars::after{content:"";position:absolute;left:0}
-  .nav-toggle .bars::before{top:-8px}
-  .nav-toggle .bars::after{top:8px}
-  .nav-toggle[aria-expanded="true"] .bars{background:transparent}
-  .nav-toggle[aria-expanded="true"] .bars::before{top:0;transform:rotate(45deg)}
-  .nav-toggle[aria-expanded="true"] .bars::after{top:0;transform:rotate(-45deg)}
-
-  @media (max-width: 720px){
-    .site-header .wrap{position:relative;flex-wrap:nowrap}
-    .brand-logo{width:72px;height:72px}
-    .nav-toggle{display:flex}
-    .nav{display:none;flex-direction:column;align-items:flex-start;gap:0;
-      position:absolute;top:100%;left:0;right:0;background:var(--navy-deep);
-      padding:6px 24px 14px;border-top:1px solid rgba(255,255,255,.1);z-index:60}
-    .nav.open{display:flex}
-    .nav .sep{display:none}
-    .nav a{padding:14px 0;width:100%;font-size:18px;border-bottom:1px solid rgba(255,255,255,.06)}
-    .nav a:last-child{border-bottom:0}
-  }
-
 
   /* Hero */
   .hero{max-width:var(--max);margin:0 auto;padding:56px 24px 24px}
@@ -197,37 +155,80 @@
   .empty{font-family:'Lora',serif;font-style:italic;color:var(--muted);
     padding:24px 0;text-align:center}
 
-  /* Footer */
-  footer{max-width:var(--max);margin:60px auto 0;padding:24px;border-top:1px solid var(--rule);
-    color:var(--muted);font-family:'Lato',sans-serif;font-size:14px;
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-  footer a{color:var(--navy);text-decoration:none;font-weight:600}
-  footer a:hover{color:var(--orange)}
-
   /* Hidden when filtered out */
   .ev-card.hidden{display:none}
   .section.empty-section .events{display:none}
+
+  /* ===== Petsolt 2026 header/footer chrome (16-Sep-2026) =====
+     Namespaced --pt-* tokens so this never touches the page's own --navy/--orange/etc.
+     Source of truth: devpetsolt.wpenginepowered.com/the-block-project/ (.nav/.brand/.mbar/footer.site-footer)
+     + theme.css. Header is forced to a permanently-solid navy state (no hero, no scroll JS). */
+  :root{
+    --pt-navy:#1b2352; --pt-orange:#ff6000; --pt-white:#ffffff;
+    --pt-grey:#f3f3f1; --pt-line:#dcdcd8; --pt-ink:#15193a; --pt-muted:#5d6280;
+    --pt-d:'Overpass', sans-serif; --pt-s:'Source Serif 4', Georgia, serif;
+  }
+  body{padding-top:72px;padding-bottom:70px}
+  @media (min-width:900px){ body{padding-top:80px;padding-bottom:0} }
+
+  .nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;background:var(--pt-navy);color:var(--pt-white);box-shadow:0 1px 0 rgba(255,255,255,.08);
+    font-family:var(--pt-d)}
+  .nav .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.06em;
+    text-transform:uppercase;font-size:15px;color:var(--pt-white);text-decoration:none}
+  .nav .brand img{width:44px;height:44px;display:block}
+  .nav ul{display:none;list-style:none;gap:30px;margin:0;padding:0;font-weight:600;font-size:15px;letter-spacing:.02em}
+  .nav li a{padding:6px 0;border-bottom:3px solid transparent;color:var(--pt-white);text-decoration:none}
+  .nav li a.on{border-bottom-color:var(--pt-orange)}
+  .nav li a:hover{border-bottom-color:currentColor}
+  @media (min-width:900px){ .nav{padding:18px 48px} .nav ul{display:flex} }
+
+  .mbar{position:fixed;bottom:0;left:0;right:0;z-index:60;background:var(--pt-navy);color:var(--pt-white);
+    display:flex;justify-content:space-around;padding:12px 6px 16px;margin:0;
+    font-family:var(--pt-d);font-weight:600;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
+  .mbar a{opacity:.75;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--pt-white);text-decoration:none}
+  .mbar a.on{opacity:1;color:var(--pt-orange)}
+  .mbar svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8}
+  @media (min-width:900px){ .mbar{display:none} }
+
+  footer.site-footer{margin-top:56px;background:var(--pt-navy);color:var(--pt-white);font-family:var(--pt-d)}
+  footer.site-footer .wrap{max-width:1320px;margin:0 auto;padding:0 20px}
+  @media (min-width:900px){ footer.site-footer .wrap{padding:0 48px} }
+  footer.site-footer .in{display:grid;gap:28px;padding:56px 0 48px}
+  @media (min-width:900px){ footer.site-footer .in{grid-template-columns:200px 1fr 1fr;gap:56px;align-items:start} }
+  footer.site-footer img{width:160px;display:block}
+  footer.site-footer h4{margin:0 0 12px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+  footer.site-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-weight:600}
+  footer.site-footer a{color:var(--pt-white);text-decoration:none}
+  footer.site-footer a:hover{opacity:.8}
+  footer.site-footer .tag{font-family:var(--pt-s);font-size:18px;opacity:.85;max-width:38ch;margin:0}
+  footer.site-footer .est{font-weight:900;letter-spacing:.14em;font-size:13px;margin-top:14px;opacity:.7}
+  footer.site-footer .bottom{border-top:1px solid rgba(255,255,255,.15);padding:18px 0 26px;font-size:13px;opacity:.7;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  footer.site-footer .cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media (max-width:480px){ footer.site-footer .cols{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
 
-<header class="site-header" role="banner">
-  <div class="wrap">
-    <a href="https://petsolt.com/" class="brand" aria-label="Petsolt">
-      <img class="brand-logo" src="https://petsolt.com/wp-content/uploads/2024/07/petsolt_logo_2023_catalan-300x300.png" alt="Petsolt" />
-    </a>
-    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="bars" aria-hidden="true"></span></button>
-    <nav class="nav" id="primary-nav" aria-label="Primary">
-      <a href="https://petsolt.com/">Blogs</a>
-      <span class="sep">|</span>
-      <a href="https://petsolt.com/barcelona-visitors-guide/">BCN Visitors Guide</a>
-      <span class="sep">|</span>
-      <a href="https://pages.davidpetsolt.com/laliga-guide-2526.html">LaLiga Guide</a>
-      <span class="sep">|</span>
-      <a href="#" class="active">Barcelona Events</a>
-    </nav>
-  </div>
+<header class="nav dark-page solid" id="nav">
+  <a class="brand" href="https://petsolt.com/" aria-label="Petsolt"><img src="img/shield.png" alt="Petsolt" width="44" height="44" decoding="async"><span>Petsolt</span></a>
+  <ul>
+    <li><a href="https://petsolt.com/">Blogs</a></li>
+    <li><a href="https://petsolt.com/category/projects/">Projects</a></li>
+    <li><a href="https://petsolt.com/barcelona-visitors-guide/">Visitors Guide</a></li>
+    <li><a href="https://pages.davidpetsolt.com/laliga-guide.html">LaLiga</a></li>
+    <li><a href="https://pages.davidpetsolt.com/barcelona-events.html" class="on">Events</a></li>
+  </ul>
 </header>
+
+<nav class="mbar" aria-label="Site">
+  <a href="https://petsolt.com/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8v10H3z"/></svg>Home</a>
+  <a href="https://petsolt.com/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z M8 9h8 M8 13h8"/></svg>Blogs</a>
+  <a href="https://petsolt.com/category/photo-blog/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Photos</a>
+  <a href="https://petsolt.com/category/projects/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg>Projects</a>
+  <a href="https://petsolt.com/barcelona-visitors-guide/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.5-6-11a6 6 0 0112 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Guide</a>
+</nav>
 
 <section class="hero">
   <p class="eyebrow">Catalonia · This Weekend</p>
@@ -802,34 +803,17 @@
     </section>
 
 
-<footer>
-  <span>© Petsolt · Updated Thursdays · Sources:
-    <a href="https://www.catalannews.com/things-to-do">catalannews</a>,
-    <a href="https://guia.barcelona.cat/en/">guia.barcelona.cat</a>,
-    <a href="https://thisisbarcelona.com/main-events">thisisbarcelona.com</a>,
-    things the Petsolts come across
-  </span>
-  <span><a href="https://petsolt.com/">petsolt.com</a></span>
-</footer>
+<footer class="site-footer"><div class="wrap"><div class="in">
+  <div><img src="img/shield-senyera.png" alt="Petsolt shield with senyera stripes" width="160" height="160" loading="lazy" decoding="async"><div class="est">EST 1996</div></div>
+  <div><p class="tag">Updated Thursdays · Sources: <a href="https://www.catalannews.com/things-to-do">catalannews</a>, <a href="https://guia.barcelona.cat/en/">guia.barcelona.cat</a>, <a href="https://thisisbarcelona.com/main-events">thisisbarcelona.com</a>, things the Petsolts come across</p></div>
+  <div class="cols">
+    <div><h4>Site</h4><ul><li><a href="https://petsolt.com/">Home</a></li><li><a href="https://petsolt.com/#latest">Blogs</a></li><li><a href="https://petsolt.com/category/projects/">Projects</a></li><li><a href="https://petsolt.com/barcelona-visitors-guide/">Visitors Guide</a></li></ul></div>
+    <div><h4>Elsewhere</h4><ul><li><a href="https://pages.davidpetsolt.com/laliga-guide.html">LaLiga Guide</a></li><li><a href="https://pages.davidpetsolt.com/barcelona-events.html">Barcelona Events</a></li><li><a href="https://petsolt.com/?s=">Search</a></li></ul></div>
+  </div></div>
+  <div class="bottom"><span>Petsolt.com, Barcelona</span><span>Photos on Leica and iPhone</span></div>
+</div></footer>
 
 <script>
-  // Mobile nav toggle
-  (function(){
-    var t = document.querySelector(".nav-toggle"),
-        n = document.getElementById("primary-nav");
-    if (!t || !n) return;
-    t.addEventListener("click", function(){
-      var open = n.classList.toggle("open");
-      t.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-    n.addEventListener("click", function(e){
-      if (e.target.tagName === "A") {
-        n.classList.remove("open");
-        t.setAttribute("aria-expanded", "false");
-      }
-    });
-  })();
-
   // Category filter
   const filters = document.querySelectorAll(".filter");
   const cards = document.querySelectorAll(".ev-card");

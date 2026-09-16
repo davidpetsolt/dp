@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-15T17:16:43.590Z",
+  "updated": "2026-09-16T00:50:14.988Z",
   "d1": [
     {
       "rank": 1,
@@ -8,13 +8,13 @@
       "s": "cl",
       "p": 5,
       "gd": 17,
-      "form": "W,W,W,W,W",
+      "form": null,
       "last": {
         "opp": "Levante UD",
         "hm": false,
         "gf": 4,
         "ga": 2,
-        "date": "2026-09-13T14:15Z"
+        "date": "2026-09-13T14:15:00Z"
       },
       "next": {
         "opp": "Racing de Santander",
@@ -25,22 +25,22 @@
     {
       "rank": 2,
       "name": "Real Madrid",
-      "pts": 12,
+      "pts": 15,
       "s": "cl",
-      "p": 5,
-      "gd": 10,
-      "form": "W,W,W,L,W",
+      "p": 6,
+      "gd": 11,
+      "form": null,
       "last": {
-        "opp": "Rayo Vallecano",
-        "hm": true,
-        "gf": 4,
-        "ga": 1,
-        "date": "2026-09-12T19:00Z"
-      },
-      "next": {
         "opp": "Elche CF",
         "hm": false,
+        "gf": 3,
+        "ga": 2,
         "date": "2026-09-15T19:30:00Z"
+      },
+      "next": {
+        "opp": "Atlético de Madrid",
+        "hm": false,
+        "date": "2026-09-20T14:15:00Z"
       }
     },
     {
@@ -50,13 +50,13 @@
       "s": "cl",
       "p": 5,
       "gd": 1,
-      "form": "W,W,L,W,W",
+      "form": null,
       "last": {
         "opp": "Villarreal CF",
         "hm": false,
         "gf": 2,
         "ga": 1,
-        "date": "2026-09-14T19:00Z"
+        "date": "2026-09-14T19:00:00Z"
       },
       "next": {
         "opp": "Getafe CF",
@@ -69,20 +69,20 @@
       "name": "Deportivo Alavés",
       "pts": 10,
       "s": "cl",
-      "p": 5,
-      "gd": 6,
-      "form": "W,D,W,W,L",
+      "p": 6,
+      "gd": 5,
+      "form": null,
       "last": {
-        "opp": "Racing de Santander",
-        "hm": false,
-        "gf": 1,
-        "ga": 2,
-        "date": "2026-09-12T12:00Z"
-      },
-      "next": {
         "opp": "Valencia CF",
         "hm": true,
+        "gf": 0,
+        "ga": 1,
         "date": "2026-09-15T18:00:00Z"
+      },
+      "next": {
+        "opp": "Athletic Club",
+        "hm": false,
+        "date": "2026-09-19T14:15:00Z"
       }
     },
     {
@@ -92,13 +92,13 @@
       "s": "el",
       "p": 5,
       "gd": 4,
-      "form": "W,D,W,L,W",
+      "form": null,
       "last": {
         "opp": "Real Sociedad",
         "hm": false,
         "gf": 3,
         "ga": 0,
-        "date": "2026-09-13T19:00Z"
+        "date": "2026-09-13T19:00:00Z"
       },
       "next": {
         "opp": "CA Osasuna",
@@ -113,13 +113,13 @@
       "s": "el",
       "p": 5,
       "gd": 2,
-      "form": "W,W,L,D,W",
+      "form": null,
       "last": {
         "opp": "Valencia CF",
         "hm": true,
         "gf": 1,
         "ga": 0,
-        "date": "2026-09-11T19:00Z"
+        "date": "2026-09-11T19:00:00Z"
       },
       "next": {
         "opp": "RC Deportivo La Coruña",
@@ -134,13 +134,13 @@
       "s": "conf",
       "p": 5,
       "gd": 3,
-      "form": "D,D,W,W,D",
+      "form": null,
       "last": {
         "opp": "Getafe CF",
         "hm": false,
         "gf": 1,
         "ga": 1,
-        "date": "2026-09-13T16:30Z"
+        "date": "2026-09-13T16:30:00Z"
       },
       "next": {
         "opp": "Sevilla FC",
@@ -155,13 +155,13 @@
       "s": "mid",
       "p": 6,
       "gd": 2,
-      "form": "W,L,L,D,W",
+      "form": null,
       "last": {
-        "opp": "CA Osasuna",
+        "opp": "Rayo Vallecano",
         "hm": false,
-        "gf": 2,
-        "ga": 0,
-        "date": "2026-09-12T14:15Z"
+        "gf": 1,
+        "ga": 2,
+        "date": "2026-09-15T17:00:00Z"
       },
       "next": {
         "opp": "Elche CF",
@@ -176,13 +176,13 @@
       "s": "mid",
       "p": 5,
       "gd": 1,
-      "form": "L,L,W,W,D",
+      "form": null,
       "last": {
         "opp": "Elche CF",
         "hm": true,
         "gf": 1,
         "ga": 1,
-        "date": "2026-09-12T16:30Z"
+        "date": "2026-09-12T16:30:00Z"
       },
       "next": {
         "opp": "Levante UD",
@@ -197,13 +197,13 @@
       "s": "mid",
       "p": 5,
       "gd": 0,
-      "form": "D,L,W,L,W",
+      "form": null,
       "last": {
         "opp": "Deportivo Alavés",
         "hm": true,
         "gf": 2,
         "ga": 1,
-        "date": "2026-09-12T12:00Z"
+        "date": "2026-09-12T12:00:00Z"
       },
       "next": {
         "opp": "FC Barcelona",
@@ -218,13 +218,13 @@
       "s": "mid",
       "p": 5,
       "gd": -3,
-      "form": "D,W,W,L,L",
+      "form": null,
       "last": {
         "opp": "RCD Espanyol",
         "hm": true,
         "gf": 0,
         "ga": 2,
-        "date": "2026-09-12T14:15Z"
+        "date": "2026-09-12T14:15:00Z"
       },
       "next": {
         "opp": "Atlético de Madrid",
@@ -239,20 +239,19 @@
       "s": "mid",
       "p": 6,
       "gd": -5,
-      "form": "L,D,L,W,L",
+      "form": null,
       "last": {
-        "opp": "Real Madrid",
-        "hm": false,
-        "gf": 1,
-        "ga": 4,
-        "date": "2026-09-12T19:00Z"
+        "opp": "RCD Espanyol",
+        "hm": true,
+        "gf": 2,
+        "ga": 1,
+        "date": "2026-09-15T17:00:00Z"
       },
       "next": {
         "opp": "CA Osasuna",
         "hm": false,
         "date": "2026-09-19T12:00:00Z"
-      },
-      "mv": 4
+      }
     },
     {
       "rank": 13,
@@ -261,20 +260,19 @@
       "s": "mid",
       "p": 6,
       "gd": -5,
-      "form": "L,W,D,W,L",
+      "form": null,
       "last": {
         "opp": "Atlético de Madrid",
         "hm": true,
         "gf": 0,
         "ga": 3,
-        "date": "2026-09-13T19:00Z"
+        "date": "2026-09-13T19:00:00Z"
       },
       "next": {
         "opp": "Valencia CF",
         "hm": false,
         "date": "2026-09-20T19:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 14,
@@ -283,20 +281,19 @@
       "s": "mid",
       "p": 5,
       "gd": -2,
-      "form": "L,D,W,D,L",
+      "form": null,
       "last": {
         "opp": "FC Barcelona",
         "hm": true,
         "gf": 2,
         "ga": 4,
-        "date": "2026-09-13T14:15Z"
+        "date": "2026-09-13T14:15:00Z"
       },
       "next": {
         "opp": "Athletic Club",
         "hm": true,
         "date": "2026-09-16T19:30:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 15,
@@ -305,20 +302,19 @@
       "s": "mid",
       "p": 5,
       "gd": -3,
-      "form": "L,W,L,D,D",
+      "form": null,
       "last": {
         "opp": "RC Deportivo La Coruña",
         "hm": true,
         "gf": 1,
         "ga": 1,
-        "date": "2026-09-13T16:30Z"
+        "date": "2026-09-13T16:30:00Z"
       },
       "next": {
         "opp": "Real Betis",
         "hm": false,
         "date": "2026-09-17T17:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 16,
@@ -327,104 +323,107 @@
       "s": "mid",
       "p": 6,
       "gd": -3,
-      "form": "L,L,D,D,D",
+      "form": null,
       "last": {
         "opp": "Málaga CF",
         "hm": true,
         "gf": 1,
         "ga": 1,
-        "date": "2026-09-13T12:00Z"
+        "date": "2026-09-13T12:00:00Z"
       },
       "next": {
         "opp": "Racing de Santander",
         "hm": true,
         "date": "2026-09-19T16:30:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 17,
+      "name": "Valencia CF",
+      "pts": 4,
+      "s": "mid",
+      "p": 6,
+      "gd": -8,
+      "form": null,
+      "last": {
+        "opp": "Deportivo Alavés",
+        "hm": false,
+        "gf": 1,
+        "ga": 0,
+        "date": "2026-09-15T18:00:00Z"
+      },
+      "next": {
+        "opp": "Real Sociedad",
+        "hm": true,
+        "date": "2026-09-20T19:00:00Z"
+      },
+      "mv": 3
+    },
+    {
+      "rank": 18,
       "name": "Málaga CF",
       "pts": 3,
-      "s": "mid",
+      "s": "rel",
       "p": 5,
       "gd": -6,
-      "form": "L,D,L,D,D",
+      "form": null,
       "last": {
         "opp": "RC Celta de Vigo",
         "hm": false,
         "gf": 1,
         "ga": 1,
-        "date": "2026-09-13T12:00Z"
+        "date": "2026-09-13T12:00:00Z"
       },
       "next": {
         "opp": "Villarreal CF",
         "hm": true,
         "date": "2026-09-17T19:30:00Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 18,
+      "rank": 19,
       "name": "Villarreal CF",
       "pts": 2,
       "s": "rel",
       "p": 5,
       "gd": -3,
-      "form": "D,D,L,L,L",
+      "form": null,
       "last": {
         "opp": "Real Betis",
         "hm": true,
         "gf": 1,
         "ga": 2,
-        "date": "2026-09-14T19:00Z"
+        "date": "2026-09-14T19:00:00Z"
       },
       "next": {
         "opp": "Málaga CF",
         "hm": false,
         "date": "2026-09-17T19:30:00Z"
-      }
-    },
-    {
-      "rank": 19,
-      "name": "Elche CF",
-      "pts": 2,
-      "s": "rel",
-      "p": 5,
-      "gd": -7,
-      "form": "D,L,L,L,D",
-      "last": {
-        "opp": "Athletic Club",
-        "hm": false,
-        "gf": 1,
-        "ga": 1,
-        "date": "2026-09-12T16:30Z"
       },
-      "next": {
-        "opp": "Real Madrid",
-        "hm": true,
-        "date": "2026-09-15T19:30:00Z"
-      }
+      "mv": -1
     },
     {
       "rank": 20,
-      "name": "Valencia CF",
-      "pts": 1,
+      "name": "Elche CF",
+      "pts": 2,
       "s": "rel",
-      "p": 5,
-      "gd": -9,
-      "form": "D,L,L,L,L",
+      "p": 6,
+      "gd": -8,
+      "form": null,
       "last": {
-        "opp": "Sevilla FC",
-        "hm": false,
-        "gf": 0,
-        "ga": 1,
-        "date": "2026-09-11T19:00Z"
+        "opp": "Real Madrid",
+        "hm": true,
+        "gf": 2,
+        "ga": 3,
+        "date": "2026-09-15T19:30:00Z"
       },
       "next": {
-        "opp": "Deportivo Alavés",
+        "opp": "RCD Espanyol",
         "hm": false,
-        "date": "2026-09-15T18:00:00Z"
-      }
+        "date": "2026-09-18T19:00:00Z"
+      },
+      "mv": -1
     }
   ],
   "season": {

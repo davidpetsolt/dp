@@ -26,6 +26,10 @@ if (!TOKEN) { console.error("Missing FD_TOKEN"); process.exit(1); }
 const BASE = "https://api.football-data.org/v4";
 const ESPN_BASE = "https://site.api.espn.com/apis/v2/sports/soccer";
 const ESPN_SITE = "https://site.api.espn.com/apis/site/v2/sports/soccer";
+// 16-Sep-2026: ESPN started answering 403 to browser-like agents ("Mozilla/5.0 …") from scripts
+// and 400 to scoreboard date RANGES; a curl-style agent plus one request per month (dates=YYYYMM)
+// still works. Form dots (Last 5), D2 and Liga F all ride on these two endpoints.
+const ESPN_UA = "curl/8.7.1";
 const OUT_FILE = "laliga-standings.json";
 
 // football-data API name -> page display name (must match the names in the page arrays)
@@ -202,7 +206,7 @@ async function comp(code, statusFn, label){
 // happens.
 async function espnTable(code, statusFn, nameMap, minTeams, label){
   try{
-    const r = await fetch(`${ESPN_BASE}/${code}/standings`, { headers: { "User-Agent": "Mozilla/5.0 (laliga-guide)" } });
+    const r = await fetch(`${ESPN_BASE}/${code}/standings`, { headers: { "User-Agent": ESPN_UA } });
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     const json = await r.json();
     const entries = (((json.children || [])[0] || {}).standings || {}).entries || [];
@@ -285,10 +289,22 @@ async function espnFixtures(code, rows, nameMap, label, createMissing){
   const day = 86400000, now = Date.now();
   const ymd = t => new Date(t).toISOString().slice(0, 10).replace(/-/g, "");
   try{
-    const url = `${ESPN_SITE}/${code}/scoreboard?dates=${ymd(now - 45 * day)}-${ymd(now + 21 * day)}&limit=400`;
-    const r = await fetch(url, { headers: { "User-Agent": "Mozilla/5.0 (laliga-guide)" } });
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    const json = await r.json();
+    // one scoreboard call per calendar month spanning [now-45d, now+21d]; ranges are refused since 16-Sep-2026
+    const months = [];
+    for (let t = now - 45 * day; t <= now + 21 * day + 31 * day; t += 28 * day){
+      const m = new Date(t).toISOString().slice(0, 7).replace("-", "");
+      if (!months.includes(m) && new Date(t) <= new Date(now + 21 * day + 31 * day)) months.push(m);
+    }
+    const seen = new Set(); const json = { events: [] };
+    for (const m of months){
+      const r = await fetch(`${ESPN_SITE}/${code}/scoreboard?dates=${m}&limit=400`, { headers: { "User-Agent": ESPN_UA } });
+      if (!r.ok) throw new Error(`HTTP ${r.status} for ${m}`);
+      for (const e of ((await r.json()).events || [])){
+        const t = new Date(e.date).getTime();
+        if (t < now - 45 * day || t > now + 21 * day || seen.has(e.id)) continue;
+        seen.add(e.id); json.events.push(e);
+      }
+    }
     const byName = {};
     rows.forEach(t => { byName[t.name] = t; });
     if (createMissing){

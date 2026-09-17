@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-17T00:53:43.173Z",
+  "updated": "2026-09-17T09:36:50.023Z",
   "d1": [
     {
       "rank": 1,
@@ -150,27 +150,6 @@
     },
     {
       "rank": 8,
-      "name": "Athletic Club",
-      "pts": 8,
-      "s": "mid",
-      "p": 6,
-      "gd": 1,
-      "form": "L,W,W,D,D",
-      "last": {
-        "opp": "Levante UD",
-        "hm": false,
-        "gf": 0,
-        "ga": 0,
-        "date": "2026-09-16T19:30Z"
-      },
-      "next": {
-        "opp": "Deportivo Alavés",
-        "hm": true,
-        "date": "2026-09-19T14:15:00Z"
-      }
-    },
-    {
-      "rank": 9,
       "name": "RCD Espanyol",
       "pts": 7,
       "s": "mid",
@@ -192,6 +171,28 @@
       "mv": 1
     },
     {
+      "rank": 9,
+      "name": "Athletic Club",
+      "pts": 7,
+      "s": "mid",
+      "p": 5,
+      "gd": 1,
+      "form": "L,W,W,D,D",
+      "last": {
+        "opp": "Levante UD",
+        "hm": false,
+        "gf": 0,
+        "ga": 0,
+        "date": "2026-09-16T19:30Z"
+      },
+      "next": {
+        "opp": "Deportivo Alavés",
+        "hm": true,
+        "date": "2026-09-19T14:15:00Z"
+      },
+      "mv": -1
+    },
+    {
       "rank": 10,
       "name": "Racing de Santander",
       "pts": 7,
@@ -210,8 +211,7 @@
         "opp": "RC Celta de Vigo",
         "hm": false,
         "date": "2026-09-19T16:30:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 11,
@@ -279,9 +279,9 @@
     {
       "rank": 14,
       "name": "Levante UD",
-      "pts": 6,
+      "pts": 5,
       "s": "mid",
-      "p": 6,
+      "p": 5,
       "gd": -2,
       "form": "D,W,D,L,D",
       "last": {

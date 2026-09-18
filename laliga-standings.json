@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-18T00:47:45.875Z",
+  "updated": "2026-09-18T09:08:32.643Z",
   "d1": [
     {
       "rank": 1,
@@ -62,8 +62,7 @@
         "opp": "RC Deportivo La Coruña",
         "hm": false,
         "date": "2026-09-20T16:30:00Z"
-      },
-      "mv": 2
+      }
     },
     {
       "rank": 4,
@@ -84,8 +83,7 @@
         "opp": "Real Madrid",
         "hm": true,
         "date": "2026-09-20T14:15:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 5,
@@ -106,8 +104,7 @@
         "opp": "FC Barcelona",
         "hm": true,
         "date": "2026-09-19T19:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 6,
@@ -296,8 +293,7 @@
         "opp": "Levante UD",
         "hm": true,
         "date": "2026-09-20T16:30:00Z"
-      },
-      "mv": 5
+      }
     },
     {
       "rank": 15,
@@ -339,8 +335,7 @@
         "opp": "Málaga CF",
         "hm": true,
         "date": "2026-09-20T12:00:00Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 17,
@@ -361,8 +356,7 @@
         "opp": "Racing de Santander",
         "hm": true,
         "date": "2026-09-19T16:30:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 18,
@@ -383,8 +377,7 @@
         "opp": "Real Sociedad",
         "hm": true,
         "date": "2026-09-20T19:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 19,
@@ -405,8 +398,7 @@
         "opp": "Getafe CF",
         "hm": false,
         "date": "2026-09-20T12:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 20,

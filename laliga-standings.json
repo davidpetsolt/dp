@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-19T00:39:49.423Z",
+  "updated": "2026-09-19T08:56:10.709Z",
   "d1": [
     {
       "rank": 1,
@@ -167,8 +167,7 @@
         "opp": "Deportivo Alavés",
         "hm": true,
         "date": "2026-09-19T14:15:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 9,
@@ -189,8 +188,7 @@
         "opp": "Málaga CF",
         "hm": false,
         "date": "2026-10-09T19:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 10,
@@ -353,8 +351,7 @@
         "gf": 3,
         "ga": 1,
         "date": "2026-09-18T19:00Z"
-      },
-      "mv": 3
+      }
     },
     {
       "rank": 18,
@@ -375,8 +372,7 @@
         "opp": "Racing de Santander",
         "hm": true,
         "date": "2026-09-19T16:30:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 19,
@@ -397,8 +393,7 @@
         "opp": "Real Sociedad",
         "hm": true,
         "date": "2026-09-20T19:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 20,
@@ -419,8 +414,7 @@
         "opp": "Getafe CF",
         "hm": false,
         "date": "2026-09-20T12:00:00Z"
-      },
-      "mv": -1
+      }
     }
   ],
   "season": {
@@ -763,8 +757,7 @@
         "opp": "Real Valladolid",
         "hm": false,
         "date": "2026-09-27T12:00Z"
-      },
-      "mv": 4
+      }
     },
     {
       "rank": 17,
@@ -785,8 +778,7 @@
         "opp": "SD Eibar",
         "hm": true,
         "date": "2026-09-19T16:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 18,
@@ -807,8 +799,7 @@
         "opp": "AD Ceuta FC",
         "hm": false,
         "date": "2026-09-20T14:15Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 19,
@@ -829,8 +820,7 @@
         "opp": "Sporting Gijón",
         "hm": true,
         "date": "2026-09-19T14:15Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 20,
@@ -851,8 +841,7 @@
         "opp": "Girona FC",
         "hm": true,
         "date": "2026-09-19T19:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 21,

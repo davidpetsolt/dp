@@ -183,12 +183,15 @@
   .nav li a:hover{border-bottom-color:currentColor}
   @media (min-width:900px){ .nav{padding:18px 48px} .nav ul{display:flex} }
 
+  /* Six items since 20-Sep-2026 (David): the bar mirrors the desktop nav. flex:1 1 0 keeps them
+     on one row at 375px; the <390px step-down covers 320px screens. Matches petsolt-2026 theme.css. */
   .mbar{position:fixed;bottom:0;left:0;right:0;z-index:60;background:var(--pt-navy);color:var(--pt-white);
-    display:flex;justify-content:space-around;padding:12px 6px 16px;margin:0;
+    display:flex;justify-content:space-between;gap:2px;padding:12px 8px 16px;margin:0;
     font-family:var(--pt-d);font-weight:600;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
-  .mbar a{opacity:.75;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--pt-white);text-decoration:none}
+  .mbar a{flex:1 1 0;min-width:0;white-space:nowrap;opacity:.75;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--pt-white);text-decoration:none}
   .mbar a.on{opacity:1;color:var(--pt-orange)}
   .mbar svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8}
+  @media (max-width:389px){ .mbar{font-size:11px;letter-spacing:.02em;padding-left:4px;padding-right:4px} .mbar svg{width:18px;height:18px} }
   @media (min-width:900px){ .mbar{display:none} }
 
   footer.site-footer{margin-top:56px;background:var(--pt-navy);color:var(--pt-white);font-family:var(--pt-d)}
@@ -214,7 +217,7 @@
 <header class="nav dark-page solid" id="nav">
   <a class="brand" href="https://petsolt.com/" aria-label="Petsolt"><img src="img/shield.png" alt="Petsolt" width="44" height="44" decoding="async"><span>Petsolt</span></a>
   <ul>
-    <li><a href="https://petsolt.com/">Blogs</a></li>
+    <li><a href="https://petsolt.com/blog/">Blogs</a></li>
     <li><a href="https://petsolt.com/category/projects/">Projects</a></li>
     <li><a href="https://petsolt.com/barcelona-visitors-guide/">Visitors Guide</a></li>
     <li><a href="https://pages.davidpetsolt.com/laliga-guide.html">LaLiga</a></li>
@@ -224,10 +227,11 @@
 
 <nav class="mbar" aria-label="Site">
   <a href="https://petsolt.com/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8v10H3z"/></svg>Home</a>
-  <a href="https://petsolt.com/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z M8 9h8 M8 13h8"/></svg>Blogs</a>
-  <a href="https://petsolt.com/category/photo-blog/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Photos</a>
+  <a href="https://petsolt.com/blog/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z M8 9h8 M8 13h8"/></svg>Blogs</a>
   <a href="https://petsolt.com/category/projects/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg>Projects</a>
   <a href="https://petsolt.com/barcelona-visitors-guide/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.5-6-11a6 6 0 0112 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Guide</a>
+  <a href="https://pages.davidpetsolt.com/laliga-guide.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5l3.8 2.8-1.45 4.5h-4.7L8.2 10.3z"/></svg>LaLiga</a>
+  <a href="https://pages.davidpetsolt.com/barcelona-events.html" class="on"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17 M8 3.5v3 M16 3.5v3"/></svg>Events</a>
 </nav>
 
 <section class="hero">
@@ -851,7 +855,7 @@
   <div><img src="img/shield-senyera.png" alt="Petsolt shield with senyera stripes" width="160" height="160" loading="lazy" decoding="async"><div class="est">EST 1996</div></div>
   <div><p class="tag">Updated Thursdays · Sources: <a href="https://www.catalannews.com/things-to-do">catalannews</a>, <a href="https://guia.barcelona.cat/en/">guia.barcelona.cat</a>, <a href="https://thisisbarcelona.com/main-events">thisisbarcelona.com</a>, things the Petsolts come across</p></div>
   <div class="cols">
-    <div><h4>Site</h4><ul><li><a href="https://petsolt.com/">Home</a></li><li><a href="https://petsolt.com/#latest">Blogs</a></li><li><a href="https://petsolt.com/category/projects/">Projects</a></li><li><a href="https://petsolt.com/barcelona-visitors-guide/">Visitors Guide</a></li></ul></div>
+    <div><h4>Site</h4><ul><li><a href="https://petsolt.com/">Home</a></li><li><a href="https://petsolt.com/blog/">Blogs</a></li><li><a href="https://petsolt.com/category/projects/">Projects</a></li><li><a href="https://petsolt.com/barcelona-visitors-guide/">Visitors Guide</a></li><li><a href="https://petsolt.com/barcelona-visitors-guide/#say-hola">Say Hola</a></li></ul></div>
     <div><h4>Elsewhere</h4><ul><li><a href="https://pages.davidpetsolt.com/laliga-guide.html">LaLiga Guide</a></li><li><a href="https://pages.davidpetsolt.com/barcelona-events.html">Barcelona Events</a></li><li><a href="https://petsolt.com/?s=">Search</a></li></ul></div>
   </div></div>
   <div class="bottom"><span>Petsolt.com, Barcelona</span><span>Photos on Leica and iPhone</span></div>

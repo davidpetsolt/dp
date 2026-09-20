@@ -6,15 +6,18 @@
 <title>LaLiga Guide — Petsolt</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700;900&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#1B2352; --navy-deep:#131838;
-    --orange:#E8782A; --orange-hover:#cf661f;
+    /* 20-Sep-2026: page palette aligned to the petsolt-2026 theme (the --pt-* block below is the
+       same source). The page used to run a second, warmer orange (#E8782A) against the header's
+       brand #ff6000 — two oranges on one page. --sky is left as-is: it is this page's own
+       info-panel colour, not a brand token. */
+    --orange:#ff6000; --orange-hover:#d95300;
     --sky:#C9E2F5; --sky-deep:#B6D6EE;
-    --ink:#1a1a1a; --body:#383838; --muted:#6b6f7a;
-    --rule:#e5e5e5; --bg:#fff; --bg-soft:#f6f6f4;
+    --ink:#15193a; --body:#15193a; --muted:#5d6280;
+    --rule:#dcdcd8; --bg:#fff; --bg-soft:#f3f3f1;
     --shadow-card:0 6px 22px rgba(15,20,50,.10);
     --radius-lg:22px; --radius-md:14px; --radius-pill:999px;
     --max:1180px;
@@ -25,34 +28,36 @@
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{margin:0;background:var(--bg);color:var(--body);
-    font-family:'Lora',Georgia,serif;font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    font-family:var(--pt-s);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
 
   /* Hero */
   .hero{max-width:var(--max);margin:0 auto;padding:56px 24px 24px}
-  .eyebrow{font-family:'Lato',sans-serif;font-weight:700;font-size:13px;
+  .eyebrow{font-family:var(--pt-d);font-weight:700;font-size:13px;
     letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
-  h1.title{font-family:'Lato',sans-serif;font-weight:300;
-    font-size:clamp(40px,6vw,64px);line-height:1.05;letter-spacing:.01em;
-    text-transform:uppercase;color:var(--ink);margin:0 0 16px}
-  h1.title b{font-weight:700;color:var(--navy)}
-  .lede{font-family:'Lora',serif;font-size:20px;line-height:1.6;color:var(--body);max-width:780px;margin:0}
+  /* Overpass 900, tight, uppercase — the theme's h1 (letter-spacing -.025em, line-height .98).
+     The old Lato 300 / 700 two-tone is gone; the site has no two-tone headings. */
+  h1.title{font-family:var(--pt-d);font-weight:900;
+    font-size:clamp(40px,6vw,64px);line-height:.98;letter-spacing:-.025em;
+    text-transform:uppercase;color:var(--navy);margin:0 0 16px}
+  h1.title b{font-weight:900;color:var(--navy)}
+  .lede{font-family:var(--pt-s);font-size:20px;line-height:1.6;color:var(--body);max-width:780px;margin:0}
 
   /* Callout */
   .callout{max-width:var(--max);margin:32px auto 0;padding:0 24px}
   .callout-inner{background:var(--sky);border-radius:var(--radius-lg);padding:22px 28px;
     display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-  .callout-inner h3{font-family:'Lato',sans-serif;font-weight:700;text-transform:uppercase;
+  .callout-inner h3{font-family:var(--pt-d);font-weight:700;text-transform:uppercase;
     letter-spacing:.05em;font-size:18px;margin:0 0 6px;color:var(--ink)}
   .callout-inner p{margin:0;font-size:17px;color:#2c3550}
   .btn{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;
-    font-family:'Lato',sans-serif;font-weight:700;font-size:18px;padding:14px 26px;
+    font-family:var(--pt-d);font-weight:700;font-size:18px;padding:14px 26px;
     border-radius:var(--radius-pill);border:none;cursor:pointer;transition:background .15s ease;white-space:nowrap}
   .btn:hover{background:var(--orange-hover)}
 
   /* Tabs */
   .tabs{max-width:var(--max);margin:48px auto 0;padding:0 24px;
     display:flex;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--rule)}
-  .tab{background:transparent;border:none;font-family:'Lato',sans-serif;
+  .tab{background:transparent;border:none;font-family:var(--pt-d);
     font-weight:600;font-size:17px;text-transform:uppercase;letter-spacing:.06em;
     color:var(--muted);padding:14px 18px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
   .tab .count{background:#f0f0ec;color:var(--muted);font-size:13px;padding:2px 8px;border-radius:999px;margin-left:6px}
@@ -61,7 +66,7 @@
 
   /* Legend */
   .legend{max-width:var(--max);margin:24px auto 0;padding:0 24px;
-    display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-family:'Lato',sans-serif;font-size:15px}
+    display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-family:var(--pt-d);font-size:15px}
   .chip{display:inline-flex;align-items:center;gap:8px;background:#fff;
     border:1px solid var(--rule);border-radius:999px;padding:8px 14px;color:#2a2a2a;font-weight:600}
   .chip .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
@@ -71,7 +76,7 @@
   .chip.rel  .dot{background:var(--t-rel)}
   .chip.aup  .dot{background:var(--t-aup)}
   .chip.plo  .dot{background:var(--t-plo)}
-  .hint{margin-left:auto;color:var(--muted);font-style:italic;font-family:'Lora',serif;font-size:16px}
+  .hint{margin-left:auto;color:var(--muted);font-style:italic;font-family:var(--pt-s);font-size:16px}
 
   /* Standings */
   .standings{max-width:var(--max);margin:24px auto 0;padding:0 24px 16px;display:grid;gap:14px}
@@ -81,17 +86,17 @@
   .row{display:grid;grid-template-columns:64px 60px 1fr auto auto auto auto;gap:16px;
     align-items:center;padding:18px 22px;cursor:pointer}
   .row-form{display:flex;gap:4px}
-  .rank{font-family:'Lato',sans-serif;font-weight:900;font-size:32px;color:var(--navy);text-align:center;line-height:1}
+  .rank{font-family:var(--pt-d);font-weight:900;font-size:32px;color:var(--navy);text-align:center;line-height:1}
   .crest{width:52px;height:52px;border-radius:10px;display:grid;place-items:center;
-    background:#f4f5f9;color:var(--navy);font-family:'Lato',sans-serif;font-weight:900;
+    background:#f4f5f9;color:var(--navy);font-family:var(--pt-d);font-weight:900;
     font-size:15px;letter-spacing:.02em;overflow:hidden}
   .crest img{max-width:100%;max-height:100%;display:block;object-fit:contain}
-  .info .name{font-family:'Lato',sans-serif;font-weight:700;font-size:22px;color:var(--ink);line-height:1.2;margin:0 0 4px}
-  .info .meta{font-family:'Lora',serif;font-size:16px;color:var(--muted);margin:0}
-  .pts{font-family:'Lato',sans-serif;font-weight:700;font-size:22px;color:var(--navy);text-align:right;line-height:1}
+  .info .name{font-family:var(--pt-d);font-weight:700;font-size:22px;color:var(--ink);line-height:1.2;margin:0 0 4px}
+  .info .meta{font-family:var(--pt-s);font-size:16px;color:var(--muted);margin:0}
+  .pts{font-family:var(--pt-d);font-weight:700;font-size:22px;color:var(--navy);text-align:right;line-height:1}
   .pts small{display:block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:4px}
   .pts.empty{visibility:hidden}
-  .badge{font-family:'Lato',sans-serif;font-weight:700;text-transform:uppercase;
+  .badge{font-family:var(--pt-d);font-weight:700;text-transform:uppercase;
     font-size:11px;letter-spacing:.1em;padding:4px 10px;border-radius:999px;color:#fff;white-space:nowrap}
   .badge.cl  {background:var(--t-cl)}
   .badge.el  {background:var(--t-el)}
@@ -107,16 +112,16 @@
   .panel{border-top:1px dashed var(--rule);padding:0 22px;max-height:0;overflow:hidden;
     transition:max-height .25s,padding .25s;background:#fafaf7}
   .card.open .panel{padding:18px 22px;max-height:2400px}
-  .panel h4{font-family:'Lato',sans-serif;text-transform:uppercase;letter-spacing:.08em;
+  .panel h4{font-family:var(--pt-d);text-transform:uppercase;letter-spacing:.08em;
     font-size:13px;color:var(--muted);margin:0 0 8px}
   .panel .ni{margin:0 0 12px}
-  .panel .nn{font-family:'Lato',sans-serif;font-weight:700;color:var(--navy);font-size:17px}
+  .panel .nn{font-family:var(--pt-d);font-weight:700;color:var(--navy);font-size:17px}
   .panel .bv-section{margin-top:16px;padding-top:14px;border-top:1px dashed var(--rule)}
   .panel .bv-text{font-size:15px;color:var(--ink);line-height:1.6;margin:4px 0 0}
   .panel .nm{font-size:16px;color:var(--ink);margin-top:2px}
-  .lastyr{font-family:'Lato',sans-serif;font-size:15px;font-weight:600;color:var(--navy);
+  .lastyr{font-family:var(--pt-d);font-size:15px;font-weight:600;color:var(--navy);
     background:var(--sky);border-radius:999px;display:inline-block;padding:6px 14px;margin:0 0 14px}
-  .form-line{font-family:'Lato',sans-serif;font-size:14px;font-weight:600;color:var(--muted);
+  .form-line{font-family:var(--pt-d);font-size:14px;font-weight:600;color:var(--muted);
     display:flex;align-items:center;gap:6px;margin:0 0 10px}
   .f{display:inline-grid;place-items:center;border-radius:50%;
     color:#fff;font-weight:900;flex:none}
@@ -128,11 +133,11 @@
   @media (min-width:721px){
     .panel .form-line{display:none}  /* form lives in the row on desktop */
   }
-  .fixture-line{font-family:'Lato',sans-serif;font-size:15px;font-weight:600;color:var(--ink);
+  .fixture-line{font-family:var(--pt-d);font-size:15px;font-weight:600;color:var(--ink);
     display:flex;align-items:center;gap:8px;margin:0 0 10px;flex-wrap:wrap}
   .fixture-line .fx-lab{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
     color:var(--muted);min-width:36px}
-  .fixture-line .fx-when{color:var(--muted);font-weight:400;font-family:'Lora',serif;font-size:14.5px}
+  .fixture-line .fx-when{color:var(--muted);font-weight:400;font-family:var(--pt-s);font-size:14.5px}
   .rank .mv{display:block;font-size:11px;font-weight:900;line-height:1.2;margin-top:3px}
   .mv.up{color:var(--t-conf)}
   .mv.down{color:var(--t-rel)}
@@ -143,20 +148,20 @@
   .maps{max-width:var(--max);margin:24px auto 0;padding:0 24px 16px;display:grid;gap:22px;grid-template-columns:1fr 1fr}
   .map-card{background:#fff;border:1px solid var(--rule);border-radius:var(--radius-md);
     box-shadow:var(--shadow-card);padding:22px}
-  .map-title{font-family:'Lato',sans-serif;font-weight:700;text-transform:uppercase;
+  .map-title{font-family:var(--pt-d);font-weight:700;text-transform:uppercase;
     letter-spacing:.05em;font-size:17px;color:var(--navy);margin:0 0 6px}
-  .map-sub{margin:0 0 14px;font-family:'Lora',serif;font-size:16px;color:var(--muted)}
+  .map-sub{margin:0 0 14px;font-family:var(--pt-s);font-size:16px;color:var(--muted)}
   .map-frame{background:var(--sky);border-radius:var(--radius-md);padding:14px;overflow:hidden}
   .map-frame svg{display:block;width:100%;height:auto}
-  .map-leg{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;font-family:'Lato',sans-serif;font-size:14px}
+  .map-leg{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;font-family:var(--pt-d);font-size:14px}
   .map-leg .li{display:inline-flex;align-items:center;gap:6px;color:var(--muted)}
   .map-leg .ld{width:9px;height:9px;border-radius:50%;display:inline-block}
-  .minfo{margin-top:14px;font-family:'Lora',serif;font-size:16px;color:var(--ink);min-height:48px}
+  .minfo{margin-top:14px;font-family:var(--pt-s);font-size:16px;color:var(--ink);min-height:48px}
   .minfo .mi-empty{color:var(--muted);font-style:italic}
-  .minfo .mi-name{font-family:'Lato',sans-serif;font-weight:700;font-size:18px;color:var(--ink)}
+  .minfo .mi-name{font-family:var(--pt-d);font-weight:700;font-size:18px;color:var(--ink)}
   .minfo .mi-meta{color:var(--muted);font-size:15px;margin-top:2px}
   .minfo .mi-nicks{margin-top:6px;color:var(--navy);font-weight:600;font-size:15px}
-  .map-note{font-family:'Lora',serif;font-size:14px;color:var(--muted);text-align:center;margin:6px 0 0;font-style:italic}
+  .map-note{font-family:var(--pt-s);font-size:14px;color:var(--muted);text-align:center;margin:6px 0 0;font-style:italic}
 
   @media (max-width:860px){
     .maps{grid-template-columns:1fr}
@@ -629,7 +634,7 @@ function miniMap(t){
     <rect width="680" height="460" rx="8" fill="#C9E2F5"/>
     <use href="#es-path"/>
     ${t.inset ? INSET_SVG : ''}
-    <circle cx="${t.x}" cy="${t.y}" r="13" fill="#E8782A" stroke="#fff" stroke-width="3"/>
+    <circle cx="${t.x}" cy="${t.y}" r="13" fill="#ff6000" stroke="#fff" stroke-width="3"/>
   </svg></div>`;
 }
 function formHtml(f){
@@ -766,7 +771,7 @@ function buildMap(svgId,dotsId,teams,infoId){
     lbl.setAttribute('x',cx); lbl.setAttribute('y',String(cy+3.5));
     lbl.setAttribute('text-anchor','middle');
     lbl.setAttribute('font-size', isInset?'7':'9');
-    lbl.setAttribute('font-family','Lato, sans-serif');
+    lbl.setAttribute('font-family','Overpass, system-ui, sans-serif');
     lbl.setAttribute('font-weight','900');
     lbl.setAttribute('fill','#fff'); lbl.setAttribute('pointer-events','none');
     lbl.textContent = t.rank;

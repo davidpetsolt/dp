@@ -11,49 +11,54 @@
 <meta property="og:url" content="https://pages.davidpetsolt.com/barcelona-events.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700;900&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#1B2352; --navy-deep:#131838;
-    --orange:#E8782A; --orange-hover:#cf661f;
+    /* 20-Sep-2026: page palette aligned to the petsolt-2026 theme (the --pt-* block below is the
+       same source). The page used to run a second, warmer orange (#E8782A) against the header's
+       brand #ff6000 — two oranges on one page. --sky is left as-is: it is this page's own
+       info-panel colour, not a brand token. */
+    --orange:#ff6000; --orange-hover:#d95300;
     --sky:#C9E2F5; --sky-deep:#B6D6EE;
-    --ink:#1a1a1a; --body:#383838; --muted:#6b6f7a;
-    --rule:#e5e5e5; --bg:#fff; --bg-soft:#f6f6f4;
+    --ink:#15193a; --body:#15193a; --muted:#5d6280;
+    --rule:#dcdcd8; --bg:#fff; --bg-soft:#f3f3f1;
     --shadow-card:0 6px 22px rgba(15,20,50,.10);
     --radius-lg:22px; --radius-md:14px; --radius-pill:999px;
     --max:1180px;
     /* Category accents */
     --c-music:#1f6feb; --c-art:#8b5cf6; --c-food:#f59e0b;
-    --c-sports:#16a34a; --c-family:#ec4899; --c-festival:#E8782A;
+    --c-sports:#16a34a; --c-family:#ec4899; --c-festival:#ff6000;
     --c-theater:#dc2626; --c-market:#14b8a6; --c-other:#6b7280;
     /* Section accents */
-    --s-now:#16a34a; --s-weekend:#E8782A; --s-next:#1f6feb; --s-soon:#8b5cf6;
+    --s-now:#16a34a; --s-weekend:#ff6000; --s-next:#1f6feb; --s-soon:#8b5cf6;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{margin:0;background:var(--bg);color:var(--body);
-    font-family:'Lora',Georgia,serif;font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    font-family:var(--pt-s);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
 
   /* Hero */
   .hero{max-width:var(--max);margin:0 auto;padding:56px 24px 24px}
-  .eyebrow{font-family:'Lato',sans-serif;font-weight:700;font-size:13px;
+  .eyebrow{font-family:var(--pt-d);font-weight:700;font-size:13px;
     letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
-  h1.title{font-family:'Lato',sans-serif;font-weight:300;
-    font-size:clamp(40px,6vw,64px);line-height:1.05;letter-spacing:.01em;
-    text-transform:uppercase;color:var(--ink);margin:0 0 16px}
-  h1.title b{font-weight:700;color:var(--navy)}
-  .lede{font-family:'Lora',serif;font-size:20px;line-height:1.6;color:var(--body);max-width:780px;margin:0}
+  /* Overpass 900, tight, uppercase — the theme's h1 (letter-spacing -.025em, line-height .98).
+     The old Lato 300 / 700 two-tone is gone; the site has no two-tone headings. */
+  h1.title{font-family:var(--pt-d);font-weight:900;
+    font-size:clamp(40px,6vw,64px);line-height:.98;letter-spacing:-.025em;
+    text-transform:uppercase;color:var(--navy);margin:0 0 16px}
+  h1.title b{font-weight:900;color:var(--navy)}
+  .lede{font-family:var(--pt-s);font-size:20px;line-height:1.6;color:var(--body);max-width:780px;margin:0}
 
   /* Callout */
   .callout{max-width:var(--max);margin:32px auto 0;padding:0 24px}
   .callout-inner{background:var(--sky);border-radius:var(--radius-lg);padding:22px 28px;
     display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-  .callout-inner h3{font-family:'Lato',sans-serif;font-weight:700;text-transform:uppercase;
+  .callout-inner h3{font-family:var(--pt-d);font-weight:700;text-transform:uppercase;
     letter-spacing:.05em;font-size:18px;margin:0 0 6px;color:var(--ink)}
   .callout-inner p{margin:0;font-size:17px;color:#2c3550}
   .btn{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;
-    font-family:'Lato',sans-serif;font-weight:700;font-size:18px;padding:14px 26px;
+    font-family:var(--pt-d);font-weight:700;font-size:18px;padding:14px 26px;
     border-radius:var(--radius-pill);border:none;cursor:pointer;transition:background .15s ease;white-space:nowrap}
   .btn:hover{background:var(--orange-hover)}
 
@@ -61,7 +66,7 @@
   .filters{max-width:var(--max);margin:32px auto 0;padding:0 24px;
     display:flex;gap:8px;flex-wrap:wrap}
   .filter{background:#fff;border:1px solid var(--rule);border-radius:var(--radius-pill);
-    padding:8px 14px;cursor:pointer;color:#2a2a2a;font-family:'Lato',sans-serif;
+    padding:8px 14px;cursor:pointer;color:#2a2a2a;font-family:var(--pt-d);
     font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:8px;
     transition:background .15s,border-color .15s}
   .filter:hover{background:var(--bg-soft)}
@@ -85,18 +90,18 @@
   .section{max-width:var(--max);margin:40px auto 0;padding:0 24px}
   .section-header{display:flex;align-items:baseline;gap:16px;
     border-bottom:1px solid var(--rule);padding-bottom:10px;margin-bottom:18px}
-  .section-header h2{font-family:'Lato',sans-serif;font-weight:700;text-transform:uppercase;
+  .section-header h2{font-family:var(--pt-d);font-weight:700;text-transform:uppercase;
     letter-spacing:.06em;color:var(--ink);font-size:22px;margin:0;display:flex;align-items:center;gap:10px}
   .section-header h2::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%}
   .section[data-section="This Weekend"] .section-header h2::before{background:var(--s-weekend)}
   .section[data-section="Ongoing Now"]  .section-header h2::before{background:var(--s-now)}
   .section[data-section="Next Week"]    .section-header h2::before{background:var(--s-next)}
   .section[data-section="Coming Up"]    .section-header h2::before{background:var(--s-soon)}
-  .section-header .ct{color:var(--muted);font-family:'Lora',serif;font-size:16px}
+  .section-header .ct{color:var(--muted);font-family:var(--pt-s);font-size:16px}
 
   /* "See more" button shown when a section is capped */
   .section-more{margin-top:16px;display:flex;justify-content:center}
-  .more-btn{display:inline-block;font-family:'Lato',sans-serif;font-weight:700;
+  .more-btn{display:inline-block;font-family:var(--pt-d);font-weight:700;
     font-size:15px;letter-spacing:.02em;text-decoration:none;color:var(--navy);
     background:var(--bg-soft);border:1px solid var(--rule);
     border-radius:var(--radius-pill);padding:11px 22px;
@@ -122,11 +127,11 @@
     transition:transform .25s ease}
   .ev-card.with-img:hover .ev-img img{transform:scale(1.02)}
   .ev-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-  .ev-title{font-family:'Lato',sans-serif;font-weight:700;font-size:18px;color:var(--ink);
+  .ev-title{font-family:var(--pt-d);font-weight:700;font-size:18px;color:var(--ink);
     line-height:1.3;margin:0;flex:1}
   .ev-title a{color:inherit;text-decoration:none}
   .ev-title a:hover{color:var(--navy)}
-  .ev-cat{font-family:'Lato',sans-serif;font-weight:700;text-transform:uppercase;
+  .ev-cat{font-family:var(--pt-d);font-weight:700;text-transform:uppercase;
     font-size:10px;letter-spacing:.1em;padding:4px 10px;border-radius:999px;color:#fff;
     white-space:nowrap;background:var(--c-other)}
   .ev-cat.Music   {background:var(--c-music)}
@@ -138,21 +143,21 @@
   .ev-cat.Theater {background:var(--c-theater)}
   .ev-cat.Market  {background:var(--c-market)}
 
-  .ev-date{font-family:'Lato',sans-serif;font-weight:600;font-size:14px;color:var(--navy);
+  .ev-date{font-family:var(--pt-d);font-weight:600;font-size:14px;color:var(--navy);
     display:flex;align-items:center;gap:6px}
   .ev-date::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--navy)}
-  .ev-venue{font-family:'Lora',serif;font-size:15px;color:#2a2a2a;margin:0}
-  .ev-venue .nbh{display:inline-block;font-family:'Lato',sans-serif;font-weight:600;font-size:11px;
+  .ev-venue{font-family:var(--pt-s);font-size:15px;color:#2a2a2a;margin:0}
+  .ev-venue .nbh{display:inline-block;font-family:var(--pt-d);font-weight:600;font-size:11px;
     text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
     background:var(--bg-soft);padding:3px 9px;border-radius:999px;margin-left:6px}
-  .ev-desc{font-family:'Lora',serif;font-size:14px;color:var(--muted);margin:0;line-height:1.5}
+  .ev-desc{font-family:var(--pt-s);font-size:14px;color:var(--muted);margin:0;line-height:1.5}
   .ev-bot{display:flex;justify-content:space-between;align-items:center;gap:8px;
     border-top:1px solid var(--rule);padding-top:10px;margin-top:auto}
-  .ev-price{font-family:'Lato',sans-serif;font-weight:700;font-size:13px;color:var(--ink)}
-  .ev-src{font-family:'Lato',sans-serif;font-size:12px;color:var(--muted);text-decoration:none}
+  .ev-price{font-family:var(--pt-d);font-weight:700;font-size:13px;color:var(--ink)}
+  .ev-src{font-family:var(--pt-d);font-size:12px;color:var(--muted);text-decoration:none}
   .ev-src:hover{color:var(--navy)}
 
-  .empty{font-family:'Lora',serif;font-style:italic;color:var(--muted);
+  .empty{font-family:var(--pt-s);font-style:italic;color:var(--muted);
     padding:24px 0;text-align:center}
 
   /* Hidden when filtered out */

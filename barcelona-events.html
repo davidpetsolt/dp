@@ -11,54 +11,91 @@
 <meta property="og:url" content="https://pages.davidpetsolt.com/barcelona-events.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700;900&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#1B2352; --navy-deep:#131838;
-    /* 20-Sep-2026: page palette aligned to the petsolt-2026 theme (the --pt-* block below is the
-       same source). The page used to run a second, warmer orange (#E8782A) against the header's
-       brand #ff6000 — two oranges on one page. --sky is left as-is: it is this page's own
-       info-panel colour, not a brand token. */
-    --orange:#ff6000; --orange-hover:#d95300;
+    --orange:#E8782A; --orange-hover:#cf661f;
     --sky:#C9E2F5; --sky-deep:#B6D6EE;
-    --ink:#15193a; --body:#15193a; --muted:#5d6280;
-    --rule:#dcdcd8; --bg:#fff; --bg-soft:#f3f3f1;
+    --ink:#1a1a1a; --body:#383838; --muted:#6b6f7a;
+    --rule:#e5e5e5; --bg:#fff; --bg-soft:#f6f6f4;
     --shadow-card:0 6px 22px rgba(15,20,50,.10);
     --radius-lg:22px; --radius-md:14px; --radius-pill:999px;
     --max:1180px;
     /* Category accents */
     --c-music:#1f6feb; --c-art:#8b5cf6; --c-food:#f59e0b;
-    --c-sports:#16a34a; --c-family:#ec4899; --c-festival:#ff6000;
+    --c-sports:#16a34a; --c-family:#ec4899; --c-festival:#E8782A;
     --c-theater:#dc2626; --c-market:#14b8a6; --c-other:#6b7280;
     /* Section accents */
-    --s-now:#16a34a; --s-weekend:#ff6000; --s-next:#1f6feb; --s-soon:#8b5cf6;
+    --s-now:#16a34a; --s-weekend:#E8782A; --s-next:#1f6feb; --s-soon:#8b5cf6;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{margin:0;background:var(--bg);color:var(--body);
-    font-family:var(--pt-s);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    font-family:'Lora',Georgia,serif;font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+
+  /* Header */
+  .site-header{background:var(--navy);color:#fff;padding:6px 0;position:sticky;top:0;z-index:50}
+  .site-header .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff}
+  .brand-logo{width:96px;height:96px;display:block;margin:-6px 0}
+  .nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+    font-family:'Lato',sans-serif;font-weight:400;font-size:17px}
+  .nav a{color:#fff;text-decoration:none;opacity:.85;padding:6px 2px;border-bottom:2px solid transparent}
+  .nav a:hover{opacity:1}
+  .nav a.active{opacity:1;border-bottom-color:var(--orange);font-weight:600}
+  .nav .sep{opacity:.4}
+
+  /* Hamburger (mobile only) */
+  .nav-toggle{display:none;background:transparent;border:0;cursor:pointer;
+    padding:10px;width:44px;height:44px;align-items:center;justify-content:center}
+  .nav-toggle .bars,
+  .nav-toggle .bars::before,
+  .nav-toggle .bars::after{
+    display:block;width:24px;height:2px;background:#fff;border-radius:2px;
+    transition:transform .25s ease,background .2s ease,opacity .2s ease}
+  .nav-toggle .bars{position:relative}
+  .nav-toggle .bars::before,.nav-toggle .bars::after{content:"";position:absolute;left:0}
+  .nav-toggle .bars::before{top:-8px}
+  .nav-toggle .bars::after{top:8px}
+  .nav-toggle[aria-expanded="true"] .bars{background:transparent}
+  .nav-toggle[aria-expanded="true"] .bars::before{top:0;transform:rotate(45deg)}
+  .nav-toggle[aria-expanded="true"] .bars::after{top:0;transform:rotate(-45deg)}
+
+  @media (max-width: 720px){
+    .site-header .wrap{position:relative;flex-wrap:nowrap}
+    .brand-logo{width:72px;height:72px}
+    .nav-toggle{display:flex}
+    .nav{display:none;flex-direction:column;align-items:flex-start;gap:0;
+      position:absolute;top:100%;left:0;right:0;background:var(--navy-deep);
+      padding:6px 24px 14px;border-top:1px solid rgba(255,255,255,.1);z-index:60}
+    .nav.open{display:flex}
+    .nav .sep{display:none}
+    .nav a{padding:14px 0;width:100%;font-size:18px;border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav a:last-child{border-bottom:0}
+  }
+
 
   /* Hero */
   .hero{max-width:var(--max);margin:0 auto;padding:56px 24px 24px}
-  .eyebrow{font-family:var(--pt-d);font-weight:700;font-size:13px;
+  .eyebrow{font-family:'Lato',sans-serif;font-weight:700;font-size:13px;
     letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
-  /* Overpass 900, tight, uppercase — the theme's h1 (letter-spacing -.025em, line-height .98).
-     The old Lato 300 / 700 two-tone is gone; the site has no two-tone headings. */
-  h1.title{font-family:var(--pt-d);font-weight:900;
-    font-size:clamp(40px,6vw,64px);line-height:.98;letter-spacing:-.025em;
-    text-transform:uppercase;color:var(--navy);margin:0 0 16px}
-  h1.title b{font-weight:900;color:var(--navy)}
-  .lede{font-family:var(--pt-s);font-size:20px;line-height:1.6;color:var(--body);max-width:780px;margin:0}
+  h1.title{font-family:'Lato',sans-serif;font-weight:300;
+    font-size:clamp(40px,6vw,64px);line-height:1.05;letter-spacing:.01em;
+    text-transform:uppercase;color:var(--ink);margin:0 0 16px}
+  h1.title b{font-weight:700;color:var(--navy)}
+  .lede{font-family:'Lora',serif;font-size:20px;line-height:1.6;color:var(--body);max-width:780px;margin:0}
 
   /* Callout */
   .callout{max-width:var(--max);margin:32px auto 0;padding:0 24px}
   .callout-inner{background:var(--sky);border-radius:var(--radius-lg);padding:22px 28px;
     display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-  .callout-inner h3{font-family:var(--pt-d);font-weight:700;text-transform:uppercase;
+  .callout-inner h3{font-family:'Lato',sans-serif;font-weight:700;text-transform:uppercase;
     letter-spacing:.05em;font-size:18px;margin:0 0 6px;color:var(--ink)}
   .callout-inner p{margin:0;font-size:17px;color:#2c3550}
   .btn{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;
-    font-family:var(--pt-d);font-weight:700;font-size:18px;padding:14px 26px;
+    font-family:'Lato',sans-serif;font-weight:700;font-size:18px;padding:14px 26px;
     border-radius:var(--radius-pill);border:none;cursor:pointer;transition:background .15s ease;white-space:nowrap}
   .btn:hover{background:var(--orange-hover)}
 
@@ -66,7 +103,7 @@
   .filters{max-width:var(--max);margin:32px auto 0;padding:0 24px;
     display:flex;gap:8px;flex-wrap:wrap}
   .filter{background:#fff;border:1px solid var(--rule);border-radius:var(--radius-pill);
-    padding:8px 14px;cursor:pointer;color:#2a2a2a;font-family:var(--pt-d);
+    padding:8px 14px;cursor:pointer;color:#2a2a2a;font-family:'Lato',sans-serif;
     font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:8px;
     transition:background .15s,border-color .15s}
   .filter:hover{background:var(--bg-soft)}
@@ -90,18 +127,18 @@
   .section{max-width:var(--max);margin:40px auto 0;padding:0 24px}
   .section-header{display:flex;align-items:baseline;gap:16px;
     border-bottom:1px solid var(--rule);padding-bottom:10px;margin-bottom:18px}
-  .section-header h2{font-family:var(--pt-d);font-weight:700;text-transform:uppercase;
+  .section-header h2{font-family:'Lato',sans-serif;font-weight:700;text-transform:uppercase;
     letter-spacing:.06em;color:var(--ink);font-size:22px;margin:0;display:flex;align-items:center;gap:10px}
   .section-header h2::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%}
   .section[data-section="This Weekend"] .section-header h2::before{background:var(--s-weekend)}
   .section[data-section="Ongoing Now"]  .section-header h2::before{background:var(--s-now)}
   .section[data-section="Next Week"]    .section-header h2::before{background:var(--s-next)}
   .section[data-section="Coming Up"]    .section-header h2::before{background:var(--s-soon)}
-  .section-header .ct{color:var(--muted);font-family:var(--pt-s);font-size:16px}
+  .section-header .ct{color:var(--muted);font-family:'Lora',serif;font-size:16px}
 
   /* "See more" button shown when a section is capped */
   .section-more{margin-top:16px;display:flex;justify-content:center}
-  .more-btn{display:inline-block;font-family:var(--pt-d);font-weight:700;
+  .more-btn{display:inline-block;font-family:'Lato',sans-serif;font-weight:700;
     font-size:15px;letter-spacing:.02em;text-decoration:none;color:var(--navy);
     background:var(--bg-soft);border:1px solid var(--rule);
     border-radius:var(--radius-pill);padding:11px 22px;
@@ -127,11 +164,11 @@
     transition:transform .25s ease}
   .ev-card.with-img:hover .ev-img img{transform:scale(1.02)}
   .ev-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-  .ev-title{font-family:var(--pt-d);font-weight:700;font-size:18px;color:var(--ink);
+  .ev-title{font-family:'Lato',sans-serif;font-weight:700;font-size:18px;color:var(--ink);
     line-height:1.3;margin:0;flex:1}
   .ev-title a{color:inherit;text-decoration:none}
   .ev-title a:hover{color:var(--navy)}
-  .ev-cat{font-family:var(--pt-d);font-weight:700;text-transform:uppercase;
+  .ev-cat{font-family:'Lato',sans-serif;font-weight:700;text-transform:uppercase;
     font-size:10px;letter-spacing:.1em;padding:4px 10px;border-radius:999px;color:#fff;
     white-space:nowrap;background:var(--c-other)}
   .ev-cat.Music   {background:var(--c-music)}
@@ -143,101 +180,54 @@
   .ev-cat.Theater {background:var(--c-theater)}
   .ev-cat.Market  {background:var(--c-market)}
 
-  .ev-date{font-family:var(--pt-d);font-weight:600;font-size:14px;color:var(--navy);
+  .ev-date{font-family:'Lato',sans-serif;font-weight:600;font-size:14px;color:var(--navy);
     display:flex;align-items:center;gap:6px}
   .ev-date::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--navy)}
-  .ev-venue{font-family:var(--pt-s);font-size:15px;color:#2a2a2a;margin:0}
-  .ev-venue .nbh{display:inline-block;font-family:var(--pt-d);font-weight:600;font-size:11px;
+  .ev-venue{font-family:'Lora',serif;font-size:15px;color:#2a2a2a;margin:0}
+  .ev-venue .nbh{display:inline-block;font-family:'Lato',sans-serif;font-weight:600;font-size:11px;
     text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
     background:var(--bg-soft);padding:3px 9px;border-radius:999px;margin-left:6px}
-  .ev-desc{font-family:var(--pt-s);font-size:14px;color:var(--muted);margin:0;line-height:1.5}
+  .ev-desc{font-family:'Lora',serif;font-size:14px;color:var(--muted);margin:0;line-height:1.5}
   .ev-bot{display:flex;justify-content:space-between;align-items:center;gap:8px;
     border-top:1px solid var(--rule);padding-top:10px;margin-top:auto}
-  .ev-price{font-family:var(--pt-d);font-weight:700;font-size:13px;color:var(--ink)}
-  .ev-src{font-family:var(--pt-d);font-size:12px;color:var(--muted);text-decoration:none}
+  .ev-price{font-family:'Lato',sans-serif;font-weight:700;font-size:13px;color:var(--ink)}
+  .ev-src{font-family:'Lato',sans-serif;font-size:12px;color:var(--muted);text-decoration:none}
   .ev-src:hover{color:var(--navy)}
 
-  .empty{font-family:var(--pt-s);font-style:italic;color:var(--muted);
+  .empty{font-family:'Lora',serif;font-style:italic;color:var(--muted);
     padding:24px 0;text-align:center}
+
+  /* Footer */
+  footer{max-width:var(--max);margin:60px auto 0;padding:24px;border-top:1px solid var(--rule);
+    color:var(--muted);font-family:'Lato',sans-serif;font-size:14px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer a{color:var(--navy);text-decoration:none;font-weight:600}
+  footer a:hover{color:var(--orange)}
 
   /* Hidden when filtered out */
   .ev-card.hidden{display:none}
   .section.empty-section .events{display:none}
-
-  /* ===== Petsolt 2026 header/footer chrome (16-Sep-2026) =====
-     Namespaced --pt-* tokens so this never touches the page's own --navy/--orange/etc.
-     Source of truth: devpetsolt.wpenginepowered.com/the-block-project/ (.nav/.brand/.mbar/footer.site-footer)
-     + theme.css. Header is forced to a permanently-solid navy state (no hero, no scroll JS). */
-  :root{
-    --pt-navy:#1b2352; --pt-orange:#ff6000; --pt-white:#ffffff;
-    --pt-grey:#f3f3f1; --pt-line:#dcdcd8; --pt-ink:#15193a; --pt-muted:#5d6280;
-    --pt-d:'Overpass', sans-serif; --pt-s:'Source Serif 4', Georgia, serif;
-  }
-  body{padding-top:72px;padding-bottom:70px}
-  @media (min-width:900px){ body{padding-top:80px;padding-bottom:0} }
-
-  .nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;
-    padding:14px 20px;background:var(--pt-navy);color:var(--pt-white);box-shadow:0 1px 0 rgba(255,255,255,.08);
-    font-family:var(--pt-d)}
-  .nav .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.06em;
-    text-transform:uppercase;font-size:15px;color:var(--pt-white);text-decoration:none}
-  .nav .brand img{width:44px;height:44px;display:block}
-  .nav ul{display:none;list-style:none;gap:30px;margin:0;padding:0;font-weight:600;font-size:15px;letter-spacing:.02em}
-  .nav li a{padding:6px 0;border-bottom:3px solid transparent;color:var(--pt-white);text-decoration:none}
-  .nav li a.on{border-bottom-color:var(--pt-orange)}
-  .nav li a:hover{border-bottom-color:currentColor}
-  @media (min-width:900px){ .nav{padding:18px 48px} .nav ul{display:flex} }
-
-  /* Six items since 20-Sep-2026 (David): the bar mirrors the desktop nav. flex:1 1 0 keeps them
-     on one row at 375px; the <390px step-down covers 320px screens. Matches petsolt-2026 theme.css. */
-  .mbar{position:fixed;bottom:0;left:0;right:0;z-index:60;background:var(--pt-navy);color:var(--pt-white);
-    display:flex;justify-content:space-between;gap:2px;padding:12px 8px 16px;margin:0;
-    font-family:var(--pt-d);font-weight:600;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
-  .mbar a{flex:1 1 0;min-width:0;white-space:nowrap;opacity:.75;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--pt-white);text-decoration:none}
-  .mbar a.on{opacity:1;color:var(--pt-orange)}
-  .mbar svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8}
-  @media (max-width:389px){ .mbar{font-size:11px;letter-spacing:.02em;padding-left:4px;padding-right:4px} .mbar svg{width:18px;height:18px} }
-  @media (min-width:900px){ .mbar{display:none} }
-
-  footer.site-footer{margin-top:56px;background:var(--pt-navy);color:var(--pt-white);font-family:var(--pt-d)}
-  footer.site-footer .wrap{max-width:1320px;margin:0 auto;padding:0 20px}
-  @media (min-width:900px){ footer.site-footer .wrap{padding:0 48px} }
-  footer.site-footer .in{display:grid;gap:28px;padding:56px 0 48px}
-  @media (min-width:900px){ footer.site-footer .in{grid-template-columns:200px 1fr 1fr;gap:56px;align-items:start} }
-  footer.site-footer img{width:160px;display:block}
-  footer.site-footer h4{margin:0 0 12px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
-  footer.site-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-weight:600}
-  footer.site-footer a{color:var(--pt-white);text-decoration:none}
-  footer.site-footer a:hover{opacity:.8}
-  footer.site-footer .tag{font-family:var(--pt-s);font-size:18px;opacity:.85;max-width:38ch;margin:0}
-  footer.site-footer .est{font-weight:900;letter-spacing:.14em;font-size:13px;margin-top:14px;opacity:.7}
-  footer.site-footer .bottom{border-top:1px solid rgba(255,255,255,.15);padding:18px 0 26px;font-size:13px;opacity:.7;
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-  footer.site-footer .cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-  @media (max-width:480px){ footer.site-footer .cols{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
 
-<header class="nav dark-page solid" id="nav">
-  <a class="brand" href="https://petsolt.com/" aria-label="Petsolt"><img src="img/shield.png" alt="Petsolt" width="44" height="44" decoding="async"><span>Petsolt</span></a>
-  <ul>
-    <li><a href="https://petsolt.com/blog/">Blogs</a></li>
-    <li><a href="https://petsolt.com/category/projects/">Projects</a></li>
-    <li><a href="https://petsolt.com/barcelona-visitors-guide/">Visitors Guide</a></li>
-    <li><a href="https://pages.davidpetsolt.com/laliga-guide.html">LaLiga</a></li>
-    <li><a href="https://pages.davidpetsolt.com/barcelona-events.html" class="on">Events</a></li>
-  </ul>
+<header class="site-header" role="banner">
+  <div class="wrap">
+    <a href="https://petsolt.com/" class="brand" aria-label="Petsolt">
+      <img class="brand-logo" src="https://petsolt.com/wp-content/uploads/2024/07/petsolt_logo_2023_catalan-300x300.png" alt="Petsolt" />
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="bars" aria-hidden="true"></span></button>
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      <a href="https://petsolt.com/">Blogs</a>
+      <span class="sep">|</span>
+      <a href="https://petsolt.com/barcelona-visitors-guide/">BCN Visitors Guide</a>
+      <span class="sep">|</span>
+      <a href="https://pages.davidpetsolt.com/laliga-guide-2526.html">LaLiga Guide</a>
+      <span class="sep">|</span>
+      <a href="#" class="active">Barcelona Events</a>
+    </nav>
+  </div>
 </header>
-
-<nav class="mbar" aria-label="Site">
-  <a href="https://petsolt.com/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8v10H3z"/></svg>Home</a>
-  <a href="https://petsolt.com/blog/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z M8 9h8 M8 13h8"/></svg>Blogs</a>
-  <a href="https://petsolt.com/category/projects/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg>Projects</a>
-  <a href="https://petsolt.com/barcelona-visitors-guide/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.5-6-11a6 6 0 0112 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Guide</a>
-  <a href="https://pages.davidpetsolt.com/laliga-guide.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5l3.8 2.8-1.45 4.5h-4.7L8.2 10.3z"/></svg>LaLiga</a>
-  <a href="https://pages.davidpetsolt.com/barcelona-events.html" class="on"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17 M8 3.5v3 M16 3.5v3"/></svg>Events</a>
-</nav>
 
 <section class="hero">
   <p class="eyebrow">Catalonia · This Weekend</p>
@@ -248,203 +238,161 @@
 <section class="callout" aria-label="Update banner">
   <div class="callout-inner">
     <div>
-      <h3>Updated weekly · 40 events live</h3>
-      <p>Last refreshed 17-Sep-2026 (auto-updated every Thursday)</p>
+      <h3>Updated weekly · 42 events live</h3>
+      <p>Last refreshed 22-Sep-2026 (auto-updated every Thursday)</p>
     </div>
     <a href="#this-weekend" class="btn">See This Weekend →</a>
   </div>
 </section>
 
 <div class="filters" id="filters" role="tablist" aria-label="Filter by category">
-  <button class="filter active" data-cat="All">All <span class="count">40</span></button>
-  <button class="filter" data-cat="Music"><span class="dot"></span>Music <span class="count">9</span></button>
+  <button class="filter active" data-cat="All">All <span class="count">42</span></button>
+  <button class="filter" data-cat="Music"><span class="dot"></span>Music <span class="count">13</span></button>
 <button class="filter" data-cat="Art"><span class="dot"></span>Art <span class="count">13</span></button>
-<button class="filter" data-cat="Food"><span class="dot"></span>Food <span class="count">1</span></button>
-<button class="filter" data-cat="Sports"><span class="dot"></span>Sports <span class="count">7</span></button>
-<button class="filter" data-cat="Festival"><span class="dot"></span>Festival <span class="count">5</span></button>
-<button class="filter" data-cat="Theater"><span class="dot"></span>Theater <span class="count">2</span></button>
-<button class="filter" data-cat="Other"><span class="dot"></span>Other <span class="count">3</span></button>
+<button class="filter" data-cat="Food"><span class="dot"></span>Food <span class="count">3</span></button>
+<button class="filter" data-cat="Sports"><span class="dot"></span>Sports <span class="count">3</span></button>
+<button class="filter" data-cat="Festival"><span class="dot"></span>Festival <span class="count">7</span></button>
+<button class="filter" data-cat="Theater"><span class="dot"></span>Theater <span class="count">1</span></button>
+<button class="filter" data-cat="Other"><span class="dot"></span>Other <span class="count">2</span></button>
 </div>
 
 <section class="section" data-section="This Weekend" id="this-weekend">
       <div class="section-header">
         <h2>This Weekend</h2>
-        <span class="ct">12 of 15 events</span>
+        <span class="ct">9 events</span>
       </div>
-      <div class="events"><article class="ev-card with-img" data-category="Art">
-      <a class="ev-img" href="https://thisisbarcelona.com/agenda/the-magic-hour-at-the-monastery-of-pedralbes" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/af279bb429b6b5c5.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="events"><article class="ev-card with-img" data-category="Music">
+      <a class="ev-img" href="https://guia.barcelona.cat/en/detall/opera-aida-de-giuseppe-verdi_99400780799.html" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/f71f9a91ea54a263.jpg" alt="" loading="lazy" decoding="async"></a>
       <div class="ev-top">
-        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/the-magic-hour-at-the-monastery-of-pedralbes" target="_blank" rel="noopener">The Magic Hour at the Monastery of Pedralbes</a></h3>
-        <span class="ev-cat Art">Art</span>
-      </div>
-      <div class="ev-date">03-Jun-2026 to 19-Sep-2026</div>
-      <p class="ev-venue">Reial Monestir de Santa Maria de Pedralbes</p>
-      <p class="ev-desc">A special summer opening of the Gothic cloister at the monastery of Pedralbes at sunset, one of the largest of its kind in the world.</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://thisisbarcelona.com/agenda/the-magic-hour-at-the-monastery-of-pedralbes" target="_blank" rel="noopener">via This is Barcelona →</a>
-      </div>
-    </article>
-<article class="ev-card with-img" data-category="Music">
-      <a class="ev-img" href="https://thisisbarcelona.com/agenda/fstvl-b" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/3424c1606508f5d2.webp" alt="" loading="lazy" decoding="async"></a>
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/fstvl-b" target="_blank" rel="noopener">FSTVL B</a></h3>
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/opera-aida-de-giuseppe-verdi_99400780799.html" target="_blank" rel="noopener">&#x27;Aida&#x27;</a></h3>
         <span class="ev-cat Music">Music</span>
       </div>
-      <div class="ev-date">17-Sep-2026 to 19-Sep-2026</div>
-      <p class="ev-venue">Parc del Fòrum</p>
-      <p class="ev-desc">An independent and urban music festival held every autumn at Barcelona’s Parc del Fòrum.</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://thisisbarcelona.com/agenda/fstvl-b" target="_blank" rel="noopener">via This is Barcelona →</a>
-      </div>
-    </article>
-<article class="ev-card with-img" data-category="Music">
-      <a class="ev-img" href="https://www.ticketmaster.es/event/actors-tickets/1974046253?language=en-us" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/bddbfeb028bbc469.jpg" alt="" loading="lazy" decoding="async"></a>
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.ticketmaster.es/event/actors-tickets/1974046253?language=en-us" target="_blank" rel="noopener">Actors</a></h3>
-        <span class="ev-cat Music">Music</span>
-      </div>
-      <div class="ev-date">18-Sep-2026 · 21:30</div>
-      <p class="ev-venue">WOLF</p>
-      <p class="ev-desc">Doors: 8 pm Sigmund Wilder: 8:30 pm Children under 16 will be able to access only if they are accompanied by the parent or the legal guardian. The Canadian band ACTORS revolutionized the music scene i</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://www.ticketmaster.es/event/actors-tickets/1974046253?language=en-us" target="_blank" rel="noopener">via Ticketmaster →</a>
-      </div>
-    </article>
-<article class="ev-card with-img" data-category="Music">
-      <a class="ev-img" href="https://www.ticketmaster.es/event/airbag-tickets/1797854984?language=en-us" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/30b0a5b8fbdf3ab8.jpg" alt="" loading="lazy" decoding="async"></a>
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.ticketmaster.es/event/airbag-tickets/1797854984?language=en-us" target="_blank" rel="noopener">Airbag</a></h3>
-        <span class="ev-cat Music">Music</span>
-      </div>
-      <div class="ev-date">18-Sep-2026 · 20:00</div>
-      <p class="ev-venue">Sant Jordi Club</p>
-      <p class="ev-desc">A handling fee of 2€ applies per order. Children under 16 will be able to access only if they are accompanied by the parent or the legal guardian. Access form for children under 16 years *All attendee</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://www.ticketmaster.es/event/airbag-tickets/1797854984?language=en-us" target="_blank" rel="noopener">via Ticketmaster →</a>
-      </div>
-    </article>
-<article class="ev-card" data-category="Other">
-      
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/llistat?query=Busques+feina%3F+Sigues+candidat%2Fa+de+les+nostres+ofertes+%28Plataforma+Empresa-Ocupaci%C3%B3%29" target="_blank" rel="noopener">Busques feina? Sigues candidat/a de les nostres ofertes (Plataforma Empresa-Ocupació)</a></h3>
-        <span class="ev-cat Other">Other</span>
-      </div>
-      <div class="ev-date">18-Sep-2026</div>
-      <p class="ev-venue">Carrer de Dolors Masferrer i Bosch <span class="nbh">les Corts</span></p>
-      <p class="ev-desc">WhatsApp</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/llistat?query=Busques+feina%3F+Sigues+candidat%2Fa+de+les+nostres+ofertes+%28Plataforma+Empresa-Ocupaci%C3%B3%29" target="_blank" rel="noopener">via Barcelona Open Data →</a>
-      </div>
-    </article>
-<article class="ev-card with-img" data-category="Art">
-      <a class="ev-img" href="https://thisisbarcelona.com/agenda/catalan-book-week" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/025cae6d024b9f55.webp" alt="" loading="lazy" decoding="async"></a>
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/catalan-book-week" target="_blank" rel="noopener">Catalan Book Week</a></h3>
-        <span class="ev-cat Art">Art</span>
-      </div>
-      <div class="ev-date">18-Sep-2026 to 27-Sep-2026</div>
-      <p class="ev-venue">Arc de Triomf</p>
-      <p class="ev-desc">A major fair dedicated to books in Catalan, with exhibitors, talks and presentations for all audiences.</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://thisisbarcelona.com/agenda/catalan-book-week" target="_blank" rel="noopener">via This is Barcelona →</a>
-      </div>
-    </article>
-<article class="ev-card with-img" data-category="Music">
-      <a class="ev-img" href="https://www.universe.com/events/chicuelo-trio-cicle-flamenc-edicio-4-tickets-9X80JS?ref=ticketmaster" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/8d3ce7d12f2013de.jpg" alt="" loading="lazy" decoding="async"></a>
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://www.universe.com/events/chicuelo-trio-cicle-flamenc-edicio-4-tickets-9X80JS?ref=ticketmaster" target="_blank" rel="noopener">Chicuelo Trio · Cicle Flamenc · Edició 4</a></h3>
-        <span class="ev-cat Music">Music</span>
-      </div>
-      <div class="ev-date">18-Sep-2026 · 20:30</div>
-      <p class="ev-venue">Aclam Club</p>
+      <div class="ev-date">23-Sep-2026 to 15-Oct-2026</div>
+      <p class="ev-venue">Barcelona</p>
       
       <div class="ev-bot">
         <span></span>
-        <a class="ev-src" href="https://www.universe.com/events/chicuelo-trio-cicle-flamenc-edicio-4-tickets-9X80JS?ref=ticketmaster" target="_blank" rel="noopener">via Ticketmaster →</a>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/opera-aida-de-giuseppe-verdi_99400780799.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
       </div>
     </article>
-<article class="ev-card" data-category="Other">
-      
+<article class="ev-card with-img" data-category="Music">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/bam-festival" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/8ab72d264ff38b18.webp" alt="" loading="lazy" decoding="async"></a>
       <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/llistat?query=Jornada+%27Danses+tradicionals%27" target="_blank" rel="noopener">Open day &#x27;Danses tradicionals&#x27;</a></h3>
-        <span class="ev-cat Other">Other</span>
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/bam-festival" target="_blank" rel="noopener">BAM Festival</a></h3>
+        <span class="ev-cat Music">Music</span>
       </div>
-      <div class="ev-date">18-Sep-2026</div>
-      <p class="ev-venue">C Teodor Llorente <span class="nbh">el Guinardó</span></p>
-      <p class="ev-desc">Whatsapp — Original title: “Jornada &#x27;Danses tradicionals&#x27;”</p>
+      <div class="ev-date">23-Sep-2026 to 27-Sep-2026</div>
+      <p class="ev-venue">Various venues</p>
+      <p class="ev-desc">A diverse music festival that fills the city with emerging artists during the La Mercè celebrations.</p>
       <div class="ev-bot">
         <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/llistat?query=Jornada+%27Danses+tradicionals%27" target="_blank" rel="noopener">via Barcelona Open Data →</a>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/bam-festival" target="_blank" rel="noopener">via This is Barcelona →</a>
       </div>
     </article>
-<article class="ev-card" data-category="Theater">
-      
+<article class="ev-card with-img" data-category="Festival">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/la-merce" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/c069785627a74ada.webp" alt="" loading="lazy" decoding="async"></a>
       <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/llistat?query=Taller+%27Tarda+de+circ%27" target="_blank" rel="noopener">Workshop &#x27;Tarda de circ&#x27;</a></h3>
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/la-merce" target="_blank" rel="noopener">La Mercè</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">23-Sep-2026 to 27-Sep-2026</div>
+      <p class="ev-venue">Various venues</p>
+      <p class="ev-desc">Barcelona’s main festival brings together five days of tradition, music and performances that fill the streets and turn the city into a stage for cultural celebration.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/la-merce" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Theater">
+      <a class="ev-img" href="https://guia.barcelona.cat/en/detall/espectacle-l-ombra-de-pinotxo-a-carrec-de-la-cia-la-puntual-nestor-navarro_99400783580.html" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/47eaf579f66d3bf0.jpg" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/espectacle-l-ombra-de-pinotxo-a-carrec-de-la-cia-la-puntual-nestor-navarro_99400783580.html" target="_blank" rel="noopener">&#x27;L&#x27;ombra de Pinotxo’ [The Shadow of Pinocchio]</a></h3>
         <span class="ev-cat Theater">Theater</span>
       </div>
-      <div class="ev-date">18-Sep-2026</div>
-      <p class="ev-venue">Carretera de Vallvidrera a les Planes <span class="nbh">Vallvidrera, el Tibidabo i les Planes</span></p>
-      <p class="ev-desc">de dilluns a divendres de 16 a 20 h — Original title: “Taller &#x27;Tarda de circ&#x27;”</p>
+      <div class="ev-date">24-Sep-2026 to 04-Oct-2026</div>
+      <p class="ev-venue">Barcelona</p>
+      
       <div class="ev-bot">
         <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/llistat?query=Taller+%27Tarda+de+circ%27" target="_blank" rel="noopener">via Barcelona Open Data →</a>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/espectacle-l-ombra-de-pinotxo-a-carrec-de-la-cia-la-puntual-nestor-navarro_99400783580.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
       </div>
     </article>
-<article class="ev-card with-img" data-category="Sports">
-      <a class="ev-img" href="https://thisisbarcelona.com/agenda/24h-barcelona-of-motorsport-fermi-velez-trophy" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/02f50c90ce9af4d5.webp" alt="" loading="lazy" decoding="async"></a>
+<article class="ev-card" data-category="Art">
+      
       <div class="ev-top">
-        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/24h-barcelona-of-motorsport-fermi-velez-trophy" target="_blank" rel="noopener">24H Barcelona of Motorsport - Fermí Vélez Trophy</a></h3>
-        <span class="ev-cat Sports">Sports</span>
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/modernista-fair-and-market-of-canet-de-mar" target="_blank" rel="noopener">Modernista Fair and Market of Canet de Mar</a></h3>
+        <span class="ev-cat Art">Art</span>
       </div>
-      <div class="ev-date">19-Sep-2026 to 20-Sep-2026</div>
-      <p class="ev-venue">Circuit de Barcelona-Catalunya</p>
-      <p class="ev-desc">Prestigious international endurance race held each year at the Circuit de Barcelona-Catalunya.</p>
+      <div class="ev-date">25-Sep-2026 to 27-Sep-2026</div>
+      <p class="ev-venue">Canet de Mar</p>
+      <p class="ev-desc">An annual event that transforms the historic centre of this Maresme town into a setting evocative of the late 19th and early 20th centuries.</p>
       <div class="ev-bot">
         <span></span>
-        <a class="ev-src" href="https://thisisbarcelona.com/agenda/24h-barcelona-of-motorsport-fermi-velez-trophy" target="_blank" rel="noopener">via This is Barcelona →</a>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/modernista-fair-and-market-of-canet-de-mar" target="_blank" rel="noopener">via This is Barcelona →</a>
       </div>
     </article>
-<article class="ev-card with-img" data-category="Sports">
-      <a class="ev-img" href="https://thisisbarcelona.com/agenda/cursa-de-la-merce-bimbo-global-race" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/f6b55c21b4e5e219.webp" alt="" loading="lazy" decoding="async"></a>
+<article class="ev-card with-img" data-category="Festival">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/ceptrotada-and-correfoc-de-la-merce" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/35c750003e86948a.webp" alt="" loading="lazy" decoding="async"></a>
       <div class="ev-top">
-        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/cursa-de-la-merce-bimbo-global-race" target="_blank" rel="noopener">Cursa de la Mercè Bimbo Global Race</a></h3>
-        <span class="ev-cat Sports">Sports</span>
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/ceptrotada-and-correfoc-de-la-merce" target="_blank" rel="noopener">Ceptrotada and Correfoc de la Mercè</a></h3>
+        <span class="ev-cat Festival">Festival</span>
       </div>
-      <div class="ev-date">19-Sep-2026</div>
-      <p class="ev-venue">Various locations</p>
-      <p class="ev-desc">A fun run with various categories, organised as part of the La Mercè festivities.</p>
+      <div class="ev-date">26-Sep-2026</div>
+      <p class="ev-venue">Passeig de Gràcia</p>
+      <p class="ev-desc">The Ceptrotada lights the fuse and the Correfoc fills Passeig de Gràcia with sparks.</p>
       <div class="ev-bot">
         <span></span>
-        <a class="ev-src" href="https://thisisbarcelona.com/agenda/cursa-de-la-merce-bimbo-global-race" target="_blank" rel="noopener">via This is Barcelona →</a>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/ceptrotada-and-correfoc-de-la-merce" target="_blank" rel="noopener">via This is Barcelona →</a>
       </div>
     </article>
-<article class="ev-card with-img" data-category="Sports">
-      <a class="ev-img" href="https://thisisbarcelona.com/agenda/olla-de-nuria" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/1d03c6b0af8a177c.webp" alt="" loading="lazy" decoding="async"></a>
+<article class="ev-card with-img" data-category="Food">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/terra-i-gust" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/991402d307a6b4c9.webp" alt="" loading="lazy" decoding="async"></a>
       <div class="ev-top">
-        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/olla-de-nuria" target="_blank" rel="noopener">Olla de Núria</a></h3>
-        <span class="ev-cat Sports">Sports</span>
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/terra-i-gust" target="_blank" rel="noopener">Terra i Gust</a></h3>
+        <span class="ev-cat Food">Food</span>
       </div>
-      <div class="ev-date">19-Sep-2026 to 20-Sep-2026</div>
-      <p class="ev-venue">Vall de Núria</p>
-      <p class="ev-desc">An iconic mountain race that crosses peaks rising above 2,700 metres in the Catalan Pyrenees.</p>
+      <div class="ev-date">26-Sep-2026 to 28-Sep-2026</div>
+      <p class="ev-venue">Parc de la Ciutadella</p>
+      <p class="ev-desc">A sustainable food festival promoting local, organic and seasonal produce, with workshops and music throughout the day.</p>
       <div class="ev-bot">
         <span></span>
-        <a class="ev-src" href="https://thisisbarcelona.com/agenda/olla-de-nuria" target="_blank" rel="noopener">via This is Barcelona →</a>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/terra-i-gust" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Festival">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/historic-castellers-day-of-la-merce" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/a10571b0bdc95edc.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/historic-castellers-day-of-la-merce" target="_blank" rel="noopener">Historic Castellers Day of La Mercè</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">27-Sep-2026</div>
+      <p class="ev-venue">Plaça de Sant Jaume</p>
+      <p class="ev-desc">Human towers rise in Plaça de Sant Jaume, a tradition observed during Barcelona’s main festival.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/historic-castellers-day-of-la-merce" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Festival">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/merce-pyromusical" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/d32fbabce1b09d03.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/merce-pyromusical" target="_blank" rel="noopener">Piromusical de la Mercè</a></h3>
+        <span class="ev-cat Festival">Festival</span>
+      </div>
+      <div class="ev-date">27-Sep-2026</div>
+      <p class="ev-venue">Nova Icària Beach</p>
+      <p class="ev-desc">The La Mercè Pyromusical combines music, fireworks and light in Montjuïc.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/merce-pyromusical" target="_blank" rel="noopener">via This is Barcelona →</a>
       </div>
     </article></div>
-      <div class="section-more"><a class="more-btn" href="https://thisisbarcelona.com/agenda" target="_blank" rel="noopener">See 3 more events on This is Barcelona <span aria-hidden="true">&rarr;</span></a></div>
+      
     </section>
 <section class="section" data-section="Ongoing Now" id="ongoing-now">
       <div class="section-header">
         <h2>Ongoing Now</h2>
-        <span class="ct">12 of 36 events</span>
+        <span class="ct">12 of 31 events</span>
       </div>
       <div class="events"><article class="ev-card with-img" data-category="Art">
       <a class="ev-img" href="https://thisisbarcelona.com/agenda/centenary-of-gaudi-s-death" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/1bafeec4ce452be0.webp" alt="" loading="lazy" decoding="async"></a>
@@ -587,102 +535,39 @@
       </div>
     </article>
 <article class="ev-card with-img" data-category="Music">
-      <a class="ev-img" href="https://thisisbarcelona.com/agenda/barcelona-jazz-festival" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/67878fefa71b9ca1.webp" alt="" loading="lazy" decoding="async"></a>
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/festival-mil-lenni" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/b5e28e20a5827bcf.webp" alt="" loading="lazy" decoding="async"></a>
       <div class="ev-top">
-        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/barcelona-jazz-festival" target="_blank" rel="noopener">Barcelona Jazz Festival</a></h3>
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/festival-mil-lenni" target="_blank" rel="noopener">Festival Mil·lenni</a></h3>
         <span class="ev-cat Music">Music</span>
       </div>
-      <div class="ev-date">08-Mar-2026 to 08-Mar-2027</div>
+      <div class="ev-date">09-Apr-2026 to 30-Dec-2026</div>
       <p class="ev-venue">Various venues</p>
-      <p class="ev-desc">One of the world’s longest-running and most prestigious jazz festivals, featuring emerging talent alongside established international stars across venues throughout the city.</p>
+      <p class="ev-desc">Series of over 30 concerts across Barcelona’s iconic venues, covering a wide range of genres.</p>
       <div class="ev-bot">
         <span></span>
-        <a class="ev-src" href="https://thisisbarcelona.com/agenda/barcelona-jazz-festival" target="_blank" rel="noopener">via This is Barcelona →</a>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/festival-mil-lenni" target="_blank" rel="noopener">via This is Barcelona →</a>
       </div>
     </article>
-<article class="ev-card with-img" data-category="Festival">
-      <a class="ev-img" href="https://guia.barcelona.cat/en/detall/exhibition-els-cartells-de-la-festa-major-de-barcelona-the-posters-of-barcelona-s-festa-major_99400786025.html" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/c8a9d4e05b9a95f5.jpg" alt="" loading="lazy" decoding="async"></a>
+<article class="ev-card with-img" data-category="Art">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/exposicio-vuit-frederic-amat" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/0a0353d547de314f.webp" alt="" loading="lazy" decoding="async"></a>
       <div class="ev-top">
-        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/detall/exhibition-els-cartells-de-la-festa-major-de-barcelona-the-posters-of-barcelona-s-festa-major_99400786025.html" target="_blank" rel="noopener">Mercè 2026: &#x27;Moltes Mercès. Els cartells de la Festa Major&#x27;</a></h3>
-        <span class="ev-cat Festival">Festival</span>
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/exposicio-vuit-frederic-amat" target="_blank" rel="noopener">&quot;Vuit. Frederic Amat&quot; Exhibition</a></h3>
+        <span class="ev-cat Art">Art</span>
       </div>
-      <div class="ev-date">16-Sep-2026 to 02-Oct-2026</div>
-      <p class="ev-venue">Barcelona</p>
-      
+      <div class="ev-date">11-Jul-2026 to 01-Nov-2026</div>
+      <p class="ev-venue">La Virreina. Centre de la Imatge</p>
+      <p class="ev-desc">The &quot;Vuit&quot; exhibition at La Virreina traces Frederic Amat&#x27;s creative engagement through eight visual dialogues.</p>
       <div class="ev-bot">
         <span></span>
-        <a class="ev-src" href="https://guia.barcelona.cat/en/detall/exhibition-els-cartells-de-la-festa-major-de-barcelona-the-posters-of-barcelona-s-festa-major_99400786025.html" target="_blank" rel="noopener">via guia.barcelona.cat →</a>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/exposicio-vuit-frederic-amat" target="_blank" rel="noopener">via This is Barcelona →</a>
       </div>
     </article></div>
-      <div class="section-more"><a class="more-btn" href="https://thisisbarcelona.com/agenda" target="_blank" rel="noopener">See 24 more events on This is Barcelona <span aria-hidden="true">&rarr;</span></a></div>
+      <div class="section-more"><a class="more-btn" href="https://thisisbarcelona.com/agenda" target="_blank" rel="noopener">See 19 more events on This is Barcelona <span aria-hidden="true">&rarr;</span></a></div>
     </section>
 <section class="section" data-section="Next Week" id="next-week">
       <div class="section-header">
         <h2>Next Week</h2>
-        <span class="ct">4 events</span>
-      </div>
-      <div class="events"><article class="ev-card with-img" data-category="Food">
-      <a class="ev-img" href="https://thisisbarcelona.com/agenda/barcelona-hotel-bar-week" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/f06461b9ec4e5a01.webp" alt="" loading="lazy" decoding="async"></a>
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/barcelona-hotel-bar-week" target="_blank" rel="noopener">Barcelona Hotel Bar Week</a></h3>
-        <span class="ev-cat Food">Food</span>
-      </div>
-      <div class="ev-date">21-Sep-2026 to 27-Sep-2026</div>
-      <p class="ev-venue">Various locations</p>
-      <p class="ev-desc">Barcelona Hotel Bar Week showcases the city&#x27;s best hotel bars with signature cocktails, creative flair and exclusive experiences.</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://thisisbarcelona.com/agenda/barcelona-hotel-bar-week" target="_blank" rel="noopener">via This is Barcelona →</a>
-      </div>
-    </article>
-<article class="ev-card with-img" data-category="Theater">
-      <a class="ev-img" href="https://thisisbarcelona.com/agenda/aida-by-giuseppe-verdi" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/032bdee030887a7f.webp" alt="" loading="lazy" decoding="async"></a>
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/aida-by-giuseppe-verdi" target="_blank" rel="noopener">&quot;Aida&quot; by Giuseppe Verdi</a></h3>
-        <span class="ev-cat Theater">Theater</span>
-      </div>
-      <div class="ev-date">23-Sep-2026 to 25-Oct-2026</div>
-      <p class="ev-venue">Gran Teatre del Liceu</p>
-      <p class="ev-desc">Giuseppe Verdi&#x27;s Aida opens the season at Gran Teatre del Liceu with a production featuring love, war, freedom and an incredible aura on stage.</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://thisisbarcelona.com/agenda/aida-by-giuseppe-verdi" target="_blank" rel="noopener">via This is Barcelona →</a>
-      </div>
-    </article>
-<article class="ev-card with-img" data-category="Music">
-      <a class="ev-img" href="https://thisisbarcelona.com/agenda/bam-festival" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/8ab72d264ff38b18.webp" alt="" loading="lazy" decoding="async"></a>
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/bam-festival" target="_blank" rel="noopener">BAM Festival</a></h3>
-        <span class="ev-cat Music">Music</span>
-      </div>
-      <div class="ev-date">23-Sep-2026 to 27-Sep-2026</div>
-      <p class="ev-venue">Various venues</p>
-      <p class="ev-desc">A diverse music festival that fills the city with emerging artists during the La Mercè celebrations.</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://thisisbarcelona.com/agenda/bam-festival" target="_blank" rel="noopener">via This is Barcelona →</a>
-      </div>
-    </article>
-<article class="ev-card with-img" data-category="Sports">
-      <a class="ev-img" href="https://thisisbarcelona.com/agenda/fitness-fest" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/9aceade6bb359ae5.webp" alt="" loading="lazy" decoding="async"></a>
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/fitness-fest" target="_blank" rel="noopener">Fitness Fest</a></h3>
-        <span class="ev-cat Sports">Sports</span>
-      </div>
-      <div class="ev-date">24-Sep-2026</div>
-      <p class="ev-venue">Port Vell</p>
-      <p class="ev-desc">A sporting event held within the framework of the La Mercè festivities, featuring an open-air fitness masterclass.</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://thisisbarcelona.com/agenda/fitness-fest" target="_blank" rel="noopener">via This is Barcelona →</a>
-      </div>
-    </article></div>
-      
-    </section>
-<section class="section" data-section="Coming Up" id="coming-up">
-      <div class="section-header">
-        <h2>Coming Up</h2>
-        <span class="ct">12 of 74 events</span>
+        <span class="ct">9 events</span>
       </div>
       <div class="events"><article class="ev-card with-img" data-category="Art">
       <a class="ev-img" href="https://thisisbarcelona.com/agenda/exposicio-dana-lixenberg-american-images" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/1b8ed8d75cea87b0.webp" alt="" loading="lazy" decoding="async"></a>
@@ -726,6 +611,34 @@
         <a class="ev-src" href="https://guia.barcelona.cat/en/llistat?query=Compartir+pis%3A+trobar+habitaci%C3%B3+i+consells+clau" target="_blank" rel="noopener">via Barcelona Open Data →</a>
       </div>
     </article>
+<article class="ev-card" data-category="Music">
+      
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/llistat?query=Concert+%22Obres+per+a+cor+d%E2%80%99Albert+Guinovart%22+amb+Guinovart%2C+Cor+Femen%C3%AD+Scherzo+%26+Esteve+Nabona" target="_blank" rel="noopener">Concert “Obres per a cor d”Albert Guinovart&quot;amb Guinovart, Cor Femení Scherzo &amp; Esteve Nabona</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">01-Oct-2026</div>
+      <p class="ev-venue">C Palau de la Música <span class="nbh">Sant Pere, Santa Caterina i la Ribera</span></p>
+      <p class="ev-desc">Taquilles del Palau — Original title: “Concert &quot;Obres per a cor d’Albert Guinovart&quot; amb Guinovart, Cor Femení Scherzo &amp; Esteve Nabona”</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/llistat?query=Concert+%22Obres+per+a+cor+d%E2%80%99Albert+Guinovart%22+amb+Guinovart%2C+Cor+Femen%C3%AD+Scherzo+%26+Esteve+Nabona" target="_blank" rel="noopener">via Barcelona Open Data →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Other">
+      
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/llistat?query=Debat+%27Edat%C3%A8nia%3A+prejudicis+invisibles%27" target="_blank" rel="noopener">Debat &#x27;Edatènia: prejudicis invisibles&#x27;</a></h3>
+        <span class="ev-cat Other">Other</span>
+      </div>
+      <div class="ev-date">01-Oct-2026</div>
+      <p class="ev-venue">Plaça de Sarrià <span class="nbh">Sarrià</span></p>
+      <p class="ev-desc">Tardes de dilluns a dijous</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/llistat?query=Debat+%27Edat%C3%A8nia%3A+prejudicis+invisibles%27" target="_blank" rel="noopener">via Barcelona Open Data →</a>
+      </div>
+    </article>
 <article class="ev-card with-img" data-category="Sports">
       <a class="ev-img" href="https://thisisbarcelona.com/agenda/international-jumping-competition-csio-barcelona" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/305b362335334087.webp" alt="" loading="lazy" decoding="async"></a>
       <div class="ev-top">
@@ -754,7 +667,42 @@
         <a class="ev-src" href="https://thisisbarcelona.com/agenda/life-victoria-barcelona-festival" target="_blank" rel="noopener">via This is Barcelona →</a>
       </div>
     </article>
-<article class="ev-card with-img" data-category="Art">
+<article class="ev-card with-img" data-category="Music">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/homenatge-a-pau-casals-tribute-to-pau-casals-concert" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/cb897e260c50460d.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/homenatge-a-pau-casals-tribute-to-pau-casals-concert" target="_blank" rel="noopener">&quot;Homenatge a Pau Casals&quot; (&quot;Tribute to Pau Casals&quot;) Concert</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">28-Sep-2026</div>
+      <p class="ev-venue">Palau de la Música Catalana</p>
+      <p class="ev-desc">The Homenatge a Pau Casals opens the Palau de la Música season with the Orfeó Català, the Simfònica del Vallès and works by the maestro.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/homenatge-a-pau-casals-tribute-to-pau-casals-concert" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Music">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/barcelona-jazz-festival" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/67878fefa71b9ca1.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/barcelona-jazz-festival" target="_blank" rel="noopener">Barcelona Jazz Festival</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">29-Sep-2026 to 03-Apr-2027</div>
+      <p class="ev-venue">Various venues</p>
+      <p class="ev-desc">One of the world’s longest-running and most prestigious jazz festivals, featuring emerging talent alongside established international stars across venues throughout the city.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/barcelona-jazz-festival" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article></div>
+      
+    </section>
+<section class="section" data-section="Coming Up" id="coming-up">
+      <div class="section-header">
+        <h2>Coming Up</h2>
+        <span class="ct">12 of 58 events</span>
+      </div>
+      <div class="events"><article class="ev-card with-img" data-category="Art">
       <a class="ev-img" href="https://thisisbarcelona.com/agenda/anselm-kiefer-exhibition" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/d8f9c3e4ec34c7f0.webp" alt="" loading="lazy" decoding="async"></a>
       <div class="ev-top">
         <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/anselm-kiefer-exhibition" target="_blank" rel="noopener">Anselm Kiefer Exhibition</a></h3>
@@ -796,6 +744,34 @@
         <a class="ev-src" href="https://guia.barcelona.cat/en/llistat?query=Concert+%22+Entorn%22+a+c%C3%A0rrec+de+Kic+Barroc" target="_blank" rel="noopener">via Barcelona Open Data →</a>
       </div>
     </article>
+<article class="ev-card" data-category="Music">
+      
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/llistat?query=Concert+%22Estacions-+Trio+Ether%22" target="_blank" rel="noopener">Concert “Estacions- Trio Ether”</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">02-Oct-2026</div>
+      <p class="ev-venue">Plaça de Fort Pienc <span class="nbh">el Fort Pienc</span></p>
+      <p class="ev-desc">De dilluns a divendres: de 9 a 21h - Dissabtes: de 10 a 14h — Original title: “Concert &quot;Estacions- Trio Ether&quot;”</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/llistat?query=Concert+%22Estacions-+Trio+Ether%22" target="_blank" rel="noopener">via Barcelona Open Data →</a>
+      </div>
+    </article>
+<article class="ev-card" data-category="Music">
+      
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://guia.barcelona.cat/en/llistat?query=Concert+%22Nastallat%22" target="_blank" rel="noopener">Concert “Nastallat”</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">02-Oct-2026</div>
+      <p class="ev-venue">Carrer d&#x27;Albareda <span class="nbh">el Poble-sec</span></p>
+      <p class="ev-desc">934 433 719 — Original title: “Concert &quot;Nastallat&quot;”</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://guia.barcelona.cat/en/llistat?query=Concert+%22Nastallat%22" target="_blank" rel="noopener">via Barcelona Open Data →</a>
+      </div>
+    </article>
 <article class="ev-card with-img" data-category="Sports">
       <a class="ev-img" href="https://thisisbarcelona.com/agenda/salomon-ultra-pirineu" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/861fba839d6825f7.webp" alt="" loading="lazy" decoding="async"></a>
       <div class="ev-top">
@@ -808,6 +784,62 @@
       <div class="ev-bot">
         <span></span>
         <a class="ev-src" href="https://thisisbarcelona.com/agenda/salomon-ultra-pirineu" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Food">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/vermut-soul" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/2e3cfb2a4af7d185.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/vermut-soul" target="_blank" rel="noopener">Vermut &amp; Soul</a></h3>
+        <span class="ev-cat Food">Food</span>
+      </div>
+      <div class="ev-date">02-Oct-2026 to 04-Oct-2026</div>
+      <p class="ev-venue">Port Olímpic</p>
+      <p class="ev-desc">A festival dedicated to vermouth culture, gastronomy and live music, held outdoors by the sea.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/vermut-soul" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Music">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/vetusta-morla-concert" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/aed4be0127f8cfcc.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/vetusta-morla-concert" target="_blank" rel="noopener">Vetusta Morla concert</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">02-Oct-2026</div>
+      <p class="ev-venue">Palau Sant Jordi</p>
+      <p class="ev-desc">Vetusta Morla&#x27;s concert at Palau Sant Jordi marks their return to the stage with the &quot;Gira de vuelta. Canciones de ida&quot; tour.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/vetusta-morla-concert" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Music">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/tast-d-orquestra-beethoven-s-seventh" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/7d2adb9f7628daa0.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/tast-d-orquestra-beethoven-s-seventh" target="_blank" rel="noopener">&quot;Tast d&#x27;orquestra: Beethoven&#x27;s Seventh&quot; Concert</a></h3>
+        <span class="ev-cat Music">Music</span>
+      </div>
+      <div class="ev-date">03-Oct-2026</div>
+      <p class="ev-venue">L&#x27;Auditori de Barcelona</p>
+      <p class="ev-desc">Tast d’orquestra presents Beethoven’s Seventh Symphony at L’Auditori, an accessible introduction to one of the most essential symphonies in the repertoire.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/tast-d-orquestra-beethoven-s-seventh" target="_blank" rel="noopener">via This is Barcelona →</a>
+      </div>
+    </article>
+<article class="ev-card with-img" data-category="Food">
+      <a class="ev-img" href="https://thisisbarcelona.com/agenda/cavatast-and-cava-week" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/6afea5d0bb860851.webp" alt="" loading="lazy" decoding="async"></a>
+      <div class="ev-top">
+        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/cavatast-and-cava-week" target="_blank" rel="noopener">Cavatast and Cava Week</a></h3>
+        <span class="ev-cat Food">Food</span>
+      </div>
+      <div class="ev-date">03-Oct-2026 to 04-Oct-2026</div>
+      <p class="ev-venue">Alt Pendés</p>
+      <p class="ev-desc">Two events in the Penedès, where cava and small producers turn the streets into open-air wine bars.</p>
+      <div class="ev-bot">
+        <span></span>
+        <a class="ev-src" href="https://thisisbarcelona.com/agenda/cavatast-and-cava-week" target="_blank" rel="noopener">via This is Barcelona →</a>
       </div>
     </article>
 <article class="ev-card with-img" data-category="Festival">
@@ -837,36 +869,39 @@
         <span></span>
         <a class="ev-src" href="https://thisisbarcelona.com/agenda/barcelona-international-boat-show" target="_blank" rel="noopener">via This is Barcelona →</a>
       </div>
-    </article>
-<article class="ev-card with-img" data-category="Festival">
-      <a class="ev-img" href="https://thisisbarcelona.com/agenda/historic-castellers-day-of-la-merce" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="img/events/a10571b0bdc95edc.webp" alt="" loading="lazy" decoding="async"></a>
-      <div class="ev-top">
-        <h3 class="ev-title"><a href="https://thisisbarcelona.com/agenda/historic-castellers-day-of-la-merce" target="_blank" rel="noopener">Historic Castellers Day of La Mercè</a></h3>
-        <span class="ev-cat Festival">Festival</span>
-      </div>
-      <div class="ev-date">27-Sep-2026</div>
-      <p class="ev-venue">Plaça de Sant Jaume</p>
-      <p class="ev-desc">Human towers rise in Plaça de Sant Jaume, a tradition observed during Barcelona’s main festival.</p>
-      <div class="ev-bot">
-        <span></span>
-        <a class="ev-src" href="https://thisisbarcelona.com/agenda/historic-castellers-day-of-la-merce" target="_blank" rel="noopener">via This is Barcelona →</a>
-      </div>
     </article></div>
-      <div class="section-more"><a class="more-btn" href="https://guia.barcelona.cat/en/agenda" target="_blank" rel="noopener">See 62 more events on the Barcelona city agenda <span aria-hidden="true">&rarr;</span></a></div>
+      <div class="section-more"><a class="more-btn" href="https://guia.barcelona.cat/en/agenda" target="_blank" rel="noopener">See 46 more events on the Barcelona city agenda <span aria-hidden="true">&rarr;</span></a></div>
     </section>
 
 
-<footer class="site-footer"><div class="wrap"><div class="in">
-  <div><img src="img/shield-senyera.png" alt="Petsolt shield with senyera stripes" width="160" height="160" loading="lazy" decoding="async"><div class="est">EST 1996</div></div>
-  <div><p class="tag">Updated Thursdays · Sources: <a href="https://www.catalannews.com/things-to-do">catalannews</a>, <a href="https://guia.barcelona.cat/en/">guia.barcelona.cat</a>, <a href="https://thisisbarcelona.com/main-events">thisisbarcelona.com</a>, things the Petsolts come across</p></div>
-  <div class="cols">
-    <div><h4>Site</h4><ul><li><a href="https://petsolt.com/">Home</a></li><li><a href="https://petsolt.com/blog/">Blogs</a></li><li><a href="https://petsolt.com/category/projects/">Projects</a></li><li><a href="https://petsolt.com/barcelona-visitors-guide/">Visitors Guide</a></li><li><a href="https://petsolt.com/barcelona-visitors-guide/#say-hola">Say Hola</a></li></ul></div>
-    <div><h4>Elsewhere</h4><ul><li><a href="https://pages.davidpetsolt.com/laliga-guide.html">LaLiga Guide</a></li><li><a href="https://pages.davidpetsolt.com/barcelona-events.html">Barcelona Events</a></li><li><a href="https://petsolt.com/?s=">Search</a></li></ul></div>
-  </div></div>
-  <div class="bottom"><span>Petsolt.com, Barcelona</span><span>Photos on Leica and iPhone</span></div>
-</div></footer>
+<footer>
+  <span>© Petsolt · Updated Thursdays · Sources:
+    <a href="https://www.catalannews.com/things-to-do">catalannews</a>,
+    <a href="https://guia.barcelona.cat/en/">guia.barcelona.cat</a>,
+    <a href="https://thisisbarcelona.com/main-events">thisisbarcelona.com</a>,
+    things the Petsolts come across
+  </span>
+  <span><a href="https://petsolt.com/">petsolt.com</a></span>
+</footer>
 
 <script>
+  // Mobile nav toggle
+  (function(){
+    var t = document.querySelector(".nav-toggle"),
+        n = document.getElementById("primary-nav");
+    if (!t || !n) return;
+    t.addEventListener("click", function(){
+      var open = n.classList.toggle("open");
+      t.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    n.addEventListener("click", function(e){
+      if (e.target.tagName === "A") {
+        n.classList.remove("open");
+        t.setAttribute("aria-expanded", "false");
+      }
+    });
+  })();
+
   // Category filter
   const filters = document.querySelectorAll(".filter");
   const cards = document.querySelectorAll(".ev-card");

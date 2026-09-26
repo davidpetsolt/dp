@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T17:32:38.866Z",
+  "updated": "2026-09-26T00:54:25.855Z",
   "d1": [
     {
       "rank": 1,
@@ -472,6 +472,28 @@
     },
     {
       "rank": 3,
+      "name": "Girona FC",
+      "pts": 13,
+      "s": "plo",
+      "p": 7,
+      "gd": 6,
+      "form": "W,W,L,W,W",
+      "last": {
+        "opp": "Albacete Balompié",
+        "hm": true,
+        "gf": 2,
+        "ga": 0,
+        "date": "2026-09-25T18:30Z"
+      },
+      "next": {
+        "opp": "RCD Mallorca",
+        "hm": true,
+        "date": "2026-10-04T19:00Z"
+      },
+      "mv": 5
+    },
+    {
+      "rank": 4,
       "name": "RCD Mallorca",
       "pts": 13,
       "s": "plo",
@@ -489,10 +511,11 @@
         "opp": "UD Almería",
         "hm": true,
         "date": "2026-09-27T14:15Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 4,
+      "rank": 5,
       "name": "UD Almería",
       "pts": 12,
       "s": "plo",
@@ -510,10 +533,11 @@
         "opp": "RCD Mallorca",
         "hm": false,
         "date": "2026-09-27T14:15Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 5,
+      "rank": 6,
       "name": "Burgos CF",
       "pts": 11,
       "s": "plo",
@@ -531,13 +555,14 @@
         "opp": "CD Eldense",
         "hm": true,
         "date": "2026-09-27T16:30Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 6,
+      "rank": 7,
       "name": "CE Sabadell",
       "pts": 11,
-      "s": "plo",
+      "s": "mid",
       "p": 6,
       "gd": 2,
       "form": "D,W,W,L,W",
@@ -552,10 +577,11 @@
         "opp": "Celta Fortuna",
         "hm": false,
         "date": "2026-09-26T16:30Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 7,
+      "rank": 8,
       "name": "CD Leganés",
       "pts": 11,
       "s": "mid",
@@ -573,28 +599,8 @@
         "opp": "CD Castellón",
         "hm": true,
         "date": "2026-09-28T18:30Z"
-      }
-    },
-    {
-      "rank": 8,
-      "name": "Girona FC",
-      "pts": 10,
-      "s": "mid",
-      "p": 6,
-      "gd": 4,
-      "form": "L,W,W,L,W",
-      "last": {
-        "opp": "Cádiz CF",
-        "hm": false,
-        "gf": 2,
-        "ga": 1,
-        "date": "2026-09-19T19:00Z"
       },
-      "next": {
-        "opp": "Albacete Balompié",
-        "hm": true,
-        "date": "2026-09-25T18:30Z"
-      }
+      "mv": -1
     },
     {
       "rank": 9,
@@ -853,20 +859,20 @@
       "name": "Albacete Balompié",
       "pts": 1,
       "s": "rel",
-      "p": 6,
-      "gd": -6,
-      "form": "L,L,L,D,L",
+      "p": 7,
+      "gd": -8,
+      "form": "L,L,D,L,L",
       "last": {
-        "opp": "Córdoba CF",
-        "hm": true,
-        "gf": 1,
-        "ga": 2,
-        "date": "2026-09-18T18:30Z"
-      },
-      "next": {
         "opp": "Girona FC",
         "hm": false,
+        "gf": 0,
+        "ga": 2,
         "date": "2026-09-25T18:30Z"
+      },
+      "next": {
+        "opp": "SD Eibar",
+        "hm": true,
+        "date": "2026-10-03T12:00Z"
       }
     },
     {

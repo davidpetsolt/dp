@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-27T00:54:54.899Z",
+  "updated": "2026-09-27T10:09:29.661Z",
   "d1": [
     {
       "rank": 1,
@@ -552,8 +552,7 @@
         "opp": "FC Andorra",
         "hm": true,
         "date": "2026-10-03T16:30Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 7,
@@ -574,8 +573,7 @@
         "opp": "CD Eldense",
         "hm": true,
         "date": "2026-09-27T16:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 8,
@@ -617,8 +615,7 @@
         "opp": "Córdoba CF",
         "hm": false,
         "date": "2026-10-05T18:30Z"
-      },
-      "mv": 2
+      }
     },
     {
       "rank": 10,
@@ -639,8 +636,7 @@
         "opp": "Real Oviedo",
         "hm": false,
         "date": "2026-09-27T19:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 11,
@@ -661,8 +657,7 @@
         "opp": "SD Eibar",
         "hm": false,
         "date": "2026-09-27T16:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 12,
@@ -851,8 +846,7 @@
         "opp": "CD Leganés",
         "hm": true,
         "date": "2026-10-03T16:30Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 21,
@@ -873,8 +867,7 @@
         "opp": "CD Castellón",
         "hm": false,
         "date": "2026-10-04T16:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 22,
@@ -978,9 +971,9 @@
         "date": "2026-09-20T16:00Z"
       },
       "next": {
-        "opp": "Atlético de Madrid",
-        "hm": true,
-        "date": "2026-09-27T10:00Z"
+        "opp": "Madrid CFF",
+        "hm": false,
+        "date": "2026-10-03T16:00Z"
       }
     },
     {
@@ -1041,9 +1034,9 @@
         "date": "2026-09-19T16:00Z"
       },
       "next": {
-        "opp": "Athletic Club",
+        "opp": "Deportivo Abanca",
         "hm": false,
-        "date": "2026-09-27T10:00Z"
+        "date": "2026-10-03T14:00Z"
       }
     },
     {
@@ -1209,9 +1202,9 @@
         "date": "2026-09-20T10:00Z"
       },
       "next": {
-        "opp": "Valencia CF",
-        "hm": false,
-        "date": "2026-09-27T10:00Z"
+        "opp": "Logroño United",
+        "hm": true,
+        "date": "2026-10-04T10:00Z"
       }
     },
     {
@@ -1230,9 +1223,9 @@
         "date": "2026-09-19T18:30Z"
       },
       "next": {
-        "opp": "Costa Adeje Tenerife",
+        "opp": "Real Sociedad",
         "hm": true,
-        "date": "2026-09-27T10:00Z"
+        "date": "2026-10-04T17:30Z"
       }
     }
   ]

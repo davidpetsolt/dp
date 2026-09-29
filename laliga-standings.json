@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-28T19:50:11.094Z",
+  "updated": "2026-09-29T02:19:43.971Z",
   "d1": [
     {
       "rank": 1,
@@ -430,6 +430,28 @@
   "d2": [
     {
       "rank": 1,
+      "name": "CD Castellón",
+      "pts": 19,
+      "s": "aup",
+      "p": 7,
+      "gd": 12,
+      "form": "W,W,W,W,W",
+      "last": {
+        "opp": "CD Leganés",
+        "hm": false,
+        "gf": 2,
+        "ga": 0,
+        "date": "2026-09-28T18:30Z"
+      },
+      "next": {
+        "opp": "AD Ceuta FC",
+        "hm": true,
+        "date": "2026-10-04T16:30Z"
+      },
+      "mv": 1
+    },
+    {
+      "rank": 2,
       "name": "SD Eibar",
       "pts": 18,
       "s": "aup",
@@ -447,28 +469,8 @@
         "opp": "Albacete Balompié",
         "hm": false,
         "date": "2026-10-03T12:00Z"
-      }
-    },
-    {
-      "rank": 2,
-      "name": "CD Castellón",
-      "pts": 16,
-      "s": "aup",
-      "p": 6,
-      "gd": 10,
-      "form": "D,W,W,W,W",
-      "last": {
-        "opp": "CD Tenerife",
-        "hm": true,
-        "gf": 5,
-        "ga": 0,
-        "date": "2026-09-19T16:30Z"
       },
-      "next": {
-        "opp": "AD Ceuta FC",
-        "hm": true,
-        "date": "2026-10-04T16:30Z"
-      }
+      "mv": -1
     },
     {
       "rank": 3,
@@ -598,27 +600,6 @@
     },
     {
       "rank": 9,
-      "name": "CD Leganés",
-      "pts": 11,
-      "s": "mid",
-      "p": 6,
-      "gd": 1,
-      "form": "W,W,D,L,W",
-      "last": {
-        "opp": "Granada CF",
-        "hm": true,
-        "gf": 3,
-        "ga": 2,
-        "date": "2026-09-20T19:00Z"
-      },
-      "next": {
-        "opp": "Cádiz CF",
-        "hm": false,
-        "date": "2026-10-03T16:30Z"
-      }
-    },
-    {
-      "rank": 10,
       "name": "CD Tenerife",
       "pts": 11,
       "s": "mid",
@@ -636,7 +617,30 @@
         "opp": "Córdoba CF",
         "hm": false,
         "date": "2026-10-05T18:30Z"
-      }
+      },
+      "mv": 1
+    },
+    {
+      "rank": 10,
+      "name": "CD Leganés",
+      "pts": 11,
+      "s": "mid",
+      "p": 7,
+      "gd": -1,
+      "form": "W,D,L,W,L",
+      "last": {
+        "opp": "CD Castellón",
+        "hm": true,
+        "gf": 0,
+        "ga": 2,
+        "date": "2026-09-28T18:30Z"
+      },
+      "next": {
+        "opp": "Cádiz CF",
+        "hm": false,
+        "date": "2026-10-03T16:30Z"
+      },
+      "mv": -1
     },
     {
       "rank": 11,

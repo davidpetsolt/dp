@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-02T18:02:35.714Z",
+  "updated": "2026-10-03T01:28:25.463Z",
   "d1": [
     {
       "rank": 1,
@@ -580,20 +580,20 @@
       "name": "Real Oviedo",
       "pts": 11,
       "s": "mid",
-      "p": 7,
-      "gd": 3,
-      "form": "W,D,W,L,W",
+      "p": 8,
+      "gd": 0,
+      "form": "D,W,L,W,L",
       "last": {
-        "opp": "Sporting Gijón",
-        "hm": true,
-        "gf": 2,
-        "ga": 0,
-        "date": "2026-09-27T19:00Z"
-      },
-      "next": {
         "opp": "CD Eldense",
         "hm": false,
+        "gf": 1,
+        "ga": 4,
         "date": "2026-10-02T18:30Z"
+      },
+      "next": {
+        "opp": "SD Eibar",
+        "hm": true,
+        "date": "2026-10-12T16:30Z"
       }
     },
     {
@@ -724,6 +724,28 @@
     },
     {
       "rank": 15,
+      "name": "CD Eldense",
+      "pts": 8,
+      "s": "mid",
+      "p": 8,
+      "gd": -2,
+      "form": "D,W,L,L,W",
+      "last": {
+        "opp": "Real Oviedo",
+        "hm": true,
+        "gf": 4,
+        "ga": 1,
+        "date": "2026-10-02T18:30Z"
+      },
+      "next": {
+        "opp": "Córdoba CF",
+        "hm": true,
+        "date": "2026-10-10T16:30Z"
+      },
+      "mv": 4
+    },
+    {
+      "rank": 16,
       "name": "Celta Fortuna",
       "pts": 8,
       "s": "mid",
@@ -741,10 +763,11 @@
         "opp": "Sporting Gijón",
         "hm": false,
         "date": "2026-10-04T14:15Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 16,
+      "rank": 17,
       "name": "Real Valladolid",
       "pts": 8,
       "s": "mid",
@@ -762,10 +785,11 @@
         "opp": "UD Las Palmas",
         "hm": false,
         "date": "2026-10-04T16:30Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 17,
+      "rank": 18,
       "name": "FC Andorra",
       "pts": 6,
       "s": "mid",
@@ -783,13 +807,14 @@
         "opp": "CE Sabadell",
         "hm": false,
         "date": "2026-10-03T16:30Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 18,
+      "rank": 19,
       "name": "Córdoba CF",
       "pts": 6,
-      "s": "mid",
+      "s": "rel",
       "p": 7,
       "gd": -6,
       "form": "L,L,L,W,L",
@@ -804,28 +829,8 @@
         "opp": "CD Tenerife",
         "hm": true,
         "date": "2026-10-05T18:30Z"
-      }
-    },
-    {
-      "rank": 19,
-      "name": "CD Eldense",
-      "pts": 5,
-      "s": "rel",
-      "p": 7,
-      "gd": -5,
-      "form": "L,D,W,L,L",
-      "last": {
-        "opp": "Burgos CF",
-        "hm": false,
-        "gf": 0,
-        "ga": 1,
-        "date": "2026-09-27T16:30Z"
       },
-      "next": {
-        "opp": "Real Oviedo",
-        "hm": true,
-        "date": "2026-10-02T18:30Z"
-      }
+      "mv": -1
     },
     {
       "rank": 20,

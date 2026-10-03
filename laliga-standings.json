@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-03T01:28:25.463Z",
+  "updated": "2026-10-03T10:00:28.968Z",
   "d1": [
     {
       "rank": 1,
@@ -741,8 +741,7 @@
         "opp": "Córdoba CF",
         "hm": true,
         "date": "2026-10-10T16:30Z"
-      },
-      "mv": 4
+      }
     },
     {
       "rank": 16,
@@ -763,8 +762,7 @@
         "opp": "Sporting Gijón",
         "hm": false,
         "date": "2026-10-04T14:15Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 17,
@@ -785,8 +783,7 @@
         "opp": "UD Las Palmas",
         "hm": false,
         "date": "2026-10-04T16:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 18,
@@ -807,8 +804,7 @@
         "opp": "CE Sabadell",
         "hm": false,
         "date": "2026-10-03T16:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 19,
@@ -829,8 +825,7 @@
         "opp": "CD Tenerife",
         "hm": true,
         "date": "2026-10-05T18:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 20,
@@ -1018,9 +1013,9 @@
         "date": "2026-09-26T10:00Z"
       },
       "next": {
-        "opp": "Sevilla FC",
-        "hm": false,
-        "date": "2026-10-03T10:00Z"
+        "opp": "Costa Adeje Tenerife",
+        "hm": true,
+        "date": "2026-10-17T10:00Z"
       }
     },
     {
@@ -1081,9 +1076,9 @@
         "date": "2026-09-27T14:00Z"
       },
       "next": {
-        "opp": "FC Badalona Women",
-        "hm": true,
-        "date": "2026-10-03T10:00Z"
+        "opp": "Deportivo Alavés",
+        "hm": false,
+        "date": "2026-10-18T10:00Z"
       }
     },
     {
@@ -1123,9 +1118,9 @@
         "date": "2026-09-26T16:30Z"
       },
       "next": {
-        "opp": "RCD Espanyol",
-        "hm": false,
-        "date": "2026-10-03T10:00Z"
+        "opp": "Sevilla FC",
+        "hm": true,
+        "date": "2026-10-18T10:00Z"
       }
     },
     {
@@ -1144,9 +1139,9 @@
         "date": "2026-09-27T16:00Z"
       },
       "next": {
-        "opp": "Deportivo Alavés",
-        "hm": true,
-        "date": "2026-10-03T10:00Z"
+        "opp": "Real Madrid",
+        "hm": false,
+        "date": "2026-10-17T18:30Z"
       }
     },
     {

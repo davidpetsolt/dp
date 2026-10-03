@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-03T10:00:28.968Z",
+  "updated": "2026-10-03T16:43:36.485Z",
   "d1": [
     {
       "rank": 1,
@@ -430,6 +430,28 @@
   "d2": [
     {
       "rank": 1,
+      "name": "SD Eibar",
+      "pts": 21,
+      "s": "aup",
+      "p": 8,
+      "gd": 11,
+      "form": "W,W,W,W,W",
+      "last": {
+        "opp": "Albacete Balompié",
+        "hm": false,
+        "gf": 3,
+        "ga": 1,
+        "date": "2026-10-03T12:00Z"
+      },
+      "next": {
+        "opp": "Real Oviedo",
+        "hm": false,
+        "date": "2026-10-12T16:30Z"
+      },
+      "mv": 1
+    },
+    {
+      "rank": 2,
       "name": "CD Castellón",
       "pts": 19,
       "s": "aup",
@@ -447,48 +469,28 @@
         "opp": "AD Ceuta FC",
         "hm": true,
         "date": "2026-10-04T16:30Z"
-      }
-    },
-    {
-      "rank": 2,
-      "name": "SD Eibar",
-      "pts": 18,
-      "s": "aup",
-      "p": 7,
-      "gd": 9,
-      "form": "W,W,W,W,W",
-      "last": {
-        "opp": "UD Las Palmas",
-        "hm": true,
-        "gf": 3,
-        "ga": 2,
-        "date": "2026-09-27T16:30Z"
       },
-      "next": {
-        "opp": "Albacete Balompié",
-        "hm": false,
-        "date": "2026-10-03T12:00Z"
-      }
+      "mv": -1
     },
     {
       "rank": 3,
       "name": "UD Almería",
-      "pts": 15,
+      "pts": 18,
       "s": "plo",
-      "p": 7,
-      "gd": 7,
-      "form": "L,W,W,W,W",
+      "p": 8,
+      "gd": 8,
+      "form": "W,W,W,W,W",
       "last": {
-        "opp": "RCD Mallorca",
-        "hm": false,
-        "gf": 1,
-        "ga": 0,
-        "date": "2026-09-27T14:15Z"
-      },
-      "next": {
         "opp": "Burgos CF",
         "hm": true,
+        "gf": 2,
+        "ga": 1,
         "date": "2026-10-03T14:15Z"
+      },
+      "next": {
+        "opp": "CD Leganés",
+        "hm": true,
+        "date": "2026-10-11T14:15Z"
       }
     },
     {
@@ -496,20 +498,20 @@
       "name": "Burgos CF",
       "pts": 14,
       "s": "plo",
-      "p": 7,
-      "gd": 4,
-      "form": "D,D,W,W,W",
+      "p": 8,
+      "gd": 3,
+      "form": "D,W,W,W,L",
       "last": {
-        "opp": "CD Eldense",
-        "hm": true,
-        "gf": 1,
-        "ga": 0,
-        "date": "2026-09-27T16:30Z"
-      },
-      "next": {
         "opp": "UD Almería",
         "hm": false,
+        "gf": 1,
+        "ga": 2,
         "date": "2026-10-03T14:15Z"
+      },
+      "next": {
+        "opp": "Granada CF",
+        "hm": true,
+        "date": "2026-10-12T14:15Z"
       }
     },
     {
@@ -561,18 +563,18 @@
       "s": "mid",
       "p": 7,
       "gd": 2,
-      "form": "W,W,L,W,D",
+      "form": "W,L,W,D,D",
       "last": {
-        "opp": "Celta Fortuna",
-        "hm": false,
-        "gf": 1,
-        "ga": 1,
-        "date": "2026-09-26T16:30Z"
-      },
-      "next": {
         "opp": "FC Andorra",
         "hm": true,
+        "gf": 0,
+        "ga": 0,
         "date": "2026-10-03T16:30Z"
+      },
+      "next": {
+        "opp": "AD Ceuta FC",
+        "hm": false,
+        "date": "2026-10-10T14:15Z"
       }
     },
     {
@@ -633,9 +635,9 @@
         "date": "2026-09-28T18:30Z"
       },
       "next": {
-        "opp": "Cádiz CF",
+        "opp": "UD Almería",
         "hm": false,
-        "date": "2026-10-03T16:30Z"
+        "date": "2026-10-11T14:15Z"
       }
     },
     {
@@ -792,18 +794,18 @@
       "s": "mid",
       "p": 7,
       "gd": -3,
-      "form": "L,L,L,L,W",
+      "form": "L,L,L,W,D",
       "last": {
-        "opp": "Granada CF",
-        "hm": false,
-        "gf": 3,
-        "ga": 2,
-        "date": "2026-09-26T14:15Z"
-      },
-      "next": {
         "opp": "CE Sabadell",
         "hm": false,
+        "gf": 0,
+        "ga": 0,
         "date": "2026-10-03T16:30Z"
+      },
+      "next": {
+        "opp": "CD Castellón",
+        "hm": true,
+        "date": "2026-10-11T12:00Z"
       }
     },
     {
@@ -843,9 +845,9 @@
         "date": "2026-09-26T16:30Z"
       },
       "next": {
-        "opp": "CD Leganés",
+        "opp": "Sporting Gijón",
         "hm": true,
-        "date": "2026-10-03T16:30Z"
+        "date": "2026-10-11T19:00Z"
       }
     },
     {
@@ -874,20 +876,20 @@
       "name": "Albacete Balompié",
       "pts": 1,
       "s": "rel",
-      "p": 7,
-      "gd": -8,
-      "form": "L,L,D,L,L",
+      "p": 8,
+      "gd": -10,
+      "form": "L,D,L,L,L",
       "last": {
-        "opp": "Girona FC",
-        "hm": false,
-        "gf": 0,
-        "ga": 2,
-        "date": "2026-09-25T18:30Z"
-      },
-      "next": {
         "opp": "SD Eibar",
         "hm": true,
+        "gf": 1,
+        "ga": 3,
         "date": "2026-10-03T12:00Z"
+      },
+      "next": {
+        "opp": "Real Valladolid",
+        "hm": false,
+        "date": "2026-10-12T12:00Z"
       }
     }
   ],
@@ -950,9 +952,9 @@
         "date": "2026-09-26T16:30Z"
       },
       "next": {
-        "opp": "Athletic Club",
-        "hm": true,
-        "date": "2026-10-03T16:00Z"
+        "opp": "Atlético de Madrid",
+        "hm": false,
+        "date": "2026-10-18T16:00Z"
       }
     },
     {
@@ -971,9 +973,9 @@
         "date": "2026-09-27T10:00Z"
       },
       "next": {
-        "opp": "Madrid CFF",
-        "hm": false,
-        "date": "2026-10-03T16:00Z"
+        "opp": "Valencia CF",
+        "hm": true,
+        "date": "2026-10-17T14:30Z"
       }
     },
     {
@@ -999,27 +1001,93 @@
     },
     {
       "rank": 6,
-      "name": "FC Badalona Women",
-      "pts": 7,
+      "name": "Atlético de Madrid",
+      "pts": 9,
       "s": "mid",
-      "p": 5,
-      "gd": 1,
-      "form": "L,W,W,D,L",
+      "p": 6,
+      "gd": -1,
+      "form": "W,L,W,L,W",
       "last": {
-        "opp": "Granada CF",
-        "hm": true,
-        "gf": 0,
+        "opp": "Deportivo Abanca",
+        "hm": false,
+        "gf": 2,
         "ga": 1,
-        "date": "2026-09-26T10:00Z"
+        "date": "2026-10-03T14:00Z"
+      },
+      "next": {
+        "opp": "Madrid CFF",
+        "hm": true,
+        "date": "2026-10-18T16:00Z"
+      },
+      "mv": 2
+    },
+    {
+      "rank": 7,
+      "name": "RCD Espanyol",
+      "pts": 8,
+      "s": "mid",
+      "p": 6,
+      "gd": 3,
+      "form": "L,D,W,D,W",
+      "last": {
+        "opp": "Deportivo Alavés",
+        "hm": true,
+        "gf": 1,
+        "ga": 0,
+        "date": "2026-10-03T10:00Z"
+      },
+      "next": {
+        "opp": "Real Madrid",
+        "hm": false,
+        "date": "2026-10-17T18:30Z"
+      },
+      "mv": 5
+    },
+    {
+      "rank": 8,
+      "name": "FC Badalona Women",
+      "pts": 8,
+      "s": "mid",
+      "p": 6,
+      "gd": 1,
+      "form": "W,W,D,L,D",
+      "last": {
+        "opp": "Sevilla FC",
+        "hm": false,
+        "gf": 3,
+        "ga": 3,
+        "date": "2026-10-03T10:00Z"
       },
       "next": {
         "opp": "Costa Adeje Tenerife",
         "hm": true,
         "date": "2026-10-17T10:00Z"
+      },
+      "mv": -2
+    },
+    {
+      "rank": 9,
+      "name": "Sevilla FC",
+      "pts": 7,
+      "s": "mid",
+      "p": 6,
+      "gd": -3,
+      "form": "L,L,W,L,D",
+      "last": {
+        "opp": "FC Badalona Women",
+        "hm": true,
+        "gf": 3,
+        "ga": 3,
+        "date": "2026-10-03T10:00Z"
+      },
+      "next": {
+        "opp": "Deportivo Alavés",
+        "hm": false,
+        "date": "2026-10-18T10:00Z"
       }
     },
     {
-      "rank": 7,
+      "rank": 10,
       "name": "Logroño United",
       "pts": 6,
       "s": "mid",
@@ -1037,52 +1105,11 @@
         "opp": "Costa Adeje Tenerife",
         "hm": false,
         "date": "2026-10-04T10:00Z"
-      }
-    },
-    {
-      "rank": 8,
-      "name": "Atlético de Madrid",
-      "pts": 6,
-      "s": "mid",
-      "p": 5,
-      "gd": -2,
-      "form": "L,W,L,W,L",
-      "last": {
-        "opp": "Athletic Club",
-        "hm": false,
-        "gf": 2,
-        "ga": 3,
-        "date": "2026-09-27T10:00Z"
       },
-      "next": {
-        "opp": "Deportivo Abanca",
-        "hm": false,
-        "date": "2026-10-03T14:00Z"
-      }
+      "mv": -3
     },
     {
-      "rank": 9,
-      "name": "Sevilla FC",
-      "pts": 6,
-      "s": "mid",
-      "p": 5,
-      "gd": -3,
-      "form": "W,L,L,W,L",
-      "last": {
-        "opp": "SD Eibar",
-        "hm": true,
-        "gf": 0,
-        "ga": 1,
-        "date": "2026-09-27T14:00Z"
-      },
-      "next": {
-        "opp": "Deportivo Alavés",
-        "hm": false,
-        "date": "2026-10-18T10:00Z"
-      }
-    },
-    {
-      "rank": 10,
+      "rank": 11,
       "name": "Granada CF",
       "pts": 6,
       "s": "mid",
@@ -1100,69 +1127,50 @@
         "opp": "SD Eibar",
         "hm": true,
         "date": "2026-10-04T10:00Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 11,
+      "rank": 12,
       "name": "Deportivo Alavés",
       "pts": 6,
       "s": "mid",
-      "p": 5,
-      "gd": -5,
-      "form": "W,L,W,L,L",
+      "p": 6,
+      "gd": -6,
+      "form": "L,W,L,L,L",
       "last": {
-        "opp": "Madrid CFF",
+        "opp": "RCD Espanyol",
         "hm": false,
         "gf": 0,
         "ga": 1,
-        "date": "2026-09-26T16:30Z"
+        "date": "2026-10-03T10:00Z"
       },
       "next": {
         "opp": "Sevilla FC",
         "hm": true,
         "date": "2026-10-18T10:00Z"
-      }
-    },
-    {
-      "rank": 12,
-      "name": "RCD Espanyol",
-      "pts": 5,
-      "s": "mid",
-      "p": 5,
-      "gd": 2,
-      "form": "L,L,D,W,D",
-      "last": {
-        "opp": "Deportivo Abanca",
-        "hm": false,
-        "gf": 1,
-        "ga": 1,
-        "date": "2026-09-27T16:00Z"
       },
-      "next": {
-        "opp": "Real Madrid",
-        "hm": false,
-        "date": "2026-10-17T18:30Z"
-      }
+      "mv": -1
     },
     {
       "rank": 13,
       "name": "Deportivo Abanca",
       "pts": 5,
       "s": "mid",
-      "p": 5,
-      "gd": 0,
-      "form": "L,D,L,W,D",
+      "p": 6,
+      "gd": -1,
+      "form": "D,L,W,D,L",
       "last": {
-        "opp": "RCD Espanyol",
-        "hm": true,
-        "gf": 1,
-        "ga": 1,
-        "date": "2026-09-27T16:00Z"
-      },
-      "next": {
         "opp": "Atlético de Madrid",
         "hm": true,
+        "gf": 1,
+        "ga": 2,
         "date": "2026-10-03T14:00Z"
+      },
+      "next": {
+        "opp": "SD Eibar",
+        "hm": false,
+        "date": "2026-10-18T14:00Z"
       }
     },
     {

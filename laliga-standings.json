@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-05T01:17:43.666Z",
+  "updated": "2026-10-05T11:46:36.860Z",
   "d1": [
     {
       "rank": 1,
@@ -510,8 +510,7 @@
         "opp": "CD Tenerife",
         "hm": false,
         "date": "2026-10-12T19:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 5,
@@ -532,8 +531,7 @@
         "opp": "UD Las Palmas",
         "hm": true,
         "date": "2026-10-11T16:30Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 6,
@@ -554,8 +552,7 @@
         "opp": "Granada CF",
         "hm": true,
         "date": "2026-10-12T14:15Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 7,
@@ -576,8 +573,7 @@
         "opp": "AD Ceuta FC",
         "hm": false,
         "date": "2026-10-10T14:15Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 8,
@@ -598,8 +594,7 @@
         "opp": "Cádiz CF",
         "hm": false,
         "date": "2026-10-11T19:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 9,
@@ -662,8 +657,7 @@
         "opp": "RCD Mallorca",
         "hm": false,
         "date": "2026-10-11T16:30Z"
-      },
-      "mv": 2
+      }
     },
     {
       "rank": 12,
@@ -684,8 +678,7 @@
         "opp": "Córdoba CF",
         "hm": false,
         "date": "2026-10-05T18:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 13,
@@ -706,8 +699,7 @@
         "opp": "UD Almería",
         "hm": false,
         "date": "2026-10-11T14:15Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 14,
@@ -728,8 +720,7 @@
         "opp": "Albacete Balompié",
         "hm": true,
         "date": "2026-10-12T12:00Z"
-      },
-      "mv": 2
+      }
     },
     {
       "rank": 15,
@@ -750,8 +741,7 @@
         "opp": "Celta Fortuna",
         "hm": false,
         "date": "2026-10-10T19:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 16,
@@ -772,8 +762,7 @@
         "opp": "Córdoba CF",
         "hm": true,
         "date": "2026-10-10T16:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 17,
@@ -943,8 +932,7 @@
         "opp": "Atlético de Madrid",
         "hm": false,
         "date": "2026-10-18T16:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 3,
@@ -965,8 +953,7 @@
         "opp": "RCD Espanyol",
         "hm": true,
         "date": "2026-10-17T18:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 4,

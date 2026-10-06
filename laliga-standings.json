@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-05T20:56:48.955Z",
+  "updated": "2026-10-06T02:31:17.189Z",
   "d1": [
     {
       "rank": 1,
@@ -666,13 +666,13 @@
       "s": "mid",
       "p": 8,
       "gd": -2,
-      "form": "L,D,W,L,D",
+      "form": "D,W,L,D,L",
       "last": {
-        "opp": "Cádiz CF",
-        "hm": true,
-        "gf": 1,
-        "ga": 1,
-        "date": "2026-09-26T16:30Z"
+        "opp": "Córdoba CF",
+        "hm": false,
+        "gf": 2,
+        "ga": 3,
+        "date": "2026-10-05T18:30Z"
       },
       "next": {
         "opp": "Girona FC",
@@ -729,20 +729,19 @@
       "s": "mid",
       "p": 8,
       "gd": -5,
-      "form": "L,L,L,W,L",
+      "form": "L,L,W,L,W",
       "last": {
-        "opp": "Real Valladolid",
-        "hm": false,
-        "gf": 1,
-        "ga": 3,
-        "date": "2026-09-27T12:00Z"
+        "opp": "CD Tenerife",
+        "hm": true,
+        "gf": 3,
+        "ga": 2,
+        "date": "2026-10-05T18:30Z"
       },
       "next": {
         "opp": "CD Eldense",
         "hm": false,
         "date": "2026-10-10T16:30Z"
-      },
-      "mv": 5
+      }
     },
     {
       "rank": 16,
@@ -763,8 +762,7 @@
         "opp": "Celta Fortuna",
         "hm": false,
         "date": "2026-10-10T19:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 17,
@@ -785,8 +783,7 @@
         "opp": "Córdoba CF",
         "hm": true,
         "date": "2026-10-10T16:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 18,
@@ -807,8 +804,7 @@
         "opp": "Real Sociedad B",
         "hm": true,
         "date": "2026-10-10T19:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 19,
@@ -829,8 +825,7 @@
         "opp": "Sporting Gijón",
         "hm": true,
         "date": "2026-10-11T19:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 20,
@@ -851,8 +846,7 @@
         "opp": "CD Castellón",
         "hm": true,
         "date": "2026-10-11T12:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 21,

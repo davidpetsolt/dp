@@ -83,10 +83,18 @@
 
     .icon {
       width: 128px;
-      height: 128px;
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--card-bg);
+    }
+    .icon img {
+      width: 96px;
+      height: 96px;
       display: block;
-      object-fit: cover;
-      background: var(--card-icon-bg);
+      border-radius: 22px;
+      box-shadow: 0 6px 16px -8px rgba(28,26,23,.45);
     }
 
     .body { padding: 18px 22px 18px 24px; min-width: 0; }
@@ -118,7 +126,6 @@
     /* ─── Japan: paper, vermilion hanko, indigo ─── */
     .trip--japan {
       --card-bg: #f2ece0;
-      --card-icon-bg: #f2ece0;
       --card-accent: #c23b1f;
       --card-title: #1f3652;
       font-family: "Space Grotesk", sans-serif;
@@ -129,7 +136,6 @@
     /* ─── Texas: navy, gold star, Rye ─── */
     .trip--texas {
       --card-bg: #efe2c4;
-      --card-icon-bg: #15233f;
       --card-accent: #9c2417;
       --card-title: #15233f;
       font-family: "Zilla Slab", serif;
@@ -141,7 +147,6 @@
     /* ─── Budapest: Danube waves, blue, paprika, gold ─── */
     .trip--budapest {
       --card-bg: #f0e7d3;
-      --card-icon-bg: #0f3d5c;
       --card-accent: #d4491f;
       --card-title: #0f3d5c;
       font-family: "Archivo", sans-serif;
@@ -163,7 +168,8 @@
     @media (max-width: 480px) {
       header { padding-top: 40px; }
       .trip { grid-template-columns: 96px 1fr; }
-      .icon { width: 96px; height: 96px; }
+      .icon { width: 96px; }
+      .icon img { width: 72px; height: 72px; border-radius: 16px; }
       .body { padding: 14px 16px 14px 18px; }
       .name { font-size: 30px; }
       .dates { white-space: normal; }
@@ -183,8 +189,8 @@
     <ul class="trips" id="trips">
 
       <li>
-        <a class="trip trip--japan" href="japan-2026.html" data-start="2026-11-20">
-          <img class="icon" src="apple-touch-icon-japan.png" alt="" width="128" height="128">
+        <a class="trip trip--japan" href="japan-2026" data-start="2026-11-20">
+          <div class="icon"><img src="apple-touch-icon-japan.png" alt="" width="96" height="96"></div>
           <div class="body">
             <p class="kicker">Tokyo · Hakone · Kyoto</p>
             <h2 class="name">JAPAN</h2>
@@ -195,8 +201,8 @@
       </li>
 
       <li>
-        <a class="trip trip--texas" href="texas-2026.html" data-start="2026-08-25">
-          <img class="icon" src="apple-touch-icon-texas.png" alt="" width="128" height="128">
+        <a class="trip trip--texas" href="texas-2026" data-start="2026-08-25">
+          <div class="icon"><img src="apple-touch-icon-texas.png" alt="" width="96" height="96"></div>
           <div class="body">
             <p class="kicker">Cam &amp; Dad</p>
             <h2 class="name">TEXAS</h2>
@@ -207,8 +213,8 @@
       </li>
 
       <li>
-        <a class="trip trip--budapest" href="budapest-2026.html" data-start="2026-07-23">
-          <img class="icon" src="budapest-2026-icon.png" alt="" width="128" height="128">
+        <a class="trip trip--budapest" href="budapest-2026" data-start="2026-07-23">
+          <div class="icon"><img src="budapest-2026-icon.png" alt="" width="96" height="96"></div>
           <div class="body">
             <p class="kicker">Hungarian Grand Prix</p>
             <h2 class="name">Budapest</h2>

@@ -3,6 +3,8 @@ Disallow: /budapest-2026.html
 Disallow: /texas-2026.html
 Disallow: /world-cup-2026.html
 Disallow: /skincare_routine.html
+Disallow: /trips.html
+Disallow: /trips
 Allow: /barcelona-events.html
 Allow: /laliga-guide-2526.html
 Allow: /leica_dlux8_presets.html

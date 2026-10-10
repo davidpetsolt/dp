@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-10T01:55:40.957Z",
+  "updated": "2026-10-10T10:45:43.834Z",
   "d1": [
     {
       "rank": 1,
@@ -230,8 +230,7 @@
         "opp": "Atlético de Madrid",
         "hm": true,
         "date": "2026-10-17T12:00:00Z"
-      },
-      "mv": 4
+      }
     },
     {
       "rank": 12,
@@ -252,8 +251,7 @@
         "opp": "FC Barcelona",
         "hm": false,
         "date": "2026-10-10T16:30:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 13,
@@ -274,8 +272,7 @@
         "opp": "Athletic Club",
         "hm": true,
         "date": "2026-10-10T12:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 14,
@@ -296,8 +293,7 @@
         "opp": "Real Betis",
         "hm": false,
         "date": "2026-10-11T16:30:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 15,
@@ -318,8 +314,7 @@
         "opp": "Elche CF",
         "hm": false,
         "date": "2026-10-11T12:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 16,
@@ -403,8 +398,7 @@
         "opp": "Real Sociedad",
         "hm": true,
         "date": "2026-10-18T16:30:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 19,

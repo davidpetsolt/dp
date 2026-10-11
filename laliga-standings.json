@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-11T01:17:52.228Z",
+  "updated": "2026-10-11T10:58:39.740Z",
   "d1": [
     {
       "rank": 1,
@@ -62,8 +62,7 @@
         "opp": "Sevilla FC",
         "hm": true,
         "date": "2026-10-18T19:00:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 4,
@@ -84,8 +83,7 @@
         "opp": "CA Osasuna",
         "hm": true,
         "date": "2026-10-11T16:30:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 5,
@@ -190,8 +188,7 @@
         "gf": 0,
         "ga": 0,
         "date": "2026-10-10T12:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 10,
@@ -212,8 +209,7 @@
         "opp": "Elche CF",
         "hm": true,
         "date": "2026-10-17T14:15:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 11,
@@ -661,8 +657,7 @@
         "opp": "CD Tenerife",
         "hm": true,
         "date": "2026-10-19T18:30Z"
-      },
-      "mv": 7
+      }
     },
     {
       "rank": 12,
@@ -683,8 +678,7 @@
         "opp": "RCD Mallorca",
         "hm": false,
         "date": "2026-10-11T16:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 13,
@@ -705,8 +699,7 @@
         "opp": "Real Valladolid",
         "hm": false,
         "date": "2026-10-18T16:30Z"
-      },
-      "mv": 4
+      }
     },
     {
       "rank": 14,
@@ -727,8 +720,7 @@
         "opp": "Girona FC",
         "hm": true,
         "date": "2026-10-12T19:00Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 15,
@@ -749,8 +741,7 @@
         "opp": "UD Almería",
         "hm": false,
         "date": "2026-10-11T14:15Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 16,
@@ -771,8 +762,7 @@
         "opp": "Albacete Balompié",
         "hm": true,
         "date": "2026-10-12T12:00Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 17,
@@ -793,8 +783,7 @@
         "opp": "CD Leganés",
         "hm": false,
         "date": "2026-10-16T18:30Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 18,
@@ -815,8 +804,7 @@
         "opp": "UD Almería",
         "hm": true,
         "date": "2026-10-17T12:00Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 19,

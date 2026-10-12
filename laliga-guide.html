@@ -187,63 +187,8 @@
     .panel .nm{font-size:15px}
   }
 
-  /* ===== Petsolt 2026 header/footer chrome (16-Sep-2026) =====
-     Namespaced --pt-* tokens so this never touches the page's own --navy/--orange/etc.
-     Source of truth: devpetsolt.wpenginepowered.com/the-block-project/ (.nav/.brand/.mbar/footer.site-footer)
-     + theme.css. Header is forced to a permanently-solid navy state (no hero, no scroll JS). */
-  :root{
-    --pt-navy:#1b2352; --pt-orange:#ff6000; --pt-white:#ffffff;
-    --pt-grey:#f3f3f1; --pt-line:#dcdcd8; --pt-ink:#15193a; --pt-muted:#5d6280;
-    --pt-d:'Overpass', sans-serif; --pt-s:'Source Serif 4', Georgia, serif;
-  }
-  body{padding-top:72px;padding-bottom:70px}
-  @media (min-width:900px){ body{padding-top:80px;padding-bottom:0} }
-
-  .nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;
-    padding:14px 20px;background:var(--pt-white);color:var(--pt-navy);box-shadow:0 1px 0 var(--pt-line);
-    font-family:var(--pt-d)}
-  .nav .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.06em;
-    text-transform:uppercase;font-size:15px;color:var(--pt-navy);text-decoration:none}
-  .nav .brand img{width:44px;height:44px;display:block}
-  .nav ul{display:none;list-style:none;gap:30px;margin:0;padding:0;font-weight:600;font-size:15px;letter-spacing:.02em}
-  .nav li a{padding:6px 0;border-bottom:3px solid transparent;color:var(--pt-navy);text-decoration:none}
-  .nav li a.on{border-bottom-color:var(--pt-orange)}
-  .nav li a:hover{border-bottom-color:currentColor}
-  @media (min-width:900px){ .nav{padding:18px 48px} .nav ul{display:flex} }
-
-  /* Six items since 20-Sep-2026 (David): the bar mirrors the desktop nav. flex:1 1 0 keeps them
-     on one row at 375px; the <390px step-down covers 320px screens. Matches petsolt-2026 theme.css. */
-  .mbar{position:fixed;bottom:0;left:0;right:0;z-index:60;background:var(--pt-navy);color:var(--pt-white);
-    display:flex;justify-content:space-between;gap:2px;padding:12px 8px 16px;margin:0;
-    font-family:var(--pt-d);font-weight:600;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
-  .mbar a{flex:1 1 0;min-width:0;white-space:nowrap;opacity:.75;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--pt-white);text-decoration:none}
-  .mbar a.on{opacity:1;color:var(--pt-orange)}
-  .mbar svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8}
-  @media (max-width:389px){ .mbar{font-size:11px;letter-spacing:.02em;padding-left:4px;padding-right:4px} .mbar svg{width:18px;height:18px} }
-  @media (min-width:900px){ .mbar{display:none} }
-
-  footer.site-footer{margin-top:56px;background:var(--pt-navy);color:var(--pt-white);font-family:var(--pt-d)}
-  footer.site-footer .wrap{max-width:1320px;margin:0 auto;padding:0 20px}
-  @media (min-width:900px){ footer.site-footer .wrap{padding:0 48px} }
-  footer.site-footer .in{display:grid;gap:28px;padding:56px 0 48px}
-  @media (min-width:900px){ footer.site-footer .in{grid-template-columns:200px 1fr 1fr;gap:56px;align-items:start} }
-  footer.site-footer img{width:160px;display:block}
-  footer.site-footer h4{margin:0 0 12px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
-  footer.site-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-weight:600}
-  footer.site-footer a{color:var(--pt-white);text-decoration:none}
-  footer.site-footer a:hover{opacity:.8}
-  footer.site-footer .tag{font-family:var(--pt-s);font-size:18px;opacity:.85;max-width:38ch;margin:0}
-  footer.site-footer .est{font-weight:900;letter-spacing:.14em;font-size:13px;margin-top:14px;opacity:.7}
-  footer.site-footer .bottom{border-top:1px solid rgba(255,255,255,.15);padding:18px 0 26px;font-size:13px;opacity:.7;
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-  footer.site-footer .cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-  @media (max-width:480px){ footer.site-footer .cols{grid-template-columns:1fr} }
-  footer.site-footer .sub{grid-column:1/-1;display:grid;gap:18px;border-top:1px solid rgba(255,255,255,.15);padding-top:34px;margin-top:8px}
-  @media (min-width:900px){ footer.site-footer .sub{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:56px;align-items:center} }
-  footer.site-footer .sub .tag{font-size:16px;max-width:44ch}
-  footer.site-footer a.subbtn{display:inline-block;height:48px;line-height:48px;padding:0 22px;background:var(--pt-orange);color:var(--pt-white);font:800 13px/48px var(--pt-d);letter-spacing:.08em;text-transform:uppercase}
-  footer.site-footer a.subbtn:hover{background:var(--pt-white);color:var(--pt-navy);opacity:1}
 </style>
+<link rel="stylesheet" href="petsolt.css">
 </head>
 <body>
 

@@ -177,13 +177,13 @@
   @media (min-width:900px){ body{padding-top:80px;padding-bottom:0} }
 
   .nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;
-    padding:14px 20px;background:var(--pt-navy);color:var(--pt-white);box-shadow:0 1px 0 rgba(255,255,255,.08);
+    padding:14px 20px;background:var(--pt-white);color:var(--pt-navy);box-shadow:0 1px 0 var(--pt-line);
     font-family:var(--pt-d)}
   .nav .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.06em;
-    text-transform:uppercase;font-size:15px;color:var(--pt-white);text-decoration:none}
+    text-transform:uppercase;font-size:15px;color:var(--pt-navy);text-decoration:none}
   .nav .brand img{width:44px;height:44px;display:block}
   .nav ul{display:none;list-style:none;gap:30px;margin:0;padding:0;font-weight:600;font-size:15px;letter-spacing:.02em}
-  .nav li a{padding:6px 0;border-bottom:3px solid transparent;color:var(--pt-white);text-decoration:none}
+  .nav li a{padding:6px 0;border-bottom:3px solid transparent;color:var(--pt-navy);text-decoration:none}
   .nav li a.on{border-bottom-color:var(--pt-orange)}
   .nav li a:hover{border-bottom-color:currentColor}
   @media (min-width:900px){ .nav{padding:18px 48px} .nav ul{display:flex} }
@@ -215,6 +215,11 @@
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
   footer.site-footer .cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
   @media (max-width:480px){ footer.site-footer .cols{grid-template-columns:1fr} }
+  footer.site-footer .sub{grid-column:1/-1;display:grid;gap:18px;border-top:1px solid rgba(255,255,255,.15);padding-top:34px;margin-top:8px}
+  @media (min-width:900px){ footer.site-footer .sub{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:56px;align-items:center} }
+  footer.site-footer .sub .tag{font-size:16px;max-width:44ch}
+  footer.site-footer a.subbtn{display:inline-block;height:48px;line-height:48px;padding:0 22px;background:var(--pt-orange);color:var(--pt-white);font:800 13px/48px var(--pt-d);letter-spacing:.08em;text-transform:uppercase}
+  footer.site-footer a.subbtn:hover{background:var(--pt-white);color:var(--pt-navy);opacity:1}
 </style>
 </head>
 <body>
@@ -790,8 +795,10 @@
   <div class="cols">
     <div><h4>Site</h4><ul><li><a href="https://petsolt.com/">Home</a></li><li><a href="https://petsolt.com/barcelona-visitors-guide/">Guide</a></li><li><a href="https://pages.davidpetsolt.com/barcelona-events.html">Events</a></li><li><a href="https://petsolt.com/blog/">Blogs</a></li><li><a href="https://petsolt.com/category/projects/">Projects</a></li><li><a href="https://pages.davidpetsolt.com/laliga-guide.html">LaLiga</a></li></ul></div>
     <div><h4>More</h4><ul><li><a href="https://petsolt.com/barcelona-visitors-guide/#say-hola">Say Hola</a></li><li><a href="https://petsolt.com/?s=">Search</a></li></ul></div>
-  </div></div>
-  <div class="bottom"><span>Petsolt.com, Barcelona</span><span>Photos on Leica and iPhone</span></div>
+  </div>
+  <div class="sub" id="subscribe"><div><h4>New posts by email</h4><p class="tag">A note when something new goes up. A few a month at most, and never anything else.</p></div><div><a class="subbtn" href="https://petsolt.com/#subscribe">Sign up on petsolt.com</a></div></div>
+  </div>
+  <div class="bottom"><span>© The Petsolt Family, Barcelona</span></div>
 </div></footer>
 
 <script>

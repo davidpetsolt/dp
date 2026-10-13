@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-12T21:24:33.271Z",
+  "updated": "2026-10-13T03:11:52.800Z",
   "d1": [
     {
       "rank": 1,
@@ -356,8 +356,7 @@
         "opp": "RC Deportivo La Coruña",
         "hm": false,
         "date": "2026-10-16T19:00:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 18,
@@ -378,8 +377,7 @@
         "opp": "Villarreal CF",
         "hm": false,
         "date": "2026-10-17T14:15:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 19,
@@ -449,8 +447,7 @@
         "opp": "Real Sociedad B",
         "hm": false,
         "date": "2026-10-17T12:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 2,
@@ -471,8 +468,7 @@
         "opp": "RCD Mallorca",
         "hm": true,
         "date": "2026-10-17T14:15Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 3,
@@ -619,8 +615,7 @@
         "opp": "AD Ceuta FC",
         "hm": false,
         "date": "2026-10-18T12:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 10,
@@ -641,8 +636,7 @@
         "opp": "Cádiz CF",
         "hm": true,
         "date": "2026-10-18T14:15Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 11,
@@ -663,8 +657,7 @@
         "opp": "CD Eldense",
         "hm": true,
         "date": "2026-10-18T16:30Z"
-      },
-      "mv": 6
+      }
     },
     {
       "rank": 12,
@@ -685,8 +678,7 @@
         "opp": "Celta Fortuna",
         "hm": false,
         "date": "2026-10-19T18:30Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 13,
@@ -707,8 +699,7 @@
         "opp": "CD Tenerife",
         "hm": true,
         "date": "2026-10-19T18:30Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 14,
@@ -729,8 +720,7 @@
         "opp": "Real Valladolid",
         "hm": false,
         "date": "2026-10-18T16:30Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 15,
@@ -751,8 +741,7 @@
         "opp": "CD Castellón",
         "hm": true,
         "date": "2026-10-17T19:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 16,
@@ -773,8 +762,7 @@
         "opp": "Córdoba CF",
         "hm": true,
         "date": "2026-10-16T18:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 17,
@@ -795,8 +783,7 @@
         "opp": "Girona FC",
         "hm": false,
         "date": "2026-10-18T16:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 18,

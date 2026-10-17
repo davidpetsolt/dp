@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-17T00:47:21.704Z",
+  "updated": "2026-10-17T08:44:32.402Z",
   "d1": [
     {
       "rank": 1,
@@ -699,8 +699,7 @@
         "opp": "SD Eibar",
         "hm": true,
         "date": "2026-10-24T12:00Z"
-      },
-      "mv": 5
+      }
     },
     {
       "rank": 14,
@@ -721,8 +720,7 @@
         "opp": "CD Tenerife",
         "hm": true,
         "date": "2026-10-19T18:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 15,
@@ -743,8 +741,7 @@
         "opp": "Real Valladolid",
         "hm": false,
         "date": "2026-10-18T16:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 16,
@@ -765,8 +762,7 @@
         "opp": "CD Castellón",
         "hm": true,
         "date": "2026-10-17T19:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 17,
@@ -787,8 +783,7 @@
         "opp": "RCD Mallorca",
         "hm": true,
         "date": "2026-10-24T14:15Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 18,
@@ -809,8 +804,7 @@
         "opp": "Girona FC",
         "hm": false,
         "date": "2026-10-18T16:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 19,

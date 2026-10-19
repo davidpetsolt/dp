@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-19T10:11:21.593Z",
+  "updated": "2026-10-19T18:50:04.762Z",
   "d1": [
     {
       "rank": 1,
@@ -696,9 +696,9 @@
         "date": "2026-10-12T19:00Z"
       },
       "next": {
-        "opp": "Celta Fortuna",
+        "opp": "CE Sabadell",
         "hm": false,
-        "date": "2026-10-19T18:30Z"
+        "date": "2026-10-25T13:00Z"
       }
     },
     {
@@ -738,9 +738,9 @@
         "date": "2026-10-10T19:00Z"
       },
       "next": {
-        "opp": "CD Tenerife",
-        "hm": true,
-        "date": "2026-10-19T18:30Z"
+        "opp": "Girona FC",
+        "hm": false,
+        "date": "2026-10-24T16:30Z"
       }
     },
     {

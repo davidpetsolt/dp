@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-20T01:17:42.572Z",
+  "updated": "2026-10-20T09:34:59.322Z",
   "d1": [
     {
       "rank": 1,
@@ -272,8 +272,7 @@
         "opp": "Elche CF",
         "hm": true,
         "date": "2026-10-24T12:00:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 14,
@@ -294,8 +293,7 @@
         "opp": "Athletic Club",
         "hm": false,
         "date": "2026-10-25T13:00:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 15,
@@ -316,8 +314,7 @@
         "opp": "Racing de Santander",
         "hm": false,
         "date": "2026-10-24T14:15:00Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 16,
@@ -681,8 +678,7 @@
         "opp": "CE Sabadell",
         "hm": false,
         "date": "2026-10-25T13:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 13,
@@ -703,8 +699,7 @@
         "opp": "Granada CF",
         "hm": false,
         "date": "2026-10-23T18:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 14,
@@ -725,8 +720,7 @@
         "opp": "Girona FC",
         "hm": false,
         "date": "2026-10-24T16:30Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 15,
@@ -747,8 +741,7 @@
         "opp": "SD Eibar",
         "hm": true,
         "date": "2026-10-24T12:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 16,

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-24T01:08:32.850Z",
+  "updated": "2026-10-24T09:02:54.350Z",
   "d1": [
     {
       "rank": 1,
@@ -510,8 +510,7 @@
         "opp": "CD Eldense",
         "hm": false,
         "date": "2026-11-01T13:00Z"
-      },
-      "mv": 3
+      }
     },
     {
       "rank": 5,
@@ -532,8 +531,7 @@
         "opp": "CD Castellón",
         "hm": false,
         "date": "2026-10-25T17:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 6,
@@ -554,8 +552,7 @@
         "opp": "Celta Fortuna",
         "hm": true,
         "date": "2026-10-24T16:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 7,
@@ -576,8 +573,7 @@
         "opp": "CD Leganés",
         "hm": false,
         "date": "2026-10-24T14:15Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 8,
@@ -957,8 +953,7 @@
         "opp": "Granada CF",
         "hm": false,
         "date": "2026-10-31T11:00Z"
-      },
-      "mv": 2
+      }
     },
     {
       "rank": 4,
@@ -979,8 +974,7 @@
         "opp": "Sevilla FC",
         "hm": true,
         "date": "2026-10-24T10:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 5,
@@ -1001,8 +995,7 @@
         "opp": "SD Eibar",
         "hm": false,
         "date": "2026-10-25T16:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 6,

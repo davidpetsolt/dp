@@ -22,7 +22,7 @@
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Rye&family=Zilla+Slab:wght@500;600&family=Space+Grotesk:wght@500;700&family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Rye&family=Zilla+Slab:wght@500;600&family=Space+Grotesk:wght@500;700&family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
       --paper: #efe9dc;
@@ -135,6 +135,16 @@
     .dates b { font-weight: 500; color: var(--ink); }
     .blurb { margin: 8px 0 0; font-size: 14px; color: var(--muted); line-height: 1.4; }
 
+    /* ─── Half-Ass Shenanigans: pool teal, David blue, orange sun, Bebas ─── */
+    .trip--has {
+      --card-bg: #57cecb;
+      --card-accent: #ff6000;
+      --card-title: #1b2352;
+    }
+    .trip--has .name { font-family: "Bebas Neue", "Anton", sans-serif; font-weight: 400; letter-spacing: .02em; text-transform: uppercase; }
+    .trip--has .body { border-left: 4px solid #008eff; }
+    .trip--has .kicker, .trip--has .dates, .trip--has .blurb { color: #1b2352; }
+
     /* ─── Japan: paper, vermilion hanko, indigo ─── */
     .trip--japan {
       --card-bg: #f2ece0;
@@ -199,6 +209,18 @@
     <!-- Cards carry data-start (ISO) so they can be added in any order; the page sorts newest first on load.
          Keep them in date-desc order here too so the no-JS render matches. -->
     <ul class="trips" id="trips">
+
+      <li>
+        <a class="trip trip--has" href="half-ass-shenanigans" data-start="2027-05-01">
+          <div class="icon"><img src="apple-touch-icon-has.png" alt="" width="96" height="96"></div>
+          <div class="body">
+            <p class="kicker">David &amp; Lilly · 13.1</p>
+            <h2 class="name">Half-Ass Shenanigans</h2>
+            <p class="dates"><b>2027</b> · somewhere far, still picking</p>
+            <p class="blurb">A destination half marathon, two runners, two cities. We don't do half-ass shenanigans.</p>
+          </div>
+        </a>
+      </li>
 
       <li>
         <a class="trip trip--japan" href="japan-2026" data-start="2026-11-20">

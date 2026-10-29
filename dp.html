@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>dp</title>
+  <link rel="icon" href="favicon-dp.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-dp-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-dp-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-dp.png">
+  <meta name="apple-mobile-web-app-title" content="dp">
+  <meta name="theme-color" content="#efe9dc">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Same paper-and-cards look as /trips. One card per page in the repo; trips collapse into /trips. */
+    :root {
+      --paper: #efe9dc;
+      --paper-2: #e3dbc8;
+      --card: #f7f2e7;
+      --ink: #1c1a17;
+      --muted: #6b655a;
+      --line: #d2c8b0;
+      --dp-blue: #1f96fc;
+      --dp-orange: #ff6000;
+    }
+    * { box-sizing: border-box; }
+    html { height: 100%; }
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--paper);
+      background-image: radial-gradient(var(--paper-2) 1px, transparent 1px);
+      background-size: 22px 22px;
+      color: var(--ink);
+      font-family: "Archivo", system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 0 16px 64px;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; }
+
+    header { padding: 56px 0 12px; display: flex; align-items: center; gap: 20px; }
+    header > img { width: 88px; height: 88px; border-radius: 50%; flex: none; box-shadow: 0 0 0 1px rgba(28,26,23,.14); }
+    .eyebrow {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 8px;
+    }
+    h1 {
+      font-family: "Anton", "Arial Narrow", sans-serif;
+      font-weight: 400;
+      font-size: clamp(48px, 12vw, 88px);
+      line-height: .92;
+      letter-spacing: .02em;
+      margin: 0;
+    }
+    .lede { color: var(--muted); font-size: 16px; margin: 12px 0 0; max-width: 46ch; }
+
+    h2.group {
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 36px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .pages { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+
+    .page {
+      display: grid;
+      grid-template-columns: 104px 1fr;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--card);
+      box-shadow: 0 1px 0 rgba(28,26,23,.06), 0 10px 30px -18px rgba(28,26,23,.35);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .page:hover, .page:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 1px 0 rgba(28,26,23,.06), 0 18px 36px -18px rgba(28,26,23,.45);
+      outline: none;
+    }
+    .page:focus-visible { box-shadow: 0 0 0 3px var(--accent); }
+
+    .icon { width: 104px; align-self: stretch; display: flex; align-items: center; justify-content: center; }
+    .icon img, .icon .tile {
+      width: 76px;
+      height: 76px;
+      display: block;
+      border-radius: 18px;
+      box-shadow: 0 0 0 1px rgba(28,26,23,.14), 0 2px 6px -3px rgba(28,26,23,.25);
+      object-fit: cover;
+    }
+    .icon .tile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent);
+      color: #fff;
+      font-family: "Anton", sans-serif;
+      font-size: 30px;
+      letter-spacing: .04em;
+    }
+
+    .body { padding: 16px 20px 16px 22px; min-width: 0; border-left: 4px solid var(--accent); }
+    .name { margin: 0; font-size: 24px; line-height: 1.1; font-weight: 600; }
+    .url {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      color: var(--muted);
+      margin: 6px 0 0;
+      overflow-wrap: anywhere;
+    }
+    .blurb { margin: 6px 0 0; font-size: 14px; color: var(--muted); line-height: 1.4; }
+    .lock {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-left: 6px;
+      vertical-align: 3px;
+    }
+
+    .page--trips { --accent: #ff6000; }
+    .page--worldcup { --accent: #a8822b; }
+    .page--skincare { --accent: #1b2352; }
+    .page--laliga { --accent: #1b2352; }
+    .page--events { --accent: #1f96fc; }
+    .page--vecindario { --accent: #e8590c; }
+    .page--leica { --accent: #c8102e; }
+
+    footer {
+      margin-top: 40px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 480px) {
+      header { padding-top: 40px; gap: 14px; }
+      header > img { width: 64px; height: 64px; }
+      .page { grid-template-columns: 84px 1fr; }
+      .icon { width: 84px; }
+      .icon img, .icon .tile { width: 60px; height: 60px; border-radius: 14px; font-size: 24px; }
+      .body { padding: 12px 14px 12px 16px; }
+      .name { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="apple-touch-icon-dp.png" alt="">
+      <div>
+        <p class="eyebrow">pages.davidpetsolt.com</p>
+        <h1>dp</h1>
+      </div>
+    </header>
+    <p class="lede">Every page on this site, in one place. Trips live on their own page.</p>
+
+    <!-- Add a card when a new page lands in the repo. Trips go on /trips, not here. -->
+
+    <h2 class="group">Family</h2>
+    <ul class="pages">
+      <li>
+        <a class="page page--trips" href="trips">
+          <div class="icon"><img src="apple-touch-icon-trips.png" alt="" width="76" height="76"></div>
+          <div class="body">
+            <h3 class="name">Trips</h3>
+            <p class="url">/trips</p>
+            <p class="blurb">Every trip site: Half-Ass Shenanigans, Japan, Texas, Budapest. Each one has its own password.</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a class="page page--worldcup" href="world-cup-2026">
+          <div class="icon"><img src="apple-touch-icon-worldcup.png" alt="" width="76" height="76"></div>
+          <div class="body">
+            <h3 class="name">The Petsolt Four</h3>
+            <p class="url">/world-cup-2026</p>
+            <p class="blurb">2026 FIFA World Cup family brackets. Four brackets, one verdict.</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a class="page page--skincare" href="skincare_routine">
+          <div class="icon"><span class="tile" aria-hidden="true">SK</span></div>
+          <div class="body">
+            <h3 class="name">Skincare routine <span class="lock">Locked</span></h3>
+            <p class="url">/skincare_routine</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+    <h2 class="group">Barcelona</h2>
+    <ul class="pages">
+      <li>
+        <a class="page page--laliga" href="laliga-guide">
+          <div class="icon"><img src="apple-touch-icon.png" alt="" width="76" height="76"></div>
+          <div class="body">
+            <h3 class="name">LaLiga Guide</h3>
+            <p class="url">/laliga-guide</p>
+            <p class="blurb">Daily snapshot of Spanish football: both men's divisions plus Liga F.</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a class="page page--events" href="barcelona-events">
+          <div class="icon"><img src="apple-touch-icon.png" alt="" width="76" height="76"></div>
+          <div class="body">
+            <h3 class="name">Barcelona Events</h3>
+            <p class="url">/barcelona-events</p>
+            <p class="blurb">What's on this weekend, ongoing now and coming up. Updated weekly.</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a class="page page--vecindario" href="vecindario/">
+          <div class="icon"><img src="vecindario/icon-180.png" alt="" width="76" height="76"></div>
+          <div class="body">
+            <h3 class="name">Vecindario</h3>
+            <p class="url">/vecindario</p>
+            <p class="blurb">Spanish conversation practice built around your actual Barcelona week.</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+    <h2 class="group">Kit</h2>
+    <ul class="pages">
+      <li>
+        <a class="page page--leica" href="leica_dlux8_presets">
+          <div class="icon"><span class="tile" aria-hidden="true">D8</span></div>
+          <div class="body">
+            <h3 class="name">D-Lux 8 presets</h3>
+            <p class="url">/leica_dlux8_presets</p>
+            <p class="blurb">David's Leica D-Lux 8 custom settings: Vivid Pop, Retro Blur, Belgrade Fade, B&amp;W Soft Calm.</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+    <footer>pages.davidpetsolt.com · not indexed</footer>
+  </div>
+</body>
+</html>

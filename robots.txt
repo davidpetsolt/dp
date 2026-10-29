@@ -5,6 +5,8 @@ Disallow: /world-cup-2026.html
 Disallow: /skincare_routine.html
 Disallow: /trips.html
 Disallow: /trips
+Disallow: /dp.html
+Disallow: /dp
 Allow: /barcelona-events.html
 Allow: /laliga-guide-2526.html
 Allow: /leica_dlux8_presets.html

@@ -144,6 +144,8 @@
     .trip--has .name { font-family: "Bebas Neue", "Anton", sans-serif; font-weight: 400; letter-spacing: .02em; text-transform: uppercase; }
     .trip--has .body { border-left: 4px solid #008eff; }
     .trip--has .kicker, .trip--has .dates, .trip--has .blurb { color: #1b2352; }
+    .trip--has .strike { position: relative; display: inline-block; }
+    .trip--has .strike::after { content: ""; position: absolute; left: -.04em; right: -.04em; top: 50%; height: .11em; background: #ff6000; transform: translateY(-50%) rotate(-2.5deg); pointer-events: none; }
 
     /* ─── Japan: paper, vermilion hanko, indigo ─── */
     .trip--japan {
@@ -215,7 +217,7 @@
           <div class="icon"><img src="apple-touch-icon-has.png" alt="" width="96" height="96"></div>
           <div class="body">
             <p class="kicker">David &amp; Lilly · 13.1</p>
-            <h2 class="name">Half-Ass Shenanigans</h2>
+            <h2 class="name"><span class="strike">Half-Ass</span> Shenanigans</h2>
             <p class="dates"><b>2027</b> · somewhere far, still picking</p>
             <p class="blurb">A destination half marathon, two runners, two cities. We don't do half-ass shenanigans.</p>
           </div>

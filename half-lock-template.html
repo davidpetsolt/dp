@@ -71,6 +71,8 @@
             .staticrypt-form .staticrypt-decrypt-button:hover, .staticrypt-form .staticrypt-decrypt-button:focus { box-shadow: 6px 6px 0 var(--ink); transform: translate(-2px, -2px); }
             .staticrypt-form .staticrypt-decrypt-button:active { box-shadow: none; transform: none; }
             .lock-footer { margin-top: 22px; font-family: "DM Mono", Menlo, monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+            .strike { position: relative; display: inline-block; }
+            .strike::after { content: ""; position: absolute; left: -.04em; right: -.04em; top: 50%; height: .11em; background: var(--orange); transform: translateY(-50%) rotate(-2.5deg); pointer-events: none; }
             .hidden { display: none !important; }
             .staticrypt-spinner-container { height: 100%; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--pool); }
             .staticrypt-spinner { display: inline-block; width: 2rem; height: 2rem; vertical-align: text-bottom; border: 0.25em solid var(--ink); border-right-color: var(--orange); border-radius: 50%; animation: spinner-border 0.75s linear infinite; }
@@ -110,7 +112,7 @@
 
 
                 <p class="lock-eyebrow">David &amp; Lilly · 2027</p>
-                <h1 class="lock-heading">/*[|template_title|]*/0</h1>
+                <h1 class="lock-heading"><span class="strike">Half-Ass</span><br>Shenanigans</h1>
 
                 <div class="staticrypt-form">
                     <div class="staticrypt-instructions">

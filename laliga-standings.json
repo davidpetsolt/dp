@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-30T10:59:05.765Z",
+  "updated": "2026-10-30T18:12:53.655Z",
   "d1": [
     {
       "rank": 1,
@@ -134,7 +134,7 @@
       "s": "conf",
       "p": 10,
       "gd": 3,
-      "form": "L,D,L,L,D",
+      "form": "D,L,L,D",
       "last": {
         "opp": "Málaga CF",
         "hm": true,
@@ -155,7 +155,7 @@
       "s": "mid",
       "p": 9,
       "gd": 3,
-      "form": "D,D,D,L,W",
+      "form": "D,D,L,W",
       "last": {
         "opp": "Getafe CF",
         "hm": true,
@@ -323,7 +323,7 @@
       "s": "mid",
       "p": 9,
       "gd": -8,
-      "form": "W,D,D,D,L",
+      "form": "D,D,L",
       "last": {
         "opp": "Elche CF",
         "hm": true,
@@ -365,7 +365,7 @@
       "s": "rel",
       "p": 10,
       "gd": -2,
-      "form": "L,L,D,L,L",
+      "form": "L,D,L,L",
       "last": {
         "opp": "Racing de Santander",
         "hm": false,
@@ -386,7 +386,7 @@
       "s": "rel",
       "p": 10,
       "gd": -10,
-      "form": "W,L,D,D,L",
+      "form": "L,D,D,L",
       "last": {
         "opp": "Villarreal CF",
         "hm": true,

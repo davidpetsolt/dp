@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-31T01:51:20.947Z",
+  "updated": "2026-10-31T10:32:23.286Z",
   "d1": [
     {
       "rank": 1,
@@ -251,8 +251,7 @@
         "opp": "RC Deportivo La Coruña",
         "hm": true,
         "date": "2026-11-07T15:15:00Z"
-      },
-      "mv": 6
+      }
     },
     {
       "rank": 13,
@@ -273,8 +272,7 @@
         "opp": "RC Deportivo La Coruña",
         "hm": false,
         "date": "2026-11-02T20:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 14,
@@ -295,8 +293,7 @@
         "opp": "Real Madrid",
         "hm": true,
         "date": "2026-11-01T15:15:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 15,
@@ -317,8 +314,7 @@
         "opp": "Atlético de Madrid",
         "hm": true,
         "date": "2026-10-31T13:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 16,
@@ -339,8 +335,7 @@
         "opp": "Valencia CF",
         "hm": true,
         "date": "2026-11-01T17:30:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 17,
@@ -361,8 +356,7 @@
         "opp": "RC Celta de Vigo",
         "hm": true,
         "date": "2026-10-31T15:15:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 18,
@@ -383,8 +377,7 @@
         "opp": "Sevilla FC",
         "hm": true,
         "date": "2026-11-01T13:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 19,

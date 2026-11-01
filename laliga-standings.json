@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-01T01:29:27.444Z",
+  "updated": "2026-11-01T11:27:01.779Z",
   "d1": [
     {
       "rank": 1,
@@ -20,8 +20,7 @@
         "opp": "Atlético de Madrid",
         "hm": false,
         "date": "2026-11-08T20:00:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 2,
@@ -42,8 +41,7 @@
         "opp": "FC Barcelona",
         "hm": true,
         "date": "2026-11-08T20:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 3,
@@ -148,8 +146,7 @@
         "opp": "Real Sociedad",
         "hm": true,
         "date": "2026-11-01T20:00:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 8,
@@ -170,8 +167,7 @@
         "opp": "Getafe CF",
         "hm": true,
         "date": "2026-11-08T17:30:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 9,
@@ -192,8 +188,7 @@
         "opp": "Levante UD",
         "hm": true,
         "date": "2026-11-08T17:30:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 10,
@@ -214,8 +209,7 @@
         "opp": "Sevilla FC",
         "hm": false,
         "date": "2026-11-06T20:00:00Z"
-      },
-      "mv": -3
+      }
     },
     {
       "rank": 11,
@@ -747,8 +741,7 @@
         "opp": "Burgos CF",
         "hm": false,
         "date": "2026-11-07T13:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 16,
@@ -769,8 +762,7 @@
         "opp": "CD Leganés",
         "hm": true,
         "date": "2026-11-02T17:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 17,
@@ -875,8 +867,7 @@
         "opp": "CD Leganés",
         "hm": false,
         "date": "2026-11-07T17:30Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 22,
@@ -897,8 +888,7 @@
         "opp": "Sporting Gijón",
         "hm": true,
         "date": "2026-11-01T15:15Z"
-      },
-      "mv": -1
+      }
     }
   ],
   "f": [
@@ -963,8 +953,7 @@
         "opp": "FC Barcelona",
         "hm": false,
         "date": "2026-11-08T15:00Z"
-      },
-      "mv": 2
+      }
     },
     {
       "rank": 4,
@@ -985,8 +974,7 @@
         "opp": "FC Badalona Women",
         "hm": true,
         "date": "2026-11-09T18:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 5,
@@ -1007,8 +995,7 @@
         "opp": "Costa Adeje Tenerife",
         "hm": false,
         "date": "2026-11-02T19:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 6,
@@ -1131,9 +1118,9 @@
         "date": "2026-10-24T10:00Z"
       },
       "next": {
-        "opp": "Deportivo Alavés",
+        "opp": "SD Eibar",
         "hm": false,
-        "date": "2026-11-01T11:00Z"
+        "date": "2026-11-07T16:15Z"
       }
     },
     {
@@ -1215,9 +1202,9 @@
         "date": "2026-10-25T11:45Z"
       },
       "next": {
-        "opp": "Real Sociedad",
-        "hm": true,
-        "date": "2026-11-01T11:00Z"
+        "opp": "Costa Adeje Tenerife",
+        "hm": false,
+        "date": "2026-11-08T12:00Z"
       }
     },
     {

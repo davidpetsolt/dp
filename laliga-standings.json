@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-02T01:50:45.386Z",
+  "updated": "2026-11-02T12:47:32.341Z",
   "d1": [
     {
       "rank": 1,
@@ -314,8 +314,7 @@
         "opp": "RC Deportivo La Coruña",
         "hm": false,
         "date": "2026-11-02T20:00:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 16,
@@ -336,8 +335,7 @@
         "opp": "Málaga CF",
         "hm": false,
         "date": "2026-11-07T13:00:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 17,
@@ -358,8 +356,7 @@
         "opp": "Real Betis",
         "hm": true,
         "date": "2026-11-08T13:00:00Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 18,
@@ -997,7 +994,7 @@
       "next": {
         "opp": "Costa Adeje Tenerife",
         "hm": false,
-        "date": "2026-11-02T19:00Z"
+        "date": "2026-11-02T20:00Z"
       }
     },
     {
@@ -1081,7 +1078,7 @@
       "next": {
         "opp": "Athletic Club",
         "hm": true,
-        "date": "2026-11-02T19:00Z"
+        "date": "2026-11-02T20:00Z"
       }
     },
     {

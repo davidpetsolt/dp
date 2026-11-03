@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-03T12:14:25.760Z",
+  "updated": "2026-11-03T19:50:03.619Z",
   "d1": [
     {
       "rank": 1,
@@ -8,7 +8,7 @@
       "s": "cl",
       "p": 11,
       "gd": 34,
-      "form": "W,W,W,L,W",
+      "form": "W,W,L,W",
       "last": {
         "opp": "Deportivo Alavés",
         "hm": true,
@@ -113,7 +113,7 @@
       "s": "el",
       "p": 11,
       "gd": -2,
-      "form": "L,D,L,W,L",
+      "form": "D,L,W,L",
       "last": {
         "opp": "Getafe CF",
         "hm": false,
@@ -134,7 +134,7 @@
       "s": "conf",
       "p": 10,
       "gd": 4,
-      "form": "D,D,L,W,W",
+      "form": "D,L,W,W",
       "last": {
         "opp": "Real Sociedad",
         "hm": true,
@@ -197,7 +197,7 @@
       "s": "mid",
       "p": 11,
       "gd": 0,
-      "form": "W,D,W,D,L",
+      "form": "D,W,D,L",
       "last": {
         "opp": "Rayo Vallecano",
         "hm": false,
@@ -218,7 +218,7 @@
       "s": "mid",
       "p": 11,
       "gd": -2,
-      "form": "D,L,L,D,L",
+      "form": "L,L,D,L",
       "last": {
         "opp": "FC Barcelona",
         "hm": false,
@@ -323,7 +323,7 @@
       "s": "mid",
       "p": 11,
       "gd": -14,
-      "form": "L,D,L,W,L",
+      "form": "D,L,W,L",
       "last": {
         "opp": "Real Madrid",
         "hm": true,
@@ -985,7 +985,7 @@
       "gd": 2,
       "form": "W,D,W,D,L",
       "last": {
-        "opp": "Costa Adeje Tenerife",
+        "opp": "CD Tenerife",
         "hm": false,
         "gf": 0,
         "ga": 2,
@@ -999,7 +999,7 @@
     },
     {
       "rank": 6,
-      "name": "Costa Adeje Tenerife",
+      "name": "CD Tenerife",
       "pts": 14,
       "s": "mid",
       "p": 9,
@@ -1181,7 +1181,7 @@
         "date": "2026-11-01T11:00Z"
       },
       "next": {
-        "opp": "Costa Adeje Tenerife",
+        "opp": "CD Tenerife",
         "hm": false,
         "date": "2026-11-08T12:00Z"
       }

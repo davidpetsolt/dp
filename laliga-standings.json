@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-04T02:45:04.007Z",
+  "updated": "2026-11-04T12:25:58.322Z",
   "d1": [
     {
       "rank": 1,
@@ -260,7 +260,7 @@
       "s": "mid",
       "p": 11,
       "gd": -8,
-      "form": "W,L,D,L,W",
+      "form": "L,D,L,W",
       "last": {
         "opp": "Sevilla FC",
         "hm": true,
@@ -407,7 +407,7 @@
       "s": "rel",
       "p": 11,
       "gd": -13,
-      "form": "L,D,L,D,L",
+      "form": "D,L,D,L",
       "last": {
         "opp": "Real Betis",
         "hm": false,

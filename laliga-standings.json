@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-04T12:25:58.322Z",
+  "updated": "2026-11-04T20:02:05.100Z",
   "d1": [
     {
       "rank": 1,
@@ -29,7 +29,7 @@
       "s": "cl",
       "p": 11,
       "gd": 14,
-      "form": "W,W,W,W,W",
+      "form": "W,W,W,W",
       "last": {
         "opp": "Levante UD",
         "hm": false,
@@ -50,7 +50,7 @@
       "s": "cl",
       "p": 11,
       "gd": 18,
-      "form": "L,W,W,W,W",
+      "form": "W,W,W,W",
       "last": {
         "opp": "Racing de Santander",
         "hm": false,
@@ -71,7 +71,7 @@
       "s": "cl",
       "p": 11,
       "gd": 3,
-      "form": "D,W,L,D,W",
+      "form": "W,L,D,W",
       "last": {
         "opp": "Málaga CF",
         "hm": true,
@@ -92,7 +92,7 @@
       "s": "el",
       "p": 11,
       "gd": 0,
-      "form": "W,W,W,W,L",
+      "form": "W,W,W,L",
       "last": {
         "opp": "Athletic Club",
         "hm": false,
@@ -155,7 +155,7 @@
       "s": "mid",
       "p": 11,
       "gd": 1,
-      "form": "D,L,D,L,W",
+      "form": "L,D,L,W",
       "last": {
         "opp": "CA Osasuna",
         "hm": true,
@@ -176,7 +176,7 @@
       "s": "mid",
       "p": 11,
       "gd": 0,
-      "form": "W,L,D,W,L",
+      "form": "L,D,W,L",
       "last": {
         "opp": "RCD Espanyol",
         "hm": true,
@@ -386,7 +386,7 @@
       "s": "rel",
       "p": 11,
       "gd": -9,
-      "form": "L,D,D,L,W",
+      "form": "D,D,L,W",
       "last": {
         "opp": "Elche CF",
         "hm": false,
@@ -498,18 +498,18 @@
       "s": "plo",
       "p": 12,
       "gd": 6,
-      "form": "W,W,W,W,W",
+      "form": "W,W,W,W,D",
       "last": {
-        "opp": "CD Eldense",
-        "hm": false,
-        "gf": 2,
-        "ga": 0,
-        "date": "2026-11-01T13:00Z"
-      },
-      "next": {
         "opp": "CD Tenerife",
         "hm": true,
+        "gf": 0,
+        "ga": 0,
         "date": "2026-11-07T20:00Z"
+      },
+      "next": {
+        "opp": "UD Las Palmas",
+        "hm": true,
+        "date": "2026-11-15T15:15Z"
       }
     },
     {
@@ -519,18 +519,18 @@
       "s": "plo",
       "p": 12,
       "gd": 8,
-      "form": "D,W,D,D,W",
+      "form": "W,D,D,W,D",
       "last": {
-        "opp": "Cádiz CF",
-        "hm": true,
-        "gf": 2,
-        "ga": 1,
-        "date": "2026-11-02T20:00Z"
-      },
-      "next": {
         "opp": "FC Andorra",
         "hm": false,
+        "gf": 0,
+        "ga": 0,
         "date": "2026-11-08T13:00Z"
+      },
+      "next": {
+        "opp": "Córdoba CF",
+        "hm": true,
+        "date": "2026-11-14T17:30Z"
       }
     },
     {
@@ -708,18 +708,18 @@
       "s": "mid",
       "p": 12,
       "gd": -2,
-      "form": "L,D,D,D,D",
+      "form": "D,D,D,D,D",
       "last": {
-        "opp": "FC Andorra",
-        "hm": true,
-        "gf": 2,
-        "ga": 2,
-        "date": "2026-11-02T13:00Z"
-      },
-      "next": {
         "opp": "Granada CF",
         "hm": false,
+        "gf": 0,
+        "ga": 0,
         "date": "2026-11-07T20:00Z"
+      },
+      "next": {
+        "opp": "AD Ceuta FC",
+        "hm": true,
+        "date": "2026-11-15T13:00Z"
       }
     },
     {
@@ -792,18 +792,18 @@
       "s": "mid",
       "p": 12,
       "gd": -5,
-      "form": "D,W,L,L,D",
+      "form": "W,L,L,D,D",
       "last": {
-        "opp": "CD Tenerife",
-        "hm": false,
-        "gf": 2,
-        "ga": 2,
-        "date": "2026-11-02T13:00Z"
-      },
-      "next": {
         "opp": "RCD Mallorca",
         "hm": true,
+        "gf": 0,
+        "ga": 0,
         "date": "2026-11-08T13:00Z"
+      },
+      "next": {
+        "opp": "UD Almería",
+        "hm": false,
+        "date": "2026-11-14T17:30Z"
       }
     },
     {

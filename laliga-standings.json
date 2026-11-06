@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-06T12:22:49.296Z",
+  "updated": "2026-11-06T19:41:31.665Z",
   "d1": [
     {
       "rank": 1,
@@ -435,18 +435,18 @@
       "s": "aup",
       "p": 12,
       "gd": 18,
-      "form": "D,L,W,W,D",
+      "form": "L,W,W,D,D",
       "last": {
-        "opp": "Burgos CF",
-        "hm": false,
-        "gf": 1,
-        "ga": 1,
-        "date": "2026-11-01T17:30Z"
-      },
-      "next": {
         "opp": "SD Eibar",
         "hm": true,
+        "gf": 0,
+        "ga": 0,
         "date": "2026-11-06T19:30Z"
+      },
+      "next": {
+        "opp": "Real Valladolid",
+        "hm": false,
+        "date": "2026-11-14T13:00Z"
       }
     },
     {
@@ -477,18 +477,18 @@
       "s": "plo",
       "p": 12,
       "gd": 7,
-      "form": "W,L,D,L,D",
+      "form": "L,D,L,D,D",
       "last": {
-        "opp": "UD Almería",
-        "hm": true,
-        "gf": 1,
-        "ga": 1,
-        "date": "2026-10-31T15:15Z"
-      },
-      "next": {
         "opp": "CD Castellón",
         "hm": false,
+        "gf": 0,
+        "ga": 0,
         "date": "2026-11-06T19:30Z"
+      },
+      "next": {
+        "opp": "Cádiz CF",
+        "hm": true,
+        "date": "2026-11-15T17:30Z"
       }
     },
     {
@@ -1004,18 +1004,18 @@
       "s": "mid",
       "p": 9,
       "gd": 0,
-      "form": "W,W,W,L,W",
+      "form": "W,W,L,W,D",
       "last": {
-        "opp": "Athletic Club",
-        "hm": true,
-        "gf": 2,
-        "ga": 0,
-        "date": "2026-11-02T20:00Z"
-      },
-      "next": {
         "opp": "Deportivo Alavés",
         "hm": true,
+        "gf": 0,
+        "ga": 0,
         "date": "2026-11-08T12:00Z"
+      },
+      "next": {
+        "opp": "RCD Espanyol",
+        "hm": false,
+        "date": "2026-11-14T11:00Z"
       }
     },
     {
@@ -1057,7 +1057,7 @@
       "next": {
         "opp": "Real Sociedad",
         "hm": true,
-        "date": "2026-11-07T16:15Z"
+        "date": "2026-11-07T16:00Z"
       }
     },
     {
@@ -1120,7 +1120,7 @@
       "next": {
         "opp": "SD Eibar",
         "hm": false,
-        "date": "2026-11-07T16:15Z"
+        "date": "2026-11-07T16:00Z"
       }
     },
     {
@@ -1172,18 +1172,18 @@
       "s": "mid",
       "p": 9,
       "gd": -7,
-      "form": "L,L,D,L,D",
+      "form": "L,D,L,D,D",
       "last": {
-        "opp": "Real Sociedad",
-        "hm": true,
-        "gf": 1,
-        "ga": 1,
-        "date": "2026-11-01T11:00Z"
-      },
-      "next": {
         "opp": "CD Tenerife",
         "hm": false,
+        "gf": 0,
+        "ga": 0,
         "date": "2026-11-08T12:00Z"
+      },
+      "next": {
+        "opp": "SD Eibar",
+        "hm": true,
+        "date": "2026-11-14T17:00Z"
       }
     },
     {

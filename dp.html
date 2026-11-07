@@ -115,7 +115,7 @@
     }
     .page:focus-visible { box-shadow: 0 0 0 3px var(--accent); }
 
-    .icon { width: 104px; align-self: stretch; display: flex; align-items: center; justify-content: center; }
+    .icon { width: 104px; align-self: stretch; display: flex; align-items: center; justify-content: center; padding: 12px 0; }
     .icon img, .icon .tile {
       width: 72px;
       height: 72px;
@@ -160,6 +160,8 @@
       vertical-align: 4px;
     }
 
+    /* Skincare stays blue in the orange Personal section: calmer. */
+    .page--skincare { --accent: var(--dp-blue); --accent-text: var(--dp-blue-text); }
     .icon .tile--smile { font-family: "IBM Plex Mono", monospace; font-weight: 500; font-size: 24px; letter-spacing: 0; transform: rotate(90deg); border-radius: 18px; }
 
     /* Active trips under the Trips card: small icons, in columns. */

@@ -70,6 +70,19 @@
     }
     .lede { color: var(--muted); font-size: 16px; margin: 12px 0 0; max-width: 46ch; }
 
+    .section {
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 28px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section[hidden] { display: none; }
+
     .trips { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
 
     .trip {
@@ -205,27 +218,17 @@
     <header>
       <p class="eyebrow">Petsolt · family</p>
       <h1>Trips</h1>
-      <p class="lede">Every trip site in one place, newest first. Each one has its own password.</p>
+      <p class="lede">Every trip site in one place: what's coming up, then where we've been. Each one has its own password.</p>
     </header>
 
-    <!-- Cards carry data-start (ISO) so they can be added in any order; the page sorts newest first on load.
-         Keep them in date-desc order here too so the no-JS render matches. -->
-    <ul class="trips" id="trips">
+    <!-- Cards carry data-start / data-end (ISO). On load the page puts trips that have not ended under Current
+         (soonest first) and the rest under Past (most recent first), so cards can be added anywhere.
+         The order here is the no-JS fallback; it was right on 07-Nov-2026. -->
+    <h2 class="section" id="current-head">Current</h2>
+    <ul class="trips" id="current">
 
       <li>
-        <a class="trip trip--has" href="half" data-start="2027-05-01">
-          <div class="icon"><img src="apple-touch-icon-has.png" alt="" width="96" height="96"></div>
-          <div class="body">
-            <p class="kicker">David &amp; Lilly · 13.1</p>
-            <h2 class="name"><span class="strike">Half-Ass</span> Shenanigans</h2>
-            <p class="dates"><b>2027</b> · somewhere far, still picking</p>
-            <p class="blurb">A destination half marathon, two runners, two cities. We don't do half-ass shenanigans.</p>
-          </div>
-        </a>
-      </li>
-
-      <li>
-        <a class="trip trip--japan" href="japan-2026" data-start="2026-11-20">
+        <a class="trip trip--japan" href="japan-2026" data-start="2026-11-20" data-end="2026-11-30">
           <div class="icon"><img src="apple-touch-icon-japan.png" alt="" width="96" height="96"></div>
           <div class="body">
             <p class="kicker">Tokyo · Hakone · Kyoto</p>
@@ -237,7 +240,24 @@
       </li>
 
       <li>
-        <a class="trip trip--texas" href="texas-2026" data-start="2026-08-25">
+        <a class="trip trip--has" href="half" data-start="2027-05-01" data-end="2027-05-01">
+          <div class="icon"><img src="apple-touch-icon-has.png" alt="" width="96" height="96"></div>
+          <div class="body">
+            <p class="kicker">David &amp; Lilly · 13.1</p>
+            <h2 class="name"><span class="strike">Half-Ass</span> Shenanigans</h2>
+            <p class="dates"><b>2027</b> · somewhere far, still picking</p>
+            <p class="blurb">A destination half marathon, two runners, two cities. We don't do half-ass shenanigans.</p>
+          </div>
+        </a>
+      </li>
+
+    </ul>
+
+    <h2 class="section" id="past-head">Past</h2>
+    <ul class="trips" id="past">
+
+      <li>
+        <a class="trip trip--texas" href="texas-2026" data-start="2026-08-25" data-end="2026-09-01">
           <div class="icon"><img src="apple-touch-icon-texas.png" alt="" width="96" height="96"></div>
           <div class="body">
             <p class="kicker">Cam &amp; Dad</p>
@@ -249,7 +269,7 @@
       </li>
 
       <li>
-        <a class="trip trip--budapest" href="budapest-2026" data-start="2026-07-23">
+        <a class="trip trip--budapest" href="budapest-2026" data-start="2026-07-23" data-end="2026-07-27">
           <div class="icon"><img src="budapest-2026-icon.png" alt="" width="96" height="96"></div>
           <div class="body">
             <p class="kicker">Hungarian Grand Prix</p>
@@ -269,16 +289,22 @@
   </div>
 
   <script>
-    // Sort cards newest-first by data-start, so new cards can be appended anywhere.
+    // Current = trips that have not ended yet, soonest start first. Past = ended, most recent end first.
     (function () {
-      var list = document.getElementById('trips');
-      var items = Array.prototype.slice.call(list.children);
-      items.sort(function (a, b) {
-        var da = a.querySelector('[data-start]').getAttribute('data-start');
-        var db = b.querySelector('[data-start]').getAttribute('data-start');
-        return da < db ? 1 : da > db ? -1 : 0;
-      });
-      items.forEach(function (li) { list.appendChild(li); });
+      var now = new Date();
+      var today = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+      var current = document.getElementById('current');
+      var past = document.getElementById('past');
+      var items = Array.prototype.slice.call(current.children).concat(Array.prototype.slice.call(past.children));
+      function attr(li, name) { var a = li.querySelector('[data-start]'); return a.getAttribute(name) || a.getAttribute('data-start'); }
+      var cur = items.filter(function (li) { return attr(li, 'data-end') >= today; });
+      var old = items.filter(function (li) { return attr(li, 'data-end') < today; });
+      cur.sort(function (a, b) { return attr(a, 'data-start') < attr(b, 'data-start') ? -1 : 1; });
+      old.sort(function (a, b) { return attr(a, 'data-end') > attr(b, 'data-end') ? -1 : 1; });
+      cur.forEach(function (li) { current.appendChild(li); });
+      old.forEach(function (li) { past.appendChild(li); });
+      document.getElementById('current-head').hidden = current.hidden = !cur.length;
+      document.getElementById('past-head').hidden = past.hidden = !old.length;
     })();
   </script>
 </body>

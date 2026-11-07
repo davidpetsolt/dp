@@ -70,7 +70,6 @@
       margin: 0;
       overflow-wrap: anywhere;
     }
-    .lede { color: var(--muted); font-size: 16px; margin: 16px 0 0; max-width: 52ch; }
 
     /* Section heads: an accent bar, then the name in the section colour. */
     h2.group {
@@ -161,6 +160,31 @@
       vertical-align: 4px;
     }
 
+    .icon .tile--smile { font-family: "IBM Plex Mono", monospace; font-weight: 500; font-size: 24px; letter-spacing: 0; transform: rotate(90deg); border-radius: 18px; }
+
+    /* Active trips under the Trips card: small icons, in columns. */
+    .trips-mini { list-style: none; margin: 10px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+    .trips-mini[hidden], .trips-mini li[hidden] { display: none; }
+    .trip-mini {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px 10px 10px;
+      text-decoration: none;
+      color: inherit;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 6px 18px -16px rgba(13,29,64,.5);
+      transition: transform .15s ease, border-color .15s ease;
+    }
+    .trip-mini:hover, .trip-mini:focus-visible { transform: translateY(-2px); border-color: var(--accent); outline: none; }
+    .trip-mini:focus-visible { box-shadow: 0 0 0 3px var(--accent); }
+    .trip-mini img { width: 44px; height: 44px; border-radius: 11px; flex: none; box-shadow: 0 0 0 1px rgba(13,29,64,.12); }
+    .trip-mini span { display: flex; flex-direction: column; min-width: 0; }
+    .trip-mini b { font-weight: 600; font-size: 15px; line-height: 1.2; }
+    .trip-mini small { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--accent-text); margin-top: 2px; }
+
     /* Past: still findable, deliberately quieter. */
     .pages.past .page { box-shadow: none; background: rgba(255,255,255,.6); }
     .pages.past .icon img { filter: saturate(.6); }
@@ -184,6 +208,9 @@
       .page { grid-template-columns: 80px 1fr; }
       .icon { width: 80px; }
       .icon img, .icon .tile { width: 56px; height: 56px; border-radius: 14px; font-size: 22px; }
+      .icon .tile--smile { font-size: 20px; }
+      .trips-mini { grid-template-columns: 1fr 1fr; }
+      .trip-mini { flex-direction: column; align-items: flex-start; gap: 8px; padding: 10px; }
       .body { padding: 12px 14px 12px 2px; }
       .name { font-size: 19px; }
     }
@@ -195,7 +222,6 @@
       <h1><img src="apple-touch-icon-dp.png" alt="dp"></h1>
       <p class="eyebrow">pages.davidpetsolt.com</p>
     </header>
-    <p class="lede">My directory: every page on this site, plus the artifacts I use most. Trips live on their own page.</p>
 
     <!-- Add a card when a new page lands in the repo, or an artifact becomes a regular. Trips go on /trips, not here.
          Finished things move to Past rather than being removed. -->
@@ -206,9 +232,9 @@
         <a class="page page--cos" href="https://claude.ai/artifact/7N7MKK9zQfkLPCZtRgoZd5" target="_blank" rel="noopener">
           <div class="icon"><span class="tile" aria-hidden="true">COS</span></div>
           <div class="body">
-            <h3 class="name">COS Board <span class="lock">Artifact</span></h3>
+            <h3 class="name">Chief of Staff <span class="lock">Artifact</span></h3>
             <p class="url">claude.ai artifact</p>
-            <p class="blurb">Chief of Staff board: what is waiting on me, on Claude, and on the team.</p>
+            <p class="blurb">The COS board: what is waiting on me, on Claude, and on the team.</p>
           </div>
         </a>
       </li>
@@ -237,16 +263,6 @@
         </a>
       </li>
       <li>
-        <a class="page page--laliga" href="laliga-guide">
-          <div class="icon"><img src="apple-touch-icon.png" alt="" width="76" height="76"></div>
-          <div class="body">
-            <h3 class="name">LaLiga Guide</h3>
-            <p class="url">/laliga-guide</p>
-            <p class="blurb">Daily snapshot of Spanish football: both men's divisions plus Liga F.</p>
-          </div>
-        </a>
-      </li>
-      <li>
         <a class="page page--events" href="barcelona-events">
           <div class="icon"><img src="apple-touch-icon.png" alt="" width="76" height="76"></div>
           <div class="body">
@@ -256,9 +272,19 @@
           </div>
         </a>
       </li>
+      <li>
+        <a class="page page--laliga" href="laliga-guide">
+          <div class="icon"><img src="apple-touch-icon.png" alt="" width="76" height="76"></div>
+          <div class="body">
+            <h3 class="name">LaLiga Guide</h3>
+            <p class="url">/laliga-guide</p>
+            <p class="blurb">Daily snapshot of Spanish football: both men's divisions plus Liga F.</p>
+          </div>
+        </a>
+      </li>
     </ul>
 
-    <h2 class="group blue">Family</h2>
+    <h2 class="group blue">Trips</h2>
     <ul class="pages blue">
       <li>
         <a class="page page--trips" href="trips">
@@ -270,19 +296,35 @@
           </div>
         </a>
       </li>
+    </ul>
+    <!-- Active trips: soonest first. Each carries data-end; once it has passed the trip hides itself.
+         Add new trips here as well as on /trips. -->
+    <ul class="trips-mini blue" id="active-trips">
+      <li data-end="2026-11-30">
+        <a class="trip-mini trip-mini--japan" href="japan-2026">
+          <img src="apple-touch-icon-japan.png" alt="" width="44" height="44">
+          <span><b>Japan</b><small>20-Nov to 30-Nov-2026</small></span>
+        </a>
+      </li>
+      <li data-end="2027-05-01">
+        <a class="trip-mini trip-mini--has" href="half">
+          <img src="apple-touch-icon-has.png" alt="" width="44" height="44">
+          <span><b>Half-Ass Shenanigans</b><small>2027 · still picking</small></span>
+        </a>
+      </li>
+    </ul>
+
+    <h2 class="group orange">Personal</h2>
+    <ul class="pages orange">
       <li>
         <a class="page page--skincare" href="skincare_routine">
-          <div class="icon"><span class="tile" aria-hidden="true">SK</span></div>
+          <div class="icon"><span class="tile tile--smile" aria-hidden="true">:-)</span></div>
           <div class="body">
             <h3 class="name">Skincare routine <span class="lock">Locked</span></h3>
             <p class="url">/skincare_routine</p>
           </div>
         </a>
       </li>
-    </ul>
-
-    <h2 class="group orange">Kit</h2>
-    <ul class="pages orange">
       <li>
         <a class="page page--leica" href="leica_dlux8_presets">
           <div class="icon"><img src="apple-touch-icon-leica.png" alt="" width="76" height="76"></div>
@@ -311,5 +353,20 @@
 
     <footer>pages.davidpetsolt.com · not indexed</footer>
   </div>
+
+  <script>
+    // Hide trips that have ended; hide the whole row if none are left.
+    (function () {
+      var now = new Date();
+      var today = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+      var list = document.getElementById('active-trips');
+      var left = 0;
+      Array.prototype.forEach.call(list.children, function (li) {
+        li.hidden = li.getAttribute('data-end') < today;
+        if (!li.hidden) left++;
+      });
+      list.hidden = !left;
+    })();
+  </script>
 </body>
 </html>

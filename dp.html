@@ -59,23 +59,16 @@
       border-bottom: 8px solid var(--dp-orange);
       box-shadow: 0 18px 40px -24px rgba(10,111,209,.7);
     }
-    header > img { width: 92px; height: 92px; border-radius: 50%; flex: none; background: #fff; box-shadow: 0 0 0 4px #fff; }
+    h1 { margin: 0; line-height: 0; flex: none; }
+    h1 img { width: 104px; height: 104px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px #fff; }
     .eyebrow {
       font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
+      font-size: 15px;
       letter-spacing: .18em;
       text-transform: uppercase;
       color: #fff;
-      margin: 0 0 6px;
-    }
-    h1 {
-      font-family: "Anton", "Arial Narrow", sans-serif;
-      font-weight: 400;
-      font-size: clamp(56px, 13vw, 96px);
-      line-height: .9;
-      letter-spacing: .02em;
       margin: 0;
-      color: #fff;
+      overflow-wrap: anywhere;
     }
     .lede { color: var(--muted); font-size: 16px; margin: 16px 0 0; max-width: 52ch; }
 
@@ -186,7 +179,8 @@
 
     @media (max-width: 480px) {
       header { margin-top: 20px; padding: 20px 18px 18px; gap: 14px; border-radius: 18px; }
-      header > img { width: 64px; height: 64px; }
+      h1 img { width: 72px; height: 72px; }
+      .eyebrow { font-size: 12px; letter-spacing: .14em; }
       .page { grid-template-columns: 80px 1fr; }
       .icon { width: 80px; }
       .icon img, .icon .tile { width: 56px; height: 56px; border-radius: 14px; font-size: 22px; }
@@ -198,11 +192,8 @@
 <body>
   <div class="wrap">
     <header>
-      <img src="apple-touch-icon-dp.png" alt="">
-      <div>
-        <p class="eyebrow">pages.davidpetsolt.com</p>
-        <h1>dp</h1>
-      </div>
+      <h1><img src="apple-touch-icon-dp.png" alt="dp"></h1>
+      <p class="eyebrow">pages.davidpetsolt.com</p>
     </header>
     <p class="lede">My directory: every page on this site, plus the artifacts I use most. Trips live on their own page.</p>
 

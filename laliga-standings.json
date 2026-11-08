@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-08T01:51:56.186Z",
+  "updated": "2026-11-08T11:27:52.214Z",
   "d1": [
     {
       "rank": 1,
@@ -41,8 +41,7 @@
         "opp": "RC Celta de Vigo",
         "hm": true,
         "date": "2026-11-21T20:00:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 3,
@@ -63,8 +62,7 @@
         "opp": "FC Barcelona",
         "hm": true,
         "date": "2026-11-08T20:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 4,
@@ -638,8 +636,7 @@
         "opp": "RCD Mallorca",
         "hm": false,
         "date": "2026-11-14T17:30Z"
-      },
-      "mv": 2
+      }
     },
     {
       "rank": 11,
@@ -660,8 +657,7 @@
         "opp": "Real Sociedad B",
         "hm": true,
         "date": "2026-11-09T19:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 12,
@@ -682,8 +678,7 @@
         "opp": "CD Eldense",
         "hm": true,
         "date": "2026-11-08T17:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 13,
@@ -1063,8 +1058,7 @@
         "opp": "Athletic Club",
         "hm": true,
         "date": "2026-11-15T11:00Z"
-      },
-      "mv": 3
+      }
     },
     {
       "rank": 9,
@@ -1085,8 +1079,7 @@
         "opp": "Deportivo Alavés",
         "hm": false,
         "date": "2026-11-14T17:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 10,
@@ -1107,8 +1100,7 @@
         "opp": "Valencia CF",
         "hm": true,
         "date": "2026-11-09T20:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 11,
@@ -1129,8 +1121,7 @@
         "opp": "Valencia CF",
         "hm": false,
         "date": "2026-11-15T17:15Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 12,
@@ -1148,9 +1139,9 @@
         "date": "2026-10-31T15:00Z"
       },
       "next": {
-        "opp": "Sevilla FC",
-        "hm": true,
-        "date": "2026-11-08T11:00Z"
+        "opp": "Madrid CFF",
+        "hm": false,
+        "date": "2026-11-15T11:00Z"
       }
     },
     {
@@ -1169,9 +1160,9 @@
         "date": "2026-11-01T18:00Z"
       },
       "next": {
-        "opp": "Logroño United",
-        "hm": false,
-        "date": "2026-11-08T11:00Z"
+        "opp": "Atlético de Madrid",
+        "hm": true,
+        "date": "2026-11-15T15:00Z"
       }
     },
     {

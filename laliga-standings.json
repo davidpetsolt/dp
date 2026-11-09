@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T01:59:57.031Z",
+  "updated": "2026-11-09T13:15:05.945Z",
   "d1": [
     {
       "rank": 1,
@@ -167,8 +167,7 @@
         "opp": "FC Barcelona",
         "hm": false,
         "date": "2026-11-22T13:00:00Z"
-      },
-      "mv": 2
+      }
     },
     {
       "rank": 9,
@@ -189,8 +188,7 @@
         "opp": "Deportivo Alavés",
         "hm": false,
         "date": "2026-11-21T13:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 10,
@@ -211,8 +209,7 @@
         "opp": "Real Sociedad",
         "hm": true,
         "date": "2026-11-22T15:15:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 11,
@@ -275,8 +272,7 @@
         "opp": "Athletic Club",
         "hm": false,
         "date": "2026-11-20T20:00:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 14,
@@ -297,8 +293,7 @@
         "opp": "Valencia CF",
         "hm": true,
         "date": "2026-11-21T15:15:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 15,
@@ -319,8 +314,7 @@
         "opp": "Atlético de Madrid",
         "hm": true,
         "date": "2026-11-22T20:00:00Z"
-      },
-      "mv": -2
+      }
     },
     {
       "rank": 16,
@@ -663,8 +657,7 @@
         "opp": "CD Castellón",
         "hm": true,
         "date": "2026-11-14T13:00Z"
-      },
-      "mv": 2
+      }
     },
     {
       "rank": 12,
@@ -685,8 +678,7 @@
         "opp": "Real Sociedad B",
         "hm": true,
         "date": "2026-11-09T19:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 13,
@@ -707,8 +699,7 @@
         "opp": "CD Eldense",
         "hm": true,
         "date": "2026-11-09T19:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 14,

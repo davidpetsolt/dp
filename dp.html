@@ -160,8 +160,6 @@
       vertical-align: 4px;
     }
 
-    /* Skincare stays blue in the orange Personal section: calmer. */
-    .page--skincare { --accent: var(--dp-blue); --accent-text: var(--dp-blue-text); }
     .icon .tile--smile { font-family: "IBM Plex Mono", monospace; font-weight: 500; font-size: 24px; letter-spacing: 0; transform: rotate(90deg); border-radius: 18px; }
 
     /* Active trips under the Trips card: small icons, in columns. */
@@ -187,6 +185,9 @@
     .trip-mini b { font-weight: 600; font-size: 15px; line-height: 1.2; }
     .trip-mini small { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--accent-text); margin-top: 2px; }
 
+    /* Side-by-side cards (Work). */
+    .pages.cols { grid-template-columns: 1fr 1fr; }
+
     /* Past: still findable, deliberately quieter. */
     .pages.past .page { box-shadow: none; background: rgba(255,255,255,.6); }
     .pages.past .icon img { filter: saturate(.6); }
@@ -211,6 +212,11 @@
       .icon { width: 80px; }
       .icon img, .icon .tile { width: 56px; height: 56px; border-radius: 14px; font-size: 22px; }
       .icon .tile--smile { font-size: 20px; }
+      .pages.cols .page { grid-template-columns: 1fr; align-items: start; }
+      .pages.cols .icon { width: auto; justify-content: flex-start; padding: 12px 0 0 12px; }
+      .pages.cols .body { padding: 8px 12px 12px; }
+      .pages.cols .url { font-size: 11px; overflow-wrap: normal; }
+      .pages.cols .lock { margin-left: 0; }
       .trips-mini { grid-template-columns: 1fr 1fr; }
       .trip-mini { flex-direction: column; align-items: flex-start; gap: 8px; padding: 10px; }
       .body { padding: 12px 14px 12px 2px; }
@@ -229,14 +235,22 @@
          Finished things move to Past rather than being removed. -->
 
     <h2 class="group blue">Work</h2>
-    <ul class="pages blue">
+    <ul class="pages blue cols">
       <li>
         <a class="page page--cos" href="https://claude.ai/artifact/7N7MKK9zQfkLPCZtRgoZd5" target="_blank" rel="noopener">
           <div class="icon"><span class="tile" aria-hidden="true">COS</span></div>
           <div class="body">
             <h3 class="name">Chief of Staff <span class="lock">Artifact</span></h3>
             <p class="url">claude.ai artifact</p>
-            <p class="blurb">The COS board: what is waiting on me, on Claude, and on the team.</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a class="page page--bob" href="https://bob.nextfractional.com" target="_blank" rel="noopener">
+          <div class="icon"><img src="apple-touch-icon-bob.png" alt="" width="76" height="76"></div>
+          <div class="body">
+            <h3 class="name">The Bob</h3>
+            <p class="url">bob.nextfractional.com</p>
           </div>
         </a>
       </li>
@@ -250,7 +264,6 @@
           <div class="body">
             <h3 class="name">En Marcha Flashcards <span class="lock">Artifact</span></h3>
             <p class="url">claude.ai artifact</p>
-            <p class="blurb">Spanish vocabulary flashcards from En Marcha.</p>
           </div>
         </a>
       </li>
@@ -260,7 +273,6 @@
           <div class="body">
             <h3 class="name">Vecindario</h3>
             <p class="url">/vecindario</p>
-            <p class="blurb">Spanish conversation practice built around your actual Barcelona week.</p>
           </div>
         </a>
       </li>
@@ -270,7 +282,6 @@
           <div class="body">
             <h3 class="name">Barcelona Events</h3>
             <p class="url">/barcelona-events</p>
-            <p class="blurb">What's on this weekend, ongoing now and coming up. Updated weekly.</p>
           </div>
         </a>
       </li>
@@ -280,7 +291,6 @@
           <div class="body">
             <h3 class="name">LaLiga Guide</h3>
             <p class="url">/laliga-guide</p>
-            <p class="blurb">Daily snapshot of Spanish football: both men's divisions plus Liga F.</p>
           </div>
         </a>
       </li>
@@ -294,7 +304,6 @@
           <div class="body">
             <h3 class="name">Trips</h3>
             <p class="url">/trips</p>
-            <p class="blurb">Every trip site, current and past. Each one has its own password.</p>
           </div>
         </a>
       </li>
@@ -333,7 +342,6 @@
           <div class="body">
             <h3 class="name">D-Lux 8 presets</h3>
             <p class="url">/leica_dlux8_presets</p>
-            <p class="blurb">David's Leica D-Lux 8 custom settings: Vivid Pop, Retro Blur, Belgrade Fade, B&amp;W Soft Calm.</p>
           </div>
         </a>
       </li>
@@ -345,9 +353,8 @@
         <a class="page page--worldcup" href="world-cup-2026">
           <div class="icon"><img src="apple-touch-icon-worldcup.png" alt="" width="76" height="76"></div>
           <div class="body">
-            <h3 class="name">The Petsolt Four</h3>
+            <h3 class="name">World Cup Bracket</h3>
             <p class="url">/world-cup-2026</p>
-            <p class="blurb">2026 FIFA World Cup family brackets. Four brackets, one verdict.</p>
           </div>
         </a>
       </li>

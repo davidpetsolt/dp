@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T22:42:19.000Z",
+  "updated": "2026-11-10T04:20:39.442Z",
   "d1": [
     {
       "rank": 1,
@@ -636,8 +636,7 @@
         "opp": "Granada CF",
         "hm": false,
         "date": "2026-11-15T15:15Z"
-      },
-      "mv": 3
+      }
     },
     {
       "rank": 11,
@@ -658,8 +657,7 @@
         "opp": "RCD Mallorca",
         "hm": false,
         "date": "2026-11-14T17:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 12,
@@ -680,8 +678,7 @@
         "opp": "CD Castellón",
         "hm": true,
         "date": "2026-11-14T13:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 13,
@@ -702,8 +699,7 @@
         "opp": "CD Eldense",
         "hm": false,
         "date": "2026-11-15T17:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 14,
@@ -787,8 +783,7 @@
         "opp": "Sporting Gijón",
         "hm": true,
         "date": "2026-11-14T15:15Z"
-      },
-      "mv": 2
+      }
     },
     {
       "rank": 18,
@@ -809,8 +804,7 @@
         "opp": "Burgos CF",
         "hm": true,
         "date": "2026-11-13T19:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 19,
@@ -831,8 +825,7 @@
         "opp": "UD Almería",
         "hm": false,
         "date": "2026-11-14T17:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 20,
@@ -960,8 +953,7 @@
         "opp": "Sevilla FC",
         "hm": false,
         "date": "2026-11-15T15:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 4,
@@ -982,8 +974,7 @@
         "opp": "Logroño United",
         "hm": true,
         "date": "2026-11-15T11:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 5,

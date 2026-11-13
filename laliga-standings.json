@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-13T12:31:58.347Z",
+  "updated": "2026-11-13T20:03:14.277Z",
   "d1": [
     {
       "rank": 1,
@@ -486,9 +486,9 @@
         "date": "2026-11-07T13:00Z"
       },
       "next": {
-        "opp": "CD Leganés",
-        "hm": false,
-        "date": "2026-11-13T19:30Z"
+        "opp": "Albacete Balompié",
+        "hm": true,
+        "date": "2026-11-22T20:00Z"
       }
     },
     {
@@ -801,9 +801,9 @@
         "date": "2026-11-07T17:30Z"
       },
       "next": {
-        "opp": "Burgos CF",
-        "hm": true,
-        "date": "2026-11-13T19:30Z"
+        "opp": "FC Andorra",
+        "hm": false,
+        "date": "2026-11-20T19:30Z"
       }
     },
     {

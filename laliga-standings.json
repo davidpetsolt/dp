@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-13T20:03:14.277Z",
+  "updated": "2026-11-14T02:42:10.137Z",
   "d1": [
     {
       "rank": 1,
@@ -475,15 +475,15 @@
       "name": "Burgos CF",
       "pts": 24,
       "s": "plo",
-      "p": 13,
-      "gd": 5,
-      "form": "L,W,W,D,W",
+      "p": 14,
+      "gd": 3,
+      "form": "W,W,D,W,L",
       "last": {
-        "opp": "Celta Fortuna",
-        "hm": true,
-        "gf": 2,
-        "ga": 1,
-        "date": "2026-11-07T13:00Z"
+        "opp": "CD Leganés",
+        "hm": false,
+        "gf": 1,
+        "ga": 3,
+        "date": "2026-11-13T19:30Z"
       },
       "next": {
         "opp": "Albacete Balompié",
@@ -724,6 +724,28 @@
     },
     {
       "rank": 15,
+      "name": "CD Leganés",
+      "pts": 15,
+      "s": "mid",
+      "p": 14,
+      "gd": -10,
+      "form": "L,D,L,L,W",
+      "last": {
+        "opp": "Burgos CF",
+        "hm": true,
+        "gf": 3,
+        "ga": 1,
+        "date": "2026-11-13T19:30Z"
+      },
+      "next": {
+        "opp": "FC Andorra",
+        "hm": false,
+        "date": "2026-11-20T19:30Z"
+      },
+      "mv": 3
+    },
+    {
+      "rank": 16,
       "name": "CD Eldense",
       "pts": 14,
       "s": "mid",
@@ -741,10 +763,11 @@
         "opp": "CE Sabadell",
         "hm": true,
         "date": "2026-11-15T17:30Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 16,
+      "rank": 17,
       "name": "Celta Fortuna",
       "pts": 13,
       "s": "mid",
@@ -762,10 +785,11 @@
         "opp": "Albacete Balompié",
         "hm": false,
         "date": "2026-11-16T19:30Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 17,
+      "rank": 18,
       "name": "Real Sociedad B",
       "pts": 12,
       "s": "mid",
@@ -783,28 +807,8 @@
         "opp": "Sporting Gijón",
         "hm": true,
         "date": "2026-11-14T15:15Z"
-      }
-    },
-    {
-      "rank": 18,
-      "name": "CD Leganés",
-      "pts": 12,
-      "s": "mid",
-      "p": 13,
-      "gd": -12,
-      "form": "L,L,D,L,L",
-      "last": {
-        "opp": "Albacete Balompié",
-        "hm": true,
-        "gf": 1,
-        "ga": 3,
-        "date": "2026-11-07T17:30Z"
       },
-      "next": {
-        "opp": "FC Andorra",
-        "hm": false,
-        "date": "2026-11-20T19:30Z"
-      }
+      "mv": -1
     },
     {
       "rank": 19,

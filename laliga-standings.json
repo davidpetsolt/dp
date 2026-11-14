@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14T02:42:10.137Z",
+  "updated": "2026-11-14T11:41:29.673Z",
   "d1": [
     {
       "rank": 1,
@@ -741,8 +741,7 @@
         "opp": "FC Andorra",
         "hm": false,
         "date": "2026-11-20T19:30Z"
-      },
-      "mv": 3
+      }
     },
     {
       "rank": 16,
@@ -763,8 +762,7 @@
         "opp": "CE Sabadell",
         "hm": true,
         "date": "2026-11-15T17:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 17,
@@ -785,8 +783,7 @@
         "opp": "Albacete Balompié",
         "hm": false,
         "date": "2026-11-16T19:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 18,
@@ -807,8 +804,7 @@
         "opp": "Sporting Gijón",
         "hm": true,
         "date": "2026-11-14T15:15Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 19,
@@ -1017,9 +1013,9 @@
         "date": "2026-11-07T11:00Z"
       },
       "next": {
-        "opp": "CD Tenerife",
+        "opp": "Valencia CF",
         "hm": true,
-        "date": "2026-11-14T11:00Z"
+        "date": "2026-11-23T19:00Z"
       }
     },
     {
@@ -1038,9 +1034,9 @@
         "date": "2026-11-08T12:00Z"
       },
       "next": {
-        "opp": "RCD Espanyol",
-        "hm": false,
-        "date": "2026-11-14T11:00Z"
+        "opp": "Madrid CFF",
+        "hm": true,
+        "date": "2026-11-22T16:00Z"
       }
     },
     {

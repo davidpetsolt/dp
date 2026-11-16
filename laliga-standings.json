@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-16T02:24:14.390Z",
+  "updated": "2026-11-16T13:03:51.522Z",
   "d1": [
     {
       "rank": 1,
@@ -531,8 +531,7 @@
         "opp": "Girona FC",
         "hm": false,
         "date": "2026-11-22T17:30Z"
-      },
-      "mv": 2
+      }
     },
     {
       "rank": 6,
@@ -553,8 +552,7 @@
         "opp": "Albacete Balompié",
         "hm": true,
         "date": "2026-11-22T20:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 7,
@@ -575,8 +573,7 @@
         "opp": "CD Tenerife",
         "hm": false,
         "date": "2026-11-21T20:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 8,
@@ -702,8 +699,7 @@
         "opp": "RCD Mallorca",
         "hm": true,
         "date": "2026-11-21T20:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 14,
@@ -724,8 +720,7 @@
         "opp": "Granada CF",
         "hm": true,
         "date": "2026-11-21T13:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 15,
@@ -746,8 +741,7 @@
         "opp": "CD Castellón",
         "hm": false,
         "date": "2026-11-21T17:30Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 16,
@@ -768,8 +762,7 @@
         "opp": "FC Andorra",
         "hm": false,
         "date": "2026-11-20T19:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 17,
@@ -832,8 +825,7 @@
         "opp": "Real Sociedad B",
         "hm": false,
         "date": "2026-11-21T15:15Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 20,
@@ -854,8 +846,7 @@
         "opp": "CD Leganés",
         "hm": true,
         "date": "2026-11-20T19:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 21,
@@ -1109,8 +1100,7 @@
         "opp": "FC Badalona Women",
         "hm": false,
         "date": "2026-11-21T11:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 11,
@@ -1131,8 +1121,7 @@
         "opp": "Atlético de Madrid",
         "hm": true,
         "date": "2026-11-21T16:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 12,
@@ -1153,8 +1142,7 @@
         "opp": "Real Madrid",
         "hm": true,
         "date": "2026-11-22T11:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 13,
@@ -1175,8 +1163,7 @@
         "opp": "Logroño United",
         "hm": false,
         "date": "2026-11-21T18:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 14,

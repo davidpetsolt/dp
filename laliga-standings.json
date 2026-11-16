@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-16T13:03:51.522Z",
+  "updated": "2026-11-16T22:31:19.208Z",
   "d1": [
     {
       "rank": 1,
@@ -769,20 +769,20 @@
       "name": "Celta Fortuna",
       "pts": 13,
       "s": "mid",
-      "p": 13,
-      "gd": -6,
-      "form": "W,D,L,D,L",
+      "p": 14,
+      "gd": -7,
+      "form": "D,L,D,L,L",
       "last": {
-        "opp": "Burgos CF",
-        "hm": false,
-        "gf": 1,
-        "ga": 2,
-        "date": "2026-11-07T13:00Z"
-      },
-      "next": {
         "opp": "Albacete Balompié",
         "hm": false,
+        "gf": 0,
+        "ga": 1,
         "date": "2026-11-16T19:30Z"
+      },
+      "next": {
+        "opp": "Real Valladolid",
+        "hm": true,
+        "date": "2026-11-22T17:30Z"
       }
     },
     {
@@ -808,6 +808,28 @@
     },
     {
       "rank": 19,
+      "name": "Albacete Balompié",
+      "pts": 13,
+      "s": "rel",
+      "p": 14,
+      "gd": -10,
+      "form": "L,W,W,W,W",
+      "last": {
+        "opp": "Celta Fortuna",
+        "hm": true,
+        "gf": 1,
+        "ga": 0,
+        "date": "2026-11-16T19:30Z"
+      },
+      "next": {
+        "opp": "Burgos CF",
+        "hm": false,
+        "date": "2026-11-22T20:00Z"
+      },
+      "mv": 2
+    },
+    {
+      "rank": 20,
       "name": "Cádiz CF",
       "pts": 11,
       "s": "rel",
@@ -825,10 +847,11 @@
         "opp": "Real Sociedad B",
         "hm": false,
         "date": "2026-11-21T15:15Z"
-      }
+      },
+      "mv": -1
     },
     {
-      "rank": 20,
+      "rank": 21,
       "name": "FC Andorra",
       "pts": 11,
       "s": "rel",
@@ -846,28 +869,8 @@
         "opp": "CD Leganés",
         "hm": true,
         "date": "2026-11-20T19:30Z"
-      }
-    },
-    {
-      "rank": 21,
-      "name": "Albacete Balompié",
-      "pts": 10,
-      "s": "rel",
-      "p": 13,
-      "gd": -11,
-      "form": "L,L,W,W,W",
-      "last": {
-        "opp": "CD Leganés",
-        "hm": false,
-        "gf": 3,
-        "ga": 1,
-        "date": "2026-11-07T17:30Z"
       },
-      "next": {
-        "opp": "Celta Fortuna",
-        "hm": true,
-        "date": "2026-11-16T19:30Z"
-      }
+      "mv": -1
     },
     {
       "rank": 22,

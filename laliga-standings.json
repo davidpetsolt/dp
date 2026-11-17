@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-17T04:47:54.417Z",
+  "updated": "2026-11-17T13:45:35.819Z",
   "d1": [
     {
       "rank": 1,
@@ -456,7 +456,7 @@
       "s": "aup",
       "p": 13,
       "gd": 19,
-      "form": "W,W,D,D,W",
+      "form": "L,W,W,D,W",
       "last": {
         "opp": "Real Valladolid",
         "hm": false,
@@ -477,7 +477,7 @@
       "s": "plo",
       "p": 13,
       "gd": 7,
-      "form": "W,W,W,D,W",
+      "form": "W,W,W,W,W",
       "last": {
         "opp": "UD Las Palmas",
         "hm": true,
@@ -519,7 +519,7 @@
       "s": "plo",
       "p": 13,
       "gd": 7,
-      "form": "D,L,D,D,D",
+      "form": "L,D,L,D,D",
       "last": {
         "opp": "Cádiz CF",
         "hm": true,
@@ -561,7 +561,7 @@
       "s": "mid",
       "p": 13,
       "gd": 8,
-      "form": "D,D,W,D,D",
+      "form": "W,D,D,W,D",
       "last": {
         "opp": "Córdoba CF",
         "hm": true,
@@ -855,7 +855,7 @@
       "s": "rel",
       "p": 13,
       "gd": -6,
-      "form": "L,L,D,D,L",
+      "form": "W,L,L,D,L",
       "last": {
         "opp": "UD Almería",
         "hm": false,

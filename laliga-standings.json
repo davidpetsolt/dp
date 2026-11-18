@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-18T13:20:45.471Z",
+  "updated": "2026-11-18T20:53:56.572Z",
   "d1": [
     {
       "rank": 1,
@@ -134,13 +134,13 @@
       "s": "conf",
       "p": 11,
       "gd": 4,
-      "form": "D,L,W,W,D",
+      "form": "L,W,W,D,D",
       "last": {
-        "opp": "CA Osasuna",
+        "opp": "Rayo Vallecano",
         "hm": false,
-        "gf": 1,
-        "ga": 1,
-        "date": "2026-11-07T17:30Z"
+        "gf": 0,
+        "ga": 0,
+        "date": "2026-12-09T19:00Z"
       },
       "next": {
         "opp": "RCD Espanyol",
@@ -281,13 +281,13 @@
       "s": "mid",
       "p": 11,
       "gd": -6,
-      "form": "D,L,W,L",
+      "form": "D,L,W,L,D",
       "last": {
-        "opp": "Real Sociedad",
-        "hm": false,
+        "opp": "Athletic Club",
+        "hm": true,
         "gf": 0,
-        "ga": 1,
-        "date": "2026-11-08T15:15Z"
+        "ga": 0,
+        "date": "2026-12-09T19:00Z"
       },
       "next": {
         "opp": "Valencia CF",
@@ -983,7 +983,7 @@
       "s": "mid",
       "p": 10,
       "gd": 2,
-      "form": "W,L,W,D,W",
+      "form": "W,L,W,W",
       "last": {
         "opp": "RCD Espanyol",
         "hm": false,
@@ -1151,7 +1151,7 @@
       "s": "mid",
       "p": 10,
       "gd": -6,
-      "form": "D,L,D,D,W",
+      "form": "D,L,D,W",
       "last": {
         "opp": "SD Eibar",
         "hm": true,

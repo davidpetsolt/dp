@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20T13:29:34.508Z",
+  "updated": "2026-11-20T20:43:35.202Z",
   "d1": [
     {
       "rank": 1,
@@ -130,9 +130,9 @@
     {
       "rank": 7,
       "name": "Athletic Club",
-      "pts": 16,
+      "pts": 17,
       "s": "conf",
-      "p": 11,
+      "p": 12,
       "gd": 4,
       "form": "L,W,W,D,D",
       "last": {
@@ -143,9 +143,9 @@
         "date": "2026-12-09T19:00Z"
       },
       "next": {
-        "opp": "RCD Espanyol",
-        "hm": true,
-        "date": "2026-11-20T20:00:00Z"
+        "opp": "Málaga CF",
+        "hm": false,
+        "date": "2026-11-28T15:15:00Z"
       }
     },
     {
@@ -234,6 +234,28 @@
     },
     {
       "rank": 12,
+      "name": "RCD Espanyol",
+      "pts": 13,
+      "s": "mid",
+      "p": 13,
+      "gd": -1,
+      "form": "D,L,L,W,D",
+      "last": {
+        "opp": "RC Deportivo La Coruña",
+        "hm": true,
+        "gf": 0,
+        "ga": 0,
+        "date": "2026-11-07T15:15Z"
+      },
+      "next": {
+        "opp": "Getafe CF",
+        "hm": true,
+        "date": "2026-11-30T20:00:00Z"
+      },
+      "mv": 1
+    },
+    {
+      "rank": 13,
       "name": "Deportivo Alavés",
       "pts": 13,
       "s": "mid",
@@ -251,28 +273,8 @@
         "opp": "RC Deportivo La Coruña",
         "hm": true,
         "date": "2026-11-21T13:00:00Z"
-      }
-    },
-    {
-      "rank": 13,
-      "name": "RCD Espanyol",
-      "pts": 12,
-      "s": "mid",
-      "p": 12,
-      "gd": -1,
-      "form": "D,L,L,W,D",
-      "last": {
-        "opp": "RC Deportivo La Coruña",
-        "hm": true,
-        "gf": 0,
-        "ga": 0,
-        "date": "2026-11-07T15:15Z"
       },
-      "next": {
-        "opp": "Athletic Club",
-        "hm": false,
-        "date": "2026-11-20T20:00:00Z"
-      }
+      "mv": -1
     },
     {
       "rank": 14,
@@ -759,9 +761,9 @@
         "date": "2026-11-13T19:30Z"
       },
       "next": {
-        "opp": "FC Andorra",
-        "hm": false,
-        "date": "2026-11-20T19:30Z"
+        "opp": "CE Sabadell",
+        "hm": true,
+        "date": "2026-11-27T19:30Z"
       }
     },
     {
@@ -864,9 +866,9 @@
         "date": "2026-11-14T17:30Z"
       },
       "next": {
-        "opp": "CD Leganés",
-        "hm": true,
-        "date": "2026-11-20T19:30Z"
+        "opp": "UD Las Palmas",
+        "hm": false,
+        "date": "2026-11-28T13:00Z"
       }
     },
     {

@@ -10,7 +10,7 @@ Runs via `~/Code/github/dp/publish-japan-2026.sh`, which does, in order:
 0. G0 version guard: reads `BUILD.v` and `BUILD.date` from the page (`const BUILD = window.BUILD = { v:N, date:'DD-MMM-YYYY', note:'...' }`) and refuses unless `v` is exactly one more than the last row of `~/Code/site-src/dp/japan-2026-VERSIONS.md` (what is live).
 1. Copies the plaintext to `~/Code/site-src/dp/japan-2026-vN-DD-MMM-YYYY-HHMM.html` (outside the public repo), then moves `~/Downloads/japan-2026.html` into the repo root.
 2. G1: confirms the file is plaintext (no `staticryptConfig`). Never double-encrypts.
-3. Encrypts in place with `npx staticrypt` using `japan-2026-lock-template.html` and the shared `.staticrypt.json` salt (never delete or regenerate the salt; the password lives only in the local script).
+3. Encrypts in place with `npx staticrypt` using `japan-2026-lock-template.html` and the shared `.staticrypt.json` salt (never delete or regenerate the salt; the page code comes from `publish.env` in the private dp-src repo at `~/Code/site-src/dp` (loaded by `scripts/publish-lib.sh`); never write it into any file in this repo).
 4. G2: confirms `staticryptConfig` is present. G3: confirms no plaintext markers leaked (`days-list`, `JAPAN DESIGNED TRAVEL`, `Kaczmarczyk`, `build-meta`, `<main`).
 5. Commits `Publish japan-2026.html vN (encrypted, <today>)` and writes a pending log row.
 6. With `CONFIRM_PUSH=yes`, pushes to origin main and appends the row to `japan-2026-VERSIONS.md`. Without it, the commit stays local and the row stays pending until the next `CONFIRM_PUSH=yes` run.

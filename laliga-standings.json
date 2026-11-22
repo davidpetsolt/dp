@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22T02:40:19.026Z",
+  "updated": "2026-11-22T12:47:58.964Z",
   "d1": [
     {
       "rank": 1,
@@ -531,8 +531,7 @@
         "opp": "CD Castellón",
         "hm": true,
         "date": "2026-11-29T15:15Z"
-      },
-      "mv": 2
+      }
     },
     {
       "rank": 6,
@@ -553,8 +552,7 @@
         "opp": "Girona FC",
         "hm": false,
         "date": "2026-11-22T17:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 7,
@@ -575,8 +573,7 @@
         "opp": "Albacete Balompié",
         "hm": true,
         "date": "2026-11-22T20:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 8,
@@ -681,8 +678,7 @@
         "opp": "Albacete Balompié",
         "hm": false,
         "date": "2026-11-28T15:15Z"
-      },
-      "mv": 2
+      }
     },
     {
       "rank": 13,
@@ -703,8 +699,7 @@
         "opp": "CD Leganés",
         "hm": false,
         "date": "2026-11-27T19:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 14,
@@ -725,8 +720,7 @@
         "opp": "Celta Fortuna",
         "hm": false,
         "date": "2026-11-22T17:30Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 15,
@@ -956,9 +950,9 @@
         "date": "2026-11-14T19:30Z"
       },
       "next": {
-        "opp": "Granada CF",
-        "hm": false,
-        "date": "2026-11-22T11:00Z"
+        "opp": "Madrid CFF",
+        "hm": true,
+        "date": "2026-12-08T18:00Z"
       }
     },
     {
@@ -1043,8 +1037,7 @@
         "opp": "SD Eibar",
         "hm": false,
         "date": "2026-12-09T18:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 8,
@@ -1065,8 +1058,7 @@
         "opp": "Valencia CF",
         "hm": true,
         "date": "2026-11-23T19:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 9,
@@ -1084,9 +1076,9 @@
         "date": "2026-11-15T11:00Z"
       },
       "next": {
-        "opp": "Sevilla FC",
-        "hm": true,
-        "date": "2026-11-22T11:00Z"
+        "opp": "Deportivo Abanca",
+        "hm": false,
+        "date": "2026-12-09T17:00Z"
       }
     },
     {
@@ -1147,9 +1139,9 @@
         "date": "2026-11-15T17:15Z"
       },
       "next": {
-        "opp": "Real Madrid",
-        "hm": true,
-        "date": "2026-11-22T11:00Z"
+        "opp": "Sevilla FC",
+        "hm": false,
+        "date": "2026-12-09T19:00Z"
       }
     },
     {
@@ -1210,9 +1202,9 @@
         "date": "2026-11-15T15:00Z"
       },
       "next": {
-        "opp": "Real Sociedad",
-        "hm": false,
-        "date": "2026-11-22T11:00Z"
+        "opp": "Granada CF",
+        "hm": true,
+        "date": "2026-12-09T19:00Z"
       }
     },
     {

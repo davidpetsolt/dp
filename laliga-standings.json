@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T00:22:21.790Z",
+  "updated": "2026-11-24T06:26:51.254Z",
   "d1": [
     {
       "rank": 1,
@@ -314,8 +314,7 @@
         "opp": "Racing de Santander",
         "hm": true,
         "date": "2026-11-27T20:00:00Z"
-      },
-      "mv": 3
+      }
     },
     {
       "rank": 16,
@@ -336,8 +335,7 @@
         "opp": "Real Betis",
         "hm": false,
         "date": "2026-11-28T13:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 17,
@@ -358,8 +356,7 @@
         "opp": "CA Osasuna",
         "hm": true,
         "date": "2026-11-29T13:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 18,
@@ -380,8 +377,7 @@
         "opp": "RCD Espanyol",
         "hm": false,
         "date": "2026-11-30T20:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 19,
@@ -451,8 +447,7 @@
         "opp": "Sporting Gijón",
         "hm": true,
         "date": "2026-11-29T20:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 2,
@@ -473,8 +468,7 @@
         "opp": "RCD Mallorca",
         "hm": false,
         "date": "2026-11-29T15:15Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 3,
@@ -1022,8 +1016,7 @@
         "opp": "FC Barcelona",
         "hm": false,
         "date": "2026-12-08T17:00Z"
-      },
-      "mv": 3
+      }
     },
     {
       "rank": 7,
@@ -1044,8 +1037,7 @@
         "opp": "Atlético de Madrid",
         "hm": false,
         "date": "2026-12-08T15:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 8,
@@ -1066,8 +1058,7 @@
         "opp": "SD Eibar",
         "hm": false,
         "date": "2026-12-09T18:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 9,
@@ -1088,8 +1079,7 @@
         "opp": "Deportivo Abanca",
         "hm": false,
         "date": "2026-12-09T17:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 10,

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-25T05:02:59.105Z",
+  "updated": "2026-11-25T14:50:57.126Z",
   "d1": [
     {
       "rank": 1,
@@ -155,13 +155,13 @@
       "s": "mid",
       "p": 12,
       "gd": 3,
-      "form": "W,W,D,L,D",
+      "form": "L,W,W,D,L",
       "last": {
-        "opp": "Rayo Vallecano",
-        "hm": false,
+        "opp": "RCD Espanyol",
+        "hm": true,
         "gf": 0,
-        "ga": 0,
-        "date": "2026-12-09T19:00Z"
+        "ga": 1,
+        "date": "2026-11-20T20:00Z"
       },
       "next": {
         "opp": "Málaga CF",
@@ -323,13 +323,13 @@
       "s": "mid",
       "p": 12,
       "gd": -7,
-      "form": "L,W,L,L,D",
+      "form": "D,L,W,L,L",
       "last": {
-        "opp": "Athletic Club",
+        "opp": "Valencia CF",
         "hm": true,
         "gf": 0,
-        "ga": 0,
-        "date": "2026-12-09T19:00Z"
+        "ga": 1,
+        "date": "2026-11-21T15:15Z"
       },
       "next": {
         "opp": "Real Betis",

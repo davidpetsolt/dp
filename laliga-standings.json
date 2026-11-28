@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-28T04:17:09.726Z",
+  "updated": "2026-11-28T13:29:12.692Z",
   "d1": [
     {
       "rank": 1,
@@ -67,9 +67,9 @@
     {
       "rank": 4,
       "name": "Real Betis",
-      "pts": 27,
+      "pts": 28,
       "s": "cl",
-      "p": 13,
+      "p": 14,
       "gd": 5,
       "form": "L,D,W,W,D",
       "last": {
@@ -80,9 +80,9 @@
         "date": "2026-11-21T17:30Z"
       },
       "next": {
-        "opp": "Rayo Vallecano",
-        "hm": true,
-        "date": "2026-11-28T13:00:00Z"
+        "opp": "Atlético de Madrid",
+        "hm": false,
+        "date": "2026-12-06T20:00:00Z"
       }
     },
     {
@@ -125,8 +125,7 @@
         "opp": "RC Deportivo La Coruña",
         "hm": true,
         "date": "2026-12-05T13:00:00Z"
-      },
-      "mv": 1
+      }
     },
     {
       "rank": 7,
@@ -147,8 +146,7 @@
         "opp": "Real Sociedad",
         "hm": false,
         "date": "2026-11-29T20:00:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 8,
@@ -299,6 +297,28 @@
     },
     {
       "rank": 15,
+      "name": "Rayo Vallecano",
+      "pts": 13,
+      "s": "mid",
+      "p": 13,
+      "gd": -7,
+      "form": "D,L,W,L,L",
+      "last": {
+        "opp": "Valencia CF",
+        "hm": true,
+        "gf": 0,
+        "ga": 1,
+        "date": "2026-11-21T15:15Z"
+      },
+      "next": {
+        "opp": "Levante UD",
+        "hm": true,
+        "date": "2026-12-05T15:15:00Z"
+      },
+      "mv": 1
+    },
+    {
+      "rank": 16,
       "name": "Levante UD",
       "pts": 12,
       "s": "mid",
@@ -316,28 +336,8 @@
         "opp": "Rayo Vallecano",
         "hm": false,
         "date": "2026-12-05T15:15:00Z"
-      }
-    },
-    {
-      "rank": 16,
-      "name": "Rayo Vallecano",
-      "pts": 12,
-      "s": "mid",
-      "p": 12,
-      "gd": -7,
-      "form": "D,L,W,L,L",
-      "last": {
-        "opp": "Valencia CF",
-        "hm": true,
-        "gf": 0,
-        "ga": 1,
-        "date": "2026-11-21T15:15Z"
       },
-      "next": {
-        "opp": "Real Betis",
-        "hm": false,
-        "date": "2026-11-28T13:00:00Z"
-      }
+      "mv": -1
     },
     {
       "rank": 17,
@@ -614,9 +614,9 @@
         "date": "2026-11-22T15:15Z"
       },
       "next": {
-        "opp": "FC Andorra",
-        "hm": true,
-        "date": "2026-11-28T13:00Z"
+        "opp": "Córdoba CF",
+        "hm": false,
+        "date": "2026-12-07T17:30Z"
       }
     },
     {
@@ -866,9 +866,9 @@
         "date": "2026-11-20T19:30Z"
       },
       "next": {
-        "opp": "UD Las Palmas",
-        "hm": false,
-        "date": "2026-11-28T13:00Z"
+        "opp": "Real Oviedo",
+        "hm": true,
+        "date": "2026-12-05T17:30Z"
       }
     },
     {

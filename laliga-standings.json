@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-27T21:38:46.843Z",
+  "updated": "2026-11-28T04:17:09.726Z",
   "d1": [
     {
       "rank": 1,
@@ -108,9 +108,31 @@
     },
     {
       "rank": 6,
+      "name": "Racing de Santander",
+      "pts": 20,
+      "s": "el",
+      "p": 14,
+      "gd": -10,
+      "form": "W,L,W,W,W",
+      "last": {
+        "opp": "Levante UD",
+        "hm": false,
+        "gf": 3,
+        "ga": 1,
+        "date": "2026-11-27T20:00Z"
+      },
+      "next": {
+        "opp": "RC Deportivo La Coruña",
+        "hm": true,
+        "date": "2026-12-05T13:00:00Z"
+      },
+      "mv": 1
+    },
+    {
+      "rank": 7,
       "name": "Sevilla FC",
       "pts": 19,
-      "s": "el",
+      "s": "conf",
       "p": 13,
       "gd": -2,
       "form": "L,W,L,D,D",
@@ -125,28 +147,8 @@
         "opp": "Real Sociedad",
         "hm": false,
         "date": "2026-11-29T20:00:00Z"
-      }
-    },
-    {
-      "rank": 7,
-      "name": "Racing de Santander",
-      "pts": 18,
-      "s": "conf",
-      "p": 14,
-      "gd": -12,
-      "form": "L,W,L,W,W",
-      "last": {
-        "opp": "Real Sociedad",
-        "hm": true,
-        "gf": 3,
-        "ga": 2,
-        "date": "2026-11-22T15:15Z"
       },
-      "next": {
-        "opp": "RC Deportivo La Coruña",
-        "hm": true,
-        "date": "2026-12-05T13:00:00Z"
-      }
+      "mv": -1
     },
     {
       "rank": 8,
@@ -298,17 +300,17 @@
     {
       "rank": 15,
       "name": "Levante UD",
-      "pts": 13,
+      "pts": 12,
       "s": "mid",
       "p": 14,
-      "gd": -5,
-      "form": "W,L,L,D,D",
+      "gd": -7,
+      "form": "L,L,D,D,L",
       "last": {
-        "opp": "Elche CF",
+        "opp": "Racing de Santander",
         "hm": true,
         "gf": 1,
-        "ga": 1,
-        "date": "2026-11-23T20:00Z"
+        "ga": 3,
+        "date": "2026-11-27T20:00Z"
       },
       "next": {
         "opp": "Rayo Vallecano",
@@ -678,8 +680,7 @@
         "opp": "SD Eibar",
         "hm": true,
         "date": "2026-12-05T15:15Z"
-      },
-      "mv": 2
+      }
     },
     {
       "rank": 13,
@@ -700,8 +701,7 @@
         "opp": "Real Sociedad B",
         "hm": true,
         "date": "2026-11-28T20:00Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 14,
@@ -722,8 +722,7 @@
         "opp": "Albacete Balompié",
         "hm": false,
         "date": "2026-11-28T15:15Z"
-      },
-      "mv": -1
+      }
     },
     {
       "rank": 15,
